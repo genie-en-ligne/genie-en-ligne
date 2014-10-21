@@ -1,0 +1,7 @@
+#################
+## Éléments à ignorer lors des commit et des merge
+#################
+
+config.php
+admin/config.php
+.htaccess
