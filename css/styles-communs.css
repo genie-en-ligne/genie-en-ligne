@@ -1,0 +1,169 @@
+html,
+body {
+    min-height: 100%;
+    padding: 0;
+    margin: 0;
+    /*background: #96c950;*/
+	/*background: #96c950; /* Old browsers */
+	background-image: linear-gradient(#96c950, #B6D984);
+}
+div#wrapper {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    min-height: 100%;
+}
+
+
+/*============================*/
+/* REDEFINITIONS DE BOOTSTRAP */
+/*============================*/
+
+
+/* PANELS */
+    .panel-default {
+        border-radius: 10px;
+        border: none;
+        -webkit-box-shadow: 4px 4px 16px 0px rgba(50, 50, 50, 0.23);
+        -moz-box-shadow:    4px 4px 16px 0px rgba(50, 50, 50, 0.23);
+        box-shadow:         4px 4px 16px 0px rgba(50, 50, 50, 0.23);
+    }
+	
+    .panel-default:hover {	
+        box-shadow: 4px 4px 16px 0px rgba(50, 50, 50, 0.5);
+    }
+    .panel-default > .panel-heading{
+        border-radius: 10px 10px 0px 0;
+        font-weight:bold;
+        color: white;
+        /*background-color:#3d82ab;*/
+		background: linear-gradient(to bottom, #3D82AB 0%,#484848 100%);
+		 border-bottom: 2px solid #484848;
+        font-size: 18px;
+    }
+
+/* BUTTONS */
+    .btn-success {
+        background-color: #72a435;
+        border-color:#398439;
+    }
+    .btn-primary {
+        background-color: #3186ad;
+        border-color: #285e8e;
+    }
+
+/* CAROUSEL */
+    .carousel{
+        border-radius:10px;
+        overflow: hidden;
+        box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
+    }
+
+    .carousel-inner img {
+        width: 100%;
+    }
+
+/* FORMS */
+    form.form-horizontal{
+        margin:0 15px 20px;
+    }
+
+/* MODAL */
+    #commentaire { /* Dimension de la boîte commentaire */
+        width: 100%;
+        height: 100px;
+    }
+
+/*=========*/
+/* EN-TETE */
+/*=========*/
+
+
+header {
+    height: 132px;
+}
+header .logo {
+    padding-top: 10px;
+    height: 112px;
+    padding-right: 0px;
+}
+header .logo img {
+    height: auto;
+    width: 100%;
+}
+header .banniere {
+    height: 60px;
+    line-height: 60px;
+}
+
+.navbar.navbar-default{
+	background: linear-gradient(to bottom, #3D82AB 0%,#484848 100%);
+    /*background-color: #3186ad;*/
+    border-radius: 10px;
+    border: none;
+	 box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
+}
+
+.navbar.navbar-default:hover{
+	box-shadow: 0.4em 0.4em 5px rgba(122,122,122,1.5);
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: white;
+}
+.navbar-default .navbar-nav > li > a:hover {
+    color: white;
+    text-decoration: underline;
+}
+.navbar-nav.navbar-right:last-child {
+    margin-right: 15px;
+}
+.navbar-text.navbar-right:last-child {
+    margin-right: 15px;
+}
+.navbar-default .navbar-link,
+.navbar-default .navbar-text,
+.navbar-default .navbar-link:hover {
+    color: white;
+}
+
+.navbar-brand{
+    margin:-10px;
+}
+
+.navbar-brand img{
+    height:40px;
+    width: auto;
+}
+
+
+/*===================*/
+/* CONTENU PRINCIPAL */
+/*===================*/
+
+
+main {
+    min-height: 500px;
+    border-radius: 10px;
+    background: rgba(236,236,236,0.6);
+    padding-top:15px;
+}
+main .page-header {
+    margin-top: 0;
+}
+
+
+/*==============*/
+/* PIED DE PAGE */
+/*==============*/
+
+
+footer {
+    padding-top: 18px;
+}
+
+footer .navbar{
+    margin-bottom: 15px;
+}

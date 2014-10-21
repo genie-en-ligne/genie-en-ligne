@@ -1,0 +1,1 @@
+//Toutes les validations JavaScript pour le login, les formulaires de gestion des ecoles, commissions, profs, tuteurs, demande de modif de mot de passe, changer mot de passe, etc.

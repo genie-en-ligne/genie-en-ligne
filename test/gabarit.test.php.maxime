@@ -1,0 +1,137 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+
+	<head>
+
+		<title>Test unitaire</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<link href="../bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="contenu">
+            <div class="container">
+                <div class="page-header">
+                    <h1>Mes tests unitaires</h1>
+                </div>
+                <div class="row">
+                <?php
+                    /*
+                        Tu vois les choses un peu plus complexes qu'elles ne le sont. En temps normal, c'est le contrôleur
+                        qui gère la réception des $_POST, et c'est la vue qui affiche le formulaire. Tout ce que tu as à
+                        faire ici, c'est bâtir le centre de l'opération, soit par exemple la méthode insererInscription().
+                        Dans le test, tout ce que tu as à faire c'est lui donner manuellement les données. Voici un exemple
+                        concret de tests:                    
+                    */     
+                        echo "<div class='col-xs-4'>";
+                            echo "<div class='panel panel-primary'>";
+                                echo "<div class='panel-heading'>";
+                                    echo "<h4>";
+                                        echo "insererInscription()";
+                                    echo "</h4>";
+                                echo "</div>";
+                                echo "<div class='panel-body'>";
+
+                                    try{
+                                        $user1 = new Utilisateur("Max", "Mad", "MadMax", "abc123", "abc@123.com", "warrior");
+                                        $user1 ->insererInscription();
+                                        echo "<p> Succès! L'utilisateur #".$user1 -> getId()." a été ajouté.</p>";
+                                    }
+                                    catch(Exception $e){
+                                        echo "<p>".$e->getMessage()."</p>";
+                                    }
+
+                                echo "</div>";
+                            echo "</div>";
+                        echo "</div>";
+
+                    /*
+                        J'ai ajouté une touche de bootstrap, sans quoi l'affichage va rapidement devenir bordellique. Évidemment,
+                        bootstrap n'est pas strictement nécessaire au fonctionnement des tests. Pour tous tes autres tests, voici
+                        un gabarit:
+                    */
+
+                        echo "<div class='col-xs-4'>";
+                            echo "<div class='panel panel-primary'>";
+                                echo "<div class='panel-heading'>";
+                                    echo "<h4>";
+                                        echo "setNom('Bob') -> Chaine de caractères";
+                                    echo "</h4>";
+                                echo "</div>";
+                                echo "<div class='panel-body'>";
+
+                                    try{
+                                        $user1 = new Utilisateur();
+                                        $user1 ->setNom('Bob');
+                                        echo "<p>".$user1 -> getNom()."</p>";
+                                    }
+                                    catch(Exception $e){
+                                        echo "<p>".$e->getMessage()."</p>";
+                                    }
+
+                                echo "</div>";
+                            echo "</div>";
+                        echo "</div>";
+
+                        echo "<div class='col-xs-4'>";
+                            echo "<div class='panel panel-primary'>";
+                                echo "<div class='panel-heading'>";
+                                    echo "<h4>";
+                                        echo "setNom('') -> Chaine vide";
+                                    echo "</h4>";
+                                echo "</div>";
+                                echo "<div class='panel-body'>";
+
+                                    try{
+                                        $user1 = new Utilisateur();
+                                        $user1 ->setNom('');
+                                        echo "<p>".$user1 -> getNom()."</p>";
+                                    }
+                                    catch(Exception $e){
+                                        echo "<p>".$e->getMessage()."</p>";
+                                    }
+
+                                echo "</div>";
+                            echo "</div>";
+                        echo "</div>";
+
+                        echo "<div class='col-xs-4'>";
+                            echo "<div class='panel panel-primary'>";
+                                echo "<div class='panel-heading'>";
+                                    echo "<h4>";
+                                        echo "setNom(25) -> Valeur numérique";
+                                    echo "</h4>";
+                                echo "</div>";
+                                echo "<div class='panel-body'>";
+
+                                    try{
+                                        $user1 = new Utilisateur();
+                                        $user1 ->setNom(25);
+                                        echo "<p>".$user1 -> getNom()."</p>";
+                                    }
+                                    catch(Exception $e){
+                                        echo "<p>".$e->getMessage()."</p>";
+                                    }
+
+                                echo "</div>";
+                            echo "</div>";
+                        echo "</div>";
+
+                ?>
+                </div>
+            </div>
+		</div>
+		<div id="footer">
+
+		</div>
+	</body>
+</html>
+
+
+
+
+
+
+
+
