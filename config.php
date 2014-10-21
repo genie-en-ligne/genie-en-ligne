@@ -19,6 +19,8 @@
 		}
 	}
 	
+	//test
+	
 	spl_autoload_register('mon_autoloader');
 
     //define('WEB_ROOT', 'http://e1395671.webdev.cmaisonneuve.qc.ca/final');
