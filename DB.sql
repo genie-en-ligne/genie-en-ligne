@@ -105,7 +105,7 @@ CREATE TABLE IF NOT EXISTS `contenu` (
   `soumis_par` int(11) NOT NULL,
   `approuve_par` int(11) NOT NULL,
   `statut` int(11) NOT NULL,
-  `type_contenu` int(11) NOT NULL,
+  `type_contenu` bit(1) NOT NULL,
   `matiere_ID` int(11) NOT NULL,
   `niveau_scolaire_ID` int(11) NOT NULL,
   `est_detruit` bit(1) NOT NULL,
@@ -348,27 +348,6 @@ CREATE TABLE IF NOT EXISTS `services_par_commission` (
 -- Dumping data for table `services_par_commission`
 --
 
-
--- --------------------------------------------------------
-
---
--- Table structure for table `statuts`
---
-
-CREATE TABLE IF NOT EXISTS `statuts` (
-  `statut_ID` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(10) CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`statut_ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
-
---
--- Dumping data for table `statuts`
---
-
-INSERT INTO `statuts` (`statut_ID`, `nom`) VALUES
-(1, 'Soumis'),
-(2, 'Refusé'),
-(3, 'Approuvé');
 
 -- --------------------------------------------------------
 
