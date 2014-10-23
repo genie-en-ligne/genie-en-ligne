@@ -23,6 +23,10 @@ div#wrapper {
 
 
 /* PANELS */
+    .panel{        
+        padding:0;
+    }
+
     .panel-default {
         border-radius: 10px;
         border: none;
