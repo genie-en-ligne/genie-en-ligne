@@ -34,6 +34,12 @@ class Controleur
                 $this->setReqModule("Utilisateur");
                 $this->setReqAction("bienvenue");
             }
+            if($this->oUtilisateurSession->getId() == 0){
+                header("location:".WEB_ROOT);
+            }
+            if($this->oUtilisateurSession->getRole() < 3){
+                header("location:".WEB_ROOT."/../utilisateur/bienvenue");
+            }
             else{                                 
                 $parts = explode("/", rtrim($request, '/'));//Remove trailing slash
                 
