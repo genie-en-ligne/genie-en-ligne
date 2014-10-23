@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `codes_permanents` (
 CREATE TABLE IF NOT EXISTS `commissions` (
   `commission_ID` int(11) NOT NULL AUTO_INCREMENT,
   `nom` varchar(250) CHARACTER SET utf8 NOT NULL,
-  `region` varchar(75) CHARACTER SET utf8 NOT NULL,
+  `region` int(11) NOT NULL,
   `responsable` int(11) NOT NULL,
   `est_detruit` bit(1) NOT NULL,
   PRIMARY KEY (`commission_ID`)
@@ -94,6 +94,22 @@ CREATE TABLE IF NOT EXISTS `commissions` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `regions`
+--
+
+CREATE TABLE IF NOT EXISTS `regions` (
+  `region_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(120) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`region_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `commissions`
+--
+
+
+-- --------------------------------------------------------
+--
 -- Table structure for table `contenu`
 --
 
@@ -104,8 +120,8 @@ CREATE TABLE IF NOT EXISTS `contenu` (
   `date_approuve` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `soumis_par` int(11) NOT NULL,
   `approuve_par` int(11) NOT NULL,
-  `statut` int(11) NOT NULL,
-  `type_contenu` bit(1) NOT NULL,
+  `approuve` bit(1) NOT NULL,
+  `type_contenu` int(11) NOT NULL,
   `matiere_ID` int(11) NOT NULL,
   `niveau_scolaire_ID` int(11) NOT NULL,
   `est_detruit` bit(1) NOT NULL,
@@ -348,6 +364,27 @@ CREATE TABLE IF NOT EXISTS `services_par_commission` (
 -- Dumping data for table `services_par_commission`
 --
 
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `statuts`
+--
+
+CREATE TABLE IF NOT EXISTS `statuts` (
+  `statut_ID` int(11) NOT NULL AUTO_INCREMENT,
+  `nom` varchar(10) CHARACTER SET utf8 NOT NULL,
+  PRIMARY KEY (`statut_ID`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `statuts`
+--
+
+INSERT INTO `statuts` (`statut_ID`, `nom`) VALUES
+(1, 'Soumis'),
+(2, 'Refusé'),
+(3, 'Approuvé');
 
 -- --------------------------------------------------------
 
