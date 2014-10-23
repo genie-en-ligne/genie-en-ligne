@@ -5,4 +5,5 @@
 config.php
 admin/config.php
 test/config.php
+admin/test/config.php
 .htaccess
