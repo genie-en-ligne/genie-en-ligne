@@ -20,7 +20,6 @@ class UtilisateurVue extends Vue {
     public function afficheBienvenue(){?>
     
     <?php
-        header("location:".WEB_ROOT."/utilisateur/profil");
     }
     
     public function afficheProfil(){?>
