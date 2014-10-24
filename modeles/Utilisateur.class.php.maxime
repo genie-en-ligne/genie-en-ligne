@@ -1,98 +1,162 @@
-
 <?php
 
 class Utilisateur {
-	
-    private $pseudo;
-    private $mot_de_passe;
-    private $nom;
-    private $prenom;
-    private $courriel;
-    private $role;
-    private $id;
+    
+    private $sPseudo;
+    private $sMot_de_passe;
+    private $sNom;
+    private $sPrenom;
+    private $sCourriel;
+    private $iRole;
+    private $iId;
+    private $sCode_permanent;
 
-    public function __construct($id = 0, $pseudo = " ", $mot_de_passe = " ", $nom = " ", $prenom = " ", $courriel= " ", $role = " ") {
-        $this->setId($id);
-        $this->setPseudo($pseudo);
-        $this->setMDP($mot_de_passe);
-        $this->setNom($nom);
-        $this->setPrenom($prenom);
-        $this->setCourriel($courriel);
-        $this->setRole($role);
+    public function __construct($iId = 0, $sPseudo = " ", $sMot_de_passe = " ", $sNom = " ", $sPrenom = " ", $sCourriel= " ", $iRole = 0) {
+        $this->setId($iId);
+        $this->setPseudo($sPseudo);
+        $this->setMDP($sMot_de_passe);
+        $this->setNom($sNom);
+        $this->setPrenom($sPrenom);
+        $this->setCourriel($sCourriel);
+        $this->setRole($iRole);
     }
 
-    public function insererInscription() {
+    public function ajouterUtilisateur() {
         $oConnexion = new MySqliLib();
         $oResultat = $oConnexion->executer("INSERT INTO utilisateurs (`pseudo`, `mot_de_passe`, `nom`, `prenom`, `courriel`, `role`)
-                                            VALUES ('{$this->pseudo}', '{$this->mot_de_passe}', '{$this->nom}', '{$this->prenom}', '{$this->courriel}', '{$this->role}')");
-        //Ta requête n'aurait pas fonctionné puisqu'il manquait les apostrophes autour des valeur (après le mot VALUES). Les accolades aident un peu à visualiser le tout.
-        
-        // Les {} permettent de délimiter les variables à l'intérieur d'une chaine de caractères en PHP. Par exemple:
-        //
-        //      echo "Bonjour".$aNom[$i].", comment ça va?";
-        //
-        // équivaut exactement à 
-        //
-        //      echo "Bonjour {$aNom[$i]}, comment ça va?";
-        //
-        // Il faut savoir que ceci s'applique uniquement aux variables contenues dans des "", puisque PHP n'interprète par les variables dans des ''.
-        //        
-        //-------------------------------------------------------------------------------------------------------------------------------------------
-        //
-        // Ceci permet de définir la propriété id de l'utilisateur avec le ID généré automatiquement par la BD lors de l'insertion.
+                                            VALUES ('{$this->sPseudo}', '{$this->sMot_de_passe}', '{$this->sNom}', '{$this->sPrenom}', '{$this->sCourriel}', '{$this->iRole}')");
         $this->setId($oConnexion->getInsertId());
-        
-        //Regarde dans Basecamp, j'ai envoyé un message pour ajouter 3 lignes de code à la classe MySqliLib.class.php
     }
 
-    private function setPseudo($pseudo) {
-        $this->pseudo = $pseudo;
+    //Appeler au clique sur l'icône supprimer des pages admin professeur (tuteurs), responsable (professeurs), superadmin (responsables)
+    public function adm_supprimerUtilisateur() {
+        $oConnexion = new MySqliLib();
+
+        $oResultat = $oConnexion->executer("UPDATE utilisateurs SET `est_detruit` = 1 WHERE `utilisateur_ID` = '{$this->iId}' ");
     }
-    private function setMDP($mot_de_passe) {
-        $this->mot_de_passe = $mot_de_passe;
+
+    public function recupererUtilisateur() {
+        $oConnexion = new MySqliLib();
+        $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE `role` = '{$this->iRole}'");
+        $aResultat = $oConnexion->recupererTableau($oResultat);
+        return $aResultat;
+
     }
+
+
+    public function modifierUtilisateur() {
+        $oConnexion = new MySqliLib();
+        $oResultat = $oConnexion->executer( "UPDATE utilisateurs
+                                            SET `pseudo` = '{$this->sPseudo}', `mot_de_passe` = '{$this->sMot_de_passe}',
+                                                `nom` = '{$this->sNom}', `prenom` = '{$this->sPrenom}', `courriel` = '{$this->sCourriel}',
+                                                `role` = '{$this->iRole}'
+                                            WHERE `utilisateur_ID` = '{$this->iId}'");                                      
+    }
+
+    public function pub_validerCodePermanent() {
+        $oConnexion = new MySqliLib();
+        $oResultat = $oConnexion->executer("SELECT * FROM codes_permanents WHERE `code_permanent` = '$this->sCode_permanent' ");
+        $aResultat = $oConnexion->recupererTableau($oResultat);
+        $botte = strtoupper(substr($aResultat[0]['code_permanent'], 0, 3));
+        $aiguille = strtoupper(substr($this->sNom, 0, 3));
+        
+        if($aResultat[0]['code_permanent'] && $aResultat[0]['code_permanent'] == 0) {
+            if($botte == $aiguille) {
+                $oResultat = $oConnexion->executer("UPDATE codes_permanents SET `deja_utilise` = 1");
+                return $aResultat[0]['code_permanent'] . " est valide!";
+            } else { 
+                return $aResultat[0]['code_permanent'] . " est invalide!";
+            }
+        }
+    }
+
+    public function recupererMDP() {
+        $oConnexion = new MySqliLib();
+        $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE `utilisateur_ID` = '{$this->iId}'");
+        $aResultat = $oConnexion->recupererTableau($oResultat);
+        return $aResultat[0];
+    }
+
+    public function setId($iId) {
+         //Validation à l'aide de la classe TypeException. Une exception est lancée (throw) si le paramètre n'est pas conforme.
+        TypeException::estVide($iId);
+        TypeException::estInteger($iId);
+         //Ce code n'est pas exécuté si une erreur est lancée.
+        $this->iId = $iId;
+    }
+
+    public function setPseudo($sPseudo) {
+        TypeException::estVide($sPseudo);
+        TypeException::estString($sPseudo);
+
+        $this->sPseudo = $sPseudo;
+    }
+
+    public function setMDP($sMot_de_passe) {
+        TypeException::estVide($sMot_de_passe);
+        TypeException::estString($sMot_de_passe);
+
+        $this->sMot_de_passe = $sMot_de_passe;
+    }
+
     public function setNom($sNom) {
-        //Validation à l'aide de la classe TypeException. Une exception est lancée (throw) si le paramètre n'est pas conforme.
         TypeException::estVide($sNom);
         TypeException::estString($sNom);
         
-        //Ce code n'est pas exécuté si une erreur est lancée.
-        $this->nom = $sNom;
+        $this->sNom = $sNom;
     }
-    public function setPrenom($prenom) {
-        $this->prenom = $prenom;
+
+    public function setPrenom($sPrenom) {
+        TypeException::estVide($sPrenom);
+        TypeException::estString($sPrenom);
+
+        $this->sPrenom = $sPrenom;
     }
-    private function setCourriel($courriel) {
-        $this->courriel = $courriel;
+
+    public function setCourriel($sCourriel) {
+        TypeException::estVide($sCourriel);
+        TypeException::estString($sCourriel);
+
+        $this->sCourriel = $sCourriel;
     }
-    private function setRole($role) {
-        $this->role = $role;
+    public function setRole($iRole) {
+        TypeException::estVide($iRole);
+        TypeException::estInteger($iRole);
+
+        $this->iRole = $iRole;
     }
-    public function setId($id){
-        $this->id = $id;
+    
+    public function setCodePermanent($sCode_permanent) {
+        TypeException::estVide($sCode_permanent);
+        TypeException::estString($sCode_permanent);
+
+        $this->sCode_permanent = $sCode_permanent;
     }
     
     
-     public function getMDP() {
-        return $this->mot_de_passe;
+    public function getMDP() {
+        return $this->sMot_de_passe;
     }
     public function getPseudo() {
-        return $this->pseudo;
+        return $this->sPseudo;
     }
     public function getNom() {
-        return $this->nom;
+        return $this->sNom;
     }
     public function getPrenom() {
-        return $this->prenom;
+        return $this->sPrenom;
     }
     public function getCourriel() {
-        return $this->courriel;
+        return $this->sCourriel;
     }
     public function getRole() {
-        return $this->role;
+        return $this->iRole;
     }
-    public function getId(){
-        return $this->id;
+    public function getId() {
+        return $this->iId;
+    }
+    public function getCodePermanent() {
+        return $this->sCode_permanent;
     }
 }
 
