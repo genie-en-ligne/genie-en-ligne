@@ -38,7 +38,7 @@ class Controleur
                 header("location:".WEB_ROOT);
             }
             if($this->oUtilisateurSession->getRole() < 3){
-                header("location:".WEB_ROOT."/../utilisateur/bienvenue");
+                header("location:".WEB_ROOT."/utilisateur/bienvenue");
             }
             else{                                 
                 $parts = explode("/", rtrim($request, '/'));//Remove trailing slash
@@ -61,7 +61,7 @@ class Controleur
             
             $sSubControleur = $this->getReqModule().'Controleur';
             
-            $oSubControleur = new $sSubControleur($this->getReqAction(), $this->getReqId());
+            $oSubControleur = new $sSubControleur($this->getReqAction(), $this->getReqId(), $this->oUtilisateurSession);
             $oSubControleur->gerer();
         }
             
