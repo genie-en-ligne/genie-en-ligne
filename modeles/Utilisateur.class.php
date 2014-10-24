@@ -11,7 +11,7 @@
         public function __construct($id = 0, $pseudo = " ", $mot_de_passe = " ", $nom = " ", $prenom = " ", $courriel= " ", $role = 0){
             $this->setId($id);
             $this->setPseudo($pseudo);
-            $this->setMDP($mot_de_passe);
+            $this->setMDP(sha1($mot_de_passe));
             $this->setNom($nom);
             $this->setPrenom($prenom);
             $this->setCourriel($courriel);
@@ -32,7 +32,7 @@
         public function validerInfosConnexion(){
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE `pseudo` = '".$this->getPseudo()."' AND `mot_de_passe` = '".$this->getMDP()."'");
-            
+                        
             $compteExiste = $oConnexion->recupererNombreResultats($oResultat);
             if($compteExiste > 0){
                 unset($this->mot_de_passe);
