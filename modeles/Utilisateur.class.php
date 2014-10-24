@@ -12,7 +12,7 @@
         public function __construct($iId = 0, $sPseudo = " ", $sMot_de_passe = " ", $sNom = " ", $sPrenom = " ", $sCourriel= " ", $iRole = 0) {
             $this->setId($iId);
             $this->setPseudo($sPseudo);
-            $this->setMDP($sMot_de_passe);
+            $this->setMDP(sha1($sMot_de_passe));
             $this->setNom($sNom);
             $this->setPrenom($sPrenom);
             $this->setCourriel($sCourriel);
@@ -81,17 +81,30 @@
     /*======================*/
         
         public function estDisponiblePseudo(){
-            
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE pseudo = '{$this->sPseudo}'");
+            $iNbResultats = $oConnexion->recupererNombreResultats($oResultat);
+            if($iNbResultats == 0){
+                return true;
+            }
+            return false;
         }
         
-        public function motDePasseAssezComplexe(){
+        public function motDePasseAssezComplexe($mdp){
             //minimum majuscule, minuscule, chiffre
             //Tous caractères permis
             //Return true ou false
+            if(!preg_match("#.*^(?=.{8,15})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$#", $mdp)){
+                return false;
+            }
+            return true;
         }
         
-        public function deuxMotsDePasseIdentiques(){
-            //Return true ou false
+        public function deuxMotsDePasseIdentiques($mdp1, $mdp2){
+            if($mdp1 === $mdp2){
+                return true;
+            }
+            return false;
         }
         
         //TODO: fonctions pour créer tous les niveaux de compte, et chaque étape de chaque création
@@ -153,7 +166,6 @@
 
         public function setId($iId) {
              //Validation à l'aide de la classe TypeException. Une exception est lancée (throw) si le paramètre n'est pas conforme.
-            TypeException::estVide($iId);
             TypeException::estInteger($iId);
              //Ce code n'est pas exécuté si une erreur est lancée.
             $this->iId = $iId;
@@ -194,7 +206,6 @@
             $this->sCourriel = $sCourriel;
         }
         public function setRole($iRole) {
-            TypeException::estVide($iRole);
             TypeException::estInteger($iRole);
 
             $this->iRole = $iRole;
