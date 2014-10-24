@@ -75,7 +75,7 @@
                                 <span>
                                     Connecté en tant que <?php echo $oUtilisateurSession->getPrenom().' '.$oUtilisateurSession->getNom();?> |
                                 </span>
-                                <a href="#">
+                                <a href="<?php echo WEB_ROOT?>/utilisateur/logout">
                                     Déconnexion
                                 </a>
                             </div>
@@ -140,7 +140,7 @@
                                                 <li class="divider">
                                                 </li>
                                                 <li role="presentation">
-                                                    <a href="#">
+                                                    <a href="<?php echo WEB_ROOT?>/utilisateur/logout">
                                                         Déconnexion
                                                     </a>
                                                 </li>
@@ -168,7 +168,7 @@
                                 <span>
                                     Connecté en tant que <?php echo $oUtilisateurSession->getPrenom().' '.$oUtilisateurSession->getNom();?> |
                                 </span>
-                                <a href="#">
+                                <a href="<?php echo WEB_ROOT?>/utilisateur/logout">
                                     Déconnexion
                                 </a>
                             </div>
@@ -233,7 +233,7 @@
                                                 <li class="divider">
                                                 </li>
                                                 <li role="presentation">
-                                                    <a href="#">
+                                                    <a href="<?php echo WEB_ROOT?>/utilisateur/logout">
                                                         Déconnexion
                                                     </a>
                                                 </li>

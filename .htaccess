@@ -1,12 +1,8 @@
-php_flag output_buffering on
-
 # Mise en place de la ré-écriture 
 RewriteEngine On
 
-# Adresse de base de réécriture 
-# RewriteBase /final
-RewriteBase /Ecole/Projet%20Integration%20II%20Genie%20en%20ligne
-
+# Adresse de base de réécriture
+RewriteBase /GitHub/genie-en-ligne
 # Règles
 RewriteCond %{SCRIPT_FILENAME} !-f
 RewriteCond %{SCRIPT_FILENAME} !-d

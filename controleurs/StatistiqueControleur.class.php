@@ -1,9 +1,10 @@
 <?php
     class StatistiqueControleur extends Controleur {
         
-        public function __construct($reqAction="erreur404", $reqId=""){            
+        public function __construct($reqAction="erreur404", $reqId="", $oUtilisateurSession){            
             $this->setReqAction($reqAction);
             $this->setReqId($reqId);
+            $this->oUtilisateurSession = $oUtilisateurSession;
         }
 
         public function gerer(){

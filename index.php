@@ -10,6 +10,7 @@
  * 
  */
     session_start();
+    ob_start();
 
     // Fichier de configuration, contient l'autoloader
 	require_once("./config.php");
@@ -19,5 +20,5 @@
    
     // Gabarit
 	require_once("./gabarit.projet.php");
-
+    ob_end_flush();
 ?>

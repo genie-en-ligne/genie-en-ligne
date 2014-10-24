@@ -1,5 +1,9 @@
-<?php
-require_once("../config.php");
+<?php 
+    require_once("./config.php");
 
-require_once ("./gabarit.test.php");
+    if(!isset($_GET['mod'])){
+        $_GET['mod'] = 'utilisateur';
+    }
+
+    require_once("./gabarit.test.php");
 ?>
