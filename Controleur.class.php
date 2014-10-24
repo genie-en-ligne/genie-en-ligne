@@ -55,7 +55,7 @@ class Controleur
             
             $sSubControleur = $this->getReqModule().'Controleur';
             
-            $oSubControleur = new $sSubControleur($this->getReqAction(), $this->getReqId());
+            $oSubControleur = new $sSubControleur($this->getReqAction(), $this->getReqId(), $this->oUtilisateurSession);
             $oSubControleur->gerer();
         }
             

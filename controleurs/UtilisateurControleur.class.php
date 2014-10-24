@@ -1,9 +1,10 @@
 <?php
     class UtilisateurControleur extends Controleur {
         
-        public function __construct($reqAction="erreur404", $reqId=""){            
+        public function __construct($reqAction="erreur404", $reqId="", $oUtilisateurSession){            
             $this->setReqAction($reqAction);
             $this->setReqId($reqId);
+            $this->oUtilisateurSession = $oUtilisateurSession;
         }
         
         public function gerer(){
@@ -76,12 +77,17 @@
         
         private function logout(){
             $oVue = new UtilisateurVue();
+                        
+            $this->oUtilisateurSession->ajouterActiviteLogin('logout');
+            $_SESSION = '';
+            session_destroy();
             
-            //TODO: Détruire la session
-            //TODO: update table activite_login
-            
-            $oVue -> setMessage("Votre session a bel et bien été fermée", "success");
-			$oVue -> afficheAccueil();
+            if($this->oUtilisateurSession->getRole() < 3){
+                header("location:".WEB_ROOT);
+            }
+            else{
+                header("location:".WEB_ROOT."../");
+            }
         }
         
         private function profil(){

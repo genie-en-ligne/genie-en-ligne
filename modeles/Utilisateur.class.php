@@ -72,7 +72,7 @@
         
         public function ajouterActiviteLogin($evenement){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("INSERT INTO activite_login (`utilisateur_ID`, `evenement`) VALUES ('{$this->getId()}', '{$evenement}'");
+            $oResultat = $oConnexion->executer("INSERT INTO activite_login (`utilisateur_ID`, `evenement`) VALUES ('{$this->getId()}', '{$evenement}')");
         }
         
     /*======================*/
