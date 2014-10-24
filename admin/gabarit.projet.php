@@ -29,7 +29,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"> <img src="../images/genieenligne.png"></a>
+                <a class="navbar-brand" href="index.html"> <img src="<?php echo WEB_ROOT;?>/images/genieenligne.png"></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -165,23 +165,7 @@
                         $oControleur = new Controleur($oUtilisateurSession);	
                         $oControleur->gerer();
                     ?>
-			
-                    <!-------------------------->
-                    <!-- PIED DE PAGE DU SITE -->
-                    <!-------------------------->
-
-                        <footer>
-                            <div class="navbar navbar-default">
-                                <p class="navbar-text">
-                                    Génie en ligne &copy;2014
-                                </p>
-                                <p class="navbar-text navbar-right">
-                                    <a href="#" class="navbar-link">
-                                        Contactez-nous
-                                    </a>
-                                </p>
-                            </div>
-                        </footer>
+                        
                     </div>
                 </div>
             </div>
