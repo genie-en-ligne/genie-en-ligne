@@ -1,5 +1,5 @@
 <?php
-    class Ecole extends Modele {
+   class Ecole extends Modele {
         
         private $iId;
         private $sNom;

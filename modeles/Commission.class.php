@@ -1,4 +1,5 @@
 <?php
+   <?php
     class Commission extends Modele {
         
         private $sNom;
@@ -110,4 +111,5 @@
         }
        
     }
+?>
 ?>
