@@ -6,7 +6,7 @@
 
 		<title>Test unitaire</title>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link href="../bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
+		<link href="../lib/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
 	</head>
 
 	<body>
