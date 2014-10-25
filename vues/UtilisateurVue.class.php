@@ -4,8 +4,10 @@ class UtilisateurVue extends Vue {
 /*====================*/
 /*== afficheAccueil ==*/
 /*====================*/
-    
-    public function afficheAccueil(){?>
+
+  
+    public function afficheAccueil(){ 
+    ?>
         <div class="page-header">
             <h1>Bienvenue à Génie en ligne!</h1>
         </div>
@@ -234,6 +236,233 @@ class UtilisateurVue extends Vue {
     <?php
     }
 
+    /*===========================*/
+    /*== afficherPreInscription ==*/
+    /*===========================*/
+
+    public function affichePreInscription() {?>
+
+         <div id="message">
+            <?php 
+                if($this->getMessage()){
+                    $aMessage = $this->getMessage();
+                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
+                }
+            ?>
+        </div>
+
+        <div class="col-sm-6 col-sm-offset-2">
+            <h1 class="col-sm-offset-5 col-sm-6"><span class="label label-default">Pré-inscription</span></h1>
+            <div class="col-sm-offset-4 col-sm-8 page-header">
+                <ol>
+                    <li>Pour t'inscrire, tu dois avoir en main ton code permament.</li>
+                    <li>Entre l'information dans les champs appropriés.</li>
+                    <li>Une fois l'information validée, tu seras invité à créer ton compte Génie en ligne.</li>
+                </ol>             
+            </div>
+            <div class="col-sm-12 col-sm-offset-1">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="nom" class="col-sm-4 control-label">Code permanent :</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="codePermanent" class="form-control" placeholder="Code permanent" pattern="[a-zA-Z]{4}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nom" class="col-sm-4 control-label">Nom de famille :</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="nom" class="form-control" placeholder="Nom de famille" pattern="[a-z]">
+                        </div>
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-12">
+                             <button type="submit" class="btn btn-primary col-sm-offset-1">
+                                Déjà inscrit?
+                            </button>
+                            <button type="submit" class="btn btn-success">
+                                Soumettre
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <?php
+    }
+
+     public function afficheInscription() {?>
+
+         <div id="message">
+            <?php 
+                if($this->getMessage()){
+                    $aMessage = $this->getMessage();
+                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
+                }
+            ?>
+        </div>
+
+        <div class="col-sm-6 col-sm-offset-2">
+            <div class="col-sm-offset-6">
+                <h1 class=""><span class="label label-default">Inscription</span></h1>
+            </div>
+            <div class="col-sm-offset-4 col-sm-8 page-header">
+                     
+            </div>
+            <div class="col-sm-12 col-sm-offset-1">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="nom" class="col-sm-4 control-label">Prénom :</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="nom" class="form-control" placeholder="Prenom" pattern="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nom" class="col-sm-4 control-label">Nom de famille :</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="nom" class="form-control" placeholder="Nom de famille" pattern="">
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label for="nom" class="col-sm-4 control-label">Pseudo :</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="nom" class="form-control" placeholder="Pseudo" pattern="">
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label for="nom" class="col-sm-4 control-label">Courriel :</label>
+                        <div class="col-sm-6">
+                            <input type="email" id="nom" class="form-control" placeholder="Courriel" pattern="">
+                        </div>
+                    </div>
+                     <div class="form-group">
+                        <label for="nom" class="col-sm-4 control-label">Mot de passe :</label>
+                        <div class="col-sm-6">
+                            <input type="password" id="nom" class="form-control" placeholder="Mot de passe :" pattern="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nom" class="col-sm-4 control-label">Mot de passe :</label>
+                        <div class="col-sm-6">
+                            <input type="password" id="nom" class="form-control" placeholder="Mot de passe :" pattern="">
+                        </div>
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-10">
+                             <button type="submit" class="btn btn-primary col-sm-offset-3">
+                                Rafraichir
+                            </button>
+                            <button type="submit" class="btn btn-success">
+                                Soumettre
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    <?php
+    }
+
+    public function afficheRecupererMDP() {?>
+
+         <div id="message">
+            <?php 
+                if($this->getMessage()){
+                    $aMessage = $this->getMessage();
+                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
+                }
+            ?>
+        </div>
+
+        <div class="col-sm-6 col-sm-offset-2">
+            <h1 class="col-sm-offset-3 col-sm-6"><span class="label label-default">Récupération du mot de passe</span></h1>
+            <div class="col-sm-offset-4 col-sm-8 page-header">
+                <ol>
+                    <li>Saisis ton adresse courriel.</li>
+                    <li>Un message te sera automatiquement envoyé dans ta boîte courriel.</li>
+                    <li>Suis les instructions à l'écran pour te créer un nouveau mot de passe.</li>
+                </ol>            
+            </div>
+            <div class="col-sm-12 col-sm-offset-1">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="nom" class="col-sm-4 control-label">Courriel :</label>
+                        <div class="col-sm-6">
+                            <input type="email" id="codePermanent" class="form-control" placeholder="Courriel" pattern="[a-zA-Z]{4}">
+                        </div>
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-7 col-sm-12">
+                            <button type="submit" class="btn btn-success ">
+                                Soumettre
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    <?php
+    }
+
+    public function afficheEnvoyerMessage() {?>
+
+         <div id="message">
+            <?php 
+                if($this->getMessage()){
+                    $aMessage = $this->getMessage();
+                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
+                }
+            ?>
+        </div>
+
+        <div class="col-sm-6 col-sm-offset-2">
+            <h1 class="col-sm-offset-3 col-sm-6"><span class="label label-default">Question ou commentaire</span></h1>
+            <div class="col-sm-offset-4 col-sm-8 page-header">
+                <ol>
+                    <li>Entre ton courriel.</li>
+                    <li>Soummet ta question ou ton commentaire à notre webmestre.</li>  
+                </ol>            
+            </div>
+            <div class="col-sm-12 col-sm-offset-1">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="nom" class="col-sm-4 control-label">Courriel :</label>
+                        <div class="col-sm-6">
+                            <input type="email" id="codePermanent" class="form-control" placeholder="Courriel" pattern="[a-zA-Z]{4}">
+                        </div>
+                    </div>
+                    <section class="form-group">
+                        <label for="nom" class="col-md-4 control-label">Message :</label>
+                        <div class="col-md-6">
+                            <textarea class="col-md-12" id="commentaire"></textarea>
+                        </div>
+                    </section>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                    <div class="form-group"></div>
+                        <div class="col-sm-offset-5 col-sm-12">
+                             <button type="submit" class="btn btn-primary ">
+                                Rafraichir
+                            </button>
+                            <button type="submit" class="btn btn-success ">
+                                Soumettre
+                            </button>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    <?php
+    }
     //TODO: Ajouter des méthodes au besoin
 }
 ?>
