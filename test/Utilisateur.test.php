@@ -56,7 +56,7 @@
             echo "<div class='panel panel-primary'>";
                 echo "<div class='panel-heading'>";
                     echo "<h4>";
-                        echo "Test afficheRecupererMDP";
+                        echo "Test afficheEnvoyerMessage";
                     echo "</h4>";
                 echo "</div>";
                 echo "<div class='panel-body'>";

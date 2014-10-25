@@ -236,9 +236,9 @@ class UtilisateurVue extends Vue {
     <?php
     }
 
-    /*===========================*/
+    /*============================*/
     /*== afficherPreInscription ==*/
-    /*===========================*/
+    /*============================*/
 
     public function affichePreInscription() {?>
 
@@ -292,7 +292,11 @@ class UtilisateurVue extends Vue {
     <?php
     }
 
-     public function afficheInscription() {?>
+    /*=========================*/
+    /*== afficherInscription ==*/
+    /*=========================*/
+
+    public function afficheInscription() {?>
 
          <div id="message">
             <?php 
@@ -367,6 +371,10 @@ class UtilisateurVue extends Vue {
     <?php
     }
 
+    /*=========================*/
+    /*== afficheRecupererMDP ==*/
+    /*=========================*/
+
     public function afficheRecupererMDP() {?>
 
          <div id="message">
@@ -410,6 +418,10 @@ class UtilisateurVue extends Vue {
 
     <?php
     }
+
+    /*==========================*/
+    /*== afficheEnvoyerMessage ==*/
+    /*===========================*/
 
     public function afficheEnvoyerMessage() {?>
 
