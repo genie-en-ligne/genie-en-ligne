@@ -65,4 +65,36 @@
                 echo "</div>";
             echo "</div>";
         echo "</div>";
+
+         echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheModifierProfesseurs";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheModifierProfesseurs();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+        echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheSupprimerUtilisateurs";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheSupprimerUtilisateurs();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
     ?>

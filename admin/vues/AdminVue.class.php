@@ -271,7 +271,7 @@ class AdminVue extends Vue {
     
     public function afficheAjouterProfesseurs(){?>
           
-          <div id="message">
+        <div id="message">
             <?php 
                 if($this->getMessage()){
                     $aMessage = $this->getMessage();
@@ -378,10 +378,10 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-10">
                              <button type="submit" class="btn btn-danger col-sm-offset-0">
-                                Anuler
+                                <span class="glyphicon glyphicon-remove-circle"></span> Anuler
                             </button>
-                            <button type="submit" class="btn btn-success col-sm-offset-2">
-                                Ajouter
+                            <button type="submit" class="btn btn-success col-sm-offset-1">
+                                <span class="glyphicon glyphicon-plus"></span> Ajouter
                             </button>
                         </div>
                     </div>
@@ -392,11 +392,180 @@ class AdminVue extends Vue {
     <?php
     }
 
-     public function afficheListeTuteurs(){?>
-    
+     public function afficheModifierProfesseurs(){?>
+        
+        <div id="message">
+            <?php 
+                if($this->getMessage()){
+                    $aMessage = $this->getMessage();
+                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
+                }
+            ?>
+        </div>
+
+        <div class="col-sm-6 col-sm-offset-2">
+            <div class="col-sm-offset-4 col-sm-6">
+                <h2 class="page-header"><span class="label label-default">Modifier les informations</span></h2>
+            </div>
+            <div class="col-sm-offset-4 col-sm-8 page-header">
+                     
+            </div>
+            <div class="col-sm-12 col-sm-offset-1">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="nom" class="col-sm-4 control-label">Prénom :</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="nom" class="form-control" placeholder="Prenom" pattern="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nom" class="col-sm-4 control-label">Nom  :</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="nom" class="form-control" placeholder="Nom" pattern="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nom" class="col-sm-4 control-label">Courriel :</label>
+                        <div class="col-sm-6">
+                            <input type="email" id="nom" class="form-control" placeholder="Courriel" pattern="">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ecole" class="col-sm-4 control-label">École :</label>
+                        <div class="col-sm-6">
+                            <select class="form-control col-sm-6" id="ecole">
+                                <option value="">Sélection</option>
+                                <option value="1">Louis Riel</option>
+                                <option value="2">Ste-Béatrice</option>
+                                <option value="3">Valcartier</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="matiere" class="col-sm-4 control-label">Matières :</label>
+                        <div class="col-sm-8">
+                            <div class="checkbox-inline col-sm-4">
+                                <label for="1">
+                                <input type="checkbox" id="1" name="francais" value="">
+                                   Français
+                                </label>
+                            </div>
+                            <div class="checkbox-inline col-sm-4">
+                                <label for="2">
+                                <input type="checkbox" id="2" name="mathematique" value="">
+                                   Mathématique
+                                </label>
+                            </div>
+                        </div>
+                        <label class="col-sm-4 control-label"></label>
+                        <div class="col-sm-8">
+                            <div class="checkbox-inline col-sm-4">
+                                <label for="3">
+                                <input type="checkbox" id="3" name="chimie" value="">
+                                   Chimie
+                                </label>
+                            </div>
+                            <div class="checkbox-inline col-sm-4">
+                                <label for="4">
+                                <input type="checkbox" id="4" name="physique" value="">
+                                   Physique
+                                </label>
+                            </div>
+                        </div>
+                         <label class="col-sm-4 control-label"></label>
+                        <div class="col-sm-8">
+                            <div class="checkbox-inline col-sm-4">
+                                <label for="5">
+                                <input type="checkbox" id="5" name="histoire" value="">
+                                   Histoire
+                                </label>
+                            </div>
+                            <div class="checkbox-inline col-sm-4">
+                                <label for="6">
+                                <input type="checkbox" id="6" name="geographie" value="">
+                                   Géographie
+                                </label>
+                            </div>
+                        </div>
+                        <label class="col-sm-4 control-label"></label>
+                        <div class="col-sm-8">
+                            <div class="checkbox-inline col-sm-4">
+                                <label for="7">
+                                <input type="checkbox" id="7" name="anglais" value="">
+                                   Anglais
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-10">
+                             <button type="submit" class="btn btn-danger col-sm-offset-0">
+                                <span class="glyphicon glyphicon-remove-circle"></span> Anuler
+                            </button>
+                            <button type="submit" class="btn btn-success col-sm-offset-1">
+                                <span class="glyphicon glyphicon-ok"></span> Modifier
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
         
     <?php
     }
+
+     public function afficheSupprimerUtilisateurs(){?>
+        
+        <div id="message">
+            <?php 
+                if($this->getMessage()){
+                    $aMessage = $this->getMessage();
+                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
+                }
+            ?>
+        </div>
+
+        <div class="col-sm-6 col-sm-offset-2">
+            <div class="col-sm-offset-4 col-sm-6">
+                <h2 class="page-header"><span class="label label-default">Supprimer un Utilisateur</span></h2>
+                 <div class="col-sm-offset-2 col-sm-12 page-header">
+                    <p>Désirez-vous supprimer cet utilisateur de la base de données?</p>
+            </div>
+            </div>
+           
+            <div class="col-sm-12 col-sm-offset-1">
+                <form class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="nom" class="col-sm-4 control-label">Prénom :</label>
+                        <div class="col-sm-6">
+                            
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nom" class="col-sm-4 control-label">Nom  :</label>
+                        <div class="col-sm-6">
+                          
+                        </div>
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-10">
+                             <button type="submit" class="btn btn-danger col-sm-offset-0">
+                                <span class="glyphicon glyphicon-remove-circle"></span> Anuler
+                            </button>
+                            <button type="submit" class="btn btn-success col-sm-offset-1">
+                                <span class="glyphicon glyphicon-plus"></span> Supprimer
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <?php
+    }
+
     public function afficheAjouterTuteurs(){?>
     
     <?php
