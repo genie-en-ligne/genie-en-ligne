@@ -265,13 +265,13 @@ class UtilisateurVue extends Vue {
                     <div class="form-group">
                         <label for="nom" class="col-sm-4 control-label">Code permanent :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="codePermanent" class="form-control" placeholder="Code permanent" pattern="[a-zA-Z]{4}">
+                            <input type="text" id="codePermanent" class="form-control" placeholder="Code permanent" pattern="">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="nom" class="col-sm-4 control-label">Nom de famille :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="nom" class="form-control" placeholder="Nom de famille" pattern="[a-z]">
+                            <input type="text" id="nom" class="form-control" placeholder="Nom de famille" pattern="">
                         </div>
                     </div>
                     <div class="form-group"></div>
@@ -392,14 +392,14 @@ class UtilisateurVue extends Vue {
                     <div class="form-group">
                         <label for="nom" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="codePermanent" class="form-control" placeholder="Courriel" pattern="[a-zA-Z]{4}">
+                            <input type="email" id="codePermanent" class="form-control" placeholder="Courriel" pattern="">
                         </div>
                     </div>
                     <div class="form-group"></div>
                     <div class="form-group"></div>
                     <div class="form-group">
                         <div class="col-sm-offset-7 col-sm-12">
-                            <button type="submit" class="btn btn-success ">
+                            <button type="submit" class="btn btn-success">
                                 Soumettre
                             </button>
                         </div>
@@ -423,19 +423,22 @@ class UtilisateurVue extends Vue {
         </div>
 
         <div class="col-sm-6 col-sm-offset-2">
-            <h1 class="col-sm-offset-3 col-sm-6"><span class="label label-default">Question ou commentaire</span></h1>
+             <div class="col-sm-6">
+                <h1 class="col-sm-offset-7 col-sm-6"><span class="label label-default">Question ou commentaire</span></h1>
+            </div>
             <div class="col-sm-offset-4 col-sm-8 page-header">
                 <ol>
                     <li>Entre ton courriel.</li>
                     <li>Soummet ta question ou ton commentaire à notre webmestre.</li>  
-                </ol>            
+                </ol> 
             </div>
+           
             <div class="col-sm-12 col-sm-offset-1">
                 <form class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="nom" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="codePermanent" class="form-control" placeholder="Courriel" pattern="[a-zA-Z]{4}">
+                            <input type="email" id="codePermanent" class="form-control" placeholder="Courriel" pattern="">
                         </div>
                     </div>
                     <section class="form-group">

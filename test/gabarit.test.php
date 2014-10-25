@@ -36,6 +36,9 @@
                     <li <?php echo ($_GET['mod']=='commission')?'class="active"':'';?>>
                         <a href="<?php echo WEB_ROOT?>/test?mod=commission">Commission</a>
                     </li>
+                    <li <?php echo ($_GET['mod']=='admin')?'class="active"':'';?>>
+                        <a href="<?php echo WEB_ROOT?>/test?mod=admin">Admin</a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -61,6 +64,9 @@
                             break;
                         case 'commission':
                             require_once ("Commission.test.php");
+                            break;
+                         case 'admin':
+                            require_once ("AdminVue.test.php");
                             break;
                     }
                 ?>
