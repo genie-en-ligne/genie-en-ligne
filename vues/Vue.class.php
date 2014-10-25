@@ -34,6 +34,5 @@ class Vue {
         return false;
     }
 	
-
 }
 ?>

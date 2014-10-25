@@ -1,16 +1,22 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+<!DOCTYPE html>
+<html lang="fr">
+    <!-- Certains droits réservés @ Jonathan Martel (2013) Sous licence Creative Commons (BY-NC 3.0) -->
+    <head>
+        <title>Génie en ligne | Aide aux devoirs</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        
+        <link rel="stylesheet" href="<?php echo WEB_ROOT;?>/lib/bootstrap/css/bootstrap.css" type="text/css" media="screen">
+        <link rel="stylesheet" href="<?php echo WEB_ROOT;?>/admin/css/main.css" type="text/css" media="screen">
+        
+        <script src="<?php echo WEB_ROOT;?>/js/main.js"></script>            
+    </head>
 
-	<head>
-
-		<title>Tests unitaires</title>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link href="<?php echo WEB_ROOT?>/lib/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css" />
-	</head>
-
-	<body>
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <body>
+        <div id="wrapper">
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="<?php echo WEB_ROOT?>/test?mod=utilisateur">
@@ -19,30 +25,38 @@
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li <?php echo ($_GET['mod']=='utilisateur')?'class="active"':'';?>>
-                        <a href="<?php echo WEB_ROOT?>/test?mod=utilisateur">Utilisateur</a>
+                        <a href="<?php echo WEB_ROOT?>/admin/test?mod=utilisateur">Utilisateur</a>
                     </li>
                     <li <?php echo ($_GET['mod']=='tutoriel')?'class="active"':'';?>>
-                        <a href="<?php echo WEB_ROOT?>/test?mod=tutoriel">Tutoriel</a>
+                        <a href="<?php echo WEB_ROOT?>/admin/test?mod=tutoriel">Tutoriel</a>
                     </li>
                     <li <?php echo ($_GET['mod']=='statistique')?'class="active"':'';?>>
-                        <a href="<?php echo WEB_ROOT?>/test?mod=statistique">Statistique</a>
+                        <a href="<?php echo WEB_ROOT?>/admin/test?mod=statistique">Statistique</a>
                     </li>
                     <li <?php echo ($_GET['mod']=='matiere')?'class="active"':'';?>>
-                        <a href="<?php echo WEB_ROOT?>/test?mod=matiere">Matière</a>
+                        <a href="<?php echo WEB_ROOT?>/admin/test?mod=matiere">Matière</a>
                     </li>
                     <li <?php echo ($_GET['mod']=='ecole')?'class="active"':'';?>>
-                        <a href="<?php echo WEB_ROOT?>/test?mod=ecole">École</a>
+                        <a href="<?php echo WEB_ROOT?>/admin/test?mod=ecole">École</a>
                     </li>
                     <li <?php echo ($_GET['mod']=='commission')?'class="active"':'';?>>
-                        <a href="<?php echo WEB_ROOT?>/test?mod=commission">Commission</a>
+                        <a href="<?php echo WEB_ROOT?>/admin/test?mod=commission">Commission</a>
+                    </li>
+                    <li <?php echo ($_GET['mod']=='admin')?'class="active"':'';?>>
+                        <a href="<?php echo WEB_ROOT?>/admin/test?mod=admin">Admin</a>
                     </li>
                 </ul>
             </div>
         </nav>
-        
-        <div class="container">
-            <div class="row">
-                <?php 
+            
+        <!----------------------->
+        <!-- CONTENU PRINCIPAL -->
+        <!----------------------->
+            
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                    <div class="contenu">
+                   <?php 
                     switch($_GET['mod']){
                         case 'utilisateur':
                             require_once ("Utilisateur.test.php");
@@ -62,13 +76,16 @@
                         case 'commission':
                             require_once ("Commission.test.php");
                             break;
-                    }
-                ?>
+                        case 'admin':
+                            require_once ("AdminVue.test.php");
+                            break;
+                        }
+                    ?>
+                        
+                    </div>
+                </div>
             </div>
-		</div>
-		<div id="footer">
-
-		</div>
+        </div>
 
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
@@ -77,5 +94,6 @@
         <!-- Include all compiled bootstrap plugins -->
         <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/bootstrap/js/bootstrap.js">
         </script>
-	</body>
+    </body>
+
 </html>

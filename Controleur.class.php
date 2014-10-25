@@ -37,25 +37,25 @@ class Controleur
             else{                                 
                 $parts = explode("/", rtrim($request, '/'));//Remove trailing slash
                 
-                if(@is_subclass_of(strtolower(ucfirst($parts[0])).'Controleur', 'Controleur')){
+                if(@is_subclass_of(ucfirst(strtolower($parts[0])).'Controleur', 'Controleur')){
                     if(count($parts) == 3){
-                        $this->setReqModule(strtolower(ucfirst($parts[0])));
+                        $this->setReqModule(ucfirst(strtolower($parts[0])));
                         $this->setReqAction(strtolower($parts[1]));
                         $this->setReqId($parts[2]);
                     }
                     elseif(count($parts) == 2){
-                        $this->setReqModule(strtolower(ucfirst($parts[0])));
+                        $this->setReqModule(ucfirst(strtolower($parts[0])));
                         $this->setReqAction(strtolower($parts[1]));
                     }
                     elseif(count($parts) == 1){
-                        $this->setReqModule(strtolower(ucfirst($parts[0])));
+                        $this->setReqModule(ucfirst(strtolower($parts[0])));
                     }
                 }
             }
             
             $sSubControleur = $this->getReqModule().'Controleur';
             
-            $oSubControleur = new $sSubControleur($this->getReqAction(), $this->getReqId());
+            $oSubControleur = new $sSubControleur($this->getReqAction(), $this->getReqId(), $this->oUtilisateurSession);
             $oSubControleur->gerer();
         }
             
