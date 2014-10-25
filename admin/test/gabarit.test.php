@@ -16,11 +16,7 @@
 
     <body>
         <div id="wrapper">
-    <!--------------------->
-    <!-- MENU HORIZONTAL -->
-    <!--------------------->
-        <!-- Navigation -->
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="container">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="<?php echo WEB_ROOT?>/test?mod=utilisateur">
@@ -29,124 +25,26 @@
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li <?php echo ($_GET['mod']=='utilisateur')?'class="active"':'';?>>
-                        <a href="<?php echo WEB_ROOT?>/test?mod=utilisateur">Utilisateur</a>
+                        <a href="<?php echo WEB_ROOT?>/admin/test?mod=utilisateur">Utilisateur</a>
                     </li>
                     <li <?php echo ($_GET['mod']=='tutoriel')?'class="active"':'';?>>
-                        <a href="<?php echo WEB_ROOT?>/test?mod=tutoriel">Tutoriel</a>
+                        <a href="<?php echo WEB_ROOT?>/admin/test?mod=tutoriel">Tutoriel</a>
                     </li>
                     <li <?php echo ($_GET['mod']=='statistique')?'class="active"':'';?>>
-                        <a href="<?php echo WEB_ROOT?>/test?mod=statistique">Statistique</a>
+                        <a href="<?php echo WEB_ROOT?>/admin/test?mod=statistique">Statistique</a>
                     </li>
                     <li <?php echo ($_GET['mod']=='matiere')?'class="active"':'';?>>
-                        <a href="<?php echo WEB_ROOT?>/test?mod=matiere">Matière</a>
+                        <a href="<?php echo WEB_ROOT?>/admin/test?mod=matiere">Matière</a>
                     </li>
                     <li <?php echo ($_GET['mod']=='ecole')?'class="active"':'';?>>
-                        <a href="<?php echo WEB_ROOT?>/test?mod=ecole">École</a>
+                        <a href="<?php echo WEB_ROOT?>/admin/test?mod=ecole">École</a>
                     </li>
                     <li <?php echo ($_GET['mod']=='commission')?'class="active"':'';?>>
-                        <a href="<?php echo WEB_ROOT?>/test?mod=commission">Commission</a>
+                        <a href="<?php echo WEB_ROOT?>/admin/test?mod=commission">Commission</a>
                     </li>
-                     <li <?php echo ($_GET['mod']=='admin')?'class="active"':'';?>>
-                        <a href="<?php echo WEB_ROOT?>/test?mod=admin">Admin</a>
+                    <li <?php echo ($_GET['mod']=='admin')?'class="active"':'';?>>
+                        <a href="<?php echo WEB_ROOT?>/admin/test?mod=admin">Admin</a>
                     </li>
-                </ul>
-            </div>
-        </nav>
-    <!------------------->
-    <!-- MENU VERTICAL -->
-    <!------------------->
-         <nav id="menu-vertical" class="navbar navbar-inverse side-nav">
-            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-                <ul class="nav navbar-nav side-nav">
-                <?php 
-                    $oUtilisateurSession = new Utilisateur($_SESSION['user_id']);
-
-                    if($oUtilisateurSession->utilisateurEstConnecte()){
-                        $oUtilisateurSession->chargerCompteParId();
-                    }
-                    else{
-                        //Rediriger au login
-                        header("location:".WEB_ROOT);
-                    }
-                    
-                    //Professeur
-                    if($oUtilisateurSession->getRole() == 3){?>
-                
-                        <!--------------------->
-                        <!-- MENU PROFESSEUR -->
-                        <!--------------------->
-                
-                        <li class="nav-title">
-                            Professeurs
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-fw fa-edit"></i>Gérer les tuteurs</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-fw fa-edit"></i>Gérer les tutoriels</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-fw fa-bar-chart-o"></i>Statistiques</a>
-                        </li>
-                    <?php
-                    }
-                    //Responsable
-                    elseif($oUtilisateurSession->getRole() == 4){?>
-                
-                        <!---------------------->
-                        <!-- MENU RESPONSABLE -->
-                        <!---------------------->
-                
-                        <li class="nav-title">
-                            Responsables
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-fw fa-edit"></i>Gérer les professeurs</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-fw fa-edit"></i>Gérer les tutoriels</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-fw fa-bar-chart-o"></i>Statistiques</a>
-                        </li>
-                    <?php
-                    }
-                    //Super Admin
-                    elseif($oUtilisateurSession->getRole() == 5){?>
-                
-                        <!---------------------->
-                        <!-- MENU SUPER ADMIN -->
-                        <!---------------------->
-                
-                        <li class="nav-title">
-                            Super admin
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-fw fa-edit"></i>Gérer les commissions</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-fw fa-edit"></i>Gérer les écoles</a>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-fw fa-edit"></i>Gérer les matières</a>
-                        </li>
-                        <li>
-                            <a href="../statistique/statistiques-professeur.html">
-                                <i class="fa fa-fw fa-bar-chart-o"></i>Statistiques</a>
-                        </li>                       
-                    <?php
-                    }
-                ?>
                 </ul>
             </div>
         </nav>
