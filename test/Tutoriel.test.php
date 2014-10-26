@@ -398,4 +398,12 @@
     $oVue = new TutorielVue();
     $oVue->oTutoriel = $oTutoriel;
     $oVue->afficheFormulaireModificationVideo();
+
+    //Vue formulaireModifierTutoVideo
+    $oTutoriel = new Tutoriel(11);
+    $oTutoriel->chargerTutoriel();
+
+    $oVue = new TutorielVue();
+    $oVue->oTutoriel = $oTutoriel;
+    $oVue->afficheFormulaireModificationTexte();
 ?>
