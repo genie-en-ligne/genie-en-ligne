@@ -17,29 +17,33 @@ class TutorielVue extends Vue {
         <div class="row">
             <div class="col-lg-12">
                 <h1 class="page-header">
-                    Ajouter un vidéo
+                    Ajouter
                 </h1>
                 <form action="index.php" s="<?php echo WEB_ROOT;?>/tutoriel/creerVideo/" method="post" role="form">
                     <fieldset class="col-md-12">
                         <legend>Ajouter un vidéo</legend>
                         <div class="form-group">
                             <label>Titre</label>
-                            <input id="" name="" class="form-control">
+                            <input id="titre" name="titre" class="form-control">
+                        </div>
+                         <div class="row">
+                            <div class="form-group">
+                                <div class="col-lg-3">
+                                    <label>Matière</label>
+                                    <select></select>
+                               </div>
+                                <div class="col-lg-3">
+                                    <label>Niveau secondaire</label>
+                                    <select></select>
+                                </div>
+                            </div>
                         </div>
                         <div class="form-group">
-                            <label>Description</label>
-                            <textarea id="" name="" class="form-control" rows="3"></textarea>
+                            <label><br/>Lien de video</label>
+                            <textarea id="lien" name="lien" class="form-control" rows="1"></textarea>
+                            <p class="form-control-static">Le lien du vidéo doit etre un lien YouTube.</p>
                         </div>
-                        <div class="form-group">
-                            <label>Mots-clés</label>
-                            <textarea id="" name="" class="form-control" rows="2"></textarea>
-                            <p class="form-control-static">Ajoutez une virgule après chaque mots clé</p>
-                        </div>
-                        <div class="form-group">
-                            <label>Importer le vidéo</label>
-                            <input id="" name=""type="file">
-                        </div>
-                        <button type="button" class="btn btn-primary">Soumettre</button>
+                        <button type="button" id="submit" name="submit" class="btn btn-primary">Soumettre</button>
                     </fieldset>
                 </form>
             </div>
@@ -47,7 +51,41 @@ class TutorielVue extends Vue {
     <?php
     }
     
-    public function afficheFormulaireCreationTexte(){
+    public function afficheFormulaireCreationTexte(){?>
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">
+                    Ajouter
+                </h1>
+                <form action="index.php" s="<?php echo WEB_ROOT;?>/tutoriel/creerVideo/" method="post" role="form">
+                    <fieldset class="col-md-12">
+                        <legend>Ajouter du texte</legend>
+                        <div class="form-group">
+                            <label>Titre</label>
+                            <input id="titre" name="titre" class="form-control">
+                        </div>
+                         <div class="row">
+                            <div class="form-group">
+                                <div class="col-lg-3">
+                                    <label>Matière</label>
+                                    <select></select>
+                               </div>
+                                <div class="col-lg-3">
+                                    <label>Niveau secondaire</label>
+                                    <select></select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label><br/>Écrivez votre texte</label>
+                            <textarea id="lien" name="lien" class="form-control" rows="4"></textarea>
+                        </div>
+                        <button type="button" id="submit" name="submit" class="btn btn-primary">Soumettre</button>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    <?php
         
     }
     
@@ -65,8 +103,20 @@ class TutorielVue extends Vue {
                             <label>Titre</label>
                             <input id="titre" name="titre" class="form-control" value="<?php echo $this->oTutoriel->getTitre();?>">
                         </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-lg-3">
+                                    <label>Matière</label>
+                                    <select></select>
+                               </div>
+                                <div class="col-lg-3">
+                                    <label>Niveau secondaire</label>
+                                    <select></select>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
-                            <label>Lien de votre vidéo</label>
+                            <label><br/>Lien de votre vidéo</label>
                             <textarea id="lien" name="lien" class="form-control" rows="1">
                                 <?php echo $this->oTutoriel->getContenu();?>
                             </textarea>
@@ -94,8 +144,20 @@ class TutorielVue extends Vue {
                             <label>Titre</label>
                             <input id="titre" name="titre" class="form-control" value="<?php echo $this->oTutoriel->getTitre();?>">
                         </div>
+                        <div class="row">
+                            <div class="form-group">
+                                <div class="col-lg-3">
+                                    <label>Matière</label>
+                                    <select></select>
+                               </div>
+                                <div class="col-lg-3">
+                                    <label>Niveau secondaire</label>
+                                    <select></select>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
-                            <label>Lien de votre vidéo</label>
+                            <label><br/>Écrivez votre texte</label>
                             <textarea id="texte" name="texte" class="form-control" rows="4">
                                 <?php echo $this->oTutoriel->getContenu();?>
                             </textarea>

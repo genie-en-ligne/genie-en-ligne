@@ -406,4 +406,12 @@
     $oVue = new TutorielVue();
     $oVue->oTutoriel = $oTutoriel;
     $oVue->afficheFormulaireModificationTexte();
+
+    ///vue afficher le formulaire video
+    $oVue = new TutorielVue();
+    $oVue->afficheFormulaireCreationVideo();
+
+    ///vue afficher le formulaire texte
+    $oVue = new TutorielVue();
+    $oVue->afficheFormulaireCreationTexte();
 ?>
