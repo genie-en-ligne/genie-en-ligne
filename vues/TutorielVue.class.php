@@ -10,14 +10,15 @@ class TutorielVue extends Vue {
 
             <?php
                     foreach($this->aListeTutos as $oTutoriel){
-                        echo '<div class="col-md-4 portfolio-item">'
-                        echo '<img class="img-responsive espaceAvant coinRond" src="../../images/video.jpg" alt="Mathématique" data-toggle="modal" data-target="#myModal1">'
-                        echo '<h3 class="espaceApres"> <a href="#">La division</a></h3>'
-                        echo '<p class="auteurDate">Jean Label, 10 octobre 2014</p> '
-                        echo '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>'
-                        echo '</div>'
+                        echo '<div class="col-md-4 portfolio-item">';
+                        echo '<img class="img-responsive espaceAvant coinRond" src="../images/video.jpg">';
+                        echo '<h3 class="espaceApres"> <a href="#">'.$oTutoriel->getTitre().'</a></h3>';
+                        echo '<p class="auteurDate">'.$oTutoriel->getNomTuteur().'</p> ';
+                        echo '<p>'.$oTutoriel->getDateSoumis().'</p>';
+                        echo '</div>';
                         }
                 ?>
+                </div>
     <?php
     }
 

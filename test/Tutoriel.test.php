@@ -459,4 +459,14 @@
     $oVue->aListeTutos = $aListeTutos;
     $oVue->afficheListeTutoTuteursProfesseur();
 
+
+    echo "<h1><br/>La liste des vidéo vue par élèves</h1>";
+    $aListeTutos = array(
+                            new Tutoriel(12, "Les Science ", "2014-10-21", "2014-10-22", 1, 2, true, 2, 1, 1, true, 1, "Bonjour un text pour les sciences"),
+                            new Tutoriel(12, "Les Science ", "2014-10-21", "2014-10-22", 1, 2, false, 2, 1, 1, true, 1, "Bonjour un text pour les sciences")
+                            );
+
+    $oVue = new TutorielVue();
+    $oVue->aListeTutos = $aListeTutos;
+    $oVue->afficheListeConsulter();
 ?>
