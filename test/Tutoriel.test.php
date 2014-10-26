@@ -389,4 +389,13 @@
     } catch (Exception $e) {
         echo "<p>".$e->getMessage()."</p>";
     }
+
+
+    //Vue formulaireModifierTutoVideo
+    $oTutoriel = new Tutoriel(1);
+    $oTutoriel->chargerTutoriel();
+
+    $oVue = new TutorielVue();
+    $oVue->oTutoriel = $oTutoriel;
+    $oVue->afficheFormulaireModificationVideo();
 ?>
