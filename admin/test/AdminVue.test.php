@@ -16,13 +16,21 @@
                     echo "</h4>";
                 echo "</div>";
                 echo "<div class='panel-body'>";
-
-                    $aListeUtilistateurs = array(
+                    
+                     $aListeUtilistateurs = array(
                                                 new Utilisateur(561, 'bob', ' ', 'Bob', 'Bar', 'bob@bob.com', 4),
-                                                new Utilisateur(562, 'bob2', ' ', 'Bob2', 'Bar', 'bob2@bob.com', 4)
+                                                new Utilisateur(562, 'bob2', ' ', 'Bob2', 'Bar', 'bob2@bob.com', 4),
+                                                new Utilisateur(563, 'bob2', ' ', 'Bob2', 'Bar', 'bob2@bob.com', 4)
                                                 );
 
                     $oVue = new AdminVue();
+                    $oCommission = new Commission();
+                    //demande la liste de toutes les commissions
+                    //récupère un tableau d'objets contenant chaque entrée (chaque champ/valeur) de la table commission
+                    $aListeCommissions = $oCommission->rechercherListeCommissions();
+                    //crée une propriété de l'obet $oVue qui contient le tableau d'objet 
+                    $oVue->aListeCommissions = $aListeCommissions; 
+                   
                     $oVue->aListeUtilisateurs = $aListeUtilistateurs;
                     $oVue->afficheListeResponsables();
 
@@ -62,7 +70,7 @@
                     $aListeCommissions = $oCommission->rechercherListeCommissions();
 
                     $oVue = new AdminVue();
-                    $oVue->oUtilisateur = new Utilisateur(1, 'bob', ' ', 'Bob', 'Bar', 'bob@bob.com', 4);
+                    $oVue->oUtilisateur = new Utilisateur(563, 'bob', ' ', 'Bob', 'Bar', 'bob@bob.com', 4);
                     $oVue->aListeCommissions = $aListeCommissions; //création d'une propriété dans l'objet
                     $oVue->afficheModifierResponsables();
 

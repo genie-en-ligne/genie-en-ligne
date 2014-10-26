@@ -43,14 +43,17 @@ class AdminVue extends Vue {
                             <label for="sltRechercherRespCommission" class="col-sm-5 control-label">Commisions scolaires :</label>
                             <div class="col-sm-7 col-md-7">
                                 <select id="sltRechercherRespCommission" class="form-control" name="commission"> 
-                                    <?php
-                                        $oChargerCommissionsScolaires = new Commission();
-                                        $a  = $oChargerCommissionsScolaires->rechercherListeCommissions();
-
-                                        echo "<option>" . printf($a) . "</option>";
-                                    ?>                                
+                                       <?php
+                                            //pour chaque élément/objet du tableau
+                                            foreach ($this->aListeCommissions as $oCommission) {
+                                                //ajouter une balise option et afficher la valeur des propriéts de l'objet
+                                                echo '<option value="'.$oCommission->getId().'">' . $oCommission->getNom() . '</option>';
+                                               
+                                            }
+                                       ?>                         
                                 </select>
-                            </div>
+                                
+                            </div>  
                         </div>
                     </div> <!-- .form-group -->
                 </div>  <!-- .row -->  
@@ -263,7 +266,13 @@ class AdminVue extends Vue {
                                     $oCommissionUtilisateurAModifier = new Commission();
                                     $oCommissionUtilisateurAModifier->setResponsable($this->oUtilisateur->getId());
                                     $oCommissionUtilisateurAModifier->chargerCommissionParResponsable();
-         
+                                    
+                                    //aListeCommissions est une propriété qui contient un tableau d'objet
+                                    // de chaque entrée de la table commission dans la bd. Comme elle appartient 
+                                    //à l'objet $oVue (instance de cette classe (Admin.Vue)), elle peut être appelé 
+                                    //$this->aListeCommission. On peut égalment récupérer les valeurs des propriétés de 
+                                    //chacun des objet qu'elle contient en pointant vers les méthode de ces objets :
+                                    //les méthodes de la classe Commission. 
                                     foreach($this->aListeCommissions as $oCommission){
                                         $selected = '';
                                         if($oCommissionUtilisateurAModifier->getId() == $oCommission->getId()){
