@@ -1,4 +1,4 @@
-﻿<?php
+<?php
     class Statistique extends Modele {
         
         //toutes les fonctions retournent un résultat en fonction de la commission ou de l'école à laquelle ils appartiennent.
@@ -246,14 +246,10 @@
         }
 		
 		
-		public function rechercherNbTutoratsParMatiere($tuteur_ID, $mois){
-		//rechercher nombre de tutoriels par matière soumis par un tuteur pour un mois donnéé
+		public function rechercherNbTutoratsParMatiere($tuteur_ID){
+		//rechercher nombre de tutoriels par matière soumis par un tuteur pour un mois donné
 		
 			TypeException::estInteger($tuteur_ID);
-			TypeException::estInteger($mois);
-			if($mois > 12 || $mois < 1){
-				throw new Exception("Exception::Le mois doit être un nombre valide");
-			}
 		
 			$annee_debut = "";
 			$annee_fin = "";
@@ -266,14 +262,6 @@
 				$annee_debut = date("Y");
 				$annee_fin = date("Y")+1;
 			}
-			
-			
-			if($mois <=6){
-				$annee_en_cours = $annee_fin;
-			}else{
-					$annee_en_cours = $annee_debut;
-					}
-				$date = $annee_en_cours.'-'.$mois.'%';
 		
 			$oConnexion = new MySqliLib();
 			
@@ -283,7 +271,6 @@
 													contenu c, matieres m
 												WHERE
 													c.soumis_par = '".$tuteur_ID."' AND
-													c.date_soumis LIKE '".$date."' AND
 													c.matiere_ID = m.matiere_ID
 												AND
 													(
@@ -302,14 +289,10 @@
 		}
 		
 		
-		public function rechercherNbTutoratsApprouvesParProf($prof_ID, $mois){
+		public function rechercherNbTutoratsApprouvesParProf($prof_ID){
 		//rechercher nombre de tutoriels approuvés par matière pour un prof pour un mois donné
 		 
 			TypeException::estInteger($prof_ID);
-			TypeException::estInteger($mois);
-			if($mois > 12 || $mois < 1){
-				throw new Exception("Exception::Le mois doit être un nombre valide");
-			}
 
 			$annee_debut = "";
 			$annee_fin = "";
@@ -322,15 +305,7 @@
 				$annee_debut = date("Y");
 				$annee_fin = date("Y")+1;
 			}
-			
-			
-			if($mois <=6){
-				$annee_en_cours = $annee_fin;
-			}else{
-					$annee_en_cours = $annee_debut;
-					}
-				$date = $annee_en_cours.'-'.$mois.'%';
-		
+					
 			$oConnexion = new MySqliLib();
 			
 			$oResultat = $oConnexion->executer("SELECT
@@ -339,7 +314,6 @@
 													contenu c, matieres m
 												WHERE
 													c.approuve_par = '".$prof_ID."' AND
-													c.date_approuve LIKE '".$date."' AND
 													c.matiere_ID = m.matiere_ID
 												AND
 													(

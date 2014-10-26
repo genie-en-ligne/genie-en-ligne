@@ -17,10 +17,13 @@
 			<?php 
                 // Placer vos tests unitaires ici...
                 /* La classe à tester */
-				require_once("../modeles/Statistique.class.php");
-				require_once("../lib/TypeException.class.php");
+				
             ?>
-			
+			<div class="panel panel-primary col-xs-12">
+                <div class="panel-heading">
+                    Test de la classe Statistique (Statistique.class.php)
+                </div>
+                 <div class="panel-body">
 			<h2>rechercherNbVisitesParMois($user_id) => integer 25</h2>
 				<?php 
 				
@@ -345,36 +348,329 @@
 					}
 				
 				?>
-            
-            
+            </div>
+        </div>
+<!-- ========================================================================= -->            
             <div class="panel panel-primary col-xs-12">
-    <div class="panel-heading">
-        Test de la vue afficheStatsPersonnellesEleve()
-    </div>
-    <div class="panel-body">
-        <?php    
-            $aDonnees = array(
-                            array('Aoû', 7), 
-                            array('Sep', 7), 
-                            array('Oct', 9), 
-                            array('Nov', 15), 
-                            array('Déc', 12),
-                            array('Jan', 7), 
-                            array('Fév', 9), 
-                            array('Mar', 15), 
-                            array('Avr', 12),
-                            array('Mai', 7), 
-                            array('Jui', 9)
-                        );
+                <div class="panel-heading">
+                    Test de la vue afficheStatsPersonnellesEleve()
+                </div>
+                 <div class="panel-body">
+                    <?php    
+                        $aDonnees = array(
+                                        array('Aoû', 10), 
+                                        array('Sep', 5), 
+                                        array('Oct', 9), 
+                                        array('Nov', 15), 
+                                        array('Déc', 12),
+                                        array('Jan', 7), 
+                                        array('Fév', 9), 
+                                        array('Mar', 0), 
+                                        array('Avr', 12),
+                                        array('Mai', 7), 
+                                        array('Jui', 9)
+                                    );
 
-            $oVue = new StatistiqueVue();
 
-            $oVue->hGraphiqueTutosParMois = $oVue->genererGraphique('test', 300, 555, $aDonnees);
+                         $aDonnees2 = array(
+                                        array('Aoû', 0), 
+                                        array('Sep', 1), 
+                                        array('Oct', 3), 
+                                        array('Nov', 2), 
+                                        array('Déc', 0),
+                                        array('Jan', 5), 
+                                        array('Fév', 9), 
+                                        array('Mar', 15), 
+                                        array('Avr', 12),
+                                        array('Mai', 7), 
+                                        array('Jui', 9)
+                                    );
 
-            $oVue->afficheStatsPersonnellesEleve();
-        ?>
-    </div>
-</div>
+
+                         $aDonnees3 = array(
+                                        array('Aoû', 7), 
+                                        array('Sep', 7), 
+                                        array('Oct', 9), 
+                                        array('Nov', 15), 
+                                        array('Déc', 12),
+                                        array('Jan', 7), 
+                                        array('Fév', 9), 
+                                        array('Mar', 15), 
+                                        array('Avr', 12),
+                                        array('Mai', 7), 
+                                        array('Jui', 9)
+                                    );
+
+
+                        $oVue = new StatistiqueVue();
+
+                        $oVue->hGraphiqueVisitesParMois = $oVue->genererGraphique('test', 300, 1000, $aDonnees);
+                        $oVue->hGraphiqueTuteursParMois = $oVue->genererGraphique('test2', 300, 555, $aDonnees2);
+                        $oVue->hGraphiqueTempsParMois = $oVue->genererGraphique('test3', 300, 555, $aDonnees3);
+
+                        $oVue->afficheStatsPersonnellesEleve();
+                    ?>
+                </div>            
+
+                <div class="panel-body">
+                    <?php    
+
+
+
+                    ?>
+                </div>
+            </div>
+<!-- =========================================================================================== -->
+            <div class="panel panel-primary col-xs-12">
+                <div class="panel-heading">
+                    Test de la vue afficheStatsPersonnellesTuteur()
+                </div>
+                 <div class="panel-body">
+                    <?php    
+                        $aDonnees4 = array(
+                                        array('Aoû', 1), 
+                                        array('Sep', 3), 
+                                        array('Oct', 5), 
+                                        array('Nov', 2), 
+                                        array('Déc', 12),
+                                        array('Jan', 5), 
+                                        array('Fév', 8), 
+                                        array('Mar', 0), 
+                                        array('Avr', 12),
+                                        array('Mai', 7), 
+                                        array('Jui', 9)
+                                    );
+
+
+                         $aDonnees5 = array(
+                                        array('Aoû', 0), 
+                                        array('Sep', 1), 
+                                        array('Oct', 3), 
+                                        array('Nov', 2), 
+                                        array('Déc', 0),
+                                        array('Jan', 5), 
+                                        array('Fév', 9), 
+                                        array('Mar', 15), 
+                                        array('Avr', 12),
+                                        array('Mai', 7), 
+                                        array('Jui', 9)
+                                    );
+
+
+                         $aDonnees6 = array(
+                                        array('Aoû', 7), 
+                                        array('Sep', 7), 
+                                        array('Oct', 9), 
+                                        array('Nov', 15), 
+                                        array('Déc', 12),
+                                        array('Jan', 7), 
+                                        array('Fév', 9), 
+                                        array('Mar', 15), 
+                                        array('Avr', 12),
+                                        array('Mai', 7), 
+                                        array('Jui', 9)
+                                    );
+
+
+                        $oVue = new StatistiqueVue();
+
+                        $oVue->hGraphiqueVisitesTuteurParMois = $oVue->genererGraphique('test4', 300, 555, $aDonnees4);
+                        $oVue->hGraphiqueElevesParMois = $oVue->genererGraphique('test5', 300, 555, $aDonnees5);
+                        $oVue->hGraphiqueTutosMatiere = $oVue->genererGraphique('test6', 300, 555, $aDonnees6);
+
+                        $oVue->afficheStatsPersonnellesTuteur();
+                    ?>
+                </div>            
+
+                <div class="panel-body">
+                    <?php    
+
+
+
+                    ?>
+                </div>
+            </div>
+ <!-- ============================================================================================= -->
+             <div class="panel panel-primary col-xs-12">
+                <div class="panel-heading">
+                    Test de la vue afficheStatsPersonnellesProfesseur()
+                </div>
+                 <div class="panel-body">
+                    <?php    
+                        $aDonnees7 = array(
+                                        array('Aoû', 1), 
+                                        array('Sep', 3), 
+                                        array('Oct', 5), 
+                                        array('Nov', 2), 
+                                        array('Déc', 12),
+                                        array('Jan', 5), 
+                                        array('Fév', 8), 
+                                        array('Mar', 0), 
+                                        array('Avr', 12),
+                                        array('Mai', 7), 
+                                        array('Jui', 9)
+                                    );
+
+
+                         $aDonnees8 = array(
+                                        array('Aoû', 0), 
+                                        array('Sep', 1), 
+                                        array('Oct', 3), 
+                                        array('Nov', 2), 
+                                        array('Déc', 0),
+                                        array('Jan', 5), 
+                                        array('Fév', 9), 
+                                        array('Mar', 15), 
+                                        array('Avr', 12),
+                                        array('Mai', 7), 
+                                        array('Jui', 9)
+                                    );
+
+
+                        $oVue = new StatistiqueVue();
+
+                        $oVue->hGraphiqueVisitesProfParMois = $oVue->genererGraphique('test7', 300, 555, $aDonnees7);
+                        $oVue->hGraphiqueTutosApprouves = $oVue->genererGraphique('test8', 300, 555, $aDonnees8);
+
+                        $oVue->afficheStatsPersonnellesProfesseur();
+                    ?>
+                </div>            
+
+            </div>
+ <!-- ============================================================================================= -->
+            <div class="panel panel-primary col-xs-12">
+                <div class="panel-heading">
+                    Test de la vue afficheStatsGeneralesPourEcole() - (pour superadmin)
+                </div>
+                 <div class="panel-body">
+                    <?php    
+                         $aDonnees9 = array(
+                                        array('Aoû', 1), 
+                                        array('Sep', 3), 
+                                        array('Oct', 5), 
+                                        array('Nov', 2), 
+                                        array('Déc', 12),
+                                        array('Jan', 5), 
+                                        array('Fév', 8), 
+                                        array('Mar', 0), 
+                                        array('Avr', 12),
+                                        array('Mai', 7), 
+                                        array('Jui', 9)
+                                    );
+
+
+                         $aDonnees10 = array(
+                                        array('Aoû', 0), 
+                                        array('Sep', 1), 
+                                        array('Oct', 3), 
+                                        array('Nov', 2), 
+                                        array('Déc', 0),
+                                        array('Jan', 5), 
+                                        array('Fév', 9), 
+                                        array('Mar', 15), 
+                                        array('Avr', 12),
+                                        array('Mai', 7), 
+                                        array('Jui', 9)
+                                    );
+
+
+                         $aDonnees11 = array(
+                                        array('Aoû', 7), 
+                                        array('Sep', 7), 
+                                        array('Oct', 9), 
+                                        array('Nov', 15), 
+                                        array('Déc', 12),
+                                        array('Jan', 7), 
+                                        array('Fév', 9), 
+                                        array('Mar', 15), 
+                                        array('Avr', 12),
+                                        array('Mai', 7), 
+                                        array('Jui', 9)
+                                    );
+
+                        $aDonnees12 = array(
+                                        array('Aoû', 7), 
+                                        array('Sep', 7), 
+                                        array('Oct', 9), 
+                                        array('Nov', 15), 
+                                        array('Déc', 12),
+                                        array('Jan', 7), 
+                                        array('Fév', 9), 
+                                        array('Mar', 15), 
+                                        array('Avr', 12),
+                                        array('Mai', 7), 
+                                        array('Jui', 9)
+                                    );
+
+
+                        $oVue = new StatistiqueVue();
+
+                        $oVue->hGraphiqueNbElevesParEcole = $oVue->genererGraphique('test9', 300, 555, $aDonnees9);
+                        $oVue->hGraphiqueNbTuteursParEcole = $oVue->genererGraphique('test10', 300, 555, $aDonnees10);
+                        $oVue->hGraphiqueNbProfsParEcole = $oVue->genererGraphique('test11', 300, 555, $aDonnees11);
+                        $oVue->hGraphiqueNbTutorielsParEcole = $oVue->genererGraphique('test12', 300, 555, $aDonnees12);
+
+                        $oVue->afficheStatsGeneralesPourEcole();
+                    ?>
+                </div>            
+
+                <div class="panel-body">
+                    <?php    
+
+                                
+
+                    ?>
+                </div>
+            </div>
+ <!-- ============================================================================================= -->
+			<div class="panel panel-primary col-xs-12">
+                <div class="panel-heading">
+                    Test de la vue afficheStatsGeneralesPourCommission()
+                </div>
+                 <div class="panel-body">
+                    <?php    
+                        $aDonnees13 = array(
+                                        array('Aoû', 1), 
+                                        array('Sep', 3), 
+                                        array('Oct', 5), 
+                                        array('Nov', 2), 
+                                        array('Déc', 12),
+                                        array('Jan', 5), 
+                                        array('Fév', 8), 
+                                        array('Mar', 0), 
+                                        array('Avr', 12),
+                                        array('Mai', 7), 
+                                        array('Jui', 9)
+                                    );
+
+
+                         $aDonnees14 = array(
+                                        array('Aoû', 0), 
+                                        array('Sep', 1), 
+                                        array('Oct', 3), 
+                                        array('Nov', 2), 
+                                        array('Déc', 0),
+                                        array('Jan', 5), 
+                                        array('Fév', 9), 
+                                        array('Mar', 15), 
+                                        array('Avr', 12),
+                                        array('Mai', 7), 
+                                        array('Jui', 9)
+                                    );
+
+
+                        $oVue = new StatistiqueVue();
+
+                        $oVue->hGraphiqueNbTutosCreesParCommission = $oVue->genererGraphique('test13', 300, 555, $aDonnees13);
+                        $oVue->hGraphiqueNbTutosApprouvesParCommission = $oVue->genererGraphique('test14', 300, 555, $aDonnees14);
+
+                        $oVue->afficheStatsGeneralesPourCommission();
+                    ?>
+                </div>            
+
+            </div>
+ <!-- ============================================================================================= -->
+            
 		</div>
 		<div id="footer">
 
