@@ -197,7 +197,7 @@
                 echo "<div class='panel-body'>";
 
                    try{
-                        $user1 = new Utilisateur(0, "gus28", "gtz12k", "Siverner", "Donna", "abc@123.com", 2);
+                        $user1 = new Utilisateur(0, "gus28", "gtz12k", "Mould", "Bob", "abc@123.com", 4);
                         $user1->ajouterUtilisateur();
                         echo "<p> Succès! L'utilisateur #".$user1->getId()." ".$user1 ->getPrenom()." ".$user1->getNom(). " a été ajouté.</p>";
                     }

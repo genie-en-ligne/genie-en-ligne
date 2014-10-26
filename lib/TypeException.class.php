@@ -58,7 +58,7 @@
 		 * @param mixed $iInt
 		 */
     	public static function estInteger($iInt){
-    		if(is_integer($iInt)==false)
+    		if(is_integer(intval($iInt))==false)
 				throw new TypeException(get_class()." :: ". TypeException::ERR_INTEGER." - Valeur actuelle:".$iInt);	
     	}
 		/**
