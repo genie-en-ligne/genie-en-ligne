@@ -42,8 +42,13 @@ class AdminVue extends Vue {
                         <div class="col-sm-5 col-sm-offset-2">
                             <label for="sltRechercherRespCommission" class="col-sm-5 control-label">Commisions scolaires :</label>
                             <div class="col-sm-7 col-md-7">
-                                <select id="sltRechercherRespCommission" class="form-control" name="commission">
-                                    <option value="0">Tous</option> 
+                                <select id="sltRechercherRespCommission" class="form-control" name="commission"> 
+                                    <?php
+                                        $oChargerCommissionsScolaires = new Commission();
+                                        $a  = $oChargerCommissionsScolaires->rechercherListeCommissions();
+
+                                        echo "<option>" . printf($a) . "</option>";
+                                    ?>                                
                                 </select>
                             </div>
                         </div>
@@ -251,9 +256,9 @@ class AdminVue extends Vue {
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="sltModifEcoleProf" class="col-sm-4 control-label">Commissions scolaires :</label>
+                        <label for="sltModifCommissionResp" class="col-sm-4 control-label">Commissions scolaires :</label>
                         <div class="col-sm-6">
-                            <select multiple  id="sltModifRespCommission" name="commissions" class="form-control col-sm-6">
+                            <select multiple  id="sltModifCommissionResp" name="commissions" class="form-control col-sm-6">
                                 <?php
                                     $oCommissionUtilisateurAModifier = new Commission();
                                     $oCommissionUtilisateurAModifier->setResponsable($this->oUtilisateur->getId());
@@ -323,7 +328,7 @@ class AdminVue extends Vue {
                     </div> <!-- .form-group -->
                 </div>  <!-- .row --> 
                 <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                    <button type="submit" id="subChercherProf" class="btn btn-success pull-right">
+                    <button type="submit" id="subChercherCom" class="btn btn-success pull-right">
                     <span class="glyphicon glyphicon-search"></span> Rechercher</button>
                 </div> 
                 <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
@@ -343,7 +348,7 @@ class AdminVue extends Vue {
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <table id="tabRechercherProf" class="table table-striped text-center">
+                    <table id="tabRechercherCom" class="table table-striped text-center">
                         <tr>
                             <th class="text-center">MRC</th>
                             <th class="text-center">Nom</th>
@@ -399,25 +404,25 @@ class AdminVue extends Vue {
             </div>
         </div>
         <div class="col-lg-12">
-            <form id="frmChercherProf" method="GET" action="" enctype="" class="form-horizontal" role="form">
+            <form id="frmChercherEcole" method="GET" action="" enctype="" class="form-horizontal" role="form">
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-4">
-                            <label for="txtRechercherProfCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
+                            <label for="txtRechercherEcoleCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
                             <div class="col-sm-9 col-md-7">
-                                 <input type="email" id="txtRechercherProfCourriel" name="courriel" class="form-control" placeholder="Courriel" pattern="">
+                                 <input type="email" id="txtRechercherComCourriel" name="courriel" class="form-control" placeholder="Courriel" pattern="">
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="txtRechercherProfNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
+                            <label for="txtRechercherEcoleNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
                             <div class="col-sm-9 col-md-7">
-                                 <input type="text" id="txtRechercherProfNom" name="nom" class="form-control" placeholder="Nom" pattern="">
+                                 <input type="text" id="txtRechercherComNom" name="nom" class="form-control" placeholder="Nom" pattern="">
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="sltRechercherProfEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
+                            <label for="sltRechercherEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
                             <div class="col-sm-9 col-md-7">
-                                <select id="sltRechercherEcoleProf" class="form-control" name="ecole">
+                                <select id="sltRechercherEcole" class="form-control" name="ecole">
                                     <option value="">Sélection</option> 
                                 </select>
                             </div>
@@ -425,7 +430,7 @@ class AdminVue extends Vue {
                     </div> <!-- .form-group -->
                 </div>  <!-- .row -->  
                 <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                    <button type="submit" id="subChercherProf" class="btn btn-success pull-right">
+                    <button type="submit" id="subChercherEcole" class="btn btn-success pull-right">
                     <span class="glyphicon glyphicon-search"></span> Rechercher</button>
                 </div> 
                 <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
@@ -445,7 +450,7 @@ class AdminVue extends Vue {
             </div>
             <div class="row">
                 <div class="col-lg-12">
-                    <table id="tabRechercherProf" class="table table-striped text-center">
+                    <table id="tabRechercherEcoles" class="table table-striped text-center">
                         <tr>
                             <th class="text-center">Prénom</th>
                             <th class="text-center">Nom</th>
@@ -470,10 +475,10 @@ class AdminVue extends Vue {
                                     echo '<span title="Supprimer" class="glyphicon glyphicon-remove"></span>';
                                 echo '</a>'; -->
                                <a href="#" class="btn btn-primary btn-xs" title="Modifier">
-                                    <span title="Modifier" class="glyphicon glyphicon-pencil"></span>
+                                    <span class="glyphicon glyphicon-pencil"></span>
                                 </a>
                                 <a href="#" class="btn btn-danger btn-xs col-sm-offset-1" title="Supprimer">
-                                    <span title="Supprimer" class="glyphicon glyphicon-remove"></span>
+                                    <span class="glyphicon glyphicon-remove"></span>
                                 </a>
                             </td>
                         </tr>

@@ -70,38 +70,6 @@
             echo "</div>";
         echo "</div>";
 
-        echo "<div class='col-xs-12'>";
-            echo "<div class='panel panel-primary'>";
-                echo "<div class='panel-heading'>";
-                    echo "<h4>";
-                        echo "Test afficheListeCommissions";
-                    echo "</h4>";
-                echo "</div>";
-                echo "<div class='panel-body'>";
-
-                    $oVue = new AdminVue();
-                    $oVue->afficheListeCommissions();
-
-                echo "</div>";
-            echo "</div>";
-        echo "</div>";
-
-        echo "<div class='col-xs-12'>";
-            echo "<div class='panel panel-primary'>";
-                echo "<div class='panel-heading'>";
-                    echo "<h4>";
-                        echo "Test afficheListeEcoles";
-                    echo "</h4>";
-                echo "</div>";
-                echo "<div class='panel-body'>";
-
-                    $oVue = new AdminVue();
-                    $oVue->afficheListeEcoles();
-
-                echo "</div>";
-            echo "</div>";
-        echo "</div>";
-
     /*=====================================*/
     /*======FIN GESTION DES RESPONSABLES===*/
     /*==========DROITS SUPERADMIN==========*/
@@ -163,6 +131,12 @@
     /*================================================*/
     /*=========FIN GESTION DES PROFESSEURS============*/
     /*==DROITS RESPONSABLES DES COMMISSIONS SCOLAIRE==*/
+    /*================================================*/
+
+
+    /*================================================*/
+    /*============GESTION DES TUTEURS=================*/
+    /*==========DROITS DES PROFESSEURS================*/
     /*================================================*/
 
          echo "<div class='col-xs-12'>";
@@ -228,5 +202,42 @@
                 echo "</div>";
             echo "</div>";
         echo "</div>";
+
+    /*================================================*/
+    /*===========FIN GESTION DES TUTEURS==============*/
+    /*================================================*/
+
+         echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheListeCommissions";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheListeCommissions();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+        echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheListeEcoles";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheListeEcoles();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
 
     ?>

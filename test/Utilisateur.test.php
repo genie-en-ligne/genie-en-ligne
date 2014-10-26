@@ -40,6 +40,54 @@
             echo "<div class='panel panel-primary'>";
                 echo "<div class='panel-heading'>";
                     echo "<h4>";
+                        echo "Test afficheCreerLogin";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new UtilisateurVue();
+                    $oVue->afficheCreerLogin();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+        echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheMessageConfirmation";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new UtilisateurVue();
+                    $oVue->afficheMessageConfirmation();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+         echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheProfil";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new UtilisateurVue();
+                    $oVue->afficheProfil();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+        
+        echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
                         echo "Test afficheRecupererMDP";
                     echo "</h4>";
                 echo "</div>";
