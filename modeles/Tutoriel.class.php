@@ -376,6 +376,40 @@
                 $this->setContenu($aResultats[0]['contenu_html']);
             }
         }
+
+        public function getSorteTuto(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT nom FROM type_contenu WHERE type_contenu_ID = '{$this->iTypeContenu}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['nom'];
+        }
+
+        public function getSorteMatiere(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT nom FROM matieres WHERE matiere_ID = '{$this->iMatiereId}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['nom'];
+        }
+
+        public function getTypeApprouver(){
+             if($this->getStatut() == '1'){
+               $oResultat="Approuvé";
+            }
+            else{
+                $oResultat="non approuver";
+            }
+           echo $oResultat;
+        }
+
+         public function getNomTuteur(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT nom, prenom FROM utilisateurs WHERE utilisateur_ID = '{$this->iSoumisPar}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['nom'];
+        }
         
         private function getSqlMatiere(){
             $res = '';

@@ -414,4 +414,49 @@
     ///vue afficher le formulaire texte
     $oVue = new TutorielVue();
     $oVue->afficheFormulaireCreationTexte();
+
+    //Vue afficher la liste des tutos d'un tuteur
+    echo "<h1><br/>Liste des tutoriels du tuteur</h1>";
+    $aListeTutos = array(
+                            new Tutoriel(12, "Les Science ", "2014-10-21", "2014-10-22", 1, 2, true, 2, 1, 1, true, 1, "Bonjour un text pour les sciences"),
+                            new Tutoriel(12, "Les Science ", "2014-10-21", "2014-10-22", 1, 2, false, 2, 1, 1, true, 1, "Bonjour un text pour les sciences")
+                            );
+
+    $oVue = new TutorielVue();
+    $oVue->aListeTutos = $aListeTutos;
+    $oVue->afficheListeGererTuteur();
+
+    echo "<h1><br/>Liste des tutoriels du professeur</h1>";
+    $aListeTutos = array(
+                            new Tutoriel(12, "Les Science ", "2014-10-21", "2014-10-22", 1, 2, true, 2, 1, 1, true, 1, "Bonjour un text pour les sciences"),
+                            new Tutoriel(12, "Les Science ", "2014-10-21", "2014-10-22", 1, 2, false, 2, 1, 1, true, 1, "Bonjour un text pour les sciences")
+                            );
+
+    $oVue = new TutorielVue();
+    $oVue->aListeTutos = $aListeTutos;
+    $oVue->afficheListeGererProfesseur();
+
+
+
+    echo "<h1><br/>Liste des video des tuteur vue par professeur pour être approver</h1>";
+    $aListeTutos = array(
+                            new Tutoriel(12, "Les Science ", "2014-10-21", "2014-10-22", 1, 2, true, 2, 1, 1, true, 1, "Bonjour un text pour les sciences"),
+                            new Tutoriel(12, "Les Science ", "2014-10-21", "2014-10-22", 1, 2, false, 2, 1, 1, true, 1, "Bonjour un text pour les sciences")
+                            );
+
+    $oVue = new TutorielVue();
+    $oVue->aListeTutos = $aListeTutos;
+    $oVue->afficheListeGererApprouverProfesseur();
+
+
+    echo "<h1><br/>La liste total des tutos fait par les tuteur vue par le proffesseur</h1>";
+    $aListeTutos = array(
+                            new Tutoriel(12, "Les Science ", "2014-10-21", "2014-10-22", 1, 2, true, 2, 1, 1, true, 1, "Bonjour un text pour les sciences"),
+                            new Tutoriel(12, "Les Science ", "2014-10-21", "2014-10-22", 1, 2, false, 2, 1, 1, true, 1, "Bonjour un text pour les sciences")
+                            );
+
+    $oVue = new TutorielVue();
+    $oVue->aListeTutos = $aListeTutos;
+    $oVue->afficheListeTutoTuteursProfesseur();
+
 ?>
