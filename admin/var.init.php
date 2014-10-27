@@ -73,7 +73,7 @@
     }
 
     if(empty($_POST['txtContenu'])){
-    	$_POST['txtUrl'] = '';
+    	$_POST['txtContenu'] = '';
     }
 
     if(empty($_POST['sltNiveau'])){
