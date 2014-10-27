@@ -59,6 +59,12 @@
                 case 'supprimer':
                     $this->supprimer();
                     break;
+                case 'ajouter-prof':
+                    $this->ajouterProf();
+                    break;
+                case 'modifier-prof':
+                    $this->modifierProf();
+                    break;
 
                 //TODO: Ajouter des cas au besoin
 
@@ -392,6 +398,75 @@
             }
             catch(Exception $e){
                 header("location:".WEB_ROOT.'/admin');
+            }
+        }
+
+        private function ajouterProf(){
+            $oVue = new AdminVue();
+            $oMatiere = new Matiere();
+            $oCommission = new Commission();
+            $oCommission->setId($this->oUtilisateurSession->getCommission());
+
+            try{
+                if(isset($_POST['subCreerProf'])){
+                    $oUtilisateur = new Utilisateur(0, ' ', ' ', $_POST['txtNom'], $_POST['txtPrenom'], $_POST['emlCourriel'], 3);
+                    $oUtilisateur->ajouterUtilisateur();
+
+                    $oMatiere->modifierMatieresParUtilisateur($oUtilisateur, $_POST['chkMatieres']);
+                    $oEcole = new Ecole();
+                    $oEcole->modifierEcolesParUtilisateur($oUtilisateur, $_POST['sltEcoles']);
+
+                    $oVue->setMessage(array("Le compte a été créé et une invitation a été envoyée par courriel", "info"));
+                }   
+                $oVue->aListeMatieres = $oMatiere->rechercherListeMatieres();
+                $oVue->aListeEcoles = $oCommission->rechercherListeEcoles();
+
+                $oVue->afficheAjouterProfesseur();
+            }
+            catch(Exception $e){
+                $oVue->setMessage(array($e->getMessage(), "danger"));
+                $oVue->aListeMatieres = $oMatiere->rechercherListeMatieres();
+                $oVue->aListeEcoles = $oCommission->rechercherListeEcoles();
+
+                $oVue->afficheAjouterProfesseur();
+            }
+        } 
+
+        private function modifierProf(){
+            $oVue = new AdminVue();
+            $oMatiere = new Matiere();
+            $oCommission = new Commission();
+            $oCommission->setId($this->oUtilisateurSession->getCommission());
+
+            try{
+                if(isset($_POST['subModifierProf'])){
+                    $oUtilisateur = new Utilisateur($this->getReqId(), ' ', ' ', $_POST['txtNom'], $_POST['txtPrenom'], $_POST['emlCourriel'], 3);
+                    $oUtilisateur->modifierUtilisateur();
+
+                    $oMatiere->modifierMatieresParUtilisateur($oUtilisateur, $_POST['chkMatieres']);
+                    $oEcole = new Ecole();
+                    $oEcole->modifierEcolesParUtilisateur($oUtilisateur, $_POST['sltEcoles']);
+
+                    header("location:".WEB_ROOT."/admin/utilisateur/gerer-profs");
+                }   
+
+                $oUtilisateur= new Utilisateur($this->getReqId());
+                $oUtilisateur->chargerCompteParId();
+
+                $oVue->oUtilisateur = $oUtilisateur;
+
+                $oVue->aListeMatieres = $oMatiere->rechercherListeMatieres();
+                $oVue->aListeEcoles = $oCommission->rechercherListeEcoles();
+                $oVue->aMatieresTuteur = $oMatiere->getMatieresPourUtilisateur($oUtilisateur);
+
+                $oVue->afficheModifierProfesseur();
+            }
+            catch(Exception $e){
+                $oVue->setMessage(array($e->getMessage(), "danger"));
+                $oVue->aListeMatieres = $oMatiere->rechercherListeMatieres();
+                $oVue->aListeEcoles = $oCommission->rechercherListeEcoles();
+
+                $oVue->afficheModifierProfesseur();
             }
         }
        

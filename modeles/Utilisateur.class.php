@@ -207,6 +207,14 @@
             return $aResultats[0]['commission_ID'];
         }
 
+        public function getNomCommission(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT c.nom FROM ecoles_par_utilisateur epu, ecoles e, commissions c WHERE e.commission_ID = c.commission_ID AND epu.utilisateur_ID = '{$this->getId()}' AND epu.ecole_ID = e.ecole_ID");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['nom'];
+        }
+
         public function rechercherListeTuteurs($iCommissionId){
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, ecoles_par_utilisateur epu WHERE u.utilisateur_ID = epu.utilisateur_ID AND u.role = '2' AND epu.ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$iCommissionId}') AND u.est_detruit = 0");
@@ -223,7 +231,7 @@
 
         public function rechercherListeProfs($iCommissionId){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, ecoles_par_utilisateur epu WHERE u.utilisateur_ID = epu.utilisateur_ID AND u.role = '3' AND epu.ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$iCommissionId}')");
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, ecoles_par_utilisateur epu WHERE u.utilisateur_ID = epu.utilisateur_ID AND u.role = '3' AND epu.ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$iCommissionId}') AND u.est_detruit = 0");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
             $aFinal = array();
