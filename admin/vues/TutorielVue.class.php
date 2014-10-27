@@ -37,7 +37,7 @@ class TutorielVue extends Vue {
                                 echo '<td id="txtMatiere">'.$oTutoriel->getSorteMatiere().'</td>';
                                 echo '<td id="txtNiveau">Secondaire '.$oTutoriel->getNiveauScolaire().'</td>';
                                 echo '<td>';
-                                    echo '<a href="'.WEB_ROOT.'/admin/tutoriel/visualiser/'.$oTutoriel->getContenuId().'" class="btn btn-primary btn-xs">';
+                                    echo '<a remote="'.WEB_ROOT.'/admin/ControleurAJAX.php?module=tutoriel&action=visionner&id='.$oTutoriel->getContenuId().'"data-toggle="myModal" class="btn btn-primary btn-xs">';
                                         echo '<span title="visualiser" class="glyphicon glyphicon-play"></span>';
                                     echo '</a>';
                                     $type = ($oTutoriel->getType() == 1)?'video':'texte';
@@ -66,6 +66,36 @@ class TutorielVue extends Vue {
                 <a href="<?php echo WEB_ROOT;?>/admin/tutoriel/ajouter-texte" class="btn btn-success">
                 <span class="glyphicon glyphicon-plus"></span>Ajouter un texte</a>
             </div>
+        </div>
+
+        <script>
+            $('a[data-toggle="myModal"]').click(function(e) {
+                e.preventDefault();
+                $('#myModal').remove();
+                var $this = $(this)
+                  , $remote = $this.attr('remote') ||  $this.attr('href')
+                  , $modal = $('<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>');
+                $('body').append($modal);
+                $modal.modal({backdrop: 'static', keyboard: false});
+                $modal.load($remote);
+              }
+            );
+        </script>
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Visionner un tutoriel</h4>
+              </div>
+              <div class="modal-body">
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+              </div>
+            </div>
+          </div>
         </div>
     <?php
     }
@@ -399,6 +429,62 @@ class TutorielVue extends Vue {
                 </form>
             </div>
         </div>
+    <?php
+    }
+
+    public function afficheLeVideo(){?>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Visionner un tutoriel</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <h2><?php echo $this->oTutoriel->getTitre();?></h2>
+                            <div>
+                                <?php echo $this->oTutoriel->getContenu();?>
+                            </div>                            
+                        </div>
+                    </div>                             
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <p class="auteurDate"><?php echo $this->oTutoriel->getPrenomTuteur();?> <?php echo $this->oTutoriel->getNomTuteur();?>, <?php echo $this->oTutoriel->getDateSoumis();?></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    <?php
+    }
+
+    public function afficheLeTexte(){?>
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Visionner un tutoriel</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-lg-12 text-center">
+                            <h2><?php echo $this->oTutoriel->getTitre();?></h2>
+                            <p class="auteurDate"><?php echo $this->oTutoriel->getPrenomTuteur();?> <?php echo $this->oTutoriel->getNomTuteur();?>, <?php echo $this->oTutoriel->getDateSoumis();?></p>
+                            <div text-center>
+                                <p><?php echo $this->oTutoriel->getContenu();?></p>
+                            </div>                          
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>                     
     <?php
     }
 

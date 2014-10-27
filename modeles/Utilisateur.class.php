@@ -257,6 +257,13 @@
             return $aFinal;
         }
 
+        public function ajouterActiviteService($iTutoId){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("INSERT INTO activite_services (utilisateur_ID, type_service, element_service_ID) VALUES ('{$this->iId}', '1', '$iTutoId')");
+
+            return true;
+        }
+
         public function creerLogin(){
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("UPDATE utilisateurs SET pseudo = '{$this->sPseudo}', mot_de_passe = '{$this->sMot_de_passe}' WHERE utilisateur_ID = '{$this->iId}'");

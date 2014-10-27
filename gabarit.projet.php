@@ -11,6 +11,10 @@
 		<link rel="stylesheet" href="<?php echo WEB_ROOT;?>/lib/bootstrap/css/bootstrap.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?php echo WEB_ROOT;?>/css/main.css" type="text/css" media="screen">
 		
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+        </script>
+
 		<script src="<?php echo WEB_ROOT;?>/js/main.js"></script>            
 	</head>
 
@@ -278,10 +282,6 @@
                 </footer>
             </main>
         </div>
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
-        </script>
 
         <!-- Include all compiled bootstrap plugins -->
         <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/bootstrap/js/bootstrap.js">

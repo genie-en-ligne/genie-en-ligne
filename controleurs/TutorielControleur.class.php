@@ -34,6 +34,9 @@
                 case 'approuver':
                     $this->approuver();
                     break;
+                case 'visionner':
+                    $this->visionner();
+                    break;
 
                 //TODO: Ajouter des cas au besoin
 
@@ -285,6 +288,25 @@
             }
             catch(Exception $e){
                 header('location:'.WEB_ROOT.'/admin/tutoriel/gerer');
+            }
+        }
+
+        private function visionner(){
+            $oVue = new TutorielVue();
+            try{
+                $oTutoriel = new Tutoriel($this->getReqId());
+                $oTutoriel->chargerTutoriel();
+                $oVue->oTutoriel = $oTutoriel;
+
+                if($oTutoriel->getType() == 1){
+                    $oVue->afficheLeVideo();
+                }
+                else{
+                    $oVue->afficheLeTexte();
+                }
+            }
+            catch(Exception $e){
+                echo "Une erreur est survenue. Veuillez réessayer plus tard.";
             }
         }
        
