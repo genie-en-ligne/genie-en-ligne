@@ -10,8 +10,8 @@
  * 
  */
 	function mon_autoloader($class) {
-		$dossierClasse = array('../modeles/', '../vues/', '../lib/', '../controleurs/', '' );	// Ajouter les dossiers au besoin
-		
+		$dossierClasse = array('../modeles/', '../vues/', '../lib/', '../controleurs/', '../' );	// Ajouter les dossiers au besoin
+	
 		foreach ($dossierClasse as $dossier) {
 			if(file_exists('./'.$dossier.$class.'.class.php')){
 				require_once('./'.$dossier.$class.'.class.php');
@@ -22,7 +22,8 @@
 	spl_autoload_register('mon_autoloader');
 
     //define('WEB_ROOT', 'http://e1395671.webdev.cmaisonneuve.qc.ca/final');
-    define('WEB_ROOT', 'http://localhost/genie-en-ligne');
+
+    define('WEB_ROOT', 'http://127.0.0.1/projet-github/genie-en-ligne');
 
     /*define('SQL_HOST', 'localhost');
     define('SQL_USER', 'e1395671');
