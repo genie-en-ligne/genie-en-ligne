@@ -104,7 +104,7 @@ class UtilisateurVue extends Vue {
                             </div>
                         </div>
                         <div class="panel-body descriptions-accueil">
-                            <div class="cadre page-header">
+                            <div class="cadre page-header text-center">
                                 <a class="lire_plus">
                                     <img src="<?php echo WEB_ROOT;?>/images/chat.png" class="img-circle" alt="chat" />
                                 </a>
@@ -136,7 +136,7 @@ class UtilisateurVue extends Vue {
                             </div>
                         </div>
                         <div class="panel-body descriptions-accueil">
-                            <div class="cadre page-header">
+                            <div class="cadre page-header text-center">
                                 <a class="lire_plus">
                                     <img src="<?php echo WEB_ROOT;?>/images/contenu.png" class="img-circle" alt="tutoriels" />
                                 </a>
@@ -165,7 +165,7 @@ class UtilisateurVue extends Vue {
                             </div>
                         </div>
                         <div class="panel-body descriptions-accueil">
-                            <div class="cadre page-header">
+                            <div class="cadre page-header text-center">
                                 <a class="lire_plus">
                                     <img src="<?php echo WEB_ROOT;?>/images/forum.png" class="img-circle" alt="communauté" />
                                 </a>
