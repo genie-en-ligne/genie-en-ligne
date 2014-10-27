@@ -1008,8 +1008,8 @@ class AdminVue extends Vue {
             </div> <!-- .col-lg-12 -->
         </div> <!-- .row -->
         <div class="col-sm-10 col-sm-offset-10">
-            <button type="button" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
-            <span class="glyphicon glyphicon-plus"></span> Ajouter</button>
+            <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/ajouter-tuteur" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
+            <span class="glyphicon glyphicon-plus"></span> Ajouter</a>
         </div>
     <?php
     }
@@ -1039,96 +1039,57 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmAjoutProf" action="" method="POST" enctype="" class="form-horizontal" role="form">
+                <form id="frmAjoutProf" action="<?php echo WEB_ROOT;?>/admin/utilisateur/ajouter-tuteur" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="txtAjoutPrenomTut" class="col-sm-4 control-label">Prénom :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtAjoutPrenomTut" class="form-control" name="prenom" placeholder="Prenom">
+                            <input type="text" id="txtAjoutPrenomTut" class="form-control" name="txtPrenom" placeholder="Prenom">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="txtAjoutNomTut" class="col-sm-4 control-label">Nom  :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtAjoutNomTut" class="form-control" name="nom" placeholder="Nom">
+                            <input type="text" id="txtAjoutNomTut" class="form-control" name="txtNom" placeholder="Nom">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="txtAjoutCourrielTut" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="txtAjoutCourrielTut" class="form-control" name="courriel" placeholder="Courriel">
+                            <input type="email" id="txtAjoutCourrielTut" class="form-control" name="emlCourriel" placeholder="Courriel">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="sltAjouterEcoleTut" class="col-sm-4 control-label">École :</label>
                         <div class="col-sm-6">
-                            <select id="sltAjouterEcoleTut" class="form-control col-sm-6" name="ecoles">
-                                <option value=""></option>
+                            <select id="sltAjouterEcoleTut" class="form-control col-sm-6" name="sltEcole">
+                                <?php
+                                    foreach ($this->aListeEcoles as $oEcole) {
+                                        echo '<option value="'.$oEcole->getId().'">'.$oEcole->getNom().'</option>';
+                                    }
+                                ?>
                             </select>
                         </div>
                     </div>
                     <div id="chkAddDiv" class="form-group">
                         <label for="matieres" class="col-sm-4 control-label">Matières :</label>
                         <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutFranTut">
-                                <input type="checkbox" id="chkAjoutFranTut" name="ajoutMatières[]" value="francais">
-                                   Français
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutMathTut">
-                                <input type="checkbox" id="chkAjoutMathTut" name="ajoutMatières[]" value="mathematique">
-                                   Mathématique
-                                </label>
-                            </div>
-                        </div>
-                        <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutChimTut">
-                                <input type="checkbox" id="chkAjoutChimTut" name="ajoutMatières[]" value="chimie">
-                                   Chimie
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutPhysTut">
-                                <input type="checkbox" id="chkAjoutPhysTut" name="ajoutMatières[]" value="physique">
-                                   Physique
-                                </label>
-                            </div>
-                        </div>
-                         <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutHistTut">
-                                <input type="checkbox" id="chkAjoutHistTut" name="ajoutMatières[]" value="histoire">
-                                   Histoire
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutGeoTut">
-                                <input type="checkbox" id="chkAjoutGeoTut" name="ajoutMatières[]" value="geographie">
-                                   Géographie
-                                </label>
-                            </div>
-                        </div>
-                        <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutAngTut">
-                                <input type="checkbox" id="chkAjoutAngTut" name="ajoutMatières[]" value="anglais">
-                                   Anglais
-                                </label>
-                            </div>
-                        </div>
+                            <?php foreach ($this->aListeMatieres as $i => $oMatiere) {
+                                echo '<div class="checkbox-inline col-sm-4">';
+                                    echo '<label for="chk'.$i.'">';
+                                        echo '<input type="checkbox" id="chk'.$i.'" name="chkMatieres[]" value="'.$oMatiere->getId().'">';
+                                        echo $oMatiere->getNom();
+                                    echo '</label>';
+                                echo '</div>';
+                            }?>
+                        </div>                        
                     </div>
                     <div class="form-group"></div>
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-6 text-right">
-                             <a href="#" class="btn btn-danger" role="button">
+                             <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-tuteurs" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
-                            <button type="submit" id="subAjouterProf" class="btn btn-success col-sm-offset-1">
+                            <button type="submit" id="subAjouterProf" name="subCreerTuteur" class="btn btn-success col-sm-offset-1">
                                 <span class="glyphicon glyphicon-plus"></span> Ajouter
                             </button>
                         </div>

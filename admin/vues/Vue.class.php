@@ -19,6 +19,7 @@ class Vue {
     private $aMessage;
     
     public function afficheErreur404(){
+        echo "erreur 404";
         //Page qui dit "Soit vous vous êtes trompé de lien ou vous n'avez pas l'autorisation d'aller à cet endroit"
     }
     

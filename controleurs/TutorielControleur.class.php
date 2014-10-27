@@ -71,12 +71,16 @@
 		private function gestion() {
 			$oVue = new TutorielVue();
             $oTutoriel = new Tutoriel();
-            $oTutoriel->setSoumisPar($this->oUtilisateurSession->getId());
 
-            //TODO: Utiliser le modèle pour aller chercher les tutos de ce tuteur
-            $oVue -> aListeTutos = $oTutoriel->rechercherListeTutosParTuteur();
-            
-			$oVue -> afficheListeGererTuteur();
+            if($this->oUtilisateurSession->getRole() == 2){
+                $oTutoriel->setSoumisPar($this->oUtilisateurSession->getId());
+                $oVue -> aListeTutos = $oTutoriel->rechercherListeTutosParTuteur();                
+    			$oVue -> afficheListeGererTuteur();
+            }
+            elseif($this->oUtilisateurSession->getRole() == 3 || $this->oUtilisateurSession->getRole() == 4){
+                $oVue -> aListeTutos = $oTutoriel->rechercherListeTutosParCommission($this->oUtilisateurSession->getCommission());
+                $oVue -> afficheListeGerer();
+            }
 		}
 
 		private function modifierVideo() {
@@ -85,9 +89,15 @@
 
             try{
                 if(isset($_POST['subModifierVideo'])){
-                    $oTutoriel = new Tutoriel(0, $_POST['txtTitre'], date("Y-m-d"), "0000-00-00", $this->oUtilisateurSession->getId(), 0, 0, 1, $_POST['sltMatiere'], $_POST['sltNiveau'], 0, $_POST['sltEcole'], $_POST['txtUrl']);
-                    $oTutoriel->ajouterTuto();
-                    header('location:'.WEB_ROOT.'/tutoriel/gerer');
+                    print_r($_POST);
+                    $oTutoriel = new Tutoriel($this->getReqId(), $_POST['txtTitre'], date("Y-m-d"), "0000-00-00", $this->oUtilisateurSession->getId(), 0, 0, 1, $_POST['sltMatiere'], $_POST['sltNiveau'], 0, $_POST['sltEcole'], $_POST['txtUrl']);
+                    $oTutoriel->modifierTuto();
+                    if($this->oUtilisateurSession->getRole() == 2){
+                        header('location:'.WEB_ROOT.'/tutoriel/gerer');
+                    }
+                    else{
+                        header('location:'.WEB_ROOT.'/admin/tutoriel/gerer');
+                    }
                 }
                 else{
                     $oTutoriel = new Tutoriel($this->getReqId());
@@ -116,9 +126,14 @@
 
             try{
                 if(isset($_POST['subModifierTexte'])){
-                    $oTutoriel = new Tutoriel(0, $_POST['txtTitre'], date("Y-m-d"), "0000-00-00", $this->oUtilisateurSession->getId(), 0, 0, 2, $_POST['sltMatiere'], $_POST['sltNiveau'], 0, $_POST['sltEcole'], $_POST['txtContenu']);
-                    $oTutoriel->ajouterTuto();
-                    header('location:'.WEB_ROOT.'/tutoriel/gerer');
+                    $oTutoriel = new Tutoriel($this->getReqId(), $_POST['txtTitre'], date("Y-m-d"), "0000-00-00", $this->oUtilisateurSession->getId(), 0, 0, 2, $_POST['sltMatiere'], $_POST['sltNiveau'], 0, $_POST['sltEcole'], $_POST['txtContenu']);
+                    $oTutoriel->modifierTuto();
+                    if($this->oUtilisateurSession->getRole() == 2){
+                        header('location:'.WEB_ROOT.'/tutoriel/gerer');
+                    }
+                    else{
+                        header('location:'.WEB_ROOT.'/admin/tutoriel/gerer');
+                    }
                 }
                 else{
                     $oTutoriel = new Tutoriel($this->getReqId());
@@ -128,7 +143,7 @@
                 
                 $oVue->aMatieres = $oMatiere->rechercherListeMatieres();
                 $oVue->aEcoles = $this->oUtilisateurSession->getListeEcoles();
-                $oVue -> afficheFormulaireModificationVideo();
+                $oVue -> afficheFormulaireModificationTexte();
             }
             catch(Exception $e){
                 $oTutoriel = new Tutoriel($this->getReqId());
@@ -137,7 +152,7 @@
                 $oVue->setMessage(array($e->getMessage(), "danger"));
                 $oVue->aMatieres = $oMatiere->rechercherListeMatieres();
                 $oVue->aEcoles = $this->oUtilisateurSession->getListeEcoles();
-                $oVue -> afficheFormulaireModificationVideo();
+                $oVue -> afficheFormulaireModificationTexte();
             }  
         }
 
@@ -147,8 +162,12 @@
                 if(isset($_POST['subSupprimer'])){
                     $oTutoriel = new Tutoriel($_POST['hidContenuId']);
                     $oTutoriel->supprimerTuto();
-
-                    header('location:'.WEB_ROOT.'/tutoriel/gerer');
+                    if($this->oUtilisateurSession->getRole() == 2){
+                        header('location:'.WEB_ROOT.'/tutoriel/gerer');
+                    }
+                    else{
+                        header('location:'.WEB_ROOT.'/admin/tutoriel/gerer');
+                    }
                 }
                 else{
                     $oTutoriel = new Tutoriel($this->getReqId());
@@ -159,7 +178,12 @@
                 }
             }
             catch(Exception $e){
-                header('location:'.WEB_ROOT.'/tutoriel/gerer');
+                if($this->oUtilisateurSession->getRole() == 2){
+                    header('location:'.WEB_ROOT.'/tutoriel/gerer');
+                }
+                else{
+                    header('location:'.WEB_ROOT.'/admin/tutoriel/gerer');
+                }
             }
 		}
 
@@ -169,9 +193,21 @@
 
             try{
                 if(isset($_POST['subAjouterVideo'])){
-                    $oTutoriel = new Tutoriel(0, $_POST['txtTitre'], date("Y-m-d"), "0000-00-00", $this->oUtilisateurSession->getId(), 0, 0, 1, $_POST['sltMatiere'], $_POST['sltNiveau'], 0, $_POST['sltEcole'], $_POST['txtUrl']);
+                    $approuve = 0;
+                    $approuve_par = 0;
+                    if($this->oUtilisateurSession->getRole() > 2){
+                        $approuve = 1;
+                        $approuve_par = $this->oUtilisateurSession->getId();
+                    }
+
+                    $oTutoriel = new Tutoriel(0, $_POST['txtTitre'], date("Y-m-d"), "0000-00-00", $this->oUtilisateurSession->getId(), $approuve_par, $approuve, 1, $_POST['sltMatiere'], $_POST['sltNiveau'], 0, $_POST['sltEcole'], $_POST['txtUrl']);
                     $oTutoriel->ajouterTuto();
-                    header('location:'.WEB_ROOT.'/tutoriel/gerer');
+                    if($this->oUtilisateurSession->getRole() == 2){
+                        header('location:'.WEB_ROOT.'/tutoriel/gerer');
+                    }
+                    else{
+                        header('location:'.WEB_ROOT.'/admin/tutoriel/gerer');
+                    }
                 }
                 
                 $oVue->aMatieres = $oMatiere->rechercherListeMatieres();
@@ -192,9 +228,21 @@
 
             try{
                 if(isset($_POST['subAjouterTexte'])){
-                    $oTutoriel = new Tutoriel(0, $_POST['txtTitre'], date("Y-m-d"), "0000-00-00", $this->oUtilisateurSession->getId(), 0, 0, 2, $_POST['sltMatiere'], $_POST['sltNiveau'], 0, $_POST['sltEcole'], $_POST['txtContenu']);
+                    $approuve = 0;
+                    $approuve_par = 0;
+                    if($this->oUtilisateurSession->getRole() > 2){
+                        $approuve = 1;
+                        $approuve_par = $this->oUtilisateurSession->getId();
+                    }
+
+                    $oTutoriel = new Tutoriel(0, $_POST['txtTitre'], date("Y-m-d"), "0000-00-00", $this->oUtilisateurSession->getId(), $approuve_par, $approuve, 2, $_POST['sltMatiere'], $_POST['sltNiveau'], 0, $_POST['sltEcole'], $_POST['txtContenu']);
                     $oTutoriel->ajouterTuto();
-                    header('location:'.WEB_ROOT.'/tutoriel/gerer');
+                    if($this->oUtilisateurSession->getRole() == 2){
+                        header('location:'.WEB_ROOT.'/tutoriel/gerer');
+                    }
+                    else{
+                        header('location:'.WEB_ROOT.'/admin/tutoriel/gerer');
+                    }
                 }
                 
                 $oVue->aMatieres = $oMatiere->rechercherListeMatieres();

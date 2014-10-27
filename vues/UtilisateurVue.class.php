@@ -318,6 +318,7 @@ class UtilisateurVue extends Vue {
                     <div class="form-group"></div>
                     <div class="form-group">
                         <div class="col-sm-offset-6 col-sm-8">
+                            <input type="hidden" name="txtId" value="<?php echo $this->iUtilisateurId;?>">
                             <button type="submit" id="btnCreerLogin" class="btn btn-success col-sm-offset-2">
                                 Soumettre
                             </button>

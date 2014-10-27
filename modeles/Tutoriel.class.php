@@ -241,6 +241,36 @@
 
             return $aFinal;            
         }
+
+        public function rechercherListeTutosParCommission($commission_ID){
+            //Connecter à la base de données
+            $oConnexion = new MySqliLib();
+            //Réaliser la requête de recherche par le idUtilisateur
+            $sRequete="
+                        SELECT 
+                            *
+                        FROM 
+                            contenu 
+                        WHERE 
+                            ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$commission_ID}') AND
+                            est_detruit=0
+                        ";
+
+            //Exécuter la requête
+            $oResult = $oConnexion->executer($sRequete);
+            //récuperation tableau
+            $aResultats = $oConnexion->recupererTableau($oResult);
+
+            $aFinal = array();
+
+            foreach ($aResultats as $rangee) {
+                $oTutoriel = new Tutoriel($rangee['contenu_ID']);
+                $oTutoriel->chargerTutoriel();
+                $aFinal[] = $oTutoriel;
+            }
+
+            return $aFinal;    
+        }
         
         public function ajouterTuto(){
             //Connexion à la base de données
@@ -282,7 +312,53 @@
             }      
                         
             return true;            
-        }        
+        }  
+        
+        public function modifierTuto(){
+            //Connexion à la base de données
+            $oConnexion = new MySqliLib();
+            //Requête d'ajout d'un tutorat
+            $sRequete = "
+            UPDATE
+                contenu
+            SET 
+                titre = '{$oConnexion->getConnect()->real_escape_string($this->sTitre)}',
+                date_soumis = '{$oConnexion->getConnect()->real_escape_string($this->dDateSoumis)}',
+                soumis_par = '{$this->iSoumisPar}',
+                approuve = '{$this->bStatut}',
+                type_contenu = '{$this->iTypeContenu}',
+                matiere_ID = '{$this->iMatiereId}',
+                niveau_scolaire_ID = '{$this->iNiveauScolaireId}',
+                ecole_ID = '{$this->iEcoleId}'
+            WHERE
+                contenu_ID = '{$this->iContenu_Id}'";
+
+            echo $sRequete;
+
+            $oResult = $oConnexion->executer($sRequete);
+            $this->setContenuId($oConnexion->getInsertId());
+
+            if($this->iTypeContenu == '2'){//texte
+                $sRequete = "
+                UPDATE contenu_tutoriel_texte
+                SET contenu_html = '".$oConnexion->getConnect()->real_escape_string($this->sContenu)."'
+            WHERE
+                contenu_ID = '{$this->iContenu_Id}'
+                ";
+                $oResult = $oConnexion->executer($sRequete);
+            }
+            else{//vidéo
+                 $sRequete = "
+                UPDATE contenu_tutoriel_video
+                SET url = '".$oConnexion->getConnect()->real_escape_string($this->sContenu)."'
+            WHERE
+                contenu_ID = '{$this->iContenu_Id}'
+                ";
+                $oResult = $oConnexion->executer($sRequete);
+            }      
+                        
+            return true;            
+        }      
         
         public function modifierTutoVideo(){
 
@@ -364,7 +440,7 @@
 
         public function chargerTutoriel(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM contenu WHERE contenu_ID = '{$this->getContenuId()}'");
+            $oResultat = $oConnexion->executer("SELECT * FROM contenu WHERE contenu_ID = '{$this->iContenu_Id}'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
             $this->setTitre($aResultats[0]['titre']);

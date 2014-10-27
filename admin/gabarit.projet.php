@@ -89,7 +89,7 @@
                                 <i class="fa fa-fw fa-edit"></i>Gérer les tuteurs</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/admin/tutoriel/gerer">
                                 <i class="fa fa-fw fa-edit"></i>Gérer les tutoriels</a>
                         </li>
                         <li>
@@ -113,7 +113,7 @@
                                 <i class="fa fa-fw fa-edit"></i>Gérer les professeurs</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/admin/tutoriel/gerer">
                                 <i class="fa fa-fw fa-edit"></i>Gérer les tutoriels</a>
                         </li>
                         <li>

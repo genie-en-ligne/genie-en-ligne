@@ -47,6 +47,9 @@
                 case 'gerer-commissions':
                     $this -> gererCommissions();
                     break;
+                case 'ajouter-tuteur':
+                    $this->ajouterTuteur();
+                    break;
 
                 //TODO: Ajouter des cas au besoin
 
@@ -246,6 +249,31 @@
 
             $oVue->aListeCommissions = $oCommission->rechercherListeCommissions();
             $oVue->afficheListeCommissions();
+        }
+
+        private function ajouterTuteur(){
+            $oVue = new AdminVue();
+            $oMatiere = new Matiere();
+            $oCommission = new Commission();
+            $oCommission->setId($this->oUtilisateurSession->getCommission());
+
+            try{
+                if(isset($_POST['subCreerTuteur'])){
+                    $oUtilisateur = new Utilisateur(0, ' ', ' ', $_POST['txtNom'], $_POST['txtPrenom'], $_POST['emlCourriel'], 2);
+                    $oUtilisateur->ajouterUtilisateur();
+                }   
+                $oVue->aListeMatieres = $oMatiere->rechercherListeMatieres();
+                $oVue->aListeEcoles = $oCommission->rechercherListeEcoles();
+
+                $oVue->afficheAjouterTuteur();
+            }
+            catch(Exception $e){
+                $oVue->setMessage(array($e->getMessage(), "danger"));
+                $oVue->aListeMatieres = $oMatiere->rechercherListeMatieres();
+                $oVue->aListeEcoles = $oCommission->rechercherListeEcoles();
+
+                $oVue->afficheAjouterTuteur();
+            }
         }
        
 		//TODO:  Placer les autres méthodes du controleur ici.

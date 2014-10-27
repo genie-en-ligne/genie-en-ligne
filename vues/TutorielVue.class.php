@@ -67,7 +67,7 @@ class TutorielVue extends Vue {
             if(!empty($this->aListeTutos)){
                 echo '<div class="row">';
                 foreach($this->aListeTutos as $oTutoriel){
-                        echo '<div class="col-xs-12 col-sm-6 col-md-4">';
+                        echo '<div class="col-xs-4">';
                             echo '<div class="panel panel-default">';
                                 echo '<div class="panel-heading">'.$oTutoriel->getTitre().'</div>';
                                 echo '<div class="panel-body">';
@@ -496,7 +496,7 @@ class TutorielVue extends Vue {
                 <h1 class="page-header">
                     Modifier un vidéo
                 </h1>
-                <form action="<?php echo WEB_ROOT;?>/tutoriel/modifier-video/" method="post" role="form">
+                <form action="<?php echo WEB_ROOT;?>/tutoriel/modifier-video/<?php echo $this->oTutoriel->getContenuId();?>" method="post" role="form">
                     <div class="form-group">
                         <label>Titre</label>
                         <input id="titre" name="txtTitre" class="form-control" value="<?php echo $this->oTutoriel->getTitre();?>">
@@ -576,7 +576,7 @@ class TutorielVue extends Vue {
                 <h1 class="page-header">
                     Modifier un texte
                 </h1>
-                <form action="<?php echo WEB_ROOT;?>/tutoriel/modifier-texte/" method="post" role="form">
+                <form action="<?php echo WEB_ROOT;?>/tutoriel/modifier-texte/<?php echo $this->oTutoriel->getContenuId();?>" method="post" role="form">
                     <div class="form-group">
                         <label>Titre</label>
                         <input id="titre" name="txtTitre" class="form-control" value="<?php echo $this->oTutoriel->getTitre();?>">
