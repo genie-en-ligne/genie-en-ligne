@@ -54,7 +54,29 @@
             
             return $aFinal;
         }
-        
+
+        public function modifierMatieresParUtilisateur($oUtilisateur, $aMatieres){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("DELETE FROM matieres_par_utilisateur WHERE utilisateur_ID = '{$oUtilisateur->getId()}'");
+
+            foreach ($aMatieres as $matiere_ID) {
+                $oResultat = $oConnexion->executer("INSERT INTO matieres_par_utilisateur (`matiere_ID`, `utilisateur_ID`) VALUES ('{$matiere_ID}', '{$oUtilisateur->getId()}')");
+            }
+
+            return true;
+        }
+
+        public function getMatieresPourUtilisateur($oUtilisateur){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM matieres_par_utilisateur WHERE utilisateur_ID = '{$oUtilisateur->getId()}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            $aFinal = array();
+            foreach ($aResultats as $rangee) {
+                $aFinal[] = $rangee['matiere_ID'];
+            }
+            return $aFinal;
+        }
         //TODO: Ajouter méthodes au besoin
         
         public function setId($iId) {

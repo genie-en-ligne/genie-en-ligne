@@ -48,6 +48,10 @@
     	$_POST['txtMessage'] = '';
     }
 
+    if(empty($_POST['chkMatiere'])){
+        $_POST['chkMatiere'] = array();
+    }
+
 /***************************/
 /* Pour la classe Tutoriel */
 /***************************/

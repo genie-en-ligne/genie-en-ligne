@@ -41,6 +41,17 @@
             return $aResultats;
         }
 
+        public function modifierEcolesParUtilisateur($oUtilisateur, $aEcoles){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("DELETE FROM ecoles_par_utilisateur WHERE utilisateur_ID = '{$oUtilisateur->getId()}'");
+
+            foreach ($aEcoles as $ecole_ID) {
+                $oResultat = $oConnexion->executer("INSERT INTO ecoles_par_utilisateur (`ecole_ID`, `utilisateur_ID`) VALUES ('{$ecole_ID}', '{$oUtilisateur->getId()}')");
+            }
+
+            return true;
+        }
+
         public function chargerEcole(){
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("SELECT * FROM ecoles WHERE ecole_ID = '{$this->iId}'");

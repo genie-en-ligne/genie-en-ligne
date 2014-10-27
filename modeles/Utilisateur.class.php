@@ -135,9 +135,8 @@
         public function modifierUtilisateur() {
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer( "UPDATE utilisateurs
-                                                SET `pseudo` = '{$this->sPseudo}', `mot_de_passe` = '{$this->sMot_de_passe}',
-                                                    `nom` = '{$this->sNom}', `prenom` = '{$this->sPrenom}', `courriel` = '{$this->sCourriel}',
-                                                    `role` = '{$this->iRole}'
+                                                SET 
+                                                    `nom` = '{$this->sNom}', `prenom` = '{$this->sPrenom}', `courriel` = '{$this->sCourriel}'
                                                 WHERE `utilisateur_ID` = '{$this->iId}'");                                      
         }
 
@@ -210,7 +209,7 @@
 
         public function rechercherListeTuteurs($iCommissionId){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, ecoles_par_utilisateur epu WHERE u.utilisateur_ID = epu.utilisateur_ID AND u.role = '2' AND epu.ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$iCommissionId}')");
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, ecoles_par_utilisateur epu WHERE u.utilisateur_ID = epu.utilisateur_ID AND u.role = '2' AND epu.ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$iCommissionId}') AND u.est_detruit = 0");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
             $aFinal = array();
@@ -256,6 +255,24 @@
 
             return $oConnexion->getConnect()->affected_rows;
         }
+
+        public function getNomRole(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT nom FROM roles WHERE role_ID = '{$this->iRole}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['nom'];
+        }
+
+        public function supprimer(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("UPDATE utilisateurs SET est_detruit = '1' WHERE utilisateur_ID = '$this->iId'");
+
+            return true;
+        }
+
+
+
 
         public function setId($iId) {
             TypeException::estInteger($iId);

@@ -994,10 +994,10 @@ class AdminVue extends Vue {
                                 echo '<td>'.$ecole.'</td>';
                                 echo '<td>'.$matiere.'</td>';
                                 echo '<td>
-                                        <a href="#" class="btn btn-primary btn-xs">
+                                        <a href="'.WEB_ROOT.'/admin/utilisateur/modifier-tuteur/'.$oUtilisateur->getId().'" class="btn btn-primary btn-xs">
                                             <span title="Modifier" class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <a href="#" class="btn btn-danger btn-xs col-sm-offset-1">
+                                        <a href="'.WEB_ROOT.'/admin/utilisateur/supprimer/'.$oUtilisateur->getId().'" class="btn btn-danger btn-xs col-sm-offset-1">
                                             <span title="Supprimer" class="glyphicon glyphicon-remove"></span>
                                         </a>
                                     </td>';
@@ -1015,7 +1015,6 @@ class AdminVue extends Vue {
     }
     
     public function afficheAjouterTuteur(){?>
-          
         <div id="message">
             <?php 
                 if($this->getMessage()){
@@ -1096,12 +1095,13 @@ class AdminVue extends Vue {
                     </div>
                 </form>
             </div>
-        </div>
+        </div>  
+        
     <?php
     }
 
-    public function afficheModifierTuteurs(){?>
-        
+    public function afficheModifierTuteur(){?>
+
         <div id="message">
             <?php 
                 if($this->getMessage()){
@@ -1111,14 +1111,12 @@ class AdminVue extends Vue {
             ?>
         </div>
 
-
         <div class="col-sm-6 col-sm-offset-2">
-
-
-            <div class="col-sm-offset-3 col-sm-9">
-                <div class="col-sm-offset-2  col-sm-9">
-                    <div class="navbar navbar-default text-center">
-                        <h3 class="navbar-text">Modifier les informations d'un tuteur</h3>
+            
+            <div class="col-sm-offset-2 col-sm-9">
+                <div class="col-sm-offset-4 col-sm-7">
+                    <div class="navbar navbar-default col-sm-offset-1">
+                        <h3 class="navbar-text">Modifier un tuteur</h3>
                     </div>
                 </div>
             </div>
@@ -1127,115 +1125,75 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmModifProf" acion="" method="POST" enctype="" class="form-horizontal" role="form">
+                <form id="frmAjoutProf" action="<?php echo WEB_ROOT;?>/admin/utilisateur/modifier-tuteur/<?php echo $this->oUtilisateur->getId();?>" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label for="txtModifPrenomTut" class="col-sm-4 control-label">Prénom :</label>
+                        <label for="txtAjoutPrenomTut" class="col-sm-4 control-label">Prénom :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtModifPrenomTut" class="form-control" name="prenom" placeholder="Prenom">
+                            <input type="text" id="txtAjoutPrenomTut" class="form-control" name="txtPrenom" placeholder="Prenom" value="<?php echo $this->oUtilisateur->getPrenom();?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtModifNomTut" class="col-sm-4 control-label">Nom  :</label>
+                        <label for="txtAjoutNomTut" class="col-sm-4 control-label">Nom  :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtModifNomTut" class="form-control" name="nom" placeholder="Nom">
+                            <input type="text" id="txtAjoutNomTut" class="form-control" name="txtNom" placeholder="Nom" value="<?php echo $this->oUtilisateur->getNom();?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtModifCourrielTut" class="col-sm-4 control-label">Courriel :</label>
+                        <label for="txtAjoutCourrielTut" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="txtModifCourrielTut" class="form-control" name="courriel" placeholder="Courriel">
+                            <input type="email" id="txtAjoutCourrielTut" class="form-control" name="emlCourriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtModifPseudoTut" class="col-sm-4 control-label">Pseudo :</label>
+                        <label for="sltAjouterEcoleTut" class="col-sm-4 control-label">École :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtModifPseudoTut" class="form-control" name="courriel" placeholder="Pseudo">
-                        </div>
-                    </div>
-                     <div class="form-group">
-                        <label for="txtModifMdpTut" class="col-sm-4 control-label">Mot de passe :</label>
-                        <div class="col-sm-6">
-                            <input type="text" id="txtModifMdpTut" class="form-control" name="mdp" placeholder="Mot de passe">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="sltModifEcoleTut" class="col-sm-4 control-label">École :</label>
-                        <div class="col-sm-6">
-                            <select  id="sltModifEcoleTut" name="ecoles" class="form-control col-sm-6">
-                                <option value=""></option>
+                            <select id="sltAjouterEcoleTut" class="form-control col-sm-6" name="sltEcole">
+                                <?php
+                                    $ecole = $this->oUtilisateur->getListeEcoles();
+                                    foreach ($this->aListeEcoles as $oEcole) {
+                                        $selected = '';
+                                        if($ecole[0]->getId() == $oEcole->getId()){
+                                            $selected = 'selected="selected"';
+                                        }
+                                        echo '<option value="'.$oEcole->getId().'">'.$oEcole->getNom().'</option>';
+                                    }
+                                ?>
                             </select>
                         </div>
                     </div>
-                    <div id="chkModDiv" class="form-group">
-                        <label for="matiere" class="col-sm-4 control-label">Matières :</label>
+                    <div id="chkAddDiv" class="form-group">
+                        <label for="matieres" class="col-sm-4 control-label">Matières :</label>
                         <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifFranTut">
-                                <input type="checkbox" id="chkModifFranTut" name="modifMatieres[]" value="francais">
-                                   Français
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifMathTut">
-                                <input type="checkbox" id="chkModifMathTut" name="modifMatieres[]" value="mathematique">
-                                   Mathématique
-                                </label>
-                            </div>
-                        </div>
-                        <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifChimieTut">
-                                <input type="checkbox" id="chkModifChimieTut" name="modifMatieres[]" value="chimie">
-                                   Chimie
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifPhyTut">
-                                <input type="checkbox" id="chkModifPhyTut" name="modifMatieres[]" value="physique">
-                                   Physique
-                                </label>
-                            </div>
-                        </div>
-                         <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifHistTut">
-                                <input type="checkbox" id="chkModifHistTut" name="modifMatieres[]" value="histoire">
-                                   Histoire
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifGeoTut">
-                                <input type="checkbox" id="chkModifGeoTut" name="modifMatieres[]" value="geographie">
-                                   Géographie
-                                </label>
-                            </div>
-                        </div>
-                        <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifAngTut">
-                                <input type="checkbox" id="chkModifAngTut" name="modifMatieres[]" value="anglais">
-                                   Anglais
-                                </label>
-                            </div>
-                        </div>
+                            <?php foreach ($this->aListeMatieres as $i => $oMatiere) {
+                                $checked = '';
+                                if(in_array($oMatiere->getId(), $this->aMatieresTuteur)){
+                                    $checked = 'checked="checked"';
+                                }
+                                echo '<div class="checkbox-inline col-sm-4">';
+                                    echo '<label for="chk'.$i.'">';
+                                        echo '<input type="checkbox" id="chk'.$i.'" '.$checked.' name="chkMatieres[]" value="'.$oMatiere->getId().'">';
+                                        echo $oMatiere->getNom();
+                                    echo '</label>';
+                                echo '</div>';
+                            }?>
+                        </div>                        
                     </div>
                     <div class="form-group"></div>
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-6 text-right">
-                            <a href="#" class="btn btn-danger" role="button">
+                             <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-tuteurs" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
-                            <button type="submit" id="subModifierProf" class="btn btn-success col-sm-offset-1">
-                                <span class="glyphicon glyphicon-ok"></span> Modifier
+                            <button type="submit" id="subAjouterProf" name="subModifierTuteur" class="btn btn-success col-sm-offset-1">
+                                <span class="glyphicon glyphicon-plus"></span> Modifier
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+        
+        
     <?php
     }
 
@@ -1267,19 +1225,19 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="txtSupprimerPrenom" class="col-sm-4 control-label">Prénom :</label>
                         <div class="col-sm-6">
-                            <span id="txtSupprimerPrenom" name="prenom"></span>
+                            <span id="txtSupprimerPrenom" name="prenom"><?php echo $this->oUtilisateur->getPrenom();?></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="txtSupprimerNom" class="col-sm-4 control-label">Nom  :</label>
                         <div class="col-sm-6">
-                            <span id="txtSupprimerNom" name="nom"></span>
+                            <span id="txtSupprimerNom" name="nom"><?php echo $this->oUtilisateur->getNom();?></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="txtSupprimerRole" class="col-sm-4 control-label">Role  :</label>
                         <div class="col-sm-6">
-                            <span id="txtSupprimerRole" name="role"></span>
+                            <span id="txtSupprimerRole" name="role"><?php echo $this->oUtilisateur->getNomRole();?></span>
                         </div>
                     </div>
                     <div class="form-group"></div>
@@ -1288,7 +1246,7 @@ class AdminVue extends Vue {
                              <a href="#" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
-                            <button type="submit" id="subValiderSupprimerProf" class="btn btn-success col-sm-offset-1">
+                            <button type="submit" name="subSupprimer" id="subValiderSupprimerProf" class="btn btn-success col-sm-offset-1">
                                 <span class="glyphicon glyphicon-ok"></span> Supprimer
                             </button>
                         </div>

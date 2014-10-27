@@ -50,8 +50,14 @@
                 case 'ajouter-tuteur':
                     $this->ajouterTuteur();
                     break;
+                case 'modifier-tuteur':
+                    $this->modifierTuteur();
+                    break;
                 case 'creer-login':
                     $this->creerLogin();
+                    break;
+                case 'supprimer':
+                    $this->supprimer();
                     break;
 
                 //TODO: Ajouter des cas au besoin
@@ -239,6 +245,44 @@
             $oVue->afficheListeTuteurs();
         }    
 
+        private function modifierTuteur(){
+            $oVue = new AdminVue();
+            $oMatiere = new Matiere();
+            $oCommission = new Commission();
+            $oCommission->setId($this->oUtilisateurSession->getCommission());
+
+            try{
+                if(isset($_POST['subModifierTuteur'])){
+                    $oUtilisateur = new Utilisateur($this->getReqId(), ' ', ' ', $_POST['txtNom'], $_POST['txtPrenom'], $_POST['emlCourriel'], 2);
+                    $oUtilisateur->modifierUtilisateur();
+
+                    $oMatiere->modifierMatieresParUtilisateur($oUtilisateur, $_POST['chkMatieres']);
+                    $oEcole = new Ecole();
+                    $oEcole->modifierEcolesParUtilisateur($oUtilisateur, array($_POST['sltEcole']));
+
+                    header("location:".WEB_ROOT."/admin/utilisateur/gerer-tuteurs");
+                }   
+
+                $oUtilisateur= new Utilisateur($this->getReqId());
+                $oUtilisateur->chargerCompteParId();
+
+                $oVue->oUtilisateur = $oUtilisateur;
+
+                $oVue->aListeMatieres = $oMatiere->rechercherListeMatieres();
+                $oVue->aListeEcoles = $oCommission->rechercherListeEcoles();
+                $oVue->aMatieresTuteur = $oMatiere->getMatieresPourUtilisateur($oUtilisateur);
+
+                $oVue->afficheModifierTuteur();
+            }
+            catch(Exception $e){
+                $oVue->setMessage(array($e->getMessage(), "danger"));
+                $oVue->aListeMatieres = $oMatiere->rechercherListeMatieres();
+                $oVue->aListeEcoles = $oCommission->rechercherListeEcoles();
+
+                $oVue->afficheModifierTuteur();
+            }
+        }
+
         private function gererProfs(){
             $oVue = new AdminVue();
 
@@ -264,6 +308,12 @@
                 if(isset($_POST['subCreerTuteur'])){
                     $oUtilisateur = new Utilisateur(0, ' ', ' ', $_POST['txtNom'], $_POST['txtPrenom'], $_POST['emlCourriel'], 2);
                     $oUtilisateur->ajouterUtilisateur();
+
+                    $oMatiere->modifierMatieresParUtilisateur($oUtilisateur, $_POST['chkMatieres']);
+                    $oEcole = new Ecole();
+                    $oEcole->modifierEcolesParUtilisateur($oUtilisateur, array($_POST['sltEcole']));
+
+                    $oVue->setMessage(array("Le compte a été créé et une invitation a été envoyée par courriel", "info"));
                 }   
                 $oVue->aListeMatieres = $oMatiere->rechercherListeMatieres();
                 $oVue->aListeEcoles = $oCommission->rechercherListeEcoles();
@@ -313,6 +363,35 @@
             catch(Exception $e){
                 $oVue->setMessage(array($e->getMessage(), "danger"));
                 $oVue->afficheCreerLogin();
+            }
+        }
+
+        private function supprimer(){
+            $oVue = new AdminVue();
+            try{
+            $oUtilisateur = new Utilisateur($this->getReqId());
+            $oUtilisateur->chargerCompteParId();
+
+            if(isset($_POST['subSupprimer'])){
+                $oUtilisateur->supprimer();
+                switch($oUtilisateur->getRole()){
+                    case '2':
+                        header("location:".WEB_ROOT.'/admin/utilisateur/gerer-tuteurs');
+                        break;
+                    case '3':
+                        header("location:".WEB_ROOT.'/admin/utilisateur/gerer-profs');
+                        break;
+                    case '4':
+                        header("location:".WEB_ROOT.'/admin/utilisateur/gerer-responsables');
+                        break;
+                }
+            }
+
+            $oVue->oUtilisateur = $oUtilisateur;
+            $oVue->afficheSupprimerUtilisateurs();
+            }
+            catch(Exception $e){
+                header("location:".WEB_ROOT.'/admin');
             }
         }
        
