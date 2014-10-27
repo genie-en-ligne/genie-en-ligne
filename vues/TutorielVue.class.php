@@ -6,21 +6,77 @@ class TutorielVue extends Vue {
     public function afficheListeConsulter(){
         //Vue pour eleves
 ?>
+<div class="form-group">
+                        <div class="col-sm-5">
+                            <label for="select-annee" class="col-sm-3 col-md-2 control-label">
+                                Année:
+                            </label>
+                            <div class="col-sm-9 col-md-10">
+                                <select class="form-control" id="sltAnnee">
+                                    <option value="1">Secondaire 1</option>
+                                    <option value="2">Secondaire 2</option>
+                                    <option value="3">Secondaire 3</option>
+                                    <option value="4">Secondaire 4</option>
+                                    <option value="5">Secondaire 5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <label for="select-matiere" class="col-sm-3 col-md-2 control-label">
+                                Matière:
+                            </label>
+                            <div class="col-sm-9 col-md-10">
+                                <select class="form-control" id="sltMatiere">
+                                    <option value="1">Sciences</option>
+                                    <option value="2">Maths</option>
+                                    <option value="3">Français</option>
+                                    <option value="4">Physique</option>
+                                    <option value="5">Anglais</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="submit" class="form-control btn btn-success" value="Lancer &rarr;">
+                        </div>
         <div class="row">
 
             <?php
                     foreach($this->aListeTutos as $oTutoriel){
-                        echo '<div class="col-md-4 portfolio-item">';
+                        echo '<div class="col-xs-12 col-sm-6 col-md-4">';
+                        echo '<div class="panel panel-default">';
+                        echo '<div class="panel-heading">'.$oTutoriel->getTitre().'</div>';
+                        echo '<div class="panel-body">';
                         echo '<img class="img-responsive espaceAvant coinRond" src="../images/video.jpg">';
-                        echo '<h3 class="espaceApres"> <a href="#">'.$oTutoriel->getTitre().'</a></h3>';
-                        echo '<p class="auteurDate">'.$oTutoriel->getNomTuteur().'</p> ';
-                        echo '<p>'.$oTutoriel->getDateSoumis().'</p>';
-                        echo '</div>';
+                        echo '<h3 class="espaceApres"><a href="#">'.$oTutoriel->getSorteMatiere().'</a></h3>';
+                        echo '<p class="auteurDate">'.$oTutoriel->getPrenomTuteur().' '.$oTutoriel->getNomTuteur().', '.$oTutoriel->getDateSoumis().'</p>';
+                        echo '</div></div></div>';
                         }
                 ?>
                 </div>
     <?php
     }
+
+
+
+    ///////////////////////////////////////////
+    // Section pour visualiser texte ou video//
+    //////////////////////////////////////////
+    
+    public function afficheLeVideo(){
+        //Sans bouton approuver
+?>
+
+
+
+
+
+ <?php
+    }
+
+
+
+
+
 
 
 
@@ -121,7 +177,7 @@ class TutorielVue extends Vue {
                 <?php
                     foreach($this->aListeTutos as $oTutoriel){
                         echo '<tr>'; 
-                            echo '<td id="txtNom">'.$oTutoriel->getNomTuteur().'</td>';                           
+                            echo '<td id="txtNom">'.$oTutoriel->getNomTuteur().', '.$oTutoriel->getPrenomTuteur().'</td>';                           
                             echo '<td id="txtTitre">'.$oTutoriel->getTitre().'</td>';
                             echo '<td id="txtType">'.$oTutoriel->getSorteTuto().'</td>';
                             echo '<td id="txtDateCree">'.$oTutoriel->getDateSoumis().'</td>';
@@ -239,7 +295,7 @@ class TutorielVue extends Vue {
                     <?php
                         foreach($this->aListeTutos as $oTutoriel){
                             echo '<tr>';
-                                echo '<td id="txtNom">'.$oTutoriel->getNomTuteur().'</td>';
+                                echo '<td id="txtNom">'.$oTutoriel->getNomTuteur().', '.$oTutoriel->getPrenomTuteur().'</td>';
                                 echo '<td id="txtTitre">'.$oTutoriel->getTitre().'</td>';
                                 echo '<td id="txtType">'.$oTutoriel->getSorteTuto().'</td>';
                                 echo '<td id="txtDateCree">'.$oTutoriel->getDateSoumis().'</td>';

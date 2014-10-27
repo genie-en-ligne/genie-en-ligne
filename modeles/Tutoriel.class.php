@@ -405,10 +405,18 @@
 
          public function getNomTuteur(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT nom, prenom FROM utilisateurs WHERE utilisateur_ID = '{$this->iSoumisPar}'");
+            $oResultat = $oConnexion->executer("SELECT nom FROM utilisateurs WHERE utilisateur_ID = '{$this->iSoumisPar}'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
             return $aResultats[0]['nom'];
+        }
+
+         public function getPrenomTuteur(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT prenom FROM utilisateurs WHERE utilisateur_ID = '{$this->iSoumisPar}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['prenom'];
         }
         
         private function getSqlMatiere(){
