@@ -455,13 +455,13 @@
             $this->setEcoleId($aResultats[0]['ecole_ID']);
 
             if($this->getType() == '1'){
-                $oResultat = $oConnexion->executer("SELECT * FROM contenu_tutoriel_video WHERE contenu_ID = '{$this->getContenuId()}'");
+                $oResultat = $oConnexion->executer("SELECT * FROM contenu_tutoriel_video WHERE contenu_ID = '{$this->iContenu_Id}'");
                 $aResultats = $oConnexion->recupererTableau($oResultat);
 
                 $this->setContenu($aResultats[0]['url']);
             }
             elseif($this->getType() == '2'){
-                $oResultat = $oConnexion->executer("SELECT * FROM contenu_tutoriel_texte WHERE contenu_ID = '{$this->getContenuId()}'");
+                $oResultat = $oConnexion->executer("SELECT * FROM contenu_tutoriel_texte WHERE contenu_ID = '{$this->iContenu_Id}'");
                 $aResultats = $oConnexion->recupererTableau($oResultat);
 
                 $this->setContenu($aResultats[0]['contenu_html']);
