@@ -282,51 +282,53 @@ class UtilisateurVue extends Vue {
             ?>
         </div>
 
-        <div class="col-sm-6 col-sm-offset-2">
-            <div class="">
-            <h1 class="col-sm-offset-2 col-sm-6">
-                <span class="label label-default">Paramètres d'accès Génie en ligne</span>
-            </h1>
-            <div class="col-sm-offset-4 col-sm-8 page-header">
-                <ol>
-                    <li>Entrez un pseudo et un mot de passe.</li>
-                    <li>Ces informations vous permettront de vous connecter au site.</li>
-                    <li>Votre pseudo doit contenir un minimum de huit caractères et contenir au moins un chiffre.</li>
-                </ol>             
-            </div>
-            <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmCreerLogin" class="form-horizontal" action="" method="POST" enctype= "" role="form">
-                    <div class="form-group">
-                        <label for="txtLoginPseudo" class="col-sm-4 control-label">Pseudo :</label>
-                        <div class="col-sm-6">
-                            <input type="text" id="txtLoginPseudo" name="pseudo" class="form-control" placeholder="Pseudo">
+        <div class="row">
+            <div class="col-sm-6 col-sm-offset-2">
+                <div class="">
+                <h1 class="col-sm-offset-2 col-sm-6">
+                    <span class="label label-default">Paramètres d'accès Génie en ligne</span>
+                </h1>
+                <div class="col-sm-offset-4 col-sm-8 page-header">
+                    <ol>
+                        <li>Entrez un pseudo et un mot de passe.</li>
+                        <li>Ces informations vous permettront de vous connecter au site.</li>
+                        <li>Votre pseudo doit contenir un minimum de huit caractères et contenir au moins un chiffre.</li>
+                    </ol>             
+                </div>
+                <div class="col-sm-12 col-sm-offset-1">
+                    <form id="frmCreerLogin" class="form-horizontal" action="<?php echo WEB_ROOT;?>/utilisateur/creer-login/<?php echo $this->oUtilisateur->getId();?>" method="POST" enctype= "" role="form">
+                        <div class="form-group">
+                            <label for="txtLoginPseudo" class="col-sm-4 control-label">Pseudo :</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="txtLoginPseudo" name="txtPseudo" class="form-control" placeholder="Pseudo">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtLoginMdp1" class="col-sm-4 control-label">Mot de passe :</label>
-                        <div class="col-sm-6">
-                            <input type="password" id="txtLoginMdp1" class="form-control" name="mdp1" placeholder="Mot de passe">
+                        <div class="form-group">
+                            <label for="txtLoginMdp1" class="col-sm-4 control-label">Mot de passe :</label>
+                            <div class="col-sm-6">
+                                <input type="password" id="txtLoginMdp1" class="form-control" name="pwdMdp1" placeholder="Mot de passe">
+                            </div>
                         </div>
-                    </div>
-                     <div class="form-group">
-                        <label for="txtLoginMdp2" class="col-sm-4 control-label">Mot de passe :</label>
-                        <div class="col-sm-6">
-                            <input type="password" id="txtLoginMdp2" class="form-control" name="mdp2" placeholder="Mot de passe">
+                         <div class="form-group">
+                            <label for="txtLoginMdp2" class="col-sm-4 control-label">Mot de passe :</label>
+                            <div class="col-sm-6">
+                                <input type="password" id="txtLoginMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe">
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group"></div>
-                    <div class="form-group"></div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-6 col-sm-8">
-                            <input type="hidden" name="txtId" value="<?php echo $this->iUtilisateurId;?>">
-                            <button type="submit" id="btnCreerLogin" class="btn btn-success col-sm-offset-2">
-                                Soumettre
-                            </button>
+                        <div class="form-group"></div>
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-6 col-sm-8">
+                                <button type="submit" name="subCreerCompte" id="btnCreerLogin" class="btn btn-success col-sm-offset-2">
+                                    Soumettre
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
+    </div>
     <?php
     }
 
@@ -341,7 +343,7 @@ class UtilisateurVue extends Vue {
                 }
             ?>
         </div>
-
+        <div class="row">
         <div class="col-sm-6 col-sm-offset-2">
             <div class="">
 
@@ -357,13 +359,15 @@ class UtilisateurVue extends Vue {
                 <div class="form-group"></div>
                 <div class="form-group">
                 <div class="col-sm-offset-5 col-sm-12">
-                    <a href="#" class="btn btn-default btn-lg" title="Genie en ligne">
+                    <a href="<?php echo WEB_ROOT;?>" class="btn btn-default btn-lg" title="Genie en ligne">
                        Génie en ligne
                     </a>
                 </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
     <?php
     }
 

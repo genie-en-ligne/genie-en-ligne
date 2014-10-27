@@ -50,6 +50,9 @@
                 case 'ajouter-tuteur':
                     $this->ajouterTuteur();
                     break;
+                case 'creer-login':
+                    $this->creerLogin();
+                    break;
 
                 //TODO: Ajouter des cas au besoin
 
@@ -273,6 +276,43 @@
                 $oVue->aListeEcoles = $oCommission->rechercherListeEcoles();
 
                 $oVue->afficheAjouterTuteur();
+            }
+        }
+
+        private function creerLogin(){
+            $oVue = new UtilisateurVue();
+            $oUtilisateur = new Utilisateur($this->getReqId());
+            $oUtilisateur->chargerCompteParId();
+            $oVue->oUtilisateur = $oUtilisateur;
+
+            try{
+                if(isset($_POST['subCreerCompte'])){
+                    $oUtilisateur->setPseudo($_POST['txtPseudo']);
+                    if(!$oUtilisateur->deuxMotsDePasseIdentiques($_POST['pwdMdp1'], $_POST['pwdMdp2'])){
+                        $oVue -> setMessage(array("Les deux mots de passe ne correspondent pas", "danger"));
+                        $oVue->afficheCreerLogin();
+                    }
+                    elseif(!$oUtilisateur->motDePasseAssezComplexe($_POST['pwdMdp1'])){
+                        $oVue -> setMessage(array("Le mot de passe n'est pas assez complexe", "danger"));
+                        $oVue->afficheCreerLogin();
+                    }
+                    elseif(!$oUtilisateur->estDisponiblePseudo()){
+                        $oVue -> setMessage(array("Ce pseudo est déjà pris", "danger"));
+                        $oVue->afficheCreerLogin();
+                    }
+                    else{
+                        $oUtilisateur->setMDP($_POST['pwdMdp1']);
+                        $oUtilisateur->creerLogin();
+                        $oVue -> afficheMessageConfirmation();
+                    }
+                }
+                else{
+                    $oVue->afficheCreerLogin();
+                }
+            }
+            catch(Exception $e){
+                $oVue->setMessage(array($e->getMessage(), "danger"));
+                $oVue->afficheCreerLogin();
             }
         }
        

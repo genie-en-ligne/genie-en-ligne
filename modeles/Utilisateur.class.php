@@ -250,8 +250,14 @@
             return $aFinal;
         }
 
+        public function creerLogin(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("UPDATE utilisateurs SET pseudo = '{$this->sPseudo}', mot_de_passe = '{$this->sMot_de_passe}' WHERE utilisateur_ID = '{$this->iId}'");
+
+            return $oConnexion->getConnect()->affected_rows;
+        }
+
         public function setId($iId) {
-             //Validation à l'aide de la classe TypeException. Une exception est lancée (throw) si le paramètre n'est pas conforme.
             TypeException::estInteger($iId);
              //Ce code n'est pas exécuté si une erreur est lancée.
             $this->iId = $iId;
