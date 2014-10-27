@@ -50,7 +50,7 @@ class UtilisateurVue extends Vue {
 
 
             <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-0 login-form">
-                <h2 class="col-sm-offset-1 col-sm-10">Connexion</h2>
+                <p class="col-sm-offset-1 col-sm-10">Connexion</p>
                 <form method="post" action="<?php echo WEB_ROOT;?>/utilisateur/accueil" class="form-horizontal" role="form">
                     <div class="form-group">
                         <div class="input-group login-input">
@@ -89,97 +89,102 @@ class UtilisateurVue extends Vue {
         </div><!-- .row -->
 
 
-        <!------------->
-        <!-- "PANEL" -->
-        <!------------->
-
+    <!----------------------------->
+    <!---- CONTENU PRINCIPAL ------>
+    <!----------------------------->
 
         <div class="row">
+            <div class="col-sm-12">
+                <!-- PANEL 1 -->
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="text-center">
+                                Chat
+                            </div>
+                        </div>
+                        <div class="panel-body descriptions-accueil">
+                            <div class="cadre page-header">
+                                <a class="lire_plus">
+                                    <img src="<?php echo WEB_ROOT;?>/images/chat.png" class="img-circle" alt="chat" />
+                                </a>
+                            </div>
+                            <p>
+                                Génie en ligne propose un service de chat adapté aux besoins des étudiants du niveau secondaire de la province de Québec.   
+                                Le chat est un service en ligne qui donne accès à un tuteur en temps réel. 
+                                Ce service est offert de 16h à 23h les jours de semaine et de 9h à 21h les fins de semaine. 
+                            </p>
 
-            <!-- PANEL 1 -->
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Aide aux devoirs
-                    </div>
-                    <div class="panel-body">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas erat id volutpat scelerisque. Donec ut risus lorem. Nam quis efficitur eros. Praesent efficitur est sit amet dui scelerisque, eget tempor felis tristique. Duis sit amet nunc eu odio vestibulum lobortis eget vel lectus. Curabitur viverra quam massa, eget tincidunt nisi convallis ut. In tellus elit, malesuada vel vehicula eu, egestas sit amet est.
-                        </p>
+                            <p>
+                                Que ce soit en mathématique, en français, en sciences, en histoire ou en géographie, Génie en ligne offre une aide axée
+                                sur les besoins spécifiques du programme d'études du Ministère de l'Éducation, Loisir et Sport du Québec.
+                            </p>
+                             <p>
+                                Les chats pertinents sont sauvegardés et peuvent être consultés ultérieurement par les étudiants qui ne souhaitent 
+                                pas faire appel à un tuteur. 
+                            </p>
+                        </div>
+                    </div> <!-- FIN PANEL -->
+                </div>
+
+                <!-- PANEL 2 -->
+                <div class="col-xs-12 col-sm-6 col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="text-center">
+                                Tutoriels
+                            </div>
+                        </div>
+                        <div class="panel-body descriptions-accueil">
+                            <div class="cadre page-header">
+                                <a class="lire_plus">
+                                    <img src="<?php echo WEB_ROOT;?>/images/contenu.png" class="img-circle" alt="tutoriels" />
+                                </a>
+                            </div>
+
+                            <p>
+                                Les tutoriels sont produits par notre équipe de tuteurs. 
+                                Ils sont conçus sur mesure et proposent des méthodes simples 
+                                et efficaces pour résoudre les problèmes les plus fréquents 
+                                rencontrés par les étudiants dans le cadre de leur formation.
+                            </p>
+                              <p>
+                                Les élèves peuvent compter sur une banque de tutoriels riches et variés en mathématique, 
+                                en français et en sciences. Ils peuvent également consulter les liens pertinents 
+                                qui fournissent une information complémentaire. Les tutoriels sont présentés sous forme de vidéo ou de fiches informatives. 
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- PANEL 2 -->
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Aide aux devoirs
+                 <!-- PANEL 3 -->
+                <div class="col-sm-6 col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="text-center">
+                                Communauté
+                            </div>
+                        </div>
+                        <div class="panel-body descriptions-accueil">
+                            <div class="cadre page-header">
+                                <a class="lire_plus">
+                                    <img src="<?php echo WEB_ROOT;?>/images/forum.png" class="img-circle" alt="communauté" />
+                                </a>
+                            </div>
+                            <p>
+                                Adhérer à Génie en ligne, c’est faire le choix d’un réseau étendu à tout le Québec. 
+                                Les membres peuvent non seulement profiter des ressources mises à leur disposition 
+                                par la commission scolaire de leur école, ils peuvent aussi bénéficier des ressources 
+                                des autres commissions scolaires de la province.
+                            </p>
+                            <p>
+                                Les tuteurs de votre commission scolaire sont tous occupés ? Il y en a surement un ailleurs qui pourra répondre à vos questions. 
+                                En décentralisant les centres de services, Génie en ligne permet de tisser un sur mesure pour 
+                                les étudiants du secondaire. 
+                            </p>
+                        </div>
                     </div>
-                    <div class="panel-body">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas erat id volutpat scelerisque. Donec ut risus lorem. Nam quis efficitur eros. Praesent efficitur est sit amet dui scelerisque, eget tempor felis tristique. Duis sit amet nunc eu odio vestibulum lobortis eget vel lectus. Curabitur viverra quam massa, eget tincidunt nisi convallis ut. In tellus elit, malesuada vel vehicula eu, egestas sit amet est.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PANEL 3 -->
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Aide aux devoirs
-                    </div>
-                    <div class="panel-body">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas erat id volutpat scelerisque. Donec ut risus lorem. Nam quis efficitur eros. Praesent efficitur est sit amet dui scelerisque, eget tempor felis tristique. Duis sit amet nunc eu odio vestibulum lobortis eget vel lectus. Curabitur viverra quam massa, eget tincidunt nisi convallis ut. In tellus elit, malesuada vel vehicula eu, egestas sit amet est.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PANEL 4 -->
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Aide aux devoirs
-                    </div>
-                    <div class="panel-body">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas erat id volutpat scelerisque. Donec ut risus lorem. Nam quis efficitur eros. Praesent efficitur est sit amet dui scelerisque, eget tempor felis tristique. Duis sit amet nunc eu odio vestibulum lobortis eget vel lectus. Curabitur viverra quam massa, eget tincidunt nisi convallis ut. In tellus elit, malesuada vel vehicula eu, egestas sit amet est.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PANEL 5 -->
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Aide aux devoirs
-                    </div>
-                    <div class="panel-body">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas erat id volutpat scelerisque. Donec ut risus lorem. Nam quis efficitur eros. Praesent efficitur est sit amet dui scelerisque, eget tempor felis tristique. Duis sit amet nunc eu odio vestibulum lobortis eget vel lectus. Curabitur viverra quam massa, eget tincidunt nisi convallis ut. In tellus elit, malesuada vel vehicula eu, egestas sit amet est.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- PANEL 6 -->
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Aide aux devoirs
-                    </div>
-                    <div class="panel-body">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed egestas erat id volutpat scelerisque. Donec ut risus lorem. Nam quis efficitur eros. Praesent efficitur est sit amet dui scelerisque, eget tempor felis tristique. Duis sit amet nunc eu odio vestibulum lobortis eget vel lectus. Curabitur viverra quam massa, eget tincidunt nisi convallis ut. In tellus elit, malesuada vel vehicula eu, egestas sit amet est.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
+                </div> <!-- col-sm-12 --> 
+            </div> <!-- col-sm-12 --> 
         </div><!-- .row -->
      <?php }
      
@@ -205,7 +210,7 @@ class UtilisateurVue extends Vue {
                         </div>
                     </div>
                     
-                    <h2>Regardez cette vidéo pour un départ rapide</h2>
+                    <p>Regardez cette vidéo pour un départ rapide</p>
                 </div>
             </div><!-- .col-md-12 -->
 

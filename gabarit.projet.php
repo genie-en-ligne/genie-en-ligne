@@ -93,7 +93,7 @@
                                 <nav class="navbar navbar-default" role="navigation">
                                     <ul class="nav navbar-nav navbar-right">
                                         <li>
-                                            <a href="#">Accueil</a>
+                                            <a href="<?php echo WEB_ROOT;?>/utilisateur/bienvenue">Accueil</a>
                                         </li>
                                         <li class="dropdown">
                                             <a id="nav-tutoriels" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
@@ -186,7 +186,7 @@
                                 <nav class="navbar navbar-default" role="navigation">
                                     <ul class="nav navbar-nav navbar-right">
                                         <li>
-                                            <a href="#">Accueil</a>
+                                            <a href="<?php echo WEB_ROOT;?>/utilisateur/bienvenue">Accueil</a>
                                         </li>
                                         <li class="dropdown">
                                             <a id="nav-tutoriels" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
