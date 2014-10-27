@@ -4,7 +4,7 @@
         private $iId;
         private $sNom;                
         
-        public function __construct($iId, $sNom){
+        public function __construct($iId = 0, $sNom = ' '){
             $this->setId($iId);
             $this->setNom($sNom);
         }
@@ -35,8 +35,14 @@
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("SELECT * FROM matieres ORDER BY nom ASC");
             $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            $aFinal = array();
+
+            foreach($aResultats as $rangee){
+                $aFinal[] = new Matiere($rangee['matiere_ID'], $rangee['nom']);
+            }
             
-            return $aResultats;
+            return $aFinal;
         }
         
         //TODO: Ajouter méthodes au besoin

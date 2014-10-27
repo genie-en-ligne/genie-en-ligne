@@ -99,7 +99,7 @@
                                             </a>
                                             <ul class="dropdown-menu" role="menu" aria-labelledby="nav-tutoriels">
                                                 <li role="presentation">
-                                                    <a href="#">
+                                                    <a href="<?php echo WEB_ROOT;?>/tutoriel/consulter">
                                                         Consulter
                                                     </a>
                                                 </li>
@@ -197,7 +197,7 @@
                                                     </a>
                                                 </li>
                                                 <li role="presentation">
-                                                    <a href="#">
+                                                    <a href="<?php echo WEB_ROOT;?>/tutoriel/gerer">
                                                         Gérer
                                                     </a>
                                                 </li>

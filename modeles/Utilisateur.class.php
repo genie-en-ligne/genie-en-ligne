@@ -172,6 +172,20 @@
             return $oConnexion->getConnect()->affected_rows;
         }
 
+        public function getListeEcoles(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM ecoles_par_utilisateur WHERE utilisateur_ID = '{$this->iId}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            $aFinal = array();
+            foreach ($aResultats as $rangee) {
+                $oEcole = new Ecole($rangee['ecole_ID']);
+                $oEcole->chargerEcole();
+                $aFinal[] = $oEcole;
+            }
+            return $aFinal;
+        }
+
         public function setId($iId) {
              //Validation à l'aide de la classe TypeException. Une exception est lancée (throw) si le paramètre n'est pas conforme.
             TypeException::estInteger($iId);

@@ -134,7 +134,7 @@
 
 
         public function getTitre(){
-           return htmlentities ($this->sTitre);
+           return $this->sTitre;
         }
 
 
@@ -186,44 +186,65 @@
 
 
 
-        public function rechercherListeTutosParEleve(){
-            $oUtilisateur = new Utilisateur();
-            $ecole = $oUtilisateur -> getUserEcole();
-            
+        public function rechercherListeTutosParEleve(){            
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM contenu c, status s, ecoles e, matieres m, niveaux_scolaires ns WHERE c.statut = s.statut_ID AND c.ecole_ID = e.ecole_ID AND c.matiere_ID = m.matiere_ID AND c.niveau_scolaire_ID = ns.niveau_scolaire_ID AND s.nom = 'approuve' AND c.est_detruit = '0' AND e.ecole_ID = '".$ecole."' ".$this->getSqlMatiere().$this->getSqlAnnee()." ORDER BY c.date_approuve DESC");
-            $aTutorielsEcoleEleve = $oResultat->recupererTableau($oResultat);
-            
-            $oResultat = $oConnexion->executer("SELECT * FROM contenu c, status s, ecoles e WHERE c.statut = s.statut_ID AND c.ecole_ID = e.ecole_ID AND s.nom = 'approuve' AND c.est_detruit = '0' AND e.ecole_ID NOT LIKE '".$ecole."' ".$this->getSqlMatiere().$this->getSqlAnnee()." ORDER BY c.date_approuve DESC");
-            $aTutorielsAutresEcoles = $oResultat->recupererTableau($oResultat);
+            $oResultat = $oConnexion->executer("SELECT 
+                                                    * 
+                                                FROM 
+                                                    contenu c
+                                                WHERE 
+                                                    c.approuve = '1' AND 
+                                                    c.est_detruit = '0'
+                                                    ".$this->getSqlMatiere().$this->getSqlAnnee()." 
+                                                ORDER BY 
+                                                    c.date_approuve DESC
+                                                ");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            $aFinal = array();
+
+            foreach ($aResultats as $rangee) {
+                $oTutoriel = new Tutoriel($rangee['contenu_ID']);
+                $oTutoriel->chargerTutoriel();
+                $aFinal[] = $oTutoriel;
+            }
+
+            return $aFinal;
         }
         
         public function rechercherListeTutosParTuteur(){
             //Connecter à la base de données
             $oConnexion = new MySqliLib();
-            //Réaliser la requête de recherche par le idEtudiant
+            //Réaliser la requête de recherche par le idUtilisateur
             $sRequete="
-             SELECT 
-                *, DATE(date_soumis) as date_soumis, DATE(date_approuve) as date_approuve 
-            FROM 
-                contenu 
-             WHERE 
-                soumis_par='{$this->iSoumisPar}' AND
-                est_detruit=0
-                ";
+                        SELECT 
+                            *
+                        FROM 
+                            contenu 
+                        WHERE 
+                            soumis_par='{$this->iSoumisPar}' AND
+                            est_detruit=0
+                        ";
 
             //Exécuter la requête
             $oResult = $oConnexion->executer($sRequete);
             //récuperation tableau
-            $aListeTuto = $oConnexion->recupererTableau($oResult);
+            $aResultats = $oConnexion->recupererTableau($oResult);
 
-            return $aListeTuto;
-            
+            $aFinal = array();
+
+            foreach ($aResultats as $rangee) {
+                $oTutoriel = new Tutoriel($rangee['contenu_ID']);
+                $oTutoriel->chargerTutoriel();
+                $aFinal[] = $oTutoriel;
+            }
+
+            return $aFinal;            
         }
         
         public function ajouterTuto(){
             //Connexion à la base de données
-             $oConnexion = new MySqliLib();
+            $oConnexion = new MySqliLib();
             //Requête d'ajout d'un tutorat
             $sRequete = "
             INSERT INTO 
@@ -232,13 +253,13 @@
                 titre = '{$oConnexion->getConnect()->real_escape_string($this->sTitre)}',
                 date_soumis = '{$oConnexion->getConnect()->real_escape_string($this->dDateSoumis)}',
                 soumis_par = '{$this->iSoumisPar}',
-                statut = '{$this->bStatut}',
+                approuve = '{$this->bStatut}',
                 type_contenu = '{$this->iTypeContenu}',
                 matiere_ID = '{$this->iMatiereId}',
                 niveau_scolaire_ID = '{$this->iNiveauScolaireId}',
                 ecole_ID = '{$this->iEcoleId}'";
 
-                echo $sRequete;
+            echo $sRequete;
 
             $oResult = $oConnexion->executer($sRequete);
             $this->setContenuId($oConnexion->getInsertId());
@@ -249,7 +270,6 @@
                 SET contenu_html = '".$oConnexion->getConnect()->real_escape_string($this->sContenu)."',"
                 ."  contenu_ID = ".$this->iContenu_Id."
                 ";
-                echo $sRequete;
                 $oResult = $oConnexion->executer($sRequete);
             }
             else{//vidéo
@@ -258,13 +278,11 @@
                 SET url = '".$oConnexion->getConnect()->real_escape_string($this->sContenu)."',"
                 ."  contenu_ID = ".$this->iContenu_Id."
                 ";
-                echo $sRequete;
                 $oResult = $oConnexion->executer($sRequete);
             }      
                         
             return true;            
-        }
-        
+        }        
         
         public function modifierTutoVideo(){
 
@@ -307,8 +325,7 @@
             }      
                         
             return true;            
-        }
-        
+        }        
 
         public function approuverTuto(){
             //Connexion à la base de données
@@ -321,7 +338,7 @@
                 soumis_par = '{$this->iSoumisPar}',
                 date_approuve = '{$this->dDateApprouve}',
                 approuve_par = '{$this->iApprouvePar}',
-                statut= '{$this->bStatut}'
+                approuve= '{$this->bStatut}'
             WHERE
                 contenu_ID = '{$this->iContenu_Id}'
             ";
@@ -338,17 +355,16 @@
             UPDATE 
                 contenu
             SET 
-                est_detruit= '{$this->bEstDetruit}'
+                est_detruit= '1'
             WHERE
                 contenu_ID = '{$this->iContenu_Id}'
             ";
-            echo $sRequete;
             $oResult = $oConnexion->executer($sRequete);
         }
 
         public function chargerTutoriel(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT *, DATE(date_soumis) as date_soumis, DATE(date_approuve) as date_approuve FROM contenu WHERE contenu_ID = '{$this->getContenuId()}'");
+            $oResultat = $oConnexion->executer("SELECT * FROM contenu WHERE contenu_ID = '{$this->getContenuId()}'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
             $this->setTitre($aResultats[0]['titre']);
@@ -394,16 +410,16 @@
         }
 
         public function getTypeApprouver(){
-             if($this->getStatut() == '1'){
+            if($this->getStatut() == '1'){
                $oResultat="Approuvé";
             }
             else{
-                $oResultat="non approuver";
+                $oResultat="En attente";
             }
-           echo $oResultat;
+            return $oResultat;
         }
 
-         public function getNomTuteur(){
+        public function getNomTuteur(){
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("SELECT nom FROM utilisateurs WHERE utilisateur_ID = '{$this->iSoumisPar}'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
@@ -411,7 +427,7 @@
             return $aResultats[0]['nom'];
         }
 
-         public function getPrenomTuteur(){
+        public function getPrenomTuteur(){
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("SELECT prenom FROM utilisateurs WHERE utilisateur_ID = '{$this->iSoumisPar}'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
@@ -421,16 +437,16 @@
         
         private function getSqlMatiere(){
             $res = '';
-            if($this->matiere != ""){
-                $res = " AND c.matiere_ID = '".$this->matiere."'";
+            if($this->iMatiereId != 0){
+                $res = " AND c.matiere_ID = '".$this->iMatiereId."'";
             }
             return $res;
         }
         
         private function getSqlAnnee(){
             $res = '';
-            if($this->annee != ""){
-                $res = " AND c.niveau_scolaire_ID = '".$this->annee."'";
+            if($this->iNiveauScolaireId != 0){
+                $res = " AND c.niveau_scolaire_ID = '".$this->iNiveauScolaireId."'";
             }
             return $res;
         }

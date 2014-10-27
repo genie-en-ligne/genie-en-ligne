@@ -41,6 +41,17 @@
             return $aResultats;
         }
 
+        public function chargerEcole(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM ecoles WHERE ecole_ID = '{$this->iId}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            $this->setNom($aResultats[0]['nom']);
+            $this->setCommissionId($aResultats[0]['commission_ID']);
+
+            return true;
+        }
+
         public function setId($iId) {
             TypeException::estInteger($iId);
 

@@ -27,7 +27,7 @@ class Controleur
 		 * Traite la requête
 		 * @return void
 		 */
-		public function gerer(){            
+		public function gerer(){          
             $request = $_GET['request'];
             
             if($request === "" || $request === "/") {
