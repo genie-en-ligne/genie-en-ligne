@@ -31,6 +31,9 @@
                 case 'ajouter-texte':
                     $this -> ajouterTexte();
                     break;
+                case 'approuver':
+                    $this->approuver();
+                    break;
 
                 //TODO: Ajouter des cas au besoin
 
@@ -255,6 +258,29 @@
                 $oVue->aEcoles = $this->oUtilisateurSession->getListeEcoles();
                 $oVue -> afficheFormulaireCreationTexte();
             }  
+        }
+
+        private function approuver(){
+            $oVue = new TutorielVue();
+            try{
+                if(isset($_POST['subApprouver'])){
+                    $oTutoriel = new Tutoriel($_POST['hidContenuId']);
+                    $oTutoriel->setApprouvePar($this->oUtilisateurSession->getId());
+                    $oTutoriel->setDateApprouve(date("Y-m-d"));
+                    $oTutoriel->approuverTuto();
+                    header('location:'.WEB_ROOT.'/admin/tutoriel/gerer');
+                }
+                else{
+                    $oTutoriel = new Tutoriel($this->getReqId());
+                    $oTutoriel->chargerTutoriel();
+
+                    $oVue -> oTutoriel = $oTutoriel;
+                    $oVue -> afficheApprouverTuto();
+                }
+            }
+            catch(Exception $e){
+                header('location:'.WEB_ROOT.'/admin/tutoriel/gerer');
+            }
         }
        
 		//TODO:  Placer les autres méthodes du controleur ici.

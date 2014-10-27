@@ -411,10 +411,9 @@
             UPDATE 
                 contenu
             SET 
-                soumis_par = '{$this->iSoumisPar}',
                 date_approuve = '{$this->dDateApprouve}',
                 approuve_par = '{$this->iApprouvePar}',
-                approuve= '{$this->bStatut}'
+                approuve= '1'
             WHERE
                 contenu_ID = '{$this->iContenu_Id}'
             ";

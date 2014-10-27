@@ -43,9 +43,11 @@ class TutorielVue extends Vue {
                                     echo '<a href="'.WEB_ROOT.'/admin/tutoriel/supprimer/'.$oTutoriel->getContenuId().'" class="btn btn-primary btn-xs">';
                                         echo '<span title="Supprimer" class="glyphicon glyphicon-remove"></span>';
                                     echo '</a>';
-                                    echo '<a href="'.WEB_ROOT.'/admin/tutoriel/approuver/'.$oTutoriel->getContenuId().'" class="btn btn-primary btn-xs">';
+                                    if($oTutoriel->getStatut() == 0){
+                                        echo '<a href="'.WEB_ROOT.'/admin/tutoriel/approuver/'.$oTutoriel->getContenuId().'" class="btn btn-success btn-xs">';
                                             echo '<span title="approuver" class="glyphicon glyphicon-ok"></span>';
                                         echo '</a>';
+                                    }
                                 echo '</td>';
                             echo '</tr>';
                         }
@@ -372,6 +374,24 @@ class TutorielVue extends Vue {
                     <input type="hidden" name="hidContenuId" value="<?php echo $this->oTutoriel->getContenuId();?>">
                     <a href="<?php echo WEB_ROOT;?>/admin/tutoriel/gerer" class="btn btn-danger">Annuler</a>
                     <input type="submit" name="subSupprimer" class="btn btn-success" value="Supprimer">
+                </form>
+            </div>
+        </div>
+    <?php
+    }
+
+    public function afficheApprouverTuto(){?>
+        <div class="page-header">
+            <h1>Approuver un tutoriel</h1>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3 text-center">
+                <h2>Êtes-vous certain de vouloir approuver ce tutoriel?</h2>
+                <p><?php echo $this->oTutoriel->getTitre();?></p>
+                <form action="<?php echo WEB_ROOT;?>/admin/tutoriel/approuver" method="POST">
+                    <input type="hidden" name="hidContenuId" value="<?php echo $this->oTutoriel->getContenuId();?>">
+                    <a href="<?php echo WEB_ROOT;?>/admin/tutoriel/gerer" class="btn btn-danger">Annuler</a>
+                    <input type="submit" name="subApprouver" class="btn btn-success" value="Approuver">
                 </form>
             </div>
         </div>
