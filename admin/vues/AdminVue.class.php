@@ -17,7 +17,7 @@ class AdminVue extends Vue {
     /*==========DROITS SUPERADMIN==========*/
     /*=====================================*/
 
-     public function afficheListeResponsables(){?>
+    /*public function afficheListeResponsables(){?>
 
         <div id="message">
             <?php 
@@ -121,11 +121,10 @@ class AdminVue extends Vue {
                 <span class="glyphicon glyphicon-plus"></span> Ajouter</button>
             </div>
         </div> <!-- .contenu -->
-    
     <?php
-    }
+    }*/
 
-    public function afficheAjouterResponsable(){?>
+    /*public function afficheAjouterResponsable(){?>
           
         <div id="message">
             <?php 
@@ -196,11 +195,10 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
-
     <?php
-    }
+    }*/
 
-     public function afficheModifierResponsables(){?>
+    /*public function afficheModifierResponsables(){?>
         
         <div id="message">
             <?php 
@@ -299,9 +297,19 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
-
-        
     <?php
+    }*/
+
+    public function afficheModifierCommission(){
+
+    }
+
+    public function afficheCreerCommission(){
+
+    }
+
+    public function afficheSupprimerCommission(){
+
     }
 
     public function afficheListeCommissions(){?>
@@ -315,82 +323,59 @@ class AdminVue extends Vue {
             ?>
         </div>
                     
-        <div class="col-sm-10 ">
-            <div class="page-header">
-                <div class="navbar navbar-default">
-                    <h2 class="navbar-text">Rechercher une commission scolaire</h2>
-                </div>
+        <div class="page-header">
+            <div class="navbar navbar-default">
+                <h2 class="navbar-text">Gérer les commissions scolaires</h2>
             </div>
-        </div>
-         <div class="col-sm-11 col-sm-offset-1">
-            <form id="frmChercherCommission" method="GET" action="" enctype="" class="form-horizontal" role="form">
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-sm-5 col-sm-offset-2">
-                            <label for="sltRechercherRespCommission" class="col-sm-5 control-label">Commisions scolaires :</label>
-                            <div class="col-sm-7 col-md-7">
-                                <select id="sltRechercherRespCommission" class="form-control" name="commission">
-                                    <option value="">Toutes</option> 
-                                </select>
-                            </div>
-                        </div>
-                    </div> <!-- .form-group -->
-                </div>  <!-- .row --> 
-                <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                    <button type="submit" id="subChercherCom" class="btn btn-success pull-right">
-                    <span class="glyphicon glyphicon-search"></span> Rechercher</button>
-                </div> 
-                <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                </div>        
-            </form> 
-        </div>   
+        </div> 
 
-            <div class="contenu">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="page-header">
-                        <div class="">
-                            
-                        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-header">
+                    <div class="">
+                        
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <table id="tabRechercherCom" class="table table-striped text-center">
-                        <tr>
-                            <th class="text-center">MRC</th>
-                            <th class="text-center">Nom</th>
-                            <th class="text-center">Écoles</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                        <tr>
-                            <td id="txtTabComMrc"></td>
-                            <td id="txtTabComNom"></td>
-                            <td id="txtTabComEcole"></td> <!-- Si plus d'une afficher valeurs multiples -->
-                            <td class="">
-                                <!-- echo '<a href="'.WEB_ROOT.'/admin/modifierUtilisateur/'.$oUtilisateur->getId().'" class="btn btn-primary btn-xs">';
-                                    echo '<span title="Modifier" class="glyphicon glyphicon-pencil"></span>';
-                                echo '</a>';
-                                echo '<a href="'.WEB_ROOT.'/admin/supprimerUtilisateur/'.$oUtilisateur->getId().'" class="btn btn-danger btn-xs col-sm-offset-1">';
-                                    echo '<span title="Supprimer" class="glyphicon glyphicon-remove"></span>';
-                                echo '</a>'; -->
-                               <a href="" class="btn btn-primary btn-xs" title="Modifier">
-                                    <span title="Modifier" class="glyphicon glyphicon-pencil col-sm-offset-1"></span>
-                                </a>
-                                <a href="" class="btn btn-danger btn-xs" title="Supprimer">
-                                    <span title="Supprimer" class="glyphicon glyphicon-remove col-sm-offset-1"></span>
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
-                </div> <!-- .col-lg-12 -->
-            </div> <!-- .row -->
-            <div class="col-sm-10 col-sm-offset-10">
-                <button type="button" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
-                <span class="glyphicon glyphicon-plus"></span> Ajouter</button>
-            </div>
-        </div> <!-- .contenu -->
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table id="tabRechercherCom" class="table table-striped text-center">
+                    <tr>
+                        <th class="text-center">MRC</th>
+                        <th class="text-center">Nom</th>
+                        <th class="text-center">Écoles</th>
+                        <th class="text-center">Responsable</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                    <?php
+                        foreach ($this->aListeCommissions as $oCommission) {
+                            $oUtilisateur = new Utilisateur($oCommission->getResponsable());
+                            $oUtilisateur->chargerCompteParId();
+
+                            echo '<tr>';
+                                echo '<td>'.$oCommission->getNomRegion().'</td>';
+                                echo '<td>'.$oCommission->getNom().'</td>';
+                                echo '<td>'.count($oCommission->rechercherListeEcoles()).'</td>';
+                                echo '<td>'.$oUtilisateur->getPrenom().' '.$oUtilisateur->getNom().'</td>';
+                                echo '<td>
+                                        <a href="" class="btn btn-primary btn-xs" title="Modifier">
+                                            <span title="Modifier" class="glyphicon glyphicon-pencil col-sm-offset-1"></span>
+                                        </a>
+                                        <a href="" class="btn btn-danger btn-xs" title="Supprimer">
+                                            <span title="Supprimer" class="glyphicon glyphicon-remove col-sm-offset-1"></span>
+                                        </a>
+                                    </td>';
+                            echo '</tr>';
+                        }
+                    ?>
+                </table>
+            </div> <!-- .col-lg-12 -->
+        </div> <!-- .row -->
+        <div class="col-sm-10 col-sm-offset-10">
+            <button type="button" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
+            <span class="glyphicon glyphicon-plus"></span> Ajouter</button>
+        </div>
     <?php
     }
 
@@ -523,101 +508,115 @@ class AdminVue extends Vue {
                 }
             ?>
         </div>
-                    
-        <div class="col-lg-12">
-            <div class="page-header">
-                <div class="navbar navbar-default">
-                    <h2 class="navbar-text">Rechercher un professeur</h2>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-12">
-            <form id="frmChercherProf" method="GET" action="" enctype="" class="form-horizontal" role="form">
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-md-4">
-                            <label for="txtRechercherProfCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
-                            <div class="col-sm-9 col-md-7">
-                                 <input type="email" id="txtRechercherProfCourriel" name="courriel" class="form-control" placeholder="Courriel" pattern="">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="txtRechercherProfNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
-                            <div class="col-sm-9 col-md-7">
-                                 <input type="text" id="txtRechercherProfNom" name="nom" class="form-control" placeholder="Nom" pattern="">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="sltRechercherProfEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
-                            <div class="col-sm-9 col-md-7">
-                                <select id="sltRechercherEcoleProf" class="form-control" name="ecole">
-                                    <option value="">Sélection</option> 
-                                </select>
-                            </div>
-                        </div>
-                    </div> <!-- .form-group -->
-                </div>  <!-- .row -->  
-                <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                    <button type="submit" id="subChercherProf" class="btn btn-success pull-right">
-                    <span class="glyphicon glyphicon-search"></span> Rechercher</button>
-                </div> 
-                <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                </div>        
-            </form> 
-        </div>   
-
-            <div class="contenu">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="page-header">
-                        <div class="">
-                            
-                        </div>
+        <div class="row">            
+            <div class="col-lg-12">
+                <div class="page-header">
+                    <div class="navbar navbar-default">
+                        <h2 class="navbar-text">Gérer les professeurs</h2>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <table id="tabRechercherProf" class="table table-striped text-center">
-                        <tr>
-                            <th class="text-center">Prénom</th>
-                            <th class="text-center">Nom</th>
-                            <th class="text-center">Courriel</th>
-                            <th class="text-center">Commission scolaire</th>
-                            <th class="text-center">École</th>
-                            <th class="text-center">Matière</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                        <tr>
-                            <td id="txtPrenomTabProf"></td>
-                            <td id="txtNomTabProf"></td>
-                            <td id="txtCourrielTabProf"></td>
-                            <td id="txtCommissionTabProf"></td>
-                            <td id="txtEcoleTabProf"></td> <!-- Si plus d'une afficher valeurs multiples -->
-                            <td id="txtMatiereTabProf"></td> <!-- Si plus d'une afficher valeurs multiples -->
-                            <td>
-                                <!-- echo '<a href="'.WEB_ROOT.'/admin/modifierUtilisateur/'.$oUtilisateur->getId().'" class="btn btn-primary btn-xs">';
-                                    echo '<span title="Modifier" class="glyphicon glyphicon-pencil"></span>';
-                                echo '</a>';
-                                echo '<a href="'.WEB_ROOT.'/admin/supprimerUtilisateur/'.$oUtilisateur->getId().'" class="btn btn-danger btn-xs col-sm-offset-1">';
-                                    echo '<span title="Supprimer" class="glyphicon glyphicon-remove"></span>';
-                                echo '</a>'; -->
-                               <a href="#" class="btn btn-primary btn-xs">
-                                    <span title="Modifier" class="glyphicon glyphicon-pencil"></span>
-                                </a>
-                                <a href="#" class="btn btn-danger btn-xs col-sm-offset-1">
-                                    <span title="Supprimer" class="glyphicon glyphicon-remove"></span>
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
-                </div> <!-- .col-lg-12 -->
-            </div> <!-- .row -->
-            <div class="col-sm-10 col-sm-offset-10">
-                <button type="button" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
-                <span class="glyphicon glyphicon-plus"></span> Ajouter</button>
+            <div class="col-lg-12">
+                <form id="frmChercherProf" method="GET" action="" enctype="" class="form-horizontal" role="form">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label for="txtRechercherTutCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
+                                <div class="col-sm-9 col-md-7">
+                                     <input type="email" id="txtRechercherTutCourriel" name="courriel" class="form-control" placeholder="Courriel" pattern="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="txtRechercherTutNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
+                                <div class="col-sm-9 col-md-7">
+                                     <input type="text" id="txtRechercherTutNom" name="nom" class="form-control" placeholder="Nom" pattern="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="sltRechercherTutEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
+                                <div class="col-sm-9 col-md-7">
+                                    <select id="sltRechercherTutEcole" class="form-control" name="ecole">
+                                        <option value="">Sélection</option> 
+                                    </select>
+                                </div>
+                            </div>
+                        </div> <!-- .form-group -->
+                    </div>  <!-- .row -->  
+                    <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
+                        <button type="submit" id="subChercherTuteur" class="btn btn-success pull-right">
+                        <span class="glyphicon glyphicon-search"></span> Rechercher</button>
+                    </div> 
+                    <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
+                    </div>        
+                </form> 
             </div>
-        </div> <!-- .contenu -->
+        </div>   
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-header">
+                    <div class="">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table id="tabRechercherTuteur" class="table table-striped text-center">
+                    <tr>
+                        <th class="text-center">Prénom</th>
+                        <th class="text-center">Nom</th>
+                        <th class="text-center">Courriel</th>
+                        <th class="text-center">Pseudo</th>
+                        <th class="text-center">Commission</th>
+                        <th class="text-center">École</th>
+                        <th class="text-center">Matière</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                    <?php
+                        foreach ($this->aListeProfs as $oUtilisateur) {
+                            if(count($oUtilisateur->getListeEcoles()) > 1){
+                                $ecole = 'Multiples';
+                            }
+                            else{
+                                $aEcoles = $oUtilisateur->getListeEcoles();
+                                $ecole = $aEcoles[0]->getNom();
+                            }
+                            if(count($oUtilisateur->getListeMatieres()) > 1){
+                                $matiere = 'Multiples';
+                            }
+                            else{
+                                $aMatieres = $oUtilisateur->getListeMatieres();
+                                $matiere = $aMatieres[0]->getNom();
+                            }
+
+                            echo '<tr>';
+                                echo '<td>'.$oUtilisateur->getPrenom().'</td>';
+                                echo '<td>'.$oUtilisateur->getNom().'</td>';
+                                echo '<td>'.$oUtilisateur->getCourriel().'</td>';
+                                echo '<td>'.$oUtilisateur->getPseudo().'</td>';
+                                echo '<td>'.$oUtilisateur->getCommission().'</td>';
+                                echo '<td>'.$ecole.'</td>';
+                                echo '<td>'.$matiere.'</td>';
+                                echo '<td>
+                                        <a href="#" class="btn btn-primary btn-xs">
+                                            <span title="Modifier" class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                        <a href="#" class="btn btn-danger btn-xs col-sm-offset-1">
+                                            <span title="Supprimer" class="glyphicon glyphicon-remove"></span>
+                                        </a>
+                                    </td>';
+                            echo '</tr>';
+                        }
+                    ?>
+                </table>
+            </div> <!-- .col-lg-12 -->
+        </div> <!-- .row -->
+        <div class="col-sm-10 col-sm-offset-10">
+            <button type="button" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
+            <span class="glyphicon glyphicon-plus"></span> Ajouter</button>
+        </div>
     <?php
     }
     
@@ -743,7 +742,6 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
-
     <?php
     }
 
@@ -883,8 +881,6 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
-
-        
     <?php
     }
 
@@ -900,7 +896,6 @@ class AdminVue extends Vue {
     /*================================================*/
 
     public function afficheListeTuteurs(){?>
-        
         <div id="message">
             <?php 
                 if($this->getMessage()){
@@ -909,101 +904,113 @@ class AdminVue extends Vue {
                 }
             ?>
         </div>
-                    
-        <div class="col-lg-12">
-            <div class="page-header">
-                <div class="navbar navbar-default">
-                    <h2 class="navbar-text">Rechercher un tuteur</h2>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-12">
-            <form id="frmChercherProf" method="GET" action="" enctype="" class="form-horizontal" role="form">
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-md-4">
-                            <label for="txtRechercherTutCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
-                            <div class="col-sm-9 col-md-7">
-                                 <input type="email" id="txtRechercherTutCourriel" name="courriel" class="form-control" placeholder="Courriel" pattern="">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="txtRechercherTutNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
-                            <div class="col-sm-9 col-md-7">
-                                 <input type="text" id="txtRechercherTutNom" name="nom" class="form-control" placeholder="Nom" pattern="">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="sltRechercherTutEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
-                            <div class="col-sm-9 col-md-7">
-                                <select id="sltRechercherTutEcole" class="form-control" name="ecole">
-                                    <option value="">Sélection</option> 
-                                </select>
-                            </div>
-                        </div>
-                    </div> <!-- .form-group -->
-                </div>  <!-- .row -->  
-                <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                    <button type="submit" id="subChercherTuteur" class="btn btn-success pull-right">
-                    <span class="glyphicon glyphicon-search"></span> Rechercher</button>
-                </div> 
-                <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                </div>        
-            </form> 
-        </div>   
-
-            <div class="contenu">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="page-header">
-                        <div class="">
-                            
-                        </div>
+        <div class="row">            
+            <div class="col-lg-12">
+                <div class="page-header">
+                    <div class="navbar navbar-default">
+                        <h2 class="navbar-text">Gérer les tuteurs</h2>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <table id="tabRechercherTuteur" class="table table-striped text-center">
-                        <tr>
-                            <th class="text-center">Prénom</th>
-                            <th class="text-center">Nom</th>
-                            <th class="text-center">Courriel</th>
-                            <th class="text-center">Pseudo</th>
-                            <th class="text-center">École</th>
-                            <th class="text-center">Matière</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                        <tr>
-                            <td id="txtPrenomTabTut"></td>
-                            <td id="txtNomTabTut"></td>
-                            <td id="txtCourrielTabTut"></td>
-                            <td id="txtCommissionTabTut"></td>
-                            <td id="txtEcoleTabTut"></td> <!-- Si plus d'une afficher valeurs multiples -->
-                            <td id="txtMatiereTabTut"></td> <!-- Si plus d'une afficher valeurs multiples -->
-                            <td>
-                                <!-- echo '<a href="'.WEB_ROOT.'/admin/modifierUtilisateur/'.$oUtilisateur->getId().'" class="btn btn-primary btn-xs">';
-                                    echo '<span title="Modifier" class="glyphicon glyphicon-pencil"></span>';
-                                echo '</a>';
-                                echo '<a href="'.WEB_ROOT.'/admin/supprimerUtilisateur/'.$oUtilisateur->getId().'" class="btn btn-danger btn-xs col-sm-offset-1">';
-                                    echo '<span title="Supprimer" class="glyphicon glyphicon-remove"></span>';
-                                echo '</a>'; -->
-                               <a href="#" class="btn btn-primary btn-xs">
-                                    <span title="Modifier" class="glyphicon glyphicon-pencil"></span>
-                                </a>
-                                <a href="#" class="btn btn-danger btn-xs col-sm-offset-1">
-                                    <span title="Supprimer" class="glyphicon glyphicon-remove"></span>
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
-                </div> <!-- .col-lg-12 -->
-            </div> <!-- .row -->
-            <div class="col-sm-10 col-sm-offset-10">
-                <button type="button" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
-                <span class="glyphicon glyphicon-plus"></span> Ajouter</button>
+            <div class="col-lg-12">
+                <form id="frmChercherProf" method="GET" action="" enctype="" class="form-horizontal" role="form">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label for="txtRechercherTutCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
+                                <div class="col-sm-9 col-md-7">
+                                     <input type="email" id="txtRechercherTutCourriel" name="courriel" class="form-control" placeholder="Courriel" pattern="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="txtRechercherTutNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
+                                <div class="col-sm-9 col-md-7">
+                                     <input type="text" id="txtRechercherTutNom" name="nom" class="form-control" placeholder="Nom" pattern="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="sltRechercherTutEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
+                                <div class="col-sm-9 col-md-7">
+                                    <select id="sltRechercherTutEcole" class="form-control" name="ecole">
+                                        <option value="">Sélection</option> 
+                                    </select>
+                                </div>
+                            </div>
+                        </div> <!-- .form-group -->
+                    </div>  <!-- .row -->  
+                    <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
+                        <button type="submit" id="subChercherTuteur" class="btn btn-success pull-right">
+                        <span class="glyphicon glyphicon-search"></span> Rechercher</button>
+                    </div> 
+                    <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
+                    </div>        
+                </form> 
             </div>
-        </div> <!-- .contenu -->
+        </div>   
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-header">
+                    <div class="">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table id="tabRechercherTuteur" class="table table-striped text-center">
+                    <tr>
+                        <th class="text-center">Prénom</th>
+                        <th class="text-center">Nom</th>
+                        <th class="text-center">Courriel</th>
+                        <th class="text-center">Pseudo</th>
+                        <th class="text-center">École</th>
+                        <th class="text-center">Matière</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                    <?php
+                        foreach ($this->aListeTuteurs as $oUtilisateur) {
+                            if(count($oUtilisateur->getListeEcoles()) > 1){
+                                $ecole = 'Multiples';
+                            }
+                            else{
+                                $aEcoles = $oUtilisateur->getListeEcoles();
+                                $ecole = $aEcoles[0]->getNom();
+                            }
+                            if(count($oUtilisateur->getListeMatieres()) > 1){
+                                $matiere = 'Multiples';
+                            }
+                            else{
+                                $aMatieres = $oUtilisateur->getListeMatieres();
+                                $matiere = $aMatieres[0]->getNom();
+                            }
+
+                            echo '<tr>';
+                                echo '<td>'.$oUtilisateur->getPrenom().'</td>';
+                                echo '<td>'.$oUtilisateur->getNom().'</td>';
+                                echo '<td>'.$oUtilisateur->getCourriel().'</td>';
+                                echo '<td>'.$oUtilisateur->getPseudo().'</td>';
+                                echo '<td>'.$ecole.'</td>';
+                                echo '<td>'.$matiere.'</td>';
+                                echo '<td>
+                                        <a href="#" class="btn btn-primary btn-xs">
+                                            <span title="Modifier" class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                        <a href="#" class="btn btn-danger btn-xs col-sm-offset-1">
+                                            <span title="Supprimer" class="glyphicon glyphicon-remove"></span>
+                                        </a>
+                                    </td>';
+                            echo '</tr>';
+                        }
+                    ?>
+                </table>
+            </div> <!-- .col-lg-12 -->
+        </div> <!-- .row -->
+        <div class="col-sm-10 col-sm-offset-10">
+            <button type="button" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
+            <span class="glyphicon glyphicon-plus"></span> Ajouter</button>
+        </div>
     <?php
     }
     
@@ -1129,7 +1136,6 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
-
     <?php
     }
 
@@ -1269,12 +1275,10 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
-
-        
     <?php
     }
 
-     public function afficheSupprimerUtilisateurs(){?>
+    public function afficheSupprimerUtilisateurs(){?>
         
         <div id="message">
             <?php 

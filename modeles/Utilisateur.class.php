@@ -186,6 +186,70 @@
             return $aFinal;
         }
 
+        public function getListeMatieres(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM matieres_par_utilisateur WHERE utilisateur_ID = '{$this->iId}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            $aFinal = array();
+            foreach ($aResultats as $rangee) {
+                $oMatiere = new Matiere($rangee['matiere_ID']);
+                $oMatiere->chargerMatiere();
+                $aFinal[] = $oMatiere;
+            }
+            return $aFinal;
+        }
+
+        public function getCommission(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT commission_ID FROM ecoles_par_utilisateur epu, ecoles e WHERE epu.utilisateur_ID = '{$this->getId()}' AND epu.ecole_ID = e.ecole_ID");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['commission_ID'];
+        }
+
+        public function rechercherListeTuteurs($iCommissionId){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, ecoles_par_utilisateur epu WHERE u.utilisateur_ID = epu.utilisateur_ID AND u.role = '2' AND epu.ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$iCommissionId}')");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            $aFinal = array();
+            foreach ($aResultats as $rangee) {
+                $oUtilisateur = new Utilisateur($rangee['utilisateur_ID']);
+                $oUtilisateur->chargerCompteParId();
+                $aFinal[] = $oUtilisateur;
+            }
+            return $aFinal;
+        }
+
+        public function rechercherListeProfs($iCommissionId){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, ecoles_par_utilisateur epu WHERE u.utilisateur_ID = epu.utilisateur_ID AND u.role = '3' AND epu.ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$iCommissionId}')");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            $aFinal = array();
+            foreach ($aResultats as $rangee) {
+                $oUtilisateur = new Utilisateur($rangee['utilisateur_ID']);
+                $oUtilisateur->chargerCompteParId();
+                $aFinal[] = $oUtilisateur;
+            }
+            return $aFinal;
+        }
+
+        public function rechercherListeResponsables(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, commissions c WHERE u.utilisateur_ID = c.responsable");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            $aFinal = array();
+            foreach ($aResultats as $rangee) {
+                $oUtilisateur = new Utilisateur($rangee['utilisateur_ID']);
+                $oUtilisateur->chargerCompteParId();
+                $aFinal[] = $oUtilisateur;
+            }
+            return $aFinal;
+        }
+
         public function setId($iId) {
              //Validation à l'aide de la classe TypeException. Une exception est lancée (throw) si le paramètre n'est pas conforme.
             TypeException::estInteger($iId);

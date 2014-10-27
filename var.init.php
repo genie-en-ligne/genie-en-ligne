@@ -12,7 +12,9 @@
         $_SESSION['user_id'] = 0;
     }
 
+/******************************/
 /* Pour la classe Utilisateur */
+/******************************/
 
     if(empty($_POST['txtPseudo'])){
     	$_POST['txtPseudo'] = '';
@@ -46,7 +48,9 @@
     	$_POST['txtMessage'] = '';
     }
 
+/***************************/
 /* Pour la classe Tutoriel */
+/***************************/
 
     if(empty($_GET['matiere'])){
     	$_GET['matiere'] = 0;

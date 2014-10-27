@@ -38,6 +38,15 @@
                 case 'modifier-mdp':
                     $this -> changerMDP();
                     break;
+                case 'gerer-tuteurs':
+                    $this -> gererTuteurs();
+                    break;
+                case 'gerer-profs':
+                    $this -> gererProfs();
+                    break;
+                case 'gerer-commissions':
+                    $this -> gererCommissions();
+                    break;
 
                 //TODO: Ajouter des cas au besoin
 
@@ -215,7 +224,29 @@
                 $oVue->setMessage(array($e->getMessage(), "danger"));
                 $oVue->afficheProfil();
             }
-        }       
+        }   
+
+        private function gererTuteurs(){
+            $oVue = new AdminVue();
+
+            $oVue->aListeTuteurs = $this->oUtilisateurSession->rechercherListeTuteurs($this->oUtilisateurSession->getCommission());
+            $oVue->afficheListeTuteurs();
+        }    
+
+        private function gererProfs(){
+            $oVue = new AdminVue();
+
+            $oVue->aListeProfs = $this->oUtilisateurSession->rechercherListeProfs($this->oUtilisateurSession->getCommission());
+            $oVue->afficheListeProfesseurs();
+        } 
+
+        private function gererCommissions(){
+            $oVue = new AdminVue();
+            $oCommission = new Commission();
+
+            $oVue->aListeCommissions = $oCommission->rechercherListeCommissions();
+            $oVue->afficheListeCommissions();
+        }
        
 		//TODO:  Placer les autres méthodes du controleur ici.
     }

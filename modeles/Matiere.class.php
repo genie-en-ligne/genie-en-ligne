@@ -30,6 +30,16 @@
             $oResultat = $oConnexion->executer("DELETE FROM matieres WHERE `matiere_ID` = '{$this->iId}'");
             return $oConnexion->getConnect()->affected_rows;
         }
+
+        public function chargerMatiere(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM matieres WHERE matiere_ID = '{$this->iId}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            $this->setNom($aResultats[0]['nom']);
+
+            return true;
+        }
         
         public function rechercherListeMatieres(){
             $oConnexion = new MySqliLib();

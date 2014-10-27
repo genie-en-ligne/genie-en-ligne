@@ -15,6 +15,18 @@
 	</head>
 
 	<body>
+        <?php
+            $oUtilisateurSession = new Utilisateur($_SESSION['user_id']);
+
+            if($oUtilisateurSession->utilisateurEstConnecte()){
+                $oUtilisateurSession->chargerCompteParId();
+            }
+            else{
+                //Rediriger au login
+                header("location:".WEB_ROOT);
+            }
+        ?>
+
         <div id="wrapper">
     <!--------------------->
     <!-- MENU HORIZONTAL -->
@@ -36,18 +48,18 @@
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-user"></i>Admin École
+                        <i class="fa fa-user"></i>Connecté en tant que <?php echo $oUtilisateurSession->getPrenom().' '.$oUtilisateurSession->getNom();?>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/modifier-mdp">
                                 <i class="fa fa-fw fa-user"></i>Compte</a>
                         </li>
 
                         <li class="divider"></li>
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/utilisateur/logout">
                                 <i class="fa fa-fw fa-power-off"></i>Déconnexion</a>
                         </li>
                     </ul>
@@ -62,16 +74,6 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                 <?php 
-                    $oUtilisateurSession = new Utilisateur($_SESSION['user_id']);
-
-                    if($oUtilisateurSession->utilisateurEstConnecte()){
-                        $oUtilisateurSession->chargerCompteParId();
-                    }
-                    else{
-                        //Rediriger au login
-                        header("location:".WEB_ROOT);
-                    }
-                    
                     //Professeur
                     if($oUtilisateurSession->getRole() == 3){?>
                 
@@ -80,10 +82,10 @@
                         <!--------------------->
                 
                         <li class="nav-title">
-                            Professeurs
+                            Professeur
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-tuteurs">
                                 <i class="fa fa-fw fa-edit"></i>Gérer les tuteurs</a>
                         </li>
                         <li>
@@ -104,10 +106,10 @@
                         <!---------------------->
                 
                         <li class="nav-title">
-                            Responsables
+                            Responsable
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-profs">
                                 <i class="fa fa-fw fa-edit"></i>Gérer les professeurs</a>
                         </li>
                         <li>
@@ -131,7 +133,7 @@
                             Super admin
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-commissions">
                                 <i class="fa fa-fw fa-edit"></i>Gérer les commissions</a>
                         </li>
                         <li>

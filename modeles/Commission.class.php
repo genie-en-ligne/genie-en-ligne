@@ -85,12 +85,33 @@
             
             $aFinal = array();
             
-            foreach($aResultats as $rangee){
-               
+            foreach($aResultats as $rangee){               
                 $aFinal[] = new Commission($rangee['commission_ID'], $rangee['nom'], $rangee['region'], $rangee['responsable']);
             }
             
             return $aFinal;
+        }
+
+        public function rechercherListeEcoles(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM ecoles WHERE commission_ID = '$this->iId'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+            
+            $aFinal = array();
+            
+            foreach($aResultats as $rangee){               
+                $aFinal[] = new Ecole($rangee['ecole_ID'], $rangee['nom'], $rangee['commission_ID']);
+            }
+            
+            return $aFinal;
+        }
+
+        public function getNomRegion(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT nom FROM regions WHERE region_ID = '$this->iRegion'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['nom'];
         }
         
         //TODO: Ajouter méthodes au besoin
