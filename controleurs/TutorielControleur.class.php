@@ -92,8 +92,10 @@
 
             try{
                 if(isset($_POST['subModifierVideo'])){
-                    print_r($_POST);
-                    $oTutoriel = new Tutoriel($this->getReqId(), $_POST['txtTitre'], date("Y-m-d"), "0000-00-00", $this->oUtilisateurSession->getId(), 0, 0, 1, $_POST['sltMatiere'], $_POST['sltNiveau'], 0, $_POST['sltEcole'], $_POST['txtUrl']);
+                    $oAncienTuto = new Tutoriel($this->getReqId());
+                    $oAncienTuto->chargerTutoriel();
+
+                    $oTutoriel = new Tutoriel($this->getReqId(), $_POST['txtTitre'], date("Y-m-d"), "0000-00-00", $this->oUtilisateurSession->getId(), $oAncienTuto->getApprouvePar(), $oAncienTuto->getStatut(), 1, $_POST['sltMatiere'], $_POST['sltNiveau'], 0, $_POST['sltEcole'], $_POST['txtUrl']);
                     $oTutoriel->modifierTuto();
                     if($this->oUtilisateurSession->getRole() == 2){
                         header('location:'.WEB_ROOT.'/tutoriel/gerer');
@@ -129,7 +131,10 @@
 
             try{
                 if(isset($_POST['subModifierTexte'])){
-                    $oTutoriel = new Tutoriel($this->getReqId(), $_POST['txtTitre'], date("Y-m-d"), "0000-00-00", $this->oUtilisateurSession->getId(), 0, 0, 2, $_POST['sltMatiere'], $_POST['sltNiveau'], 0, $_POST['sltEcole'], $_POST['txtContenu']);
+                    $oAncienTuto = new Tutoriel($this->getReqId());
+                    $oAncienTuto->chargerTutoriel();
+
+                    $oTutoriel = new Tutoriel($this->getReqId(), $_POST['txtTitre'], date("Y-m-d"), "0000-00-00", $this->oUtilisateurSession->getId(), $oAncienTuto->getApprouvePar(), $oAncienTuto->getStatut(), 2, $_POST['sltMatiere'], $_POST['sltNiveau'], 0, $_POST['sltEcole'], $_POST['txtContenu']);
                     $oTutoriel->modifierTuto();
                     if($this->oUtilisateurSession->getRole() == 2){
                         header('location:'.WEB_ROOT.'/tutoriel/gerer');

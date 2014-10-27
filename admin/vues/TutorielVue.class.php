@@ -6,7 +6,7 @@ class TutorielVue extends Vue {
             <div class="col-lg-12">
                 <div class="page-header">
                     <h1>
-                        Gérer vos tutoriels
+                        Gérer les tutoriels de votre commission scolaire
                     </h1>
                 </div>
             </div>
@@ -15,6 +15,7 @@ class TutorielVue extends Vue {
             <div class="col-lg-12">
                 <table id="tabRechercherTuto" class="table table-striped text-center">
                     <tr>
+                        <th class="text-center">Auteur</th>
                         <th class="text-center">Titre</th>
                         <th class="text-center">Type</th>
                         <th class="text-center">Date crée</th>
@@ -25,7 +26,10 @@ class TutorielVue extends Vue {
                     </tr>
                     <?php
                         foreach($this->aListeTutos as $oTutoriel){
+                            $oUtilisateur = new Utilisateur($oTutoriel->getSoumisPar());
+                            $oUtilisateur->chargerCompteParId();
                             echo '<tr>';
+                                echo '<td id="txtTitre">'.$oUtilisateur->getPrenom().' '.$oUtilisateur->getNom().'</td>';
                                 echo '<td id="txtTitre">'.$oTutoriel->getTitre().'</td>';
                                 echo '<td id="txtType">'.$oTutoriel->getSorteTuto().'</td>';
                                 echo '<td id="txtDateCree">'.$oTutoriel->getDateSoumis().'</td>';
@@ -270,7 +274,7 @@ class TutorielVue extends Vue {
                     </div>
                     <div class="form-group">
                         <label><br/>Lien de video</label>
-                        <input type="text" name="txtUrl" class="form-control" value="<?php echo $this->oTutoriel->getContenu();?>">
+                        <input type="text" name="txtUrl" class="form-control" value="<?php echo htmlentities($this->oTutoriel->getContenu());?>">
                         <p class="form-control-static">Le lien du vidéo doit etre un lien "embed" YouTube complet.</p>
                     </div>
                     <div class="form-group text-right">

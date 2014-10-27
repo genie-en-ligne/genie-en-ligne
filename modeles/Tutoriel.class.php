@@ -333,10 +333,7 @@
             WHERE
                 contenu_ID = '{$this->iContenu_Id}'";
 
-            echo $sRequete;
-
             $oResult = $oConnexion->executer($sRequete);
-            $this->setContenuId($oConnexion->getInsertId());
 
             if($this->iTypeContenu == '2'){//texte
                 $sRequete = "
@@ -354,13 +351,14 @@
             WHERE
                 contenu_ID = '{$this->iContenu_Id}'
                 ";
+
                 $oResult = $oConnexion->executer($sRequete);
             }      
                         
             return true;            
         }      
         
-        public function modifierTutoVideo(){
+        /*public function modifierTutoVideo(){
 
             //Connexion à la base de données
              $oConnexion = new MySqliLib();
@@ -401,7 +399,7 @@
             }      
                         
             return true;            
-        }        
+        }*/        
 
         public function approuverTuto(){
             //Connexion à la base de données
