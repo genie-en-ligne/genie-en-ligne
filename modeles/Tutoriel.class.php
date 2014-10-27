@@ -204,7 +204,7 @@
             //Réaliser la requête de recherche par le idEtudiant
             $sRequete="
              SELECT 
-                * 
+                *, DATE(date_soumis) as date_soumis, DATE(date_approuve) as date_approuve 
             FROM 
                 contenu 
              WHERE 
@@ -344,6 +344,79 @@
             ";
             echo $sRequete;
             $oResult = $oConnexion->executer($sRequete);
+        }
+
+        public function chargerTutoriel(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT *, DATE(date_soumis) as date_soumis, DATE(date_approuve) as date_approuve FROM contenu WHERE contenu_ID = '{$this->getContenuId()}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            $this->setTitre($aResultats[0]['titre']);
+            $this->setDateSoumis($aResultats[0]['date_soumis']);
+            $this->setDateApprouve($aResultats[0]['date_approuve']);
+            $this->setSoumisPar($aResultats[0]['soumis_par']);
+            $this->setApprouvePar($aResultats[0]['approuve_par']);
+            $this->setStatut($aResultats[0]['approuve']);
+            $this->setType($aResultats[0]['type_contenu']);
+            $this->setMatiereId($aResultats[0]['matiere_ID']);
+            $this->setNiveauScolaire($aResultats[0]['niveau_scolaire_ID']);
+            $this->setEstDetruit($aResultats[0]['est_detruit']);
+            $this->setEcoleId($aResultats[0]['ecole_ID']);
+
+            if($this->getType() == '1'){
+                $oResultat = $oConnexion->executer("SELECT * FROM contenu_tutoriel_video WHERE contenu_ID = '{$this->getContenuId()}'");
+                $aResultats = $oConnexion->recupererTableau($oResultat);
+
+                $this->setContenu($aResultats[0]['url']);
+            }
+            elseif($this->getType() == '2'){
+                $oResultat = $oConnexion->executer("SELECT * FROM contenu_tutoriel_texte WHERE contenu_ID = '{$this->getContenuId()}'");
+                $aResultats = $oConnexion->recupererTableau($oResultat);
+
+                $this->setContenu($aResultats[0]['contenu_html']);
+            }
+        }
+
+        public function getSorteTuto(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT nom FROM type_contenu WHERE type_contenu_ID = '{$this->iTypeContenu}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['nom'];
+        }
+
+        public function getSorteMatiere(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT nom FROM matieres WHERE matiere_ID = '{$this->iMatiereId}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['nom'];
+        }
+
+        public function getTypeApprouver(){
+             if($this->getStatut() == '1'){
+               $oResultat="Approuvé";
+            }
+            else{
+                $oResultat="non approuver";
+            }
+           echo $oResultat;
+        }
+
+         public function getNomTuteur(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT nom FROM utilisateurs WHERE utilisateur_ID = '{$this->iSoumisPar}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['nom'];
+        }
+
+         public function getPrenomTuteur(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT prenom FROM utilisateurs WHERE utilisateur_ID = '{$this->iSoumisPar}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['prenom'];
         }
         
         private function getSqlMatiere(){
