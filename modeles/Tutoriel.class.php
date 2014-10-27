@@ -418,6 +418,14 @@
 
             return $aResultats[0]['prenom'];
         }
+
+         public function getlienVideo(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT url FROM contenu_tutoriel_video WHERE contenu_ID = '{$this->iContenu_Id}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['url'];
+        }
         
         private function getSqlMatiere(){
             $res = '';

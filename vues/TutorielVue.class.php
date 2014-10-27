@@ -63,21 +63,41 @@ class TutorielVue extends Vue {
     //////////////////////////////////////////
     
     public function afficheLeVideo(){
-        //Sans bouton approuver
+        //un vidéo a la fois
 ?>
+        <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h3><?php echo $this->oTutoriel->getTitre();?></h3>
+                    <div>
+                        <?php echo $this->oTutoriel->getlienVideo();?>
+                    </div>                            
+                </div>
+            </div>
 
-
-
-
-
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                <p class="auteurDate"><?php echo $this->oTutoriel->getPrenomTuteur();?> <?php echo $this->oTutoriel->getNomTuteur();?>, <?php echo $this->oTutoriel->getDateSoumis();?></p>
+                    
+                </div>
+            </div>
  <?php
     }
 
+    public function afficheLeTexte(){
+        //un vidéo a la fois
+?>
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h3><?php echo $this->oTutoriel->getTitre();?></h3>
+                <p class="auteurDate"><?php echo $this->oTutoriel->getPrenomTuteur();?> <?php echo $this->oTutoriel->getNomTuteur();?>, <?php echo $this->oTutoriel->getDateSoumis();?></p>
+                 <div text-center>
+                    <p><?php echo $this->oTutoriel->getContenu();?></p>
+                </div>                          
+            </div>
+        </div>
 
-
-
-
-
+ <?php
+    }
 
 
     ///////////////////////////////////
