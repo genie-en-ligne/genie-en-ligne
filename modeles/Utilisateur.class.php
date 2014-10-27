@@ -12,7 +12,7 @@
         public function __construct($iId = 0, $sPseudo = " ", $sMot_de_passe = " ", $sNom = " ", $sPrenom = " ", $sCourriel= " ", $iRole = 0) {
             $this->setId($iId);
             $this->setPseudo($sPseudo);
-            $this->setMDP(sha1($sMot_de_passe));
+            $this->setMDP($sMot_de_passe);
             $this->setNom($sNom);
             $this->setPrenom($sPrenom);
             $this->setCourriel($sCourriel);
@@ -113,6 +113,7 @@
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("INSERT INTO utilisateurs (`pseudo`, `mot_de_passe`, `nom`, `prenom`, `courriel`, `role`) VALUES ('{$this->sPseudo}', '{$this->sMot_de_passe}', '{$this->sNom}', '{$this->sPrenom}', '{$this->sCourriel}', '{$this->iRole}')");
             $this->setId($oConnexion->getInsertId());
+            return true;
         }
 
         //Appeler au clique sur l'icône supprimer des pages admin professeur (tuteurs), responsable (professeurs), superadmin (responsables)
@@ -145,16 +146,16 @@
             $oResultat = $oConnexion->executer("SELECT * FROM codes_permanents WHERE `code_permanent` = '$this->sCode_permanent' ");
             $aResultat = $oConnexion->recupererTableau($oResultat);
             $botte = strtoupper(substr($aResultat[0]['code_permanent'], 0, 3));
-            $aiguille = strtoupper(substr($this->sNom, 0, 3));
+            $aiguille = strtoupper(substr(preg_replace('/[^a-zA-Z]/', '', $this->sNom), 0, 3));
 
-            if($aResultat[0]['code_permanent'] && $aResultat[0]['code_permanent'] == 0) {
+            if(isset($aResultat[0]['code_permanent']) && $aResultat[0]['deja_utilise'] == 0) {
                 if($botte == $aiguille) {
-                    $oResultat = $oConnexion->executer("UPDATE codes_permanents SET `deja_utilise` = 1");
-                    return $aResultat[0]['code_permanent'] . " est valide!";
-                } else { 
-                    return $aResultat[0]['code_permanent'] . " est invalide!";
+                    $oResultat = $oConnexion->executer("UPDATE codes_permanents SET `deja_utilise` = 1 WHERE code_permanent = '{$this->sCode_permanent}'");
+                    return true;
                 }
+                return false;
             }
+            return false;
         }
 
         public function recupererMDP() {
@@ -162,6 +163,13 @@
             $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE `utilisateur_ID` = '{$this->iId}'");
             $aResultat = $oConnexion->recupererTableau($oResultat);
             return $aResultat[0];
+        }
+
+        public function changerMDP(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("UPDATE utilisateurs SET mot_de_passe = '{$this->sMot_de_passe}' WHERE utilisateur_ID = '$this->iId'");
+
+            return $oConnexion->getConnect()->affected_rows;
         }
 
         public function setId($iId) {
@@ -182,7 +190,7 @@
             TypeException::estVide($sMot_de_passe);
             TypeException::estString($sMot_de_passe);
 
-            $this->sMot_de_passe = $sMot_de_passe;
+            $this->sMot_de_passe = sha1($sMot_de_passe);
         }
 
         public function setNom($sNom) {

@@ -7,7 +7,7 @@
             $this->oUtilisateurSession = $oUtilisateurSession;
         }
         
-        public function gerer(){
+        public function gerer(){            
             switch($this->getReqAction()){                
 
                 case 'accueil':
@@ -16,14 +16,27 @@
                 case 'bienvenue':
                     $this -> bienvenue();
                     break;
+                case 'pre-inscription':
+                    $this -> preInscription();
+                    break;
+                case 'inscription':
+                    $this -> inscription();
+                    break;
+                case 'creer-login':
+                    //TODO: Activer
+                    $this -> creerLogin();
+                    break;
+                case 'envoyer-message':
+                    $this -> envoyerMessage();
+                    break;
+                case 'recuperer-mdp':
+                    $this -> recupererMdp();
+                    break;
                 case 'logout':
                     $this -> logout();
                     break;
-                case 'profil':
-                    $this -> profil();
-                    break;
-                case 'modifierProfil':
-                    $this -> modifierProfil();
+                case 'modifier-mdp':
+                    $this -> changerMDP();
                     break;
 
                 //TODO: Ajouter des cas au besoin
@@ -41,32 +54,38 @@
 		private function accueil() {            
 			$oVue = new UtilisateurVue();
             
-            //Si login soumis, gestion du login
-            if(isset($_POST['subLogin'])){
-                $sPseudo = $_POST['txtPseudo'];
-                $sPass = $_POST['pwdPass'];
-                
-                $oUtilisateur = new Utilisateur(0, $sPseudo, $sPass);
-                if($oUtilisateur->validerInfosConnexion()){
-                    $_SESSION['user_id'] = $oUtilisateur->getId();
+            try{
+                //Si login soumis, gestion du login
+                if(isset($_POST['subLogin'])){
+                    $sPseudo = $_POST['txtPseudo'];
+                    $sPass = $_POST['pwdPass'];
                     
-                    $oUtilisateur->ajouterActiviteLogin('login');
-                    
-                    if($oUtilisateur->getRole() < 3){
-                        header("location:".WEB_ROOT."/utilisateur/bienvenue");
+                    $oUtilisateur = new Utilisateur(0, $sPseudo, $sPass);
+                    if($oUtilisateur->validerInfosConnexion()){
+                        $_SESSION['user_id'] = $oUtilisateur->getId();
+                        
+                        $oUtilisateur->ajouterActiviteLogin('login');
+                        
+                        if($oUtilisateur->getRole() < 3){
+                            header("location:".WEB_ROOT."/utilisateur/bienvenue");
+                        }
+                        else{
+                            header("location:".WEB_ROOT."/admin/utilisateur/bienvenue");
+                        }
                     }
                     else{
-                        header("location:".WEB_ROOT."/admin/utilisateur/bienvenue");
+                        $oVue -> setMessage(array("On ne retrouve pas ce compte", "danger"));
+                        $oVue -> afficheAccueil();
                     }
                 }
+                //Si rien soumis, afficher l'accueil
                 else{
-                    $oVue -> setMessage(array("On ne retrouve pas ce compte", "danger"));
                     $oVue -> afficheAccueil();
                 }
             }
-            //Si rien soumis, afficher l'accueil
-            else{
-                $oVue -> afficheAccueil();
+            catch(Exception $e){
+                $oVue->setMessage(array($e->getMessage(), "danger"));
+                $oVue->afficheAccueil();
             }
 		}
         
@@ -76,6 +95,91 @@
             $oVue->oUtilisateurSession = $this->oUtilisateurSession;
             
             $oVue -> afficheBienvenue();
+        }
+        
+        private function preInscription(){
+            $oVue = new UtilisateurVue();
+            try{
+                if(isset($_POST['subPreInscription'])){
+                    if(isset($_POST['txtNom']) && isset($_POST['txtCodePerm'])){
+                        $oUtilisateur = new Utilisateur();
+                        $oUtilisateur -> setCodePermanent($_POST['txtCodePerm']);
+                        $oUtilisateur -> setNom($_POST['txtNom']);
+                        if($oUtilisateur->pub_validerCodePermanent()){
+                            header("location:".WEB_ROOT."/utilisateur/inscription/".$_POST['txtCodePerm']);
+                        }
+                        else{
+                            $oVue -> setMessage(array("Le code permanent est invalide ou le nom ne correspond pas", "danger"));
+                        }
+                    }
+                    else{
+                        $oVue -> setMessage(array("Veuillez saisir les deux champs", "danger"));
+                    }
+                }
+                $oVue -> affichePreInscription();
+            }
+            catch(Exception $e){
+                $oVue -> setMessage(array($e->getMessage(), "danger"));
+                $oVue -> affichePreInscription();
+            }
+        }
+
+        private function inscription(){
+            $oVue = new UtilisateurVue();
+            try{
+                if(isset($_POST['subInscription'])){
+                    $oUtilisateur = new Utilisateur(0, $_POST['txtPseudo'], $_POST['pwdMdp1'], $_POST['txtNom'], $_POST['txtPrenom'], $_POST['txtCourriel'], 1);
+                    if(!$oUtilisateur->deuxMotsDePasseIdentiques($_POST['pwdMdp1'], $_POST['pwdMdp2'])){
+                        $oVue -> setMessage(array("Les deux mots de passe ne correspondent pas", "danger"));
+                    }
+                    elseif(!$oUtilisateur->motDePasseAssezComplexe($_POST['pwdMdp1'])){
+                        $oVue -> setMessage(array("Le mot de passe n'est pas assez complexe", "danger"));
+                    }
+                    elseif(!$oUtilisateur->estDisponiblePseudo()){
+                        $oVue -> setMessage(array("Le pseudo n'est pas disponible", "danger"));
+                    }
+                    else{
+                        $oUtilisateur->ajouterUtilisateur();
+                        $_SESSION['user_id'] = $oUtilisateur->getId();
+                        header("location:".WEB_ROOT.'/utilisateur/bienvenue');
+                    }
+                }
+                $oVue -> afficheInscription();
+            }
+            catch(Exception $e){
+                $oVue -> setMessage(array($e->getMessage(), "danger"));
+                $oVue -> afficheInscription();
+            }
+        }
+
+        private function envoyerMessage(){
+            $oVue = new UtilisateurVue();
+
+            if(isset($_POST['subMessage'])){
+                if($_POST['emlCourriel'] != "" && $_POST['txtMessage'] != ""){
+                    $oVue->setMessage(array("Votre message a été envoyé aux responsables du site.", "info"));
+                }
+                else{
+                    $oVue->setMessage(array("Veuillez saisir toutes les informations.", "danger"));
+                }
+            }
+
+            $oVue->afficheEnvoyerMessage();
+        }
+
+        private function recupererMdp(){
+            $oVue = new UtilisateurVue();
+
+            if(isset($_POST['subRecupererMdp'])){
+                if($_POST['emlCourriel'] != ""){
+                    $oVue->setMessage(array("Un courriel vous a été envoyé pour réinitialiser votre mot de passe", "info"));
+                }
+                else{
+                    $oVue->setMessage(array("Veuillez saisir toutes les informations.", "danger"));
+                }
+            }
+
+            $oVue->afficheRecupererMDP();
         }
         
         private function logout(){
@@ -88,25 +192,30 @@
             header("location:".WEB_ROOT);
         }
         
-        private function profil(){
+        private function changerMDP(){
             $oVue = new UtilisateurVue();
             
-            //TODO: Aller chercher les informations relatives au compte utilisateur (exemple mot de passe)
-            
-			$oVue -> afficheProfil();
-        }
-        
-        private function modifierProfil(){
-            $oVue = new UtilisateurVue();
-            
-            //TODO: Modifier les infos dans la DB
-                //Si ok
-                    $oVue -> setMessage("Les infos ont été enregistrées", "success");
-                //Sinon
-                    $oVue -> setMessage("Échec", "danger");
-            
-			$oVue -> afficheProfil();
-        }        
+            try{
+                if(isset($_POST['subProfil'])){
+                    if(!$this->oUtilisateurSession->deuxMotsDePasseIdentiques($_POST['pwdMdp1'], $_POST['pwdMdp2'])){
+                        $oVue -> setMessage(array("Les deux mots de passe ne correspondent pas", "danger"));
+                    }
+                    elseif(!$this->oUtilisateurSession->motDePasseAssezComplexe($_POST['pwdMdp1'])){
+                        $oVue -> setMessage(array("Le mot de passe n'est pas assez complexe", "danger"));
+                    }
+                    else{
+                        $this->oUtilisateurSession->setMDP($_POST['pwdMdp1']);
+                        $this->oUtilisateurSession->changerMDP();
+                        $oVue -> setMessage(array("Votre mot de passe a été changé", "info"));
+                    }
+                }
+                $oVue->afficheProfil();
+            }
+            catch(Exception $e){
+                $oVue->setMessage(array($e->getMessage(), "danger"));
+                $oVue->afficheProfil();
+            }
+        }       
        
 		//TODO:  Placer les autres méthodes du controleur ici.
     }

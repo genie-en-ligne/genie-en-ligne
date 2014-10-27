@@ -31,7 +31,7 @@
 
     define('SQL_HOST', 'localhost');
     define('SQL_USER', 'root');
-    define('SQL_PWD',  'rocketxl5');
+    define('SQL_PWD',  '');
     define('SQL_BDD',  'genie_en_ligne');
 	
 ?>

@@ -50,7 +50,12 @@
                                 <nav class="navbar navbar-default" role="navigation">
                                     <ul class="nav navbar-nav navbar-right">
                                         <li>
-                                            <a href="#" id="inscriptionEntete">
+                                            <a href="<?php echo WEB_ROOT;?>">
+                                                Accueil
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo WEB_ROOT;?>/utilisateur/pre-inscription/" id="inscriptionEntete">
                                                 Inscrivez-vous!
                                             </a>
                                         </li>
@@ -100,7 +105,7 @@
                                                 </li>
                                             </ul>
                                         </li><!-- .dropdown -->
-
+                                        <!--
                                         <li class="dropdown">
                                             <a id="nav-messagerie" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
                                                 Messagerie
@@ -133,7 +138,7 @@
                                                     </a>
                                                 </li>
                                                 <li role="presentation">
-                                                    <a href="#">
+                                                    <a href="<?php echo WEB_ROOT;?>/utilisateur/modifier-mdp">
                                                         Changer mot de passe
                                                     </a>
                                                 </li>
@@ -198,7 +203,7 @@
                                                 </li>
                                             </ul>
                                         </li><!-- .dropdown -->
-
+                                        <!--
                                         <li class="dropdown">
                                             <a id="nav-messagerie" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
                                                 Messagerie
@@ -226,7 +231,7 @@
                                                     </a>
                                                 </li>
                                                 <li role="presentation">
-                                                    <a href="#">
+                                                    <a href="<?php echo WEB_ROOT;?>/utilisateur/modifier-mdp">
                                                         Changer mot de passe
                                                     </a>
                                                 </li>
@@ -270,8 +275,8 @@
                             Génie en ligne &copy;2014
                         </p>
                         <p class="navbar-text navbar-right">
-                            <a href="#" class="navbar-link">
-                                Politiques d'utilisation
+                            <a href="<?php echo WEB_ROOT;?>/utilisateur/envoyer-message" class="navbar-link">
+                                Contact
                             </a>
                         </p>
                     </div>
