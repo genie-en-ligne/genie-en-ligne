@@ -80,13 +80,11 @@
         public function rechercherListeCommissions(){
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("SELECT * FROM commissions");
-            //insertion des résultats de la requête dans un array
             $aResultats = $oConnexion->recupererTableau($oResultat);
             
             $aFinal = array();
             
             foreach($aResultats as $rangee){
-               
                 $aFinal[] = new Commission($rangee['commission_ID'], $rangee['nom'], $rangee['region'], $rangee['responsable']);
             }
             
