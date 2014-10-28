@@ -178,7 +178,7 @@ class UtilisateurVue extends Vue {
                             </p>
                             <p>
                                 Les tuteurs de votre commission scolaire sont tous occupés ? Il y en a surement un ailleurs qui pourra répondre à vos questions. 
-                                En décentralisant les centres de services, Génie en ligne permet de tisser un sur mesure pour 
+                                En décentralisant les points de services, Génie en ligne permet d'étendre son réseau pour le bénéfice de tous
                                 les étudiants du secondaire. 
                             </p>
                         </div>

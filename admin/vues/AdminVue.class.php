@@ -1163,7 +1163,20 @@ class AdminVue extends Vue {
                     <div class="form-group"></div>
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-6 text-right">
-                             <a href="#" class="btn btn-danger" role="button">
+                            <?php
+                                switch($this->oUtilisateur->getRole()){
+                                    case '2':
+                                        $back = 'gerer-tuteurs';
+                                        break;
+                                    case '3':
+                                        $back = 'gerer-profs';
+                                        break;
+                                    case '4':
+                                        $back = 'gerer-responsables';
+                                        break;
+                                }
+                            ?>
+                             <a href="<?php echo WEB_ROOT.'/admin/utilisateur/'.$back;?>" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
                             <button type="submit" name="subSupprimer" id="subValiderSupprimerProf" class="btn btn-success col-sm-offset-1">
