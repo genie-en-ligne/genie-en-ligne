@@ -379,14 +379,14 @@ class UtilisateurVue extends Vue {
                 </h1>
 
                 <h3 class="col-sm-offset-3 col-sm-12 bold"><strong>Votre compte est maintenant actif.</strong></h3>
-            <div class="col-sm-offset-4 col-sm-12 page-header">       
+            <div class="col-sm-offset-2 col-sm-12 page-header">       
             </div>
             <div class="col-sm-12 col-sm-offset-1">
                 <div class="form-group"></div>
                 <div class="form-group"></div>
                 <div class="form-group">
-                <div class="col-sm-offset-5 col-sm-12">
-                    <a href="#" class="btn btn-default btn-lg" title="Genie en ligne">
+                <div class="col-sm-offset-1 col-sm-12">
+                    <a href="#" class="btn btn-default btn-lg col-sm-offset-4" title="Genie en ligne">
                        Génie en ligne
                     </a>
                 </div>

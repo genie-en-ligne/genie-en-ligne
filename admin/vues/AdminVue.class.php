@@ -45,10 +45,10 @@ class AdminVue extends Vue {
                                 <select id="sltRechercherRespCommission" class="form-control" name="commission"> 
                                        <?php
                                             //pour chaque élément/objet du tableau
+
                                             foreach ($this->aListeCommissions as $oCommission) {
                                                 //ajouter une balise option et afficher la valeur des propriéts de l'objet
                                                 echo '<option value="'.$oCommission->getId().'">' . $oCommission->getNom() . '</option>';
-                                               
                                             }
                                        ?>                         
                                 </select>
@@ -90,7 +90,7 @@ class AdminVue extends Vue {
                             </tr>
                             <?php
                                 foreach($this->aListeUtilisateurs as $oUtilisateur){
-                                    //Tu devras utiliser des vrais utilisateurs qui ont une vraie commission d'assignée pour que ça marche
+                                  
                                     $oCommission = new Commission();
                                     $oCommission->setResponsable($oUtilisateur->getId());
                                     $oCommission->chargerCommissionParResponsable();
@@ -802,7 +802,7 @@ class AdminVue extends Vue {
                      <div class="form-group">
                         <label for="txtModifMdpResp" class="col-sm-4 control-label">Mot de passe :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtModifMdpResp" class="form-control" name="mdp" placeholder="Mot de passe">
+                            <input type="password" id="txtModifMdpResp" class="form-control" name="mdp" placeholder="Mot de passe">
                         </div>
                     </div>
                     <div class="form-group">
