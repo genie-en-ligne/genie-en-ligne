@@ -17,7 +17,7 @@ class AdminVue extends Vue {
     /*==========DROITS SUPERADMIN==========*/
     /*=====================================*/
 
-     public function afficheListeResponsables(){?>
+    /*public function afficheListeResponsables(){?>
 
         <div id="message">
             <?php 
@@ -121,11 +121,10 @@ class AdminVue extends Vue {
                 <span class="glyphicon glyphicon-plus"></span> Ajouter</button>
             </div>
         </div> <!-- .contenu -->
-    
     <?php
-    }
+    }*/
 
-    public function afficheAjouterResponsable(){?>
+    /*public function afficheAjouterResponsable(){?>
           
         <div id="message">
             <?php 
@@ -196,11 +195,10 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
-
     <?php
-    }
+    }*/
 
-     public function afficheModifierResponsables(){?>
+    /*public function afficheModifierResponsables(){?>
         
         <div id="message">
             <?php 
@@ -299,9 +297,19 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
-
-        
     <?php
+    }*/
+
+    public function afficheModifierCommission(){
+
+    }
+
+    public function afficheCreerCommission(){
+
+    }
+
+    public function afficheSupprimerCommission(){
+
     }
 
     public function afficheListeCommissions(){?>
@@ -315,82 +323,59 @@ class AdminVue extends Vue {
             ?>
         </div>
                     
-        <div class="col-sm-10 ">
-            <div class="page-header">
-                <div class="navbar navbar-default">
-                    <h2 class="navbar-text">Rechercher une commission scolaire</h2>
-                </div>
+        <div class="page-header">
+            <div class="navbar navbar-default">
+                <h2 class="navbar-text">Gérer les commissions scolaires</h2>
             </div>
-        </div>
-         <div class="col-sm-11 col-sm-offset-1">
-            <form id="frmChercherCommission" method="GET" action="" enctype="" class="form-horizontal" role="form">
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-sm-5 col-sm-offset-2">
-                            <label for="sltRechercherRespCommission" class="col-sm-5 control-label">Commisions scolaires :</label>
-                            <div class="col-sm-7 col-md-7">
-                                <select id="sltRechercherRespCommission" class="form-control" name="commission">
-                                    <option value="">Toutes</option> 
-                                </select>
-                            </div>
-                        </div>
-                    </div> <!-- .form-group -->
-                </div>  <!-- .row --> 
-                <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                    <button type="submit" id="subChercherCom" class="btn btn-success pull-right">
-                    <span class="glyphicon glyphicon-search"></span> Rechercher</button>
-                </div> 
-                <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                </div>        
-            </form> 
-        </div>   
+        </div> 
 
-            <div class="contenu">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="page-header">
-                        <div class="">
-                            
-                        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-header">
+                    <div class="">
+                        
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <table id="tabRechercherCom" class="table table-striped text-center">
-                        <tr>
-                            <th class="text-center">MRC</th>
-                            <th class="text-center">Nom</th>
-                            <th class="text-center">Écoles</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                        <tr>
-                            <td id="txtTabComMrc"></td>
-                            <td id="txtTabComNom"></td>
-                            <td id="txtTabComEcole"></td> <!-- Si plus d'une afficher valeurs multiples -->
-                            <td class="">
-                                <!-- echo '<a href="'.WEB_ROOT.'/admin/modifierUtilisateur/'.$oUtilisateur->getId().'" class="btn btn-primary btn-xs">';
-                                    echo '<span title="Modifier" class="glyphicon glyphicon-pencil"></span>';
-                                echo '</a>';
-                                echo '<a href="'.WEB_ROOT.'/admin/supprimerUtilisateur/'.$oUtilisateur->getId().'" class="btn btn-danger btn-xs col-sm-offset-1">';
-                                    echo '<span title="Supprimer" class="glyphicon glyphicon-remove"></span>';
-                                echo '</a>'; -->
-                               <a href="" class="btn btn-primary btn-xs" title="Modifier">
-                                    <span title="Modifier" class="glyphicon glyphicon-pencil col-sm-offset-1"></span>
-                                </a>
-                                <a href="" class="btn btn-danger btn-xs" title="Supprimer">
-                                    <span title="Supprimer" class="glyphicon glyphicon-remove col-sm-offset-1"></span>
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
-                </div> <!-- .col-lg-12 -->
-            </div> <!-- .row -->
-            <div class="col-sm-10 col-sm-offset-10">
-                <button type="button" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
-                <span class="glyphicon glyphicon-plus"></span> Ajouter</button>
-            </div>
-        </div> <!-- .contenu -->
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table id="tabRechercherCom" class="table table-striped text-center">
+                    <tr>
+                        <th class="text-center">MRC</th>
+                        <th class="text-center">Nom</th>
+                        <th class="text-center">Écoles</th>
+                        <th class="text-center">Responsable</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                    <?php
+                        foreach ($this->aListeCommissions as $oCommission) {
+                            $oUtilisateur = new Utilisateur($oCommission->getResponsable());
+                            $oUtilisateur->chargerCompteParId();
+
+                            echo '<tr>';
+                                echo '<td>'.$oCommission->getNomRegion().'</td>';
+                                echo '<td>'.$oCommission->getNom().'</td>';
+                                echo '<td>'.count($oCommission->rechercherListeEcoles()).'</td>';
+                                echo '<td>'.$oUtilisateur->getPrenom().' '.$oUtilisateur->getNom().'</td>';
+                                echo '<td>
+                                        <a href="" class="btn btn-primary btn-xs" title="Modifier">
+                                            <span title="Modifier" class="glyphicon glyphicon-pencil col-sm-offset-1"></span>
+                                        </a>
+                                        <a href="" class="btn btn-danger btn-xs" title="Supprimer">
+                                            <span title="Supprimer" class="glyphicon glyphicon-remove col-sm-offset-1"></span>
+                                        </a>
+                                    </td>';
+                            echo '</tr>';
+                        }
+                    ?>
+                </table>
+            </div> <!-- .col-lg-12 -->
+        </div> <!-- .row -->
+        <div class="col-sm-10 col-sm-offset-10">
+            <button type="button" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
+            <span class="glyphicon glyphicon-plus"></span> Ajouter</button>
+        </div>
     <?php
     }
 
@@ -523,101 +508,115 @@ class AdminVue extends Vue {
                 }
             ?>
         </div>
-                    
-        <div class="col-lg-12">
-            <div class="page-header">
-                <div class="navbar navbar-default">
-                    <h2 class="navbar-text">Rechercher un professeur</h2>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-12">
-            <form id="frmChercherProf" method="GET" action="" enctype="" class="form-horizontal" role="form">
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-md-4">
-                            <label for="txtRechercherProfCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
-                            <div class="col-sm-9 col-md-7">
-                                 <input type="email" id="txtRechercherProfCourriel" name="courriel" class="form-control" placeholder="Courriel" pattern="">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="txtRechercherProfNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
-                            <div class="col-sm-9 col-md-7">
-                                 <input type="text" id="txtRechercherProfNom" name="nom" class="form-control" placeholder="Nom" pattern="">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="sltRechercherProfEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
-                            <div class="col-sm-9 col-md-7">
-                                <select id="sltRechercherEcoleProf" class="form-control" name="ecole">
-                                    <option value="">Sélection</option> 
-                                </select>
-                            </div>
-                        </div>
-                    </div> <!-- .form-group -->
-                </div>  <!-- .row -->  
-                <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                    <button type="submit" id="subChercherProf" class="btn btn-success pull-right">
-                    <span class="glyphicon glyphicon-search"></span> Rechercher</button>
-                </div> 
-                <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                </div>        
-            </form> 
-        </div>   
-
-            <div class="contenu">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="page-header">
-                        <div class="">
-                            
-                        </div>
+        <div class="row">            
+            <div class="col-lg-12">
+                <div class="page-header">
+                    <div class="navbar navbar-default">
+                        <h2 class="navbar-text">Gérer les professeurs</h2>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <table id="tabRechercherProf" class="table table-striped text-center">
-                        <tr>
-                            <th class="text-center">Prénom</th>
-                            <th class="text-center">Nom</th>
-                            <th class="text-center">Courriel</th>
-                            <th class="text-center">Commission scolaire</th>
-                            <th class="text-center">École</th>
-                            <th class="text-center">Matière</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                        <tr>
-                            <td id="txtPrenomTabProf"></td>
-                            <td id="txtNomTabProf"></td>
-                            <td id="txtCourrielTabProf"></td>
-                            <td id="txtCommissionTabProf"></td>
-                            <td id="txtEcoleTabProf"></td> <!-- Si plus d'une afficher valeurs multiples -->
-                            <td id="txtMatiereTabProf"></td> <!-- Si plus d'une afficher valeurs multiples -->
-                            <td>
-                                <!-- echo '<a href="'.WEB_ROOT.'/admin/modifierUtilisateur/'.$oUtilisateur->getId().'" class="btn btn-primary btn-xs">';
-                                    echo '<span title="Modifier" class="glyphicon glyphicon-pencil"></span>';
-                                echo '</a>';
-                                echo '<a href="'.WEB_ROOT.'/admin/supprimerUtilisateur/'.$oUtilisateur->getId().'" class="btn btn-danger btn-xs col-sm-offset-1">';
-                                    echo '<span title="Supprimer" class="glyphicon glyphicon-remove"></span>';
-                                echo '</a>'; -->
-                               <a href="#" class="btn btn-primary btn-xs">
-                                    <span title="Modifier" class="glyphicon glyphicon-pencil"></span>
-                                </a>
-                                <a href="#" class="btn btn-danger btn-xs col-sm-offset-1">
-                                    <span title="Supprimer" class="glyphicon glyphicon-remove"></span>
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
-                </div> <!-- .col-lg-12 -->
-            </div> <!-- .row -->
-            <div class="col-sm-10 col-sm-offset-10">
-                <button type="button" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
-                <span class="glyphicon glyphicon-plus"></span> Ajouter</button>
+            <div class="col-lg-12">
+                <form id="frmChercherProf" method="GET" action="" enctype="" class="form-horizontal" role="form">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label for="txtRechercherTutCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
+                                <div class="col-sm-9 col-md-7">
+                                     <input type="email" id="txtRechercherTutCourriel" name="courriel" class="form-control" placeholder="Courriel" pattern="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="txtRechercherTutNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
+                                <div class="col-sm-9 col-md-7">
+                                     <input type="text" id="txtRechercherTutNom" name="nom" class="form-control" placeholder="Nom" pattern="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="sltRechercherTutEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
+                                <div class="col-sm-9 col-md-7">
+                                    <select id="sltRechercherTutEcole" class="form-control" name="ecole">
+                                        <option value="">Sélection</option> 
+                                    </select>
+                                </div>
+                            </div>
+                        </div> <!-- .form-group -->
+                    </div>  <!-- .row -->  
+                    <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
+                        <button type="submit" id="subChercherTuteur" class="btn btn-success pull-right">
+                        <span class="glyphicon glyphicon-search"></span> Rechercher</button>
+                    </div> 
+                    <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
+                    </div>        
+                </form> 
             </div>
-        </div> <!-- .contenu -->
+        </div>   
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-header">
+                    <div class="">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table id="tabRechercherTuteur" class="table table-striped text-center">
+                    <tr>
+                        <th class="text-center">Prénom</th>
+                        <th class="text-center">Nom</th>
+                        <th class="text-center">Courriel</th>
+                        <th class="text-center">Pseudo</th>
+                        <th class="text-center">Commission</th>
+                        <th class="text-center">École</th>
+                        <th class="text-center">Matière</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                    <?php
+                        foreach ($this->aListeProfs as $oUtilisateur) {
+                            if(count($oUtilisateur->getListeEcoles()) > 1){
+                                $ecole = 'Multiples';
+                            }
+                            else{
+                                $aEcoles = $oUtilisateur->getListeEcoles();
+                                $ecole = $aEcoles[0]->getNom();
+                            }
+                            if(count($oUtilisateur->getListeMatieres()) > 1){
+                                $matiere = 'Multiples';
+                            }
+                            else{
+                                $aMatieres = $oUtilisateur->getListeMatieres();
+                                $matiere = $aMatieres[0]->getNom();
+                            }
+
+                            echo '<tr>';
+                                echo '<td>'.$oUtilisateur->getPrenom().'</td>';
+                                echo '<td>'.$oUtilisateur->getNom().'</td>';
+                                echo '<td>'.$oUtilisateur->getCourriel().'</td>';
+                                echo '<td>'.$oUtilisateur->getPseudo().'</td>';
+                                echo '<td>'.$oUtilisateur->getNomCommission().'</td>';
+                                echo '<td>'.$ecole.'</td>';
+                                echo '<td>'.$matiere.'</td>';
+                                echo '<td>
+                                        <a href="'.WEB_ROOT.'/admin/utilisateur/modifier-prof/'.$oUtilisateur->getId().'" class="btn btn-primary btn-xs">
+                                            <span title="Modifier" class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                        <a href="'.WEB_ROOT.'/admin/utilisateur/supprimer/'.$oUtilisateur->getId().'" class="btn btn-danger btn-xs col-sm-offset-1">
+                                            <span title="Supprimer" class="glyphicon glyphicon-remove"></span>
+                                        </a>
+                                    </td>';
+                            echo '</tr>';
+                        }
+                    ?>
+                </table>
+            </div> <!-- .col-lg-12 -->
+        </div> <!-- .row -->
+        <div class="col-sm-10 col-sm-offset-10">
+            <a href="<?php echo WEB_ROOT.'/admin/utilisateur/ajouter-prof/';?>" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
+            <span class="glyphicon glyphicon-plus"></span> Ajouter</a>
+        </div>
     <?php
     }
     
@@ -635,8 +634,8 @@ class AdminVue extends Vue {
         <div class="col-sm-6 col-sm-offset-2">
             
             <div class="col-sm-offset-2 col-sm-9">
-                <div class="col-sm-offset-4  col-sm-8">
-                    <div class="navbar navbar-default text-center">
+                <div class="col-sm-offset-4 col-sm-7">
+                    <div class="navbar navbar-default col-sm-offset-1">
                         <h3 class="navbar-text">Ajouter un professeur</h3>
                     </div>
                 </div>
@@ -646,96 +645,57 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmAjoutProf" action="" method="POST" enctype="" class="form-horizontal" role="form">
+                <form id="frmAjoutProf" action="<?php echo WEB_ROOT;?>/admin/utilisateur/ajouter-prof" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label for="txtAjoutPrenomProf" class="col-sm-4 control-label">Prénom :</label>
+                        <label for="txtAjoutPrenomTut" class="col-sm-4 control-label">Prénom :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtAjoutPrenomProf" class="form-control" name="prenom" placeholder="Prenom">
+                            <input type="text" id="txtAjoutPrenomTut" class="form-control" name="txtPrenom" placeholder="Prenom">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtAjoutNomProf" class="col-sm-4 control-label">Nom  :</label>
+                        <label for="txtAjoutNomTut" class="col-sm-4 control-label">Nom  :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtAjoutNomProf" class="form-control" name="nom" placeholder="Nom">
+                            <input type="text" id="txtAjoutNomTut" class="form-control" name="txtNom" placeholder="Nom">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtAjoutCourrielProf" class="col-sm-4 control-label">Courriel :</label>
+                        <label for="txtAjoutCourrielTut" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="txtAjoutCourrielProf" class="form-control" name="courriel" placeholder="Courriel">
+                            <input type="email" id="txtAjoutCourrielTut" class="form-control" name="emlCourriel" placeholder="Courriel">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="sltAjouterEcole" class="col-sm-4 control-label">Écoles :</label>
+                        <label for="sltAjouterEcoleTut" class="col-sm-4 control-label">École :</label>
                         <div class="col-sm-6">
-                            <select multiple  id="sltAjouterEcole" class="form-control col-sm-6" name="ecoles">
-                                <option value=""></option>
+                            <select multiple id="sltAjouterEcoleTut" class="form-control col-sm-6" name="sltEcoles[]">
+                                <?php
+                                    foreach ($this->aListeEcoles as $oEcole) {
+                                        echo '<option value="'.$oEcole->getId().'">'.$oEcole->getNom().'</option>';
+                                    }
+                                ?>
                             </select>
                         </div>
                     </div>
                     <div id="chkAddDiv" class="form-group">
                         <label for="matieres" class="col-sm-4 control-label">Matières :</label>
                         <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutFran">
-                                <input type="checkbox" id="chkAjoutFran" name="ajoutMatières[]" value="francais">
-                                   Français
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutMath">
-                                <input type="checkbox" id="chkAjoutMath" name="ajoutMatières[]" value="mathematique">
-                                   Mathématique
-                                </label>
-                            </div>
-                        </div>
-                        <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutChim">
-                                <input type="checkbox" id="chkAjoutChim" name="ajoutMatières[]" value="chimie">
-                                   Chimie
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutPhys">
-                                <input type="checkbox" id="chkAjoutPhys" name="ajoutMatières[]" value="physique">
-                                   Physique
-                                </label>
-                            </div>
-                        </div>
-                         <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutHist">
-                                <input type="checkbox" id="chkAjoutHist" name="ajoutMatières[]" value="histoire">
-                                   Histoire
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutGeo">
-                                <input type="checkbox" id="chkAjoutGeo" name="ajoutMatières[]" value="geographie">
-                                   Géographie
-                                </label>
-                            </div>
-                        </div>
-                        <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutAng">
-                                <input type="checkbox" id="chkAjoutAng" name="ajoutMatières[]" value="anglais">
-                                   Anglais
-                                </label>
-                            </div>
-                        </div>
+                            <?php foreach ($this->aListeMatieres as $i => $oMatiere) {
+                                echo '<div class="checkbox-inline col-sm-4">';
+                                    echo '<label for="chk'.$i.'">';
+                                        echo '<input type="checkbox" id="chk'.$i.'" name="chkMatieres[]" value="'.$oMatiere->getId().'">';
+                                        echo $oMatiere->getNom();
+                                    echo '</label>';
+                                echo '</div>';
+                            }?>
+                        </div>                        
                     </div>
                     <div class="form-group"></div>
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-6 text-right">
-                             <a href="#" class="btn btn-danger" role="button">
+                             <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-profs" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
-                            <button type="submit" id="subAjouterProf" class="btn btn-success col-sm-offset-1">
+                            <button type="submit" id="subAjouterProf" name="subCreerProf" class="btn btn-success col-sm-offset-1">
                                 <span class="glyphicon glyphicon-plus"></span> Ajouter
                             </button>
                         </div>
@@ -743,11 +703,10 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
-
     <?php
     }
 
-    public function afficheModifierProfesseurs(){?>
+    public function afficheModifierProfesseur(){?>
         
         <div id="message">
             <?php 
@@ -758,14 +717,12 @@ class AdminVue extends Vue {
             ?>
         </div>
 
-
         <div class="col-sm-6 col-sm-offset-2">
-
-
-            <div class="col-sm-offset-3 col-sm-9">
-                <div class="col-sm-offset-2  col-sm-9">
-                    <div class="navbar navbar-default text-center">
-                        <h3 class="navbar-text">Modifier les informations d'un professeur</h3>
+            
+            <div class="col-sm-offset-2 col-sm-9">
+                <div class="col-sm-offset-4 col-sm-7">
+                    <div class="navbar navbar-default col-sm-offset-1">
+                        <h3 class="navbar-text">Modifier un professeur</h3>
                     </div>
                 </div>
             </div>
@@ -774,117 +731,76 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmModifProf" acion="" method="POST" enctype="" class="form-horizontal" role="form">
+                <form id="frmAjoutProf" action="<?php echo WEB_ROOT;?>/admin/utilisateur/modifier-prof/<?php echo $this->oUtilisateur->getId();?>" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label for="txtModifPrenomProf" class="col-sm-4 control-label">Prénom :</label>
+                        <label for="txtAjoutPrenomTut" class="col-sm-4 control-label">Prénom :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtModifPrenomProf" class="form-control" name="prenom" placeholder="Prenom">
+                            <input type="text" id="txtAjoutPrenomTut" class="form-control" name="txtPrenom" placeholder="Prenom" value="<?php echo $this->oUtilisateur->getPrenom();?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtModifNomProf" class="col-sm-4 control-label">Nom  :</label>
+                        <label for="txtAjoutNomTut" class="col-sm-4 control-label">Nom  :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtModifNomProf" class="form-control" name="nom" placeholder="Nom">
+                            <input type="text" id="txtAjoutNomTut" class="form-control" name="txtNom" placeholder="Nom" value="<?php echo $this->oUtilisateur->getNom();?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtModifCourrielProf" class="col-sm-4 control-label">Courriel :</label>
-                        <div class="col-sm-6">
-                            <input type="email" id="txtModifCourrielProf" class="form-control" name="courriel" placeholder="Courriel">
+                        <label for="txtAjoutCourrielTut" class="col-sm-4 control-label">Courriel :</label>
+                        <div class="col-sm-6">                  
+                            <input type="email" id="txtAjoutCourrielTut" class="form-control" name="emlCourriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtModifPseudoResp" class="col-sm-4 control-label">Pseudo :</label>
+                        <label for="sltAjouterEcoleTut" class="col-sm-4 control-label">École :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtModifPseudoResp" class="form-control" name="courriel" placeholder="Pseudo">
-                        </div>
-                    </div>
-                     <div class="form-group">
-                        <label for="txtModifMdpResp" class="col-sm-4 control-label">Mot de passe :</label>
-                        <div class="col-sm-6">
-                            <input type="password" id="txtModifMdpResp" class="form-control" name="mdp" placeholder="Mot de passe">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="sltModifEcoleProf" class="col-sm-4 control-label">Écoles :</label>
-                        <div class="col-sm-6">
-                            <select multiple  id="sltModifEcoleProf" name="ecoles" class="form-control col-sm-6">
-                                <option value=""></option>
+                            <select multiple id="sltAjouterEcoleTut" class="form-control col-sm-6" name="sltEcoles[]">
+                                <?php
+                                    $ecolesSelectionnees = array();
+                                    foreach($this->oUtilisateur->getListeEcoles() as $ecole_ID){
+                                        $ecolesSelectionnees[] = $ecole_ID->getId();
+                                    }
+                                    foreach ($this->aListeEcoles as $oEcole) {
+                                        $selected = '';
+                                        if(in_array($oEcole->getId(), $ecolesSelectionnees)){
+                                            $selected = 'selected="selected"';
+                                        }
+                                        echo '<option value="'.$oEcole->getId().'" '.$selected.'>'.$oEcole->getNom().'</option>';
+                                    }
+                                ?>
                             </select>
                         </div>
                     </div>
-                    <div id="chkModDiv" class="form-group">
-                        <label for="matiere" class="col-sm-4 control-label">Matières :</label>
+                    <div id="chkAddDiv" class="form-group">
+                        <label for="matieres" class="col-sm-4 control-label">Matières :</label>
                         <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifFran">
-                                <input type="checkbox" id="chkModifFran" name="modifMatieres[]" value="francais">
-                                   Français
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifMath">
-                                <input type="checkbox" id="chkModifMath" name="modifMatieres[]" value="mathematique">
-                                   Mathématique
-                                </label>
-                            </div>
-                        </div>
-                        <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifChimie">
-                                <input type="checkbox" id="chkModifChimie" name="modifMatieres[]" value="chimie">
-                                   Chimie
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifPhy">
-                                <input type="checkbox" id="chkModifPhy" name="modifMatieres[]" value="physique">
-                                   Physique
-                                </label>
-                            </div>
-                        </div>
-                         <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifHist">
-                                <input type="checkbox" id="chkModifHist" name="modifMatieres[]" value="histoire">
-                                   Histoire
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifGeo">
-                                <input type="checkbox" id="chkModifGeo" name="modifMatieres[]" value="geographie">
-                                   Géographie
-                                </label>
-                            </div>
-                        </div>
-                        <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifAng">
-                                <input type="checkbox" id="chkModifAng" name="modifMatieres[]" value="anglais">
-                                   Anglais
-                                </label>
-                            </div>
-                        </div>
+                            <?php foreach ($this->aListeMatieres as $i => $oMatiere) {
+                                $checked = '';
+                                if(in_array($oMatiere->getId(), $this->aMatieresTuteur)){
+                                    $checked = 'checked="checked"';
+                                }
+                                echo '<div class="checkbox-inline col-sm-4">';
+                                    echo '<label for="chk'.$i.'">';
+                                        echo '<input type="checkbox" id="chk'.$i.'" '.$checked.' name="chkMatieres[]" value="'.$oMatiere->getId().'">';
+                                        echo $oMatiere->getNom();
+                                    echo '</label>';
+                                echo '</div>';
+                            }?>
+                        </div>                        
                     </div>
                     <div class="form-group"></div>
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-6 text-right">
-                            <a href="#" class="btn btn-danger" role="button">
+                             <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-tuteurs" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
-                            <button type="submit" id="subModifierProf" class="btn btn-success col-sm-offset-1">
-                                <span class="glyphicon glyphicon-ok"></span> Modifier
+                            <button type="submit" id="subAjouterProf" name="subModifierProf" class="btn btn-success col-sm-offset-1">
+                                <span class="glyphicon glyphicon-plus"></span> Modifier
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-
-        
     <?php
     }
 
@@ -900,7 +816,6 @@ class AdminVue extends Vue {
     /*================================================*/
 
     public function afficheListeTuteurs(){?>
-        
         <div id="message">
             <?php 
                 if($this->getMessage()){
@@ -909,106 +824,117 @@ class AdminVue extends Vue {
                 }
             ?>
         </div>
-                    
-        <div class="col-lg-12">
-            <div class="page-header">
-                <div class="navbar navbar-default">
-                    <h2 class="navbar-text">Rechercher un tuteur</h2>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-12">
-            <form id="frmChercherProf" method="GET" action="" enctype="" class="form-horizontal" role="form">
-                <div class="row">
-                    <div class="form-group">
-                        <div class="col-md-4">
-                            <label for="txtRechercherTutCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
-                            <div class="col-sm-9 col-md-7">
-                                 <input type="email" id="txtRechercherTutCourriel" name="courriel" class="form-control" placeholder="Courriel" pattern="">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="txtRechercherTutNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
-                            <div class="col-sm-9 col-md-7">
-                                 <input type="text" id="txtRechercherTutNom" name="nom" class="form-control" placeholder="Nom" pattern="">
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="sltRechercherTutEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
-                            <div class="col-sm-9 col-md-7">
-                                <select id="sltRechercherTutEcole" class="form-control" name="ecole">
-                                    <option value="">Sélection</option> 
-                                </select>
-                            </div>
-                        </div>
-                    </div> <!-- .form-group -->
-                </div>  <!-- .row -->  
-                <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                    <button type="submit" id="subChercherTuteur" class="btn btn-success pull-right">
-                    <span class="glyphicon glyphicon-search"></span> Rechercher</button>
-                </div> 
-                <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                </div>        
-            </form> 
-        </div>   
-
-            <div class="contenu">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="page-header">
-                        <div class="">
-                            
-                        </div>
+        <div class="row">            
+            <div class="col-lg-12">
+                <div class="page-header">
+                    <div class="navbar navbar-default">
+                        <h2 class="navbar-text">Gérer les tuteurs</h2>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <table id="tabRechercherTuteur" class="table table-striped text-center">
-                        <tr>
-                            <th class="text-center">Prénom</th>
-                            <th class="text-center">Nom</th>
-                            <th class="text-center">Courriel</th>
-                            <th class="text-center">Pseudo</th>
-                            <th class="text-center">École</th>
-                            <th class="text-center">Matière</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                        <tr>
-                            <td id="txtPrenomTabTut"></td>
-                            <td id="txtNomTabTut"></td>
-                            <td id="txtCourrielTabTut"></td>
-                            <td id="txtCommissionTabTut"></td>
-                            <td id="txtEcoleTabTut"></td> <!-- Si plus d'une afficher valeurs multiples -->
-                            <td id="txtMatiereTabTut"></td> <!-- Si plus d'une afficher valeurs multiples -->
-                            <td>
-                                <!-- echo '<a href="'.WEB_ROOT.'/admin/modifierUtilisateur/'.$oUtilisateur->getId().'" class="btn btn-primary btn-xs">';
-                                    echo '<span title="Modifier" class="glyphicon glyphicon-pencil"></span>';
-                                echo '</a>';
-                                echo '<a href="'.WEB_ROOT.'/admin/supprimerUtilisateur/'.$oUtilisateur->getId().'" class="btn btn-danger btn-xs col-sm-offset-1">';
-                                    echo '<span title="Supprimer" class="glyphicon glyphicon-remove"></span>';
-                                echo '</a>'; -->
-                               <a href="#" class="btn btn-primary btn-xs">
-                                    <span title="Modifier" class="glyphicon glyphicon-pencil"></span>
-                                </a>
-                                <a href="#" class="btn btn-danger btn-xs col-sm-offset-1">
-                                    <span title="Supprimer" class="glyphicon glyphicon-remove"></span>
-                                </a>
-                            </td>
-                        </tr>
-                    </table>
-                </div> <!-- .col-lg-12 -->
-            </div> <!-- .row -->
-            <div class="col-sm-10 col-sm-offset-10">
-                <button type="button" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
-                <span class="glyphicon glyphicon-plus"></span> Ajouter</button>
+            <div class="col-lg-12">
+                <form id="frmChercherProf" method="GET" action="" enctype="" class="form-horizontal" role="form">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                <label for="txtRechercherTutCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
+                                <div class="col-sm-9 col-md-7">
+                                     <input type="email" id="txtRechercherTutCourriel" name="courriel" class="form-control" placeholder="Courriel" pattern="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="txtRechercherTutNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
+                                <div class="col-sm-9 col-md-7">
+                                     <input type="text" id="txtRechercherTutNom" name="nom" class="form-control" placeholder="Nom" pattern="">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="sltRechercherTutEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
+                                <div class="col-sm-9 col-md-7">
+                                    <select id="sltRechercherTutEcole" class="form-control" name="ecole">
+                                        <option value="">Sélection</option> 
+                                    </select>
+                                </div>
+                            </div>
+                        </div> <!-- .form-group -->
+                    </div>  <!-- .row -->  
+                    <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
+                        <button type="submit" id="subChercherTuteur" class="btn btn-success pull-right">
+                        <span class="glyphicon glyphicon-search"></span> Rechercher</button>
+                    </div> 
+                    <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
+                    </div>        
+                </form> 
             </div>
-        </div> <!-- .contenu -->
+        </div>   
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-header">
+                    <div class="">
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table id="tabRechercherTuteur" class="table table-striped text-center">
+                    <tr>
+                        <th class="text-center">Prénom</th>
+                        <th class="text-center">Nom</th>
+                        <th class="text-center">Courriel</th>
+                        <th class="text-center">Pseudo</th>
+                        <th class="text-center">École</th>
+                        <th class="text-center">Matière</th>
+                        <th class="text-center">Action</th>
+                    </tr>
+                    <?php
+                        foreach ($this->aListeTuteurs as $oUtilisateur) {
+                            if(count($oUtilisateur->getListeEcoles()) > 1){
+                                $ecole = 'Multiples';
+                            }
+                            else{
+                                $aEcoles = $oUtilisateur->getListeEcoles();
+                                $ecole = $aEcoles[0]->getNom();
+                            }
+                            if(count($oUtilisateur->getListeMatieres()) > 1){
+                                $matiere = 'Multiples';
+                            }
+                            else{
+                                $aMatieres = $oUtilisateur->getListeMatieres();
+                                $matiere = $aMatieres[0]->getNom();
+                            }
+
+                            echo '<tr>';
+                                echo '<td>'.$oUtilisateur->getPrenom().'</td>';
+                                echo '<td>'.$oUtilisateur->getNom().'</td>';
+                                echo '<td>'.$oUtilisateur->getCourriel().'</td>';
+                                echo '<td>'.$oUtilisateur->getPseudo().'</td>';
+                                echo '<td>'.$ecole.'</td>';
+                                echo '<td>'.$matiere.'</td>';
+                                echo '<td>
+                                        <a href="'.WEB_ROOT.'/admin/utilisateur/modifier-tuteur/'.$oUtilisateur->getId().'" class="btn btn-primary btn-xs">
+                                            <span title="Modifier" class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                        <a href="'.WEB_ROOT.'/admin/utilisateur/supprimer/'.$oUtilisateur->getId().'" class="btn btn-danger btn-xs col-sm-offset-1">
+                                            <span title="Supprimer" class="glyphicon glyphicon-remove"></span>
+                                        </a>
+                                    </td>';
+                            echo '</tr>';
+                        }
+                    ?>
+                </table>
+            </div> <!-- .col-lg-12 -->
+        </div> <!-- .row -->
+        <div class="col-sm-10 col-sm-offset-10">
+            <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/ajouter-tuteur" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
+            <span class="glyphicon glyphicon-plus"></span> Ajouter</a>
+        </div>
     <?php
     }
     
     public function afficheAjouterTuteur(){?>
-          
         <div id="message">
             <?php 
                 if($this->getMessage()){
@@ -1032,109 +958,70 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmAjoutProf" action="" method="POST" enctype="" class="form-horizontal" role="form">
+                <form id="frmAjoutProf" action="<?php echo WEB_ROOT;?>/admin/utilisateur/ajouter-tuteur" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="txtAjoutPrenomTut" class="col-sm-4 control-label">Prénom :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtAjoutPrenomTut" class="form-control" name="prenom" placeholder="Prenom">
+                            <input type="text" id="txtAjoutPrenomTut" class="form-control" name="txtPrenom" placeholder="Prenom">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="txtAjoutNomTut" class="col-sm-4 control-label">Nom  :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtAjoutNomTut" class="form-control" name="nom" placeholder="Nom">
+                            <input type="text" id="txtAjoutNomTut" class="form-control" name="txtNom" placeholder="Nom">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="txtAjoutCourrielTut" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="txtAjoutCourrielTut" class="form-control" name="courriel" placeholder="Courriel">
+                            <input type="email" id="txtAjoutCourrielTut" class="form-control" name="emlCourriel" placeholder="Courriel">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="sltAjouterEcoleTut" class="col-sm-4 control-label">École :</label>
                         <div class="col-sm-6">
-                            <select id="sltAjouterEcoleTut" class="form-control col-sm-6" name="ecoles">
-                                <option value=""></option>
+                            <select id="sltAjouterEcoleTut" class="form-control col-sm-6" name="sltEcole">
+                                <?php
+                                    foreach ($this->aListeEcoles as $oEcole) {
+                                        echo '<option value="'.$oEcole->getId().'">'.$oEcole->getNom().'</option>';
+                                    }
+                                ?>
                             </select>
                         </div>
                     </div>
                     <div id="chkAddDiv" class="form-group">
                         <label for="matieres" class="col-sm-4 control-label">Matières :</label>
                         <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutFranTut">
-                                <input type="checkbox" id="chkAjoutFranTut" name="ajoutMatières[]" value="francais">
-                                   Français
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutMathTut">
-                                <input type="checkbox" id="chkAjoutMathTut" name="ajoutMatières[]" value="mathematique">
-                                   Mathématique
-                                </label>
-                            </div>
-                        </div>
-                        <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutChimTut">
-                                <input type="checkbox" id="chkAjoutChimTut" name="ajoutMatières[]" value="chimie">
-                                   Chimie
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutPhysTut">
-                                <input type="checkbox" id="chkAjoutPhysTut" name="ajoutMatières[]" value="physique">
-                                   Physique
-                                </label>
-                            </div>
-                        </div>
-                         <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutHistTut">
-                                <input type="checkbox" id="chkAjoutHistTut" name="ajoutMatières[]" value="histoire">
-                                   Histoire
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutGeoTut">
-                                <input type="checkbox" id="chkAjoutGeoTut" name="ajoutMatières[]" value="geographie">
-                                   Géographie
-                                </label>
-                            </div>
-                        </div>
-                        <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkAjoutAngTut">
-                                <input type="checkbox" id="chkAjoutAngTut" name="ajoutMatières[]" value="anglais">
-                                   Anglais
-                                </label>
-                            </div>
-                        </div>
+                            <?php foreach ($this->aListeMatieres as $i => $oMatiere) {
+                                echo '<div class="checkbox-inline col-sm-4">';
+                                    echo '<label for="chk'.$i.'">';
+                                        echo '<input type="checkbox" id="chk'.$i.'" name="chkMatieres[]" value="'.$oMatiere->getId().'">';
+                                        echo $oMatiere->getNom();
+                                    echo '</label>';
+                                echo '</div>';
+                            }?>
+                        </div>                        
                     </div>
                     <div class="form-group"></div>
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-6 text-right">
-                             <a href="#" class="btn btn-danger" role="button">
+                             <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-tuteurs" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
-                            <button type="submit" id="subAjouterProf" class="btn btn-success col-sm-offset-1">
+                            <button type="submit" id="subAjouterProf" name="subCreerTuteur" class="btn btn-success col-sm-offset-1">
                                 <span class="glyphicon glyphicon-plus"></span> Ajouter
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
-        </div>
-
+        </div>  
+        
     <?php
     }
 
-    public function afficheModifierTuteurs(){?>
-        
+    public function afficheModifierTuteur(){?>
+
         <div id="message">
             <?php 
                 if($this->getMessage()){
@@ -1144,14 +1031,12 @@ class AdminVue extends Vue {
             ?>
         </div>
 
-
         <div class="col-sm-6 col-sm-offset-2">
-
-
-            <div class="col-sm-offset-3 col-sm-9">
-                <div class="col-sm-offset-2  col-sm-9">
-                    <div class="navbar navbar-default text-center">
-                        <h3 class="navbar-text">Modifier les informations d'un tuteur</h3>
+            
+            <div class="col-sm-offset-2 col-sm-9">
+                <div class="col-sm-offset-4 col-sm-7">
+                    <div class="navbar navbar-default col-sm-offset-1">
+                        <h3 class="navbar-text">Modifier un tuteur</h3>
                     </div>
                 </div>
             </div>
@@ -1160,121 +1045,79 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmModifProf" acion="" method="POST" enctype="" class="form-horizontal" role="form">
+                <form id="frmAjoutProf" action="<?php echo WEB_ROOT;?>/admin/utilisateur/modifier-tuteur/<?php echo $this->oUtilisateur->getId();?>" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label for="txtModifPrenomTut" class="col-sm-4 control-label">Prénom :</label>
+                        <label for="txtAjoutPrenomTut" class="col-sm-4 control-label">Prénom :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtModifPrenomTut" class="form-control" name="prenom" placeholder="Prenom">
+                            <input type="text" id="txtAjoutPrenomTut" class="form-control" name="txtPrenom" placeholder="Prenom" value="<?php echo $this->oUtilisateur->getPrenom();?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtModifNomTut" class="col-sm-4 control-label">Nom  :</label>
+                        <label for="txtAjoutNomTut" class="col-sm-4 control-label">Nom  :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtModifNomTut" class="form-control" name="nom" placeholder="Nom">
+                            <input type="text" id="txtAjoutNomTut" class="form-control" name="txtNom" placeholder="Nom" value="<?php echo $this->oUtilisateur->getNom();?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtModifCourrielTut" class="col-sm-4 control-label">Courriel :</label>
+                        <label for="txtAjoutCourrielTut" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="txtModifCourrielTut" class="form-control" name="courriel" placeholder="Courriel">
+                            <input type="email" id="txtAjoutCourrielTut" class="form-control" name="emlCourriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtModifPseudoTut" class="col-sm-4 control-label">Pseudo :</label>
+                        <label for="sltAjouterEcoleTut" class="col-sm-4 control-label">École :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtModifPseudoTut" class="form-control" name="courriel" placeholder="Pseudo">
-                        </div>
-                    </div>
-                     <div class="form-group">
-                        <label for="txtModifMdpTut" class="col-sm-4 control-label">Mot de passe :</label>
-                        <div class="col-sm-6">
-                            <input type="text" id="txtModifMdpTut" class="form-control" name="mdp" placeholder="Mot de passe">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="sltModifEcoleTut" class="col-sm-4 control-label">École :</label>
-                        <div class="col-sm-6">
-                            <select  id="sltModifEcoleTut" name="ecoles" class="form-control col-sm-6">
-                                <option value=""></option>
+                            <select id="sltAjouterEcoleTut" class="form-control col-sm-6" name="sltEcole">
+                                <?php
+                                    $ecole = $this->oUtilisateur->getListeEcoles();
+                                    foreach ($this->aListeEcoles as $oEcole) {
+                                        $selected = '';
+                                        if($ecole[0]->getId() == $oEcole->getId()){
+                                            $selected = 'selected="selected"';
+                                        }
+                                        echo '<option value="'.$oEcole->getId().'">'.$oEcole->getNom().'</option>';
+                                    }
+                                ?>
                             </select>
                         </div>
                     </div>
-                    <div id="chkModDiv" class="form-group">
-                        <label for="matiere" class="col-sm-4 control-label">Matières :</label>
+                    <div id="chkAddDiv" class="form-group">
+                        <label for="matieres" class="col-sm-4 control-label">Matières :</label>
                         <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifFranTut">
-                                <input type="checkbox" id="chkModifFranTut" name="modifMatieres[]" value="francais">
-                                   Français
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifMathTut">
-                                <input type="checkbox" id="chkModifMathTut" name="modifMatieres[]" value="mathematique">
-                                   Mathématique
-                                </label>
-                            </div>
-                        </div>
-                        <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifChimieTut">
-                                <input type="checkbox" id="chkModifChimieTut" name="modifMatieres[]" value="chimie">
-                                   Chimie
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifPhyTut">
-                                <input type="checkbox" id="chkModifPhyTut" name="modifMatieres[]" value="physique">
-                                   Physique
-                                </label>
-                            </div>
-                        </div>
-                         <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifHistTut">
-                                <input type="checkbox" id="chkModifHistTut" name="modifMatieres[]" value="histoire">
-                                   Histoire
-                                </label>
-                            </div>
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifGeoTut">
-                                <input type="checkbox" id="chkModifGeoTut" name="modifMatieres[]" value="geographie">
-                                   Géographie
-                                </label>
-                            </div>
-                        </div>
-                        <label class="col-sm-4 control-label"></label>
-                        <div class="col-sm-8">
-                            <div class="checkbox-inline col-sm-4">
-                                <label for="chkModifAngTut">
-                                <input type="checkbox" id="chkModifAngTut" name="modifMatieres[]" value="anglais">
-                                   Anglais
-                                </label>
-                            </div>
-                        </div>
+                            <?php foreach ($this->aListeMatieres as $i => $oMatiere) {
+                                $checked = '';
+                                if(in_array($oMatiere->getId(), $this->aMatieresTuteur)){
+                                    $checked = 'checked="checked"';
+                                }
+                                echo '<div class="checkbox-inline col-sm-4">';
+                                    echo '<label for="chk'.$i.'">';
+                                        echo '<input type="checkbox" id="chk'.$i.'" '.$checked.' name="chkMatieres[]" value="'.$oMatiere->getId().'">';
+                                        echo $oMatiere->getNom();
+                                    echo '</label>';
+                                echo '</div>';
+                            }?>
+                        </div>                        
                     </div>
                     <div class="form-group"></div>
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-6 text-right">
-                            <a href="#" class="btn btn-danger" role="button">
+                             <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-tuteurs" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
-                            <button type="submit" id="subModifierProf" class="btn btn-success col-sm-offset-1">
-                                <span class="glyphicon glyphicon-ok"></span> Modifier
+                            <button type="submit" id="subAjouterProf" name="subModifierTuteur" class="btn btn-success col-sm-offset-1">
+                                <span class="glyphicon glyphicon-plus"></span> Modifier
                             </button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-
+        
         
     <?php
     }
 
-     public function afficheSupprimerUtilisateurs(){?>
+    public function afficheSupprimerUtilisateurs(){?>
         
         <div id="message">
             <?php 
@@ -1302,28 +1145,41 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="txtSupprimerPrenom" class="col-sm-4 control-label">Prénom :</label>
                         <div class="col-sm-6">
-                            <span id="txtSupprimerPrenom" name="prenom"></span>
+                            <span id="txtSupprimerPrenom" name="prenom"><?php echo $this->oUtilisateur->getPrenom();?></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="txtSupprimerNom" class="col-sm-4 control-label">Nom  :</label>
                         <div class="col-sm-6">
-                            <span id="txtSupprimerNom" name="nom"></span>
+                            <span id="txtSupprimerNom" name="nom"><?php echo $this->oUtilisateur->getNom();?></span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="txtSupprimerRole" class="col-sm-4 control-label">Role  :</label>
                         <div class="col-sm-6">
-                            <span id="txtSupprimerRole" name="role"></span>
+                            <span id="txtSupprimerRole" name="role"><?php echo $this->oUtilisateur->getNomRole();?></span>
                         </div>
                     </div>
                     <div class="form-group"></div>
                     <div class="form-group">
                         <div class="col-sm-offset-4 col-sm-6 text-right">
-                             <a href="#" class="btn btn-danger" role="button">
+                            <?php
+                                switch($this->oUtilisateur->getRole()){
+                                    case '2':
+                                        $back = 'gerer-tuteurs';
+                                        break;
+                                    case '3':
+                                        $back = 'gerer-profs';
+                                        break;
+                                    case '4':
+                                        $back = 'gerer-responsables';
+                                        break;
+                                }
+                            ?>
+                             <a href="<?php echo WEB_ROOT.'/admin/utilisateur/'.$back;?>" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
-                            <button type="submit" id="subValiderSupprimerProf" class="btn btn-success col-sm-offset-1">
+                            <button type="submit" name="subSupprimer" id="subValiderSupprimerProf" class="btn btn-success col-sm-offset-1">
                                 <span class="glyphicon glyphicon-ok"></span> Supprimer
                             </button>
                         </div>

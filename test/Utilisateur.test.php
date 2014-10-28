@@ -436,7 +436,7 @@
 
                   try{
                         $user2 = new Utilisateur();
-                        $user2->setId([]);
+                        $user2->setId(2);
                     }
                     catch(Exception $e){
                         echo "<p>".$e->getMessage()."</p>";

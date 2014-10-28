@@ -10,12 +10,37 @@
  * 
  */
 
+	session_start();
 	require_once("./config.php");
 	
 	
 	// Mettre ici le code de gestion de la requête AJAX
 
     
-	
+	switch($_GET['module']){
+		case 'tutoriel':
+			if($_GET['action'] == 'visionner'){
+				$oVue = new TutorielVue();
+	            try{
+	                $oTutoriel = new Tutoriel($_GET['id']);
+	                $oTutoriel->chargerTutoriel();
+	                $oVue->oTutoriel = $oTutoriel;
+
+	                $oUtilisateur = new Utilisateur($_SESSION['user_id']);
+	                $oUtilisateur->ajouterActiviteService($oTutoriel->getContenuId());
+
+	                if($oTutoriel->getType() == 1){
+	                    $oVue->afficheLeVideo();
+	                }
+	                else{
+	                    $oVue->afficheLeTexte();
+	                }
+	            }
+	            catch(Exception $e){
+	                echo "Une erreur est survenue. Veuillez réessayer plus tard.";
+	            }
+			}
+			break;
+	}
 
 ?>

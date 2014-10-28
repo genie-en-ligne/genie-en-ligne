@@ -89,7 +89,7 @@
         
         
     	public static function estBool($bBool){
-    		if(is_bool($bBool) == false){
+    		if($bBool != 0 && $bBool != 1){
 				throw new Exception(get_class()." :: ". TypeException::ERR_BOOL);
 			}	
     	}

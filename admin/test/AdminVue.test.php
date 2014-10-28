@@ -8,7 +8,7 @@
 	    /*==========DROITS SUPERADMIN==========*/
 	    /*=====================================*/
 
-    	echo "<div class='col-xs-12'>";
+    	/*echo "<div class='col-xs-12'>";
             echo "<div class='panel panel-primary'>";
                 echo "<div class='panel-heading'>";
                     echo "<h4>";
@@ -36,9 +36,9 @@
 
                 echo "</div>";
             echo "</div>";
-        echo "</div>";
+        echo "</div>";*/
 
-        echo "<div class='col-xs-12'>";
+       /*echo "<div class='col-xs-12'>";
             echo "<div class='panel panel-primary'>";
                 echo "<div class='panel-heading'>";
                     echo "<h4>";
@@ -76,7 +76,7 @@
 
                 echo "</div>";
             echo "</div>";
-        echo "</div>";
+        echo "</div>";*/
 
     /*=====================================*/
     /*======FIN GESTION DES RESPONSABLES===*/
@@ -88,7 +88,7 @@
     /*==DROITS RESPONSABLES DES COMMISSIONS SCOLAIRE==*/
     /*================================================*/
 
-        echo "<div class='col-xs-12'>";
+       /* echo "<div class='col-xs-12'>";
             echo "<div class='panel panel-primary'>";
                 echo "<div class='panel-heading'>";
                     echo "<h4>";
@@ -134,7 +134,7 @@
 
                 echo "</div>";
             echo "</div>";
-        echo "</div>";
+        echo "</div>";*/
 
     /*================================================*/
     /*=========FIN GESTION DES PROFESSEURS============*/
@@ -147,7 +147,7 @@
     /*==========DROITS DES PROFESSEURS================*/
     /*================================================*/
 
-         echo "<div class='col-xs-12'>";
+        /* echo "<div class='col-xs-12'>";
             echo "<div class='panel panel-primary'>";
                 echo "<div class='panel-heading'>";
                     echo "<h4>";
@@ -209,7 +209,7 @@
 
                 echo "</div>";
             echo "</div>";
-        echo "</div>";
+        echo "</div>";*/
 
     /*================================================*/
     /*===========FIN GESTION DES TUTEURS==============*/

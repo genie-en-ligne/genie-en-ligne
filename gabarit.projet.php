@@ -11,6 +11,10 @@
 		<link rel="stylesheet" href="<?php echo WEB_ROOT;?>/lib/bootstrap/css/bootstrap.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?php echo WEB_ROOT;?>/css/main.css" type="text/css" media="screen">
 		
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+        </script>
+
 		<script src="<?php echo WEB_ROOT;?>/js/main.js"></script>            
 	</head>
 
@@ -50,7 +54,12 @@
                                 <nav class="navbar navbar-default" role="navigation">
                                     <ul class="nav navbar-nav navbar-right">
                                         <li>
-                                            <a href="#" id="inscriptionEntete">
+                                            <a href="<?php echo WEB_ROOT;?>">
+                                                Accueil
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="<?php echo WEB_ROOT;?>/utilisateur/pre-inscription/" id="inscriptionEntete">
                                                 Inscrivez-vous!
                                             </a>
                                         </li>
@@ -84,7 +93,7 @@
                                 <nav class="navbar navbar-default" role="navigation">
                                     <ul class="nav navbar-nav navbar-right">
                                         <li>
-                                            <a href="#">Accueil</a>
+                                            <a href="<?php echo WEB_ROOT;?>/utilisateur/bienvenue">Accueil</a>
                                         </li>
                                         <li class="dropdown">
                                             <a id="nav-tutoriels" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
@@ -94,13 +103,13 @@
                                             </a>
                                             <ul class="dropdown-menu" role="menu" aria-labelledby="nav-tutoriels">
                                                 <li role="presentation">
-                                                    <a href="#">
+                                                    <a href="<?php echo WEB_ROOT;?>/tutoriel/consulter">
                                                         Consulter
                                                     </a>
                                                 </li>
                                             </ul>
                                         </li><!-- .dropdown -->
-
+                                        <!--
                                         <li class="dropdown">
                                             <a id="nav-messagerie" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
                                                 Messagerie
@@ -133,7 +142,7 @@
                                                     </a>
                                                 </li>
                                                 <li role="presentation">
-                                                    <a href="#">
+                                                    <a href="<?php echo WEB_ROOT;?>/utilisateur/modifier-mdp">
                                                         Changer mot de passe
                                                     </a>
                                                 </li>
@@ -177,7 +186,7 @@
                                 <nav class="navbar navbar-default" role="navigation">
                                     <ul class="nav navbar-nav navbar-right">
                                         <li>
-                                            <a href="#">Accueil</a>
+                                            <a href="<?php echo WEB_ROOT;?>/utilisateur/bienvenue">Accueil</a>
                                         </li>
                                         <li class="dropdown">
                                             <a id="nav-tutoriels" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
@@ -187,18 +196,13 @@
                                             </a>
                                             <ul class="dropdown-menu" role="menu" aria-labelledby="nav-tutoriels">
                                                 <li role="presentation">
-                                                    <a href="#">
-                                                        Ajouter
-                                                    </a>
-                                                </li>
-                                                <li role="presentation">
-                                                    <a href="#">
+                                                    <a href="<?php echo WEB_ROOT;?>/tutoriel/gerer">
                                                         Gérer
                                                     </a>
                                                 </li>
                                             </ul>
                                         </li><!-- .dropdown -->
-
+                                        <!--
                                         <li class="dropdown">
                                             <a id="nav-messagerie" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
                                                 Messagerie
@@ -226,7 +230,7 @@
                                                     </a>
                                                 </li>
                                                 <li role="presentation">
-                                                    <a href="#">
+                                                    <a href="<?php echo WEB_ROOT;?>/utilisateur/modifier-mdp">
                                                         Changer mot de passe
                                                     </a>
                                                 </li>
@@ -270,18 +274,14 @@
                             Génie en ligne &copy;2014
                         </p>
                         <p class="navbar-text navbar-right">
-                            <a href="#" class="navbar-link">
-                                Politiques d'utilisation
+                            <a href="<?php echo WEB_ROOT;?>/utilisateur/envoyer-message" class="navbar-link">
+                                Contact
                             </a>
                         </p>
                     </div>
                 </footer>
             </main>
         </div>
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
-        </script>
 
         <!-- Include all compiled bootstrap plugins -->
         <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/bootstrap/js/bootstrap.js">

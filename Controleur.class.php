@@ -27,10 +27,10 @@ class Controleur
 		 * Traite la requête
 		 * @return void
 		 */
-		public function gerer(){            
+		public function gerer(){          
             $request = $_GET['request'];
             
-            if($request === "" || $request === "/" || $this->oUtilisateurSession->utilisateurEstConnecte() === false) {
+            if($request === "" || $request === "/") {
                 $this->setReqModule("Utilisateur");
                 $this->setReqAction("accueil");
             }
@@ -51,6 +51,13 @@ class Controleur
                         $this->setReqModule(ucfirst(strtolower($parts[0])));
                     }
                 }
+            }
+            
+            $aPagesPubliques = array('pre-inscription', 'inscription', 'creer-login', 'recuperer-mdp', 'envoyer-message');
+            
+            if($this->oUtilisateurSession->utilisateurEstConnecte() === false && (!in_array($this->getReqAction(), $aPagesPubliques) || $this->getReqModule() != 'Utilisateur')){                
+                $this->setReqModule("Utilisateur");
+                $this->setReqAction("accueil");
             }
             
             $sSubControleur = $this->getReqModule().'Controleur';
