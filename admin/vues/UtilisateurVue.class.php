@@ -63,12 +63,14 @@ class UtilisateurVue extends Vue {
                         <label for="txtProfilMdp1" class="col-sm-4 control-label">Mot de passe :</label>
                         <div class="col-sm-6">
                             <input type="password" id="txtProfilMdp" class="form-control" name="pwdMdp1" placeholder="Mot de passe">
+                            <div class="divErreur" id="txtProfilMdpErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="txtProfilMdp2" class="col-sm-4 control-label">Mot de passe :</label>
                         <div class="col-sm-6">
                             <input type="password" id="txtProfilMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe">
+                             <div class="divErreur" id="txtProfilMdp2Erreur"></div>
                         </div>
                     </div>
                     <div class="form-group"></div>

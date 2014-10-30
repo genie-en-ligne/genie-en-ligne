@@ -52,7 +52,6 @@ class AdminVue extends Vue {
                                             }
                                        ?>                         
                                 </select>
-                                
                             </div>  
                         </div>
                     </div> <!-- .form-group -->
@@ -227,33 +226,38 @@ class AdminVue extends Vue {
             <div class="col-sm-12 col-sm-offset-1">
                 <form id="frmModifProf" acion="" method="POST" enctype="" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label for="txtModifPrenomResp" class="col-sm-4 control-label">Prénom :</label>
+                        <label for="txtModifPrenom" class="col-sm-4 control-label">Prénom :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtModifPrenomResp" class="form-control" name="prenom" placeholder="Prenom" value="<?php echo $this->oUtilisateur->getPrenom();?>">
+                            <input type="text" id="txtModifPrenom" class="form-control" name="prenom" placeholder="Prenom" value="<?php echo $this->oUtilisateur->getPrenom();?>">
+                            <div class="divErreur" id="txtModifPrenomErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtModifNomResp" class="col-sm-4 control-label">Nom  :</label>
+                        <label for="txtModifNom" class="col-sm-4 control-label">Nom  :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtModifNomResp" class="form-control" name="nom" placeholder="Nom" value="<?php echo $this->oUtilisateur->getNom();?>">
+                            <input type="text" id="txtModifNom" class="form-control" name="nom" placeholder="Nom" value="<?php echo $this->oUtilisateur->getNom();?>">
+                            <div class="divErreur" id="txtModifNomErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtModifCourrielResp" class="col-sm-4 control-label">Courriel :</label>
+                        <label for="txtModifCourriel" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="txtModifCourrielResp" class="form-control" name="courriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
+                            <input type="email" id="txtModifCourriel" class="form-control" name="courriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
+                            <div class="divErreur" id="txtModifCourrielErreur"></div>
                         </div>
                     </div>
                      <div class="form-group">
-                        <label for="txtModifPseudoResp" class="col-sm-4 control-label">Pseudo :</label>
+                        <label for="txtModifPseudo" class="col-sm-4 control-label">Pseudo :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtModifPseudoResp" class="form-control" name="courriel" placeholder="Pseudo" value="<?php echo $this->oUtilisateur->getPseudo();?>">
+                            <input type="text" id="txtModifPseudo" class="form-control" name="courriel" placeholder="Pseudo" value="<?php echo $this->oUtilisateur->getPseudo();?>">
+                            <div class="divErreur" id="txtModifPseudoErreur"></div>
                         </div>
                     </div>
                      <div class="form-group">
-                        <label for="txtModifMdpResp" class="col-sm-4 control-label">Mot de passe :</label>
+                        <label for="txtModifMdp" class="col-sm-4 control-label">Mot de passe :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtModifMdpResp" class="form-control" name="mdp" placeholder="Mot de passe" value="<?php echo $this->oUtilisateur->getMDP();?>">
+                            <input type="text" id="txtModifMdp" class="form-control" name="mdp" placeholder="Mot de passe" value="<?php echo $this->oUtilisateur->getMDP();?>">
+                            <div class="divErreur" id="txtModifMdpErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -402,23 +406,26 @@ class AdminVue extends Vue {
                 <div class="row">
                     <div class="form-group">
                         <div class="col-md-4">
-                            <label for="txtRechercherEcoleCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
+                            <label for="txtRechercherCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
                             <div class="col-sm-9 col-md-7">
-                                 <input type="email" id="txtRechercherComCourriel" name="courriel" class="form-control" placeholder="Courriel" pattern="">
+                                 <input type="email" id="txtRechercherCourriel" name="courriel" class="form-control" placeholder="Courriel">
+                                 <div class="divErreur" id="txtRechercherCourrielErreur"></div>
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <label for="txtRechercherEcoleNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
+                            <label for="txtRechercherNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
                             <div class="col-sm-9 col-md-7">
-                                 <input type="text" id="txtRechercherComNom" name="nom" class="form-control" placeholder="Nom" pattern="">
+                                 <input type="text" id="txtRechercherNom" name="nom" class="form-control" placeholder="Nom">
+                                 <div class="divErreur" id="txtRechercherNomErreur"></div>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <label for="sltRechercherEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
                             <div class="col-sm-9 col-md-7">
                                 <select id="sltRechercherEcole" class="form-control" name="ecole">
-                                    <option value="">Sélection</option> 
+                                    <option value="0">Sélection</option> 
                                 </select>
+                            <div class="divErreur" id="sltRechercherEcoleErreur"></div>
                             </div>
                         </div>
                     </div> <!-- .form-group -->
@@ -521,23 +528,26 @@ class AdminVue extends Vue {
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-4">
-                                <label for="txtRechercherTutCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
+                                <label for="txtRechercherCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
                                 <div class="col-sm-9 col-md-7">
-                                     <input type="email" id="txtRechercherTutCourriel" name="courriel" class="form-control" placeholder="Courriel" pattern="">
+                                    <input type="email" id="txtRechercherCourriel" name="courriel" class="form-control" placeholder="Courriel">
+                                    <div class="divErreur" id="txtRechercherCourrielErreur"></div>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <label for="txtRechercherTutNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
+                                <label for="txtRechercherNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
                                 <div class="col-sm-9 col-md-7">
-                                     <input type="text" id="txtRechercherTutNom" name="nom" class="form-control" placeholder="Nom" pattern="">
+                                    <input type="text" id="txtRechercherNom" name="nom" class="form-control" placeholder="Nom">
+                                    <div class="divErreur" id="txtRechercherNomErreur"></div>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <label for="sltRechercherTutEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
+                                <label for="sltRechercherEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
                                 <div class="col-sm-9 col-md-7">
-                                    <select id="sltRechercherTutEcole" class="form-control" name="ecole">
-                                        <option value="">Sélection</option> 
+                                    <select id="sltRechercherEcole" class="form-control" name="ecole">
+                                        <option value="0">Sélection</option> 
                                     </select>
+                                    <div class="divErreur" id="sltRechercherEcoleErreur"></div>
                                 </div>
                             </div>
                         </div> <!-- .form-group -->
@@ -647,37 +657,42 @@ class AdminVue extends Vue {
             <div class="col-sm-12 col-sm-offset-1">
                 <form id="frmAjoutProf" action="<?php echo WEB_ROOT;?>/admin/utilisateur/ajouter-prof" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label for="txtAjoutPrenomTut" class="col-sm-4 control-label">Prénom :</label>
+                        <label for="txtAjoutPrenom" class="col-sm-4 control-label">Prénom :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtAjoutPrenomTut" class="form-control" name="txtPrenom" placeholder="Prenom">
+                            <input type="text" id="txtAjoutPrenom" class="form-control" name="txtPrenom" placeholder="Prenom">
+                            <div class="divErreur" id="txtAjoutPrenomErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtAjoutNomTut" class="col-sm-4 control-label">Nom  :</label>
+                        <label for="txtAjoutNom" class="col-sm-4 control-label">Nom  :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtAjoutNomTut" class="form-control" name="txtNom" placeholder="Nom">
+                            <input type="text" id="txtAjoutNom" class="form-control" name="txtNom" placeholder="Nom">
+                            <div class="divErreur" id="txtAjoutNomErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtAjoutCourrielTut" class="col-sm-4 control-label">Courriel :</label>
+                        <label for="txtAjoutCourriel" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="txtAjoutCourrielTut" class="form-control" name="emlCourriel" placeholder="Courriel">
+                            <input type="email" id="txtAjoutCourriel" class="form-control" name="emlCourriel" placeholder="Courriel">
+                            <div class="divErreur" id="txtAjoutCourrielErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="sltAjouterEcoleTut" class="col-sm-4 control-label">École :</label>
+                        <label for="sltAjouterEcole" class="col-sm-4 control-label">École :</label>
                         <div class="col-sm-6">
-                            <select multiple id="sltAjouterEcoleTut" class="form-control col-sm-6" name="sltEcoles[]">
+                            <select multiple id="sltAjouterEcole" class="form-control col-sm-6" name="sltEcoles[]">
                                 <?php
                                     foreach ($this->aListeEcoles as $oEcole) {
                                         echo '<option value="'.$oEcole->getId().'">'.$oEcole->getNom().'</option>';
                                     }
                                 ?>
                             </select>
+                            <div class="divErreur" id="sltAjouterEcoleErreur"></div>
                         </div>
                     </div>
                     <div id="chkAddDiv" class="form-group">
                         <label for="matieres" class="col-sm-4 control-label">Matières :</label>
+                        <div class="divErreur" id="chkMatiereErreur"></div>
                         <div class="col-sm-8">
                             <?php foreach ($this->aListeMatieres as $i => $oMatiere) {
                                 echo '<div class="checkbox-inline col-sm-4">';
@@ -733,27 +748,30 @@ class AdminVue extends Vue {
             <div class="col-sm-12 col-sm-offset-1">
                 <form id="frmAjoutProf" action="<?php echo WEB_ROOT;?>/admin/utilisateur/modifier-prof/<?php echo $this->oUtilisateur->getId();?>" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label for="txtAjoutPrenomTut" class="col-sm-4 control-label">Prénom :</label>
+                        <label for="txtAjoutPrenom" class="col-sm-4 control-label">Prénom :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtAjoutPrenomTut" class="form-control" name="txtPrenom" placeholder="Prenom" value="<?php echo $this->oUtilisateur->getPrenom();?>">
+                            <input type="text" id="txtAjoutPrenom" class="form-control" name="txtPrenom" placeholder="Prenom" value="<?php echo $this->oUtilisateur->getPrenom();?>">
+                            <div class="divErreur" id="txtAjoutPrenomErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtAjoutNomTut" class="col-sm-4 control-label">Nom  :</label>
+                        <label for="txtAjoutNom" class="col-sm-4 control-label">Nom  :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtAjoutNomTut" class="form-control" name="txtNom" placeholder="Nom" value="<?php echo $this->oUtilisateur->getNom();?>">
+                            <input type="text" id="txtAjoutNom" class="form-control" name="txtNom" placeholder="Nom" value="<?php echo $this->oUtilisateur->getNom();?>">
+                            <div class="divErreur" id="txtAjoutNomErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtAjoutCourrielTut" class="col-sm-4 control-label">Courriel :</label>
+                        <label for="txtAjoutCourriel" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">                  
-                            <input type="email" id="txtAjoutCourrielTut" class="form-control" name="emlCourriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
+                            <input type="email" id="txtAjoutCourriel" class="form-control" name="emlCourriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
+                            <div class="divErreur" id="txtAjoutCourrielErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="sltAjouterEcoleTut" class="col-sm-4 control-label">École :</label>
+                        <label for="sltAjouterEcole" class="col-sm-4 control-label">École :</label>
                         <div class="col-sm-6">
-                            <select multiple id="sltAjouterEcoleTut" class="form-control col-sm-6" name="sltEcoles[]">
+                            <select multiple id="sltAjouterEcole" class="form-control col-sm-6" name="sltEcoles[]">
                                 <?php
                                     $ecolesSelectionnees = array();
                                     foreach($this->oUtilisateur->getListeEcoles() as $ecole_ID){
@@ -768,10 +786,12 @@ class AdminVue extends Vue {
                                     }
                                 ?>
                             </select>
+                            <div class="divErreur" id="sltAjouterEcoleErreur"></div>
                         </div>
                     </div>
                     <div id="chkAddDiv" class="form-group">
                         <label for="matieres" class="col-sm-4 control-label">Matières :</label>
+                        <div class="divErreur" id="chkMatiereErreur"></div>
                         <div class="col-sm-8">
                             <?php foreach ($this->aListeMatieres as $i => $oMatiere) {
                                 $checked = '';
@@ -837,21 +857,24 @@ class AdminVue extends Vue {
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-4">
-                                <label for="txtRechercherTutCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
+                                <label for="txtRechercherCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
                                 <div class="col-sm-9 col-md-7">
-                                     <input type="email" id="txtRechercherTutCourriel" name="courriel" class="form-control" placeholder="Courriel" pattern="">
+                                    <input type="email" id="txtRechercherCourriel" name="courriel" class="form-control" placeholder="Courriel">
+                                    <div class="divErreur" id="txtRechercherCourrielErreur"></div>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <label for="txtRechercherTutNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
+                                <label for="txtRechercherNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
                                 <div class="col-sm-9 col-md-7">
-                                     <input type="text" id="txtRechercherTutNom" name="nom" class="form-control" placeholder="Nom" pattern="">
+                                    <input type="text" id="txtRechercherNom" name="nom" class="form-control" placeholder="Nom">
+                                    <div class="divErreur" id="txtRechercherNomErreur"></div>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <label for="sltRechercherTutEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
+                                <label for="sltRechercherEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
+                                <div class="divErreur" id="sltRechercherEcoleErreur"></div>
                                 <div class="col-sm-9 col-md-7">
-                                    <select id="sltRechercherTutEcole" class="form-control" name="ecole">
+                                    <select id="sltRechercherEcole" class="form-control" name="ecole">
                                         <option value="">Sélection</option> 
                                     </select>
                                 </div>
@@ -960,37 +983,42 @@ class AdminVue extends Vue {
             <div class="col-sm-12 col-sm-offset-1">
                 <form id="frmAjoutProf" action="<?php echo WEB_ROOT;?>/admin/utilisateur/ajouter-tuteur" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label for="txtAjoutPrenomTut" class="col-sm-4 control-label">Prénom :</label>
+                        <label for="txtAjoutPrenom" class="col-sm-4 control-label">Prénom :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtAjoutPrenomTut" class="form-control" name="txtPrenom" placeholder="Prenom">
+                            <input type="text" id="txtAjoutPrenom" class="form-control" name="txtPrenom" placeholder="Prenom">
+                            <div class="divErreur" id="txtAjoutPrenomErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtAjoutNomTut" class="col-sm-4 control-label">Nom  :</label>
+                        <label for="txtAjoutNom" class="col-sm-4 control-label">Nom  :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtAjoutNomTut" class="form-control" name="txtNom" placeholder="Nom">
+                            <input type="text" id="txtAjoutNom" class="form-control" name="txtNom" placeholder="Nom">
+                            <div class="divErreur" id="txtAjoutNomErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtAjoutCourrielTut" class="col-sm-4 control-label">Courriel :</label>
+                        <label for="txtAjoutCourriel" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="txtAjoutCourrielTut" class="form-control" name="emlCourriel" placeholder="Courriel">
+                            <input type="email" id="txtAjoutCourriel" class="form-control" name="emlCourriel" placeholder="Courriel">
+                            <div class="divErreur" id="txtAjoutCourrielErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="sltAjouterEcoleTut" class="col-sm-4 control-label">École :</label>
+                        <label for="sltAjouterEcole" class="col-sm-4 control-label">École :</label>
                         <div class="col-sm-6">
-                            <select id="sltAjouterEcoleTut" class="form-control col-sm-6" name="sltEcole">
+                            <select id="sltAjouterEcole" class="form-control col-sm-6" name="sltEcole">
                                 <?php
                                     foreach ($this->aListeEcoles as $oEcole) {
                                         echo '<option value="'.$oEcole->getId().'">'.$oEcole->getNom().'</option>';
                                     }
                                 ?>
                             </select>
+                            <div class="divErreur" id="sltAjouterEcoleErreur"></div>
                         </div>
                     </div>
                     <div id="chkAddDiv" class="form-group">
                         <label for="matieres" class="col-sm-4 control-label">Matières :</label>
+                        <div class="divErreur" id="chkMatiereErreur"></div>
                         <div class="col-sm-8">
                             <?php foreach ($this->aListeMatieres as $i => $oMatiere) {
                                 echo '<div class="checkbox-inline col-sm-4">';
@@ -1047,27 +1075,30 @@ class AdminVue extends Vue {
             <div class="col-sm-12 col-sm-offset-1">
                 <form id="frmAjoutProf" action="<?php echo WEB_ROOT;?>/admin/utilisateur/modifier-tuteur/<?php echo $this->oUtilisateur->getId();?>" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label for="txtAjoutPrenomTut" class="col-sm-4 control-label">Prénom :</label>
+                        <label for="txtAjoutPrenom" class="col-sm-4 control-label">Prénom :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtAjoutPrenomTut" class="form-control" name="txtPrenom" placeholder="Prenom" value="<?php echo $this->oUtilisateur->getPrenom();?>">
+                            <input type="text" id="txtAjoutPrenom" class="form-control" name="txtPrenom" placeholder="Prenom" value="<?php echo $this->oUtilisateur->getPrenom();?>">
+                            <div class="divErreur" id="txtAjoutPrenomErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtAjoutNomTut" class="col-sm-4 control-label">Nom  :</label>
+                        <label for="txtAjoutNom" class="col-sm-4 control-label">Nom  :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtAjoutNomTut" class="form-control" name="txtNom" placeholder="Nom" value="<?php echo $this->oUtilisateur->getNom();?>">
+                            <input type="text" id="txtAjoutNom" class="form-control" name="txtNom" placeholder="Nom" value="<?php echo $this->oUtilisateur->getNom();?>">
+                            <div class="divErreur" id="txtAjoutNomErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtAjoutCourrielTut" class="col-sm-4 control-label">Courriel :</label>
+                        <label for="txtAjoutCourriel" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="txtAjoutCourrielTut" class="form-control" name="emlCourriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
+                            <input type="email" id="txtAjoutCourriel" class="form-control" name="emlCourriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
+                            <div class="divErreur" id="txtAjoutCourrielErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="sltAjouterEcoleTut" class="col-sm-4 control-label">École :</label>
+                        <label for="sltAjouterEcole" class="col-sm-4 control-label">École :</label>
                         <div class="col-sm-6">
-                            <select id="sltAjouterEcoleTut" class="form-control col-sm-6" name="sltEcole">
+                            <select id="sltAjouterEcole" class="form-control col-sm-6" name="sltEcole">
                                 <?php
                                     $ecole = $this->oUtilisateur->getListeEcoles();
                                     foreach ($this->aListeEcoles as $oEcole) {
@@ -1079,9 +1110,11 @@ class AdminVue extends Vue {
                                     }
                                 ?>
                             </select>
+                            <div class="divErreur" id="sltAjouterEcoleErreur"></div>
                         </div>
                     </div>
                     <div id="chkAddDiv" class="form-group">
+                        <div class="divErreur" id="chkMatiereErreur"></div>
                         <label for="matieres" class="col-sm-4 control-label">Matières :</label>
                         <div class="col-sm-8">
                             <?php foreach ($this->aListeMatieres as $i => $oMatiere) {
