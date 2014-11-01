@@ -51,7 +51,7 @@ class UtilisateurVue extends Vue {
 
             <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-0 login-form">
                 <p class="col-sm-offset-1 col-sm-10">Connexion</p>
-                <form method="post" action="<?php echo WEB_ROOT;?>/utilisateur/accueil" class="form-horizontal" role="form">
+                <form id="frmLogin" method="post" action="<?php echo WEB_ROOT;?>/utilisateur/accueil" class="form-horizontal" role="form">
                     <div class="form-group">
                         <div class="input-group login-input">
                             <span class="input-group-addon">
@@ -69,7 +69,7 @@ class UtilisateurVue extends Vue {
                                 </span>
                             </span>
                             <input type="password" class="form-control" id="pwdPass" name="pwdPass" placeholder="Mot de passe">
-                            <div class="divErreur" id="txtPwdPassErreur"></div>
+                            <div class="divErreur" id="pwdPassErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -243,19 +243,19 @@ class UtilisateurVue extends Vue {
                            
             </div>            
             <div class="col-sm-6 col-sm-offset-3">
-                <form id="frmProfilUtil" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/modifier-mdp" class="form-horizontal" role="form">
+                <form id="frmProfilUtilateur" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/modifier-mdp" class="form-horizontal" role="form">
                      <div class="form-group">
-                        <label for="txtProfilMdp1" class="col-sm-4 control-label">Mot de passe :</label>
+                        <label for="pwdPass1" class="col-sm-4 control-label">Mot de passe :</label>
                         <div class="col-sm-6">
-                            <input type="password" id="txtProfilMdp" class="form-control" name="pwdMdp1" placeholder="Mot de passe">
-                            <div class="divErreur" id="txtProfilMdpErreur"></div>
+                            <input type="password" id="pwdPass1" class="form-control" name="pwdMdp1" placeholder="Mot de passe">
+                            <div class="divErreur" id="pwdPass1Erreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtProfilMdp2" class="col-sm-4 control-label">Mot de passe :</label>
+                        <label for="pwdPass2" class="col-sm-4 control-label">Mot de passe :</label>
                         <div class="col-sm-6">
-                            <input type="password" id="txtProfilMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe">
-                            <div class="divErreur" id="txtProfilMdp2Erreur"></div>
+                            <input type="password" id="pwdPass2" class="form-control" name="pwdMdp2" placeholder="Mot de passe">
+                            <div class="divErreur" id="pwdPass2Erreur"></div>
                         </div>
                     </div>
                     <div class="form-group"></div>
