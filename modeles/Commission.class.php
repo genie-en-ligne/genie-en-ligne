@@ -6,7 +6,7 @@
         private $iResponsable;
         private $iId;  
         
-        public function __construct($iId = 0, $sNom = " ", $iRegion = " ", $iResponsable = 0) {
+        public function __construct($iId = 0, $sNom = " ", $iRegion = 0, $iResponsable = 0) {
             $this->setId($iId);
             $this->setNom($sNom);
             $this->setRegion($iRegion);
@@ -45,6 +45,16 @@
             $this->setResponsable($aResultat[0]['responsable']);
         }
         
+        public function chargerCommissionParResponsable() {
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM commissions WHERE `responsable` = '{$this->iResponsable}'");
+            $aResultat =  $oConnexion->recupererTableau($oResultat);
+            
+            $this->setNom($aResultat[0]['nom']);
+            $this->setRegion($aResultat[0]['region']);
+            $this->setId($aResultat[0]['commission_ID']);
+        }
+        
         public function ajouterModuleAutorise($iServiceId) {
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("INSERT INTO services_par_commission (`commission_ID`, `service_ID`) 
@@ -70,9 +80,38 @@
         public function rechercherListeCommissions(){
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("SELECT * FROM commissions");
+            //insertion des résultats de la requête dans un array
             $aResultats = $oConnexion->recupererTableau($oResultat);
             
-            return $aResultats;
+            $aFinal = array();
+            
+            foreach($aResultats as $rangee){               
+                $aFinal[] = new Commission($rangee['commission_ID'], $rangee['nom'], $rangee['region'], $rangee['responsable']);
+            }
+            
+            return $aFinal;
+        }
+
+        public function rechercherListeEcoles(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM ecoles WHERE commission_ID = '$this->iId'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+            
+            $aFinal = array();
+            
+            foreach($aResultats as $rangee){               
+                $aFinal[] = new Ecole($rangee['ecole_ID'], $rangee['nom'], $rangee['commission_ID']);
+            }
+            
+            return $aFinal;
+        }
+
+        public function getNomRegion(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT nom FROM regions WHERE region_ID = '$this->iRegion'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['nom'];
         }
         
         //TODO: Ajouter méthodes au besoin
@@ -82,18 +121,18 @@
             $this->iId = $iId;
         }
         public function setNom($sNom) {
-            TypeException::estVide($sPseudo);
-            TypeException::estString($sPseudo);
+            TypeException::estVide($sNom);
+            TypeException::estString($sNom);
 
             $this->sNom = $sNom;
         }
         public function setRegion($iRegion) {
-            TypeException::estInteger($iId);
+            TypeException::estInteger($iRegion);
 
             $this->iRegion = $iRegion;
         }
         public function setResponsable($iResponsable) {
-            TypeException::estInteger($iId);
+            TypeException::estInteger($iResponsable);
 
             $this->iResponsable = $iResponsable;
         }

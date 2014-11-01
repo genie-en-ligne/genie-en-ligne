@@ -1,1 +1,22 @@
 /* Styles pour le module utilisateur (login, bienvenue, changer mot de passe (voir profil), etc.) */
+
+.descriptions-accueil {
+	height: 650px;
+}
+.cadre > a > img {
+    width: 200px;
+    height: 200px;
+    background-color: #E5F6FC;
+}
+.cadre {
+	padding-bottom: 30px;
+	padding-top: 25px;
+    text-align: center;
+    margin-top: 15px;
+}
+.cadre > a > img:hover {
+    opacity: .8; 
+}
+.panel-heading > h2 {
+	font-size: 20px;
+}

@@ -12,7 +12,7 @@
         public function __construct($iId = 0, $sPseudo = " ", $sMot_de_passe = " ", $sNom = " ", $sPrenom = " ", $sCourriel= " ", $iRole = 0) {
             $this->setId($iId);
             $this->setPseudo($sPseudo);
-            $this->setMDP(sha1($sMot_de_passe));
+            $this->setMDP($sMot_de_passe);
             $this->setNom($sNom);
             $this->setPrenom($sPrenom);
             $this->setCourriel($sCourriel);
@@ -113,6 +113,7 @@
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("INSERT INTO utilisateurs (`pseudo`, `mot_de_passe`, `nom`, `prenom`, `courriel`, `role`) VALUES ('{$this->sPseudo}', '{$this->sMot_de_passe}', '{$this->sNom}', '{$this->sPrenom}', '{$this->sCourriel}', '{$this->iRole}')");
             $this->setId($oConnexion->getInsertId());
+            return true;
         }
 
         //Appeler au clique sur l'icône supprimer des pages admin professeur (tuteurs), responsable (professeurs), superadmin (responsables)
@@ -134,9 +135,8 @@
         public function modifierUtilisateur() {
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer( "UPDATE utilisateurs
-                                                SET `pseudo` = '{$this->sPseudo}', `mot_de_passe` = '{$this->sMot_de_passe}',
-                                                    `nom` = '{$this->sNom}', `prenom` = '{$this->sPrenom}', `courriel` = '{$this->sCourriel}',
-                                                    `role` = '{$this->iRole}'
+                                                SET 
+                                                    `nom` = '{$this->sNom}', `prenom` = '{$this->sPrenom}', `courriel` = '{$this->sCourriel}'
                                                 WHERE `utilisateur_ID` = '{$this->iId}'");                                      
         }
 
@@ -145,16 +145,16 @@
             $oResultat = $oConnexion->executer("SELECT * FROM codes_permanents WHERE `code_permanent` = '$this->sCode_permanent' ");
             $aResultat = $oConnexion->recupererTableau($oResultat);
             $botte = strtoupper(substr($aResultat[0]['code_permanent'], 0, 3));
-            $aiguille = strtoupper(substr($this->sNom, 0, 3));
+            $aiguille = strtoupper(substr(preg_replace('/[^a-zA-Z]/', '', $this->sNom), 0, 3));
 
-            if($aResultat[0]['code_permanent'] && $aResultat[0]['code_permanent'] == 0) {
+            if(isset($aResultat[0]['code_permanent']) && $aResultat[0]['deja_utilise'] == 0) {
                 if($botte == $aiguille) {
-                    $oResultat = $oConnexion->executer("UPDATE codes_permanents SET `deja_utilise` = 1");
-                    return $aResultat[0]['code_permanent'] . " est valide!";
-                } else { 
-                    return $aResultat[0]['code_permanent'] . " est invalide!";
+                    $oResultat = $oConnexion->executer("UPDATE codes_permanents SET `deja_utilise` = 1 WHERE code_permanent = '{$this->sCode_permanent}'");
+                    return true;
                 }
+                return false;
             }
+            return false;
         }
 
         public function recupererMDP() {
@@ -164,8 +164,132 @@
             return $aResultat[0];
         }
 
+        public function changerMDP(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("UPDATE utilisateurs SET mot_de_passe = '{$this->sMot_de_passe}' WHERE utilisateur_ID = '$this->iId'");
+
+            return $oConnexion->getConnect()->affected_rows;
+        }
+
+        public function getListeEcoles(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM ecoles_par_utilisateur WHERE utilisateur_ID = '{$this->iId}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            $aFinal = array();
+            foreach ($aResultats as $rangee) {
+                $oEcole = new Ecole($rangee['ecole_ID']);
+                $oEcole->chargerEcole();
+                $aFinal[] = $oEcole;
+            }
+            return $aFinal;
+        }
+
+        public function getListeMatieres(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM matieres_par_utilisateur WHERE utilisateur_ID = '{$this->iId}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            $aFinal = array();
+            foreach ($aResultats as $rangee) {
+                $oMatiere = new Matiere($rangee['matiere_ID']);
+                $oMatiere->chargerMatiere();
+                $aFinal[] = $oMatiere;
+            }
+            return $aFinal;
+        }
+
+        public function getCommission(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT commission_ID FROM ecoles_par_utilisateur epu, ecoles e WHERE epu.utilisateur_ID = '{$this->getId()}' AND epu.ecole_ID = e.ecole_ID");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['commission_ID'];
+        }
+
+        public function getNomCommission(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT c.nom FROM ecoles_par_utilisateur epu, ecoles e, commissions c WHERE e.commission_ID = c.commission_ID AND epu.utilisateur_ID = '{$this->getId()}' AND epu.ecole_ID = e.ecole_ID");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['nom'];
+        }
+
+        public function rechercherListeTuteurs($iCommissionId){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, ecoles_par_utilisateur epu WHERE u.utilisateur_ID = epu.utilisateur_ID AND u.role = '2' AND epu.ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$iCommissionId}') AND u.est_detruit = 0");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            $aFinal = array();
+            foreach ($aResultats as $rangee) {
+                $oUtilisateur = new Utilisateur($rangee['utilisateur_ID']);
+                $oUtilisateur->chargerCompteParId();
+                $aFinal[] = $oUtilisateur;
+            }
+            return $aFinal;
+        }
+
+        public function rechercherListeProfs($iCommissionId){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, ecoles_par_utilisateur epu WHERE u.utilisateur_ID = epu.utilisateur_ID AND u.role = '3' AND epu.ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$iCommissionId}') AND u.est_detruit = 0");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            $aFinal = array();
+            foreach ($aResultats as $rangee) {
+                $oUtilisateur = new Utilisateur($rangee['utilisateur_ID']);
+                $oUtilisateur->chargerCompteParId();
+                $aFinal[] = $oUtilisateur;
+            }
+            return $aFinal;
+        }
+
+        public function rechercherListeResponsables(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, commissions c WHERE u.utilisateur_ID = c.responsable");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            $aFinal = array();
+            foreach ($aResultats as $rangee) {
+                $oUtilisateur = new Utilisateur($rangee['utilisateur_ID']);
+                $oUtilisateur->chargerCompteParId();
+                $aFinal[] = $oUtilisateur;
+            }
+            return $aFinal;
+        }
+
+        public function ajouterActiviteService($iTutoId){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("INSERT INTO activite_services (utilisateur_ID, type_service, element_service_ID) VALUES ('{$this->iId}', '1', '$iTutoId')");
+
+            return true;
+        }
+
+        public function creerLogin(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("UPDATE utilisateurs SET pseudo = '{$this->sPseudo}', mot_de_passe = '{$this->sMot_de_passe}' WHERE utilisateur_ID = '{$this->iId}'");
+
+            return $oConnexion->getConnect()->affected_rows;
+        }
+
+        public function getNomRole(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT nom FROM roles WHERE role_ID = '{$this->iRole}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['nom'];
+        }
+
+        public function supprimer(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("UPDATE utilisateurs SET est_detruit = '1' WHERE utilisateur_ID = '$this->iId'");
+
+            return true;
+        }
+
+
+
+
         public function setId($iId) {
-             //Validation à l'aide de la classe TypeException. Une exception est lancée (throw) si le paramètre n'est pas conforme.
             TypeException::estInteger($iId);
              //Ce code n'est pas exécuté si une erreur est lancée.
             $this->iId = $iId;
@@ -182,7 +306,7 @@
             TypeException::estVide($sMot_de_passe);
             TypeException::estString($sMot_de_passe);
 
-            $this->sMot_de_passe = $sMot_de_passe;
+            $this->sMot_de_passe = sha1($sMot_de_passe);
         }
 
         public function setNom($sNom) {

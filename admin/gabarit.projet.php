@@ -11,10 +11,26 @@
 		<link rel="stylesheet" href="<?php echo WEB_ROOT;?>/lib/bootstrap/css/bootstrap.css" type="text/css" media="screen">
 		<link rel="stylesheet" href="<?php echo WEB_ROOT;?>/admin/css/main.css" type="text/css" media="screen">
 		
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+        </script>
+
 		<script src="<?php echo WEB_ROOT;?>/js/main.js"></script>            
 	</head>
 
 	<body>
+        <?php
+            $oUtilisateurSession = new Utilisateur($_SESSION['user_id']);
+
+            if($oUtilisateurSession->utilisateurEstConnecte()){
+                $oUtilisateurSession->chargerCompteParId();
+            }
+            else{
+                //Rediriger au login
+                header("location:".WEB_ROOT);
+            }
+        ?>
+
         <div id="wrapper">
     <!--------------------->
     <!-- MENU HORIZONTAL -->
@@ -36,18 +52,18 @@
 
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-user"></i>Admin École
+                        <i class="fa fa-user"></i>Connecté en tant que <?php echo $oUtilisateurSession->getPrenom().' '.$oUtilisateurSession->getNom();?>
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/modifier-mdp">
                                 <i class="fa fa-fw fa-user"></i>Compte</a>
                         </li>
 
                         <li class="divider"></li>
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/utilisateur/logout">
                                 <i class="fa fa-fw fa-power-off"></i>Déconnexion</a>
                         </li>
                     </ul>
@@ -62,16 +78,6 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                 <?php 
-                    $oUtilisateurSession = new Utilisateur($_SESSION['user_id']);
-
-                    if($oUtilisateurSession->utilisateurEstConnecte()){
-                        $oUtilisateurSession->chargerCompteParId();
-                    }
-                    else{
-                        //Rediriger au login
-                        header("location:".WEB_ROOT);
-                    }
-                    
                     //Professeur
                     if($oUtilisateurSession->getRole() == 3){?>
                 
@@ -80,14 +86,14 @@
                         <!--------------------->
                 
                         <li class="nav-title">
-                            Professeurs
+                            Professeur
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-tuteurs">
                                 <i class="fa fa-fw fa-edit"></i>Gérer les tuteurs</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/admin/tutoriel/gerer">
                                 <i class="fa fa-fw fa-edit"></i>Gérer les tutoriels</a>
                         </li>
                         <li>
@@ -104,14 +110,14 @@
                         <!---------------------->
                 
                         <li class="nav-title">
-                            Responsables
+                            Responsable
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-profs">
                                 <i class="fa fa-fw fa-edit"></i>Gérer les professeurs</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/admin/tutoriel/gerer">
                                 <i class="fa fa-fw fa-edit"></i>Gérer les tutoriels</a>
                         </li>
                         <li>
@@ -131,7 +137,7 @@
                             Super admin
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-commissions">
                                 <i class="fa fa-fw fa-edit"></i>Gérer les commissions</a>
                         </li>
                         <li>
@@ -170,10 +176,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
-        </script>
 
         <!-- Include all compiled bootstrap plugins -->
         <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/bootstrap/js/bootstrap.js">

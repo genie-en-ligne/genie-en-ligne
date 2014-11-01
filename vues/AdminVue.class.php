@@ -7,7 +7,7 @@ class AdminVue extends Vue {
     }
     
     public function afficheListeCommissions(){
-    
+        
     }
     
     public function afficheListeEcoles(){
