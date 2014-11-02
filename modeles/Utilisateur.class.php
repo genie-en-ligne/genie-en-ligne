@@ -32,7 +32,7 @@
         
         public function validerInfosConnexion(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE `pseudo` = '".$this->getPseudo()."' AND `mot_de_passe` = '".$this->getMDP()."'");
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE `pseudo` = '".$this->getPseudo()."' AND `mot_de_passe` = '".$this->getMDP()."' AND est_detruit = '0'");
                         
             $compteExiste = $oConnexion->recupererNombreResultats($oResultat);
             if($compteExiste > 0){
@@ -128,7 +128,6 @@
             $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE `role` = '{$this->iRole}'");
             $aResultat = $oConnexion->recupererTableau($oResultat);
             return $aResultat;
-
         }
 
 

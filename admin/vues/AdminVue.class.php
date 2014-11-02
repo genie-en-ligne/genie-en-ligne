@@ -7,8 +7,8 @@ class AdminVue extends Vue {
     <?php
     }
     
-     public function afficheAjouterTuteurs(){?>
-    
+    public function afficheAjouterTuteurs(){?>
+
     <?php
     }
 
@@ -1016,7 +1016,6 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>  
-        
     <?php
     }
 
@@ -1112,8 +1111,6 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
-        
-        
     <?php
     }
 

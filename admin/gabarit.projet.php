@@ -58,7 +58,13 @@
                     <ul class="dropdown-menu">
                         <li>
                             <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/modifier-mdp">
-                                <i class="fa fa-fw fa-user"></i>Compte</a>
+                                <i class="fa fa-fw fa-user"></i>Compte
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?php echo WEB_ROOT;?>/admin/statistique/personnel">
+                                <i class="fa fa-fw fa-user"></i>Statistiques
+                            </a>
                         </li>
 
                         <li class="divider"></li>
@@ -70,9 +76,9 @@
                 </li>
             </ul>
            </nav>  
-    <!------------------->
+    <!-- ------------- -->
     <!-- MENU VERTICAL -->
-    <!------------------->
+    <!-- ------------- -->
          <nav id="menu-vertical" class="navbar navbar-inverse side-nav">
             <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -81,9 +87,9 @@
                     //Professeur
                     if($oUtilisateurSession->getRole() == 3){?>
                 
-                        <!--------------------->
+                        <!-- --------------- -->
                         <!-- MENU PROFESSEUR -->
-                        <!--------------------->
+                        <!-- --------------- -->
                 
                         <li class="nav-title">
                             Professeur
@@ -97,7 +103,7 @@
                                 <i class="fa fa-fw fa-edit"></i>Gérer les tutoriels</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/admin/statistique/general">
                                 <i class="fa fa-fw fa-bar-chart-o"></i>Statistiques</a>
                         </li>
                     <?php
@@ -105,9 +111,9 @@
                     //Responsable
                     elseif($oUtilisateurSession->getRole() == 4){?>
                 
-                        <!---------------------->
+                        <!-- ---------------- -->
                         <!-- MENU RESPONSABLE -->
-                        <!---------------------->
+                        <!-- ---------------- -->
                 
                         <li class="nav-title">
                             Responsable
@@ -121,7 +127,7 @@
                                 <i class="fa fa-fw fa-edit"></i>Gérer les tutoriels</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/admin/statistique/general">
                                 <i class="fa fa-fw fa-bar-chart-o"></i>Statistiques</a>
                         </li>
                     <?php
@@ -129,9 +135,9 @@
                     //Super Admin
                     elseif($oUtilisateurSession->getRole() == 5){?>
                 
-                        <!---------------------->
+                        <!-- ---------------- -->
                         <!-- MENU SUPER ADMIN -->
-                        <!---------------------->
+                        <!-- ---------------- -->
                 
                         <li class="nav-title">
                             Super admin
@@ -149,7 +155,7 @@
                                 <i class="fa fa-fw fa-edit"></i>Gérer les matières</a>
                         </li>
                         <li>
-                            <a href="../statistique/statistiques-professeur.html">
+                            <a href="<?php echo WEB_ROOT;?>/admin/statistique/general">
                                 <i class="fa fa-fw fa-bar-chart-o"></i>Statistiques</a>
                         </li>                       
                     <?php
@@ -159,9 +165,9 @@
             </div>
         </nav>
             
-        <!----------------------->
+        <!-- ----------------- -->
         <!-- CONTENU PRINCIPAL -->
-        <!----------------------->
+        <!-- ----------------- -->
             
             <div id="page-wrapper">
                 <div class="container-fluid">

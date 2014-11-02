@@ -23,7 +23,6 @@
                     $this -> inscription();
                     break;
                 case 'creer-login':
-                    //TODO: Activer
                     $this -> creerLogin();
                     break;
                 case 'envoyer-message':
@@ -78,7 +77,7 @@
         
     
         
-		private function accueil() {            
+		private function accueil() {
 			$oVue = new UtilisateurVue();
             
             try{
