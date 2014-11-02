@@ -46,12 +46,12 @@ class UtilisateurVue extends Vue {
 
             <!----------------------------->
             <!-- FORMULAIRE DE CONNEXION -->
-            <!----------------------------->
+            <!-- ------------------------- -->
 
 
             <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-0 login-form">
                 <p class="col-sm-offset-1 col-sm-10">Connexion</p>
-                <form method="post" action="<?php echo WEB_ROOT;?>/utilisateur/accueil" class="form-horizontal" role="form">
+                <form id="frmLogin" method="post" action="<?php echo WEB_ROOT;?>/utilisateur/accueil" class="form-horizontal" role="form">
                     <div class="form-group">
                         <div class="input-group login-input">
                             <span class="input-group-addon">
@@ -59,6 +59,7 @@ class UtilisateurVue extends Vue {
                                 </span>
                             </span>
                             <input type="text" class="form-control" id="txtPseudo" name="txtPseudo" placeholder="Pseudo">
+                            <div class="divErreur" id="txtPseudoErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -68,6 +69,7 @@ class UtilisateurVue extends Vue {
                                 </span>
                             </span>
                             <input type="password" class="form-control" id="pwdPass" name="pwdPass" placeholder="Mot de passe">
+                            <div class="divErreur" id="pwdPassErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
@@ -241,17 +243,19 @@ class UtilisateurVue extends Vue {
                            
             </div>            
             <div class="col-sm-6 col-sm-offset-3">
-                <form id="frmProfilUtil" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/modifier-mdp" class="form-horizontal" role="form">
+                <form id="frmProfilUtilateur" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/modifier-mdp" class="form-horizontal" role="form">
                      <div class="form-group">
-                        <label for="txtProfilMdp1" class="col-sm-4 control-label">Mot de passe :</label>
+                        <label for="pwdPass1" class="col-sm-4 control-label">Mot de passe :</label>
                         <div class="col-sm-6">
-                            <input type="password" id="txtProfilMdp" class="form-control" name="pwdMdp1" placeholder="Mot de passe">
+                            <input type="password" id="pwdPass1" class="form-control" name="pwdMdp1" placeholder="Mot de passe">
+                            <div class="divErreur" id="pwdPass1Erreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtProfilMdp2" class="col-sm-4 control-label">Mot de passe :</label>
+                        <label for="pwdPass2" class="col-sm-4 control-label">Mot de passe :</label>
                         <div class="col-sm-6">
-                            <input type="password" id="txtProfilMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe">
+                            <input type="password" id="pwdPass2" class="form-control" name="pwdMdp2" placeholder="Mot de passe">
+                            <div class="divErreur" id="pwdPass2Erreur"></div>
                         </div>
                     </div>
                     <div class="form-group"></div>
@@ -306,18 +310,21 @@ class UtilisateurVue extends Vue {
                             <label for="txtLoginPseudo" class="col-sm-4 control-label">Pseudo :</label>
                             <div class="col-sm-6">
                                 <input type="text" id="txtLoginPseudo" name="txtPseudo" class="form-control" placeholder="Pseudo">
+                                <div class="divErreur" id="txtLoginPseudoErreur"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="txtLoginMdp1" class="col-sm-4 control-label">Mot de passe :</label>
                             <div class="col-sm-6">
                                 <input type="password" id="txtLoginMdp1" class="form-control" name="pwdMdp1" placeholder="Mot de passe">
+                                 <div class="divErreur" id="txtLoginMdp1Erreur"></div>
                             </div>
                         </div>
                          <div class="form-group">
                             <label for="txtLoginMdp2" class="col-sm-4 control-label">Mot de passe :</label>
                             <div class="col-sm-6">
                                 <input type="password" id="txtLoginMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe">
+                                <div class="divErreur" id="txtLoginMdp2Erreur"></div>
                             </div>
                         </div>
                         <div class="form-group"></div>
@@ -357,7 +364,7 @@ class UtilisateurVue extends Vue {
                 </h1>
 
                 <h3 class="col-sm-offset-3 col-sm-12 bold"><strong>Votre compte est maintenant actif.</strong></h3>
-            <div class="col-sm-offset-4 col-sm-12 page-header">       
+            <div class="col-sm-offset-2 col-sm-12 page-header">       
             </div>
             <div class="col-sm-12 col-sm-offset-1">
                 <div class="form-group"></div>
@@ -407,12 +414,14 @@ class UtilisateurVue extends Vue {
                             <label for="txtPreInscCodePerm" class="col-sm-4 control-label">Code permanent :</label>
                             <div class="col-sm-6">
                                 <input type="text" id="txtCodePerm" class="form-control" name="txtCodePerm" placeholder="Code permanent">
+                                <div class="divErreur" id="txtCodePermErreur"></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="txtPreInscNom" class="col-sm-4 control-label">Nom de famille :</label>
                             <div class="col-sm-6">
-                                <input type="text" id="txtPNom" class="form-control" name="txtNom" placeholder="Nom de famille">
+                                <input type="text" id="txtNom" class="form-control" name="txtNom" placeholder="Nom de famille">
+                                <div class="divErreur" id="txtNomErreur"></div>
                             </div>
                         </div>
                         <div class="form-group"></div>
@@ -464,36 +473,42 @@ class UtilisateurVue extends Vue {
                         <label for="txtInscriptionPrenom" class="col-sm-4 control-label">Prénom :</label>
                         <div class="col-sm-6">
                             <input type="text" id="txtInscriptionPrenom" class="form-control" name="txtPrenom" placeholder="Prenom">
+                            <div class="divErreur" id="txtInscriptionPrenomErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="txtInscriptionNom" class="col-sm-4 control-label">Nom de famille :</label>
                         <div class="col-sm-6">
                             <input type="text" id="txtInscriptionNom" class="form-control" name="txtNom" placeholder="Nom">
+                            <div class="divErreur" id="txtInscriptionNomErreur"></div>
                         </div>
                     </div>
                      <div class="form-group">
                         <label for="txtInscriptionPseudo" class="col-sm-4 control-label">Pseudo :</label>
                         <div class="col-sm-6">
                             <input type="text" id="txtInscriptionPseudo" class="form-control" name="txtPseudo" placeholder="Pseudo">
+                            <div class="divErreur" id="txtInscriptionPseudoErreur"></div>
                         </div>
                     </div>
                      <div class="form-group">
                         <label for="txtInscriptionCourriel" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
                             <input type="email" id="txtInscriptionCourriel" class="form-control" name="txtCourriel" placeholder="Courriel">
+                            <div class="divErreur" id="txtInscriptionCourrielErreur"></div>
                         </div>
                     </div>
                      <div class="form-group">
                         <label for="txtInscriptionMdp1" class="col-sm-4 control-label">Mot de passe :</label>
                         <div class="col-sm-6">
                             <input type="password" id="txtInscriptionMdp1" class="form-control" name="pwdMdp1" placeholder="Mot de passe :">
+                            <div class="divErreur" id="txtInscriptionMdp1Erreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="txtInscriptionMdp2" class="col-sm-4 control-label">Mot de passe :</label>
                         <div class="col-sm-6">
                             <input type="password" id="txtInscriptionMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe :">
+                             <div class="divErreur" id="txtInscriptionMdp2Erreur"></div>
                         </div>
                     </div>
                     <div class="form-group"></div>
@@ -544,7 +559,8 @@ class UtilisateurVue extends Vue {
                         <div class="form-group">
                             <label for="nom" class="col-sm-4 control-label">Courriel :</label>
                             <div class="col-sm-6">
-                                <input type="email" name="emlCourriel" id="codePermanent" class="form-control" placeholder="Courriel">
+                                <input type="email" name="emlCourriel" id="txtRecupMdp" class="form-control" placeholder="Courriel">
+                                <div class="divErreur" id="txtRecupPassErreur"></div>
                             </div>
                         </div>
                         <div class="form-group"></div>
@@ -595,13 +611,15 @@ class UtilisateurVue extends Vue {
                     <div class="form-group">
                         <label for="nom" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" name="emlCourriel" id="codePermanent" class="form-control" placeholder="Courriel">
+                            <input type="email" name="emlCourriel" id="txtCourriel" class="form-control" placeholder="Courriel">
+                            <div class="divErreur" id="txtCourrielErreur"></div>
                         </div>
                     </div>
                     <section class="form-group">
                         <label for="nom" class="col-md-4 control-label">Message :</label>
                         <div class="col-md-6">
-                            <textarea class="col-md-12" name="txtMessage" id="commentaire"></textarea>
+                            <textarea class="col-md-12" name="txtMessage" id="txtCommentaire"></textarea>
+                            <div class="divErreur" id="txtCommentaireErreur"></div>
                         </div>
                     </section>
                     <div class="form-group"></div>
