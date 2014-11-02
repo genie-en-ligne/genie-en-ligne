@@ -14,9 +14,6 @@
 
 //Par exemple, estNumérique(), estBooleen(), estVide(), etc.
 
-
-
-
 function estVide(varATester){
    if(varATester.length == 0){
       return true;
@@ -33,7 +30,6 @@ function estNumerique(varATester){
    return true;
 }
 
-
 function estTitre(varATester){
     // regex pour que l'utilisateur ne rentre pas les caractères non désirés
 	var regex = /[^a-zA-Z0-9\s\-\*\xC0-\xFC'\!\?\.\,\t\n\r]/;
@@ -43,7 +39,6 @@ function estTitre(varATester){
 	}
 	return true;
 }
-	//<iframe width="560" height="315" src="//www.youtube.com/embed/FtmHWULpQfw?list=PL_1WVGjLTYqJfhjnqCrkgcELhHyps1Jrz" frameborder="0" allowfullscreen></iframe>
 
 function estUrl(varATester){
     // regex pour que l'utilisateur ne rentre pas les caractères non désirés
@@ -53,4 +48,25 @@ function estUrl(varATester){
 		return false;			 // on retourne false
 	}
 	return true;
+}
+    
+//Tester pour une valeur alpha
+function estLettre(varATester) {
+	// regex pour que l'utilisateur ne rentre pas les caractères non désirés
+	var regex = /[^a-zA-Z0-9\s\xC0-\xFC]/;
+
+	if(regex.test(varATester)) { //on teste le champ et si il y a  des caractères invalides 
+		return false;			 // on retourne false
+	}
+	return true;
+}
+
+//Tester pour un courriel
+function estCourriel(varATester) {
+	//approche positive
+	var regex = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
+	if(regex.test(varATester) {
+		return true;
+	}
+    return true;
 }
