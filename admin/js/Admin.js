@@ -1,5 +1,5 @@
 /*********************************************************************/
-/**************VALIDATION DES FORMULLAIRES CÔTÉ ADMIN*****************/
+/**************VALIDATION DES FORMULLAIRES ADMIN*****************/
 /*********************************************************************/
 
 
@@ -11,10 +11,10 @@
 /*************FORMULAIRE DE RECHERCHE PROFESSEUR**********************/
 
 if(document.getElementById('frmChercherProf')) {
-	document.getElementById('frmChercherProf').addEventListner('submit', validerFrmChercherProf)
+	document.getElementById('subChercherProf').addEventListner('submit', validerFrmChercherProf);
 }
 
-function validerFrmChercherProf() {
+function validerFrmChercherProf() { 
 
 	//Empêcher le formulaire de soumettre automatiquement
 	if(event.preventDefault()) {
@@ -24,12 +24,12 @@ function validerFrmChercherProf() {
 	}
 
 	var estValide =  false;
-	var validerFrmChercherProf = document.getElementById('validerFrmChercherProf');
+	var frmChercherProf 	= 	document.getElementById('frmChercherProf');
 
 	//Définir les champs
-	var emlCourriel 	= 	document.getElementById('emlCourriel');
-	var txtNom 		= 	document.getElementById('txtNom');
-	var sltEcoles		=	document.getElementById('sltEcoles')
+	var emlCourriel 		= 	document.getElementById('emlCourriel');
+	var txtNom 				= 	document.getElementById('txtNom');
+	var sltEcoles			=	document.getElementById('sltEcoles')
 
 	//Définir les champs d'erreurs
 	var emlCourrielErreur 	= 	document.getElementById('emlCourrielErreur');
@@ -42,8 +42,6 @@ function validerFrmChercherProf() {
 	for(var i = 0; i = aDivErreur.length; i++) {
 		aDivErreur[i].innerHTML = '';
 	}
-
-	//Validation des champs
 
 	//Valider emlCourriel
 	if(estVide(emlCourriel.value) {
@@ -65,15 +63,15 @@ function validerFrmChercherProf() {
 		txtNomErreur.innerHTML = "Ce champ doit contenir du texte";
 	}
 
-	//Valider sltNom
-	if(sltEcoles == 0) {
+	//Valider sltEcoles
+	if(sltEcoles.value == "0") {
 		estValide = false;
 		sltEcolesErreur.innerHTML = "Veuillez faire une sélection";
 	}
 
 	//Soummettre le formulaire
 	if(estValide) {
-		validerFrmChercherProf.submit(); 
+		frmChercherProf.submit(); 
 	}
 
 }
@@ -81,7 +79,7 @@ function validerFrmChercherProf() {
 /****************FORMULAIRE D'AJOUT PROFESSEUR************************/
 
 if(document.getElementById('frmAjouterProf')) {
-	document.getElementById('frmAjouterProf').addEventListner('submit', validerFrmAjouterProf)
+	document.getElementById('subAjouterProf').addEventListner('submit', validerFrmAjouterProf);
 }
 
 function validerFrmAjouterProf() {
@@ -93,11 +91,22 @@ function validerFrmAjouterProf() {
 	}
 
 	var estValide =  false;
-	var validerFrmChercherProf = document.getElementById('validerFrmChercherProf');
+	var frmAjouterProf 		= 	document.getElementById('frmAjouterProf');
 
-	var = document.getElementById('');
+	//Définir les champs
+	var txtPrenom 			= 	document.getElementById('txtPrenom');
+	var txtNom 				=  	document.getElementById('txtNom');
+	var elmCourriel			=	document.getElementById('emlCourriel');
+	var sltEcoles 			=	document.getElementById('sltEcoles');
+	var aChkMatieres 		=	document.getElementsByName('chkMatieres[]');
 
 	//Définir les champs d'erreurs
+	var txtPrenomErreur 	=	document.getElementById('txtPrenomErreur');
+	var txtNomErreur 		= 	document.getElementById('txtNomErreur');
+	var emlCourrielErreur 	= 	document.getElementById('emlCourrielErreur');
+	var sltEcolesErreur 	=	document.getElementById('sltEcolesErreur');
+	var chkMatieresErreur 	= 	document.getElementById('chkMatieresErreur');
+
 	var aDivErreur document.getElementsByClassName('divErreur');
 
 	//Enlever toutes les erreurs
@@ -105,13 +114,64 @@ function validerFrmAjouterProf() {
 		aDivErreur[i].innerHTML = '';
 	}
 
-	//...
+	//Valider txtPrenom
+	if(estVide(txtPrenom.value)) {
+		estValide = false;
+		txtPrenomErreur.innerHTML = "Veuillez remplir ce champ";
+	}
+	else if(!estTexte(txtPrenom.value)) {
+		estValide = false;
+		txtPrenomErreur.innerHTML = "Ce champ doit contenir du texte";
+	}
+
+	//Valider txtNom
+	if(estVide(txtNom.value)) {
+		estValide = false;
+		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
+	}
+	else if(!estTexte(txtNom.value)) {
+		estValide = false;
+		txtNomErreur.innerHTML = "Ce champ doit contenir du texte";
+	}
+
+	//Valider emlCourriel
+	if(estVide(emlCourriel.value) {
+		estValide = false;
+		emlCourrielErreur.innerHTML = "Veuillez remplir ce champ";
+	} 
+	else if(!estCourriel(emlCourriel.value)) {
+		estValide = false;
+		emlCourrielErreur.innerHTML = "Ce champ doit contenir un mot de passe";
+	}
+
+	//Valider sltEcoles
+	if(sltEcoles.value == "0") {
+		estValide = false;
+		sltEcolesErreur.innerHTML = "Veuillez faire une sélection";
+	}
+
+	//Valider chkMatiere
+	var auMoinsUn = false;
+	for(var i = 0; i < aChkMatieres.length; i++) {
+		if(aChkMatieres[i].checked) {
+			auMoinsUn = true;
+		} 
+		if(!auMoinsUn) {
+			estValide = false;
+			chkMatieresErreur.innerHTML = "*";
+		}
+	}
+
+	//Soumettre le formulaire
+	if(estValide) {
+		frmAjouterProf.submit(); 
+	}
 }
 
 /***************FORMULAIRE DE MODIFICATION PROFESSEUR*****************/
 
 if(document.getElementById('frmModifierProf')) {
-	document.getElementById('frmModifierProf').addEventListner('submit', validerFrmModifierProf)
+	document.getElementById('subModifierProf').addEventListner('submit', validerFrmModifierProf);
 }
 
 function validerFrmModifierProf() {
@@ -123,12 +183,22 @@ function validerFrmModifierProf() {
 	}
 
 	var estValide =  false;
-	var validerFrmModifierProf = document.getElementById('validerFrmModifierProf');
+	var frmModifierProf = document.getElementById('frmModifierProf');
 
 	//Définir les champs
-	var = document.getElementById('');
+	var txtPrenom 			= 	document.getElementById('txtPrenom');
+	var txtNom 				= 	document.getElementById('txtNom');
+	var emlCourriel 		= 	document.getElementById('emlCourriel');
+	var sltEcoles 			=	document.getElementById('sltEcoles');
+	var aChkMatieres 		= 	document.getElementsByName('chkMatieres[]');
 
 	//Définir les champs d'erreurs
+	var txtPrenomErreur		=	document.getElementById('txtPrenomErreur');
+	var txtNomErreur 		=	document.getElementById('txtNomErreur');
+	var emlCourrielErreur 	=	document.getElementById('emlCourrielErreur');
+	var sltEcolesErreur 	=	document.getElementById('sltEcolesErreur');
+	var chkMatieresErreur 	= 	document.getElementById('chkMatieresErreur');
+
 	var aDivErreur document.getElementsByClassName('divErreur');
 
 	//Enlever toutes les erreurs
@@ -136,7 +206,59 @@ function validerFrmModifierProf() {
 		aDivErreur[i].innerHTML = '';
 	}
 
-	//...
+	//Valider txtPrenom
+	if(estVide(txtPrenom.value)) {
+		estValide = false;
+		txtPrenomErreur.innerHTML = "Veuillez remplir ce champ";
+	}
+	else if(!estTexte(txtPrenom.value)) {
+		estValide = false;
+		txtPrenomErreur.innerHTML = "Ce champ doit contenir du texte";
+	}
+
+	//Valider txtNom
+	if(estVide(txtNom.value)) {
+		estValide = false;
+		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
+	}
+	else if(!estTexte(txtNom.value)) {
+		estValide = false;
+		txtNomErreur.innerHTML = "Ce champ doit contenir du texte";
+	}
+
+	//Valider emlCourriel
+	if(estVide(emlCourriel.value) {
+		estValide = false;
+		emlCourrielErreur.innerHTML = "Veuillez remplir ce champ";
+	} 
+	else if(!estCourriel(emlCourriel.value)) {
+		estValide = false;
+		emlCourrielErreur.innerHTML = "Ce champ doit contenir un mot de passe";
+	}
+
+	//Valider sltEcoles
+	if(sltEcoles.value == "0") {
+		estValide = false;
+		sltEcolesErreur.innerHTML = "Veuillez faire une sélection";
+	}
+
+	//Valider chkMatiere
+	var auMoinsUn = false;
+	for(var i = 0; i < aChkMatieres.length; i++) {
+		if(aChkMatieres[i].checked) {
+			auMoinsUn = true;
+		} 
+		if(!auMoinsUn) {
+			estValide = false;
+			chkMatieresErreur.innerHTML = "*";
+		}
+	}
+
+	//Soumettre le formulaire
+	if(estValide) {
+		frmModifierProf.submit(); 
+	}
+}
 }
 
 
@@ -148,7 +270,7 @@ function validerFrmModifierProf() {
 /****************FORMULAIRE DE RECHERCHE TUTEURS**********************/
 
 if(document.getElementById('frmChercherTuteur')) {
-	document.getElementById('frmChercherTuteur').addEventListner('submit', validerFrmChercherTuteur)
+	document.getElementById('subChercherTuteur').addEventListner('submit', validerFrmChercherTuteur);
 }
 
 function validerFrmChercherTuteur() {
@@ -160,12 +282,18 @@ function validerFrmChercherTuteur() {
 	}
 
 	var estValide =  false;
-	var validerFrmChercherTuteur = document.getElementById('validerFrmChercherTuteur');
+	var frmChercherTuteur 	= 	document.getElementById('frmChercherTuteur');
 
 	//Définir les champs
-	var = document.getElementById('');
+	var txtNom 				= 	document.getElementById('txtNom');
+	var emlCourriel 		=	document.getElementById('emlCourriel');
+	var sltEcoles 			=	document.getElementById('sltEcoles');
 
 	//Définir les champs d'erreurs
+	var txtNomErreur 		=	document.getElementById('txtNomErreur');
+	var emlCourrielErreur 	=	document.getElementById('emlCourrielErreur');
+	var sltEcolesErreur 	= 	document.getElementById('sltEcolesErreur');
+
 	var aDivErreur document.getElementsByClassName('divErreur');
 
 	//Enlever toutes les erreurs
@@ -173,13 +301,43 @@ function validerFrmChercherTuteur() {
 		aDivErreur[i].innerHTML = '';
 	}
 
-	//...
+	//Valider txtNom
+	if(estVide(txtNom.value)) {
+		estValide = false;
+		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
+	}
+	else if(!estTexte(txtNom.value)) {
+		estValide = false;
+		txtNomErreur.innerHTML = "Ce champ doit contenir du texte";
+	}
+
+	//Valider emlCourriel
+	if(estVide(emlCourriel.value) {
+		estValide = false;
+		emlCourrielErreur.innerHTML = "Veuillez remplir ce champ";
+	} 
+	else if(!estCourriel(emlCourriel.value)) {
+		estValide = false;
+		emlCourrielErreur.innerHTML = "Ce champ doit contenir un mot de passe";
+	}
+
+	//Valider sltEcoles
+	if(sltEcoles.value == "0") {
+		estValide = false;
+		sltEcolesErreur.innerHTML = "Veuillez faire une sélection";
+	}
+
+	//Soumettre le formulaire
+	if(estValide) {
+		frmChercherTuteur.submit(); 
+	}
+
 }
 }
 /*******************FORMULAIRE D'AJOUT TUTEUR*************************/
 
 if(document.getElementById('frmAjouterTuteur')) {
-	document.getElementById('frmAjouterTuteur').addEventListner('submit', validerFrmAjouterTuteur)
+	document.getElementById('subAjouterTuteur').addEventListner('submit', validerFrmAjouterTuteur);
 }
 
 function validerFrmAjouterTuteur() {
@@ -191,12 +349,22 @@ function validerFrmAjouterTuteur() {
 	}
 
 	var estValide =  false;
-	var validerFrmAjouterTuteur = document.getElementById('validerFrmAjouterTuteur');
+	var frmAjouterTuteur 	= document.getElementById('frmAjouterTuteur');
 
 	//Définir les champs
-	var = document.getElementById('');
+	var txtPrenom 			= 	document.getElementById('txtPrenom');
+	var txtNom 				= 	document.getElementById('txtNom');
+	var emlCourriel 		= 	document.getElementById('emlCourriel');
+	var sltEcoles 			= 	document.getElementById('sltEcoles');
+	var aChkMatieres 		= 	document.getElementsByName('chkMatieres[]')
 
 	//Définir les champs d'erreurs
+	var txtPrenomErreur 	= 	document.getElementById('txtPrenomErreur');
+	var txtNomErreur 		= 	document.getElementById('txtNomErreur');
+	var emlCourrielErreur 	= 	document.getElementById('emlCourrielErreur');
+	var sltEcolesErreur 	= 	document.getElementById('sltEcolesErreur');
+	var chkMatieresErreur 	= 	document.getElementById('chkMatieresErreur');
+
 	var aDivErreur document.getElementsByClassName('divErreur');
 
 	//Enlever toutes les erreurs
@@ -204,13 +372,64 @@ function validerFrmAjouterTuteur() {
 		aDivErreur[i].innerHTML = '';
 	}
 
-	//...
+	//Valider txtPrenom
+	if(estVide(txtPrenom.value)) {
+		estValide = false;
+		txtPrenomErreur.innerHTML = "Veuillez remplir ce champ";
+	}
+	else if(!estTexte(txtPrenom.value)) {
+		estValide = false;
+		txtPrenomErreur.innerHTML = "Ce champ doit contenir du texte";
+	}
+
+	//Valider txtNom
+	if(estVide(txtNom.value)) {
+		estValide = false;
+		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
+	}
+	else if(!estTexte(txtNom.value)) {
+		estValide = false;
+		txtNomErreur.innerHTML = "Ce champ doit contenir du texte";
+	}
+
+	//Valider emlCourriel
+	if(estVide(emlCourriel.value) {
+		estValide = false;
+		emlCourrielErreur.innerHTML = "Veuillez remplir ce champ";
+	} 
+	else if(!estCourriel(emlCourriel.value)) {
+		estValide = false;
+		emlCourrielErreur.innerHTML = "Ce champ doit contenir un mot de passe";
+	}
+
+	//Valider sltEcoles
+	if(sltEcoles.value == "0") {
+		estValide = false;
+		sltEcolesErreur.innerHTML = "Veuillez faire une sélection";
+	}
+
+	//Valider chkMatiere
+	var auMoinsUn = false;
+	for(var i = 0; i < aChkMatieres.length; i++) {
+		if(aChkMatieres[i].checked) {
+			auMoinsUn = true;
+		} 
+		if(!auMoinsUn) {
+			estValide = false;
+			chkMatieresErreur.innerHTML = "*";
+		}
+	}
+
+	//Soumettre le formulaire
+	if(estValide) {
+		frmModifierProf.submit(); 
+	}
 }
 
 /*************FORMULAIRE DE MODIFICATION TUTEURS**********************/
 
 if(document.getElementById('frmModifierTuteur')) {
-	document.getElementById('frmModifierTuteur').addEventListner('submit', validerFrmModifierTuteur)
+	document.getElementById('subModifierTuteur').addEventListner('submit', validerFrmModifierTuteur)
 }
 
 function validerFrmModifierTuteur() {
@@ -222,12 +441,22 @@ function validerFrmModifierTuteur() {
 	}
 
 	var estValide =  false;
-	var validerFrmModifierTuteur = document.getElementById('validerFrmModifierTuteur');
+	var frmModifierTuteur = document.getElementById('frmModifierTuteur');
 
 	//Définir les champs
-	var = document.getElementById('');
+	var txtPrenom 			= 	document.getElementById('txtPrenom');
+	var txtNom 				= 	document.getElementById('txtNom');
+	var emlCourriel 		= 	document.getElementById('emlCourriel');
+	var sltEcoles 			= 	document.getElementById('sltEcoles');
+	var aChkMatieres 		= 	document.getElementsByName('chkMatieres[]')
 
 	//Définir les champs d'erreurs
+	var txtPrenomErreur 	= 	document.getElementById('txtPrenomErreur');
+	var txtNomErreur 		= 	document.getElementById('txtNomErreur');
+	var emlCourrielErreur 	= 	document.getElementById('emlCourrielErreur');
+	var sltEcolesErreur 	= 	document.getElementById('sltEcolesErreur');
+	var chkMatieresErreur 	= 	document.getElementById('chkMatieresErreur');
+
 	var aDivErreur document.getElementsByClassName('divErreur');
 
 	//Enlever toutes les erreurs
@@ -235,16 +464,67 @@ function validerFrmModifierTuteur() {
 		aDivErreur[i].innerHTML = '';
 	}
 
-	//...
+	//Valider txtPrenom
+	if(estVide(txtPrenom.value)) {
+		estValide = false;
+		txtPrenomErreur.innerHTML = "Veuillez remplir ce champ";
+	}
+	else if(!estTexte(txtPrenom.value)) {
+		estValide = false;
+		txtPrenomErreur.innerHTML = "Ce champ doit contenir du texte";
+	}
+
+	//Valider txtNom
+	if(estVide(txtNom.value)) {
+		estValide = false;
+		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
+	}
+	else if(!estTexte(txtNom.value)) {
+		estValide = false;
+		txtNomErreur.innerHTML = "Ce champ doit contenir du texte";
+	}
+
+	//Valider emlCourriel
+	if(estVide(emlCourriel.value) {
+		estValide = false;
+		emlCourrielErreur.innerHTML = "Veuillez remplir ce champ";
+	} 
+	else if(!estCourriel(emlCourriel.value)) {
+		estValide = false;
+		emlCourrielErreur.innerHTML = "Ce champ doit contenir un mot de passe";
+	}
+
+	//Valider sltEcoles
+	if(sltEcoles.value == "0") {
+		estValide = false;
+		sltEcolesErreur.innerHTML = "Veuillez faire une sélection";
+	}
+
+	//Valider aChkMatieres
+	var auMoinsUn = false;
+	for(var i = 0; i < aChkMatieres.length; i++) {
+		if(aChkMatieres[i].checked) {
+			auMoinsUn = true;
+		} 
+		if(!auMoinsUn) {
+			estValide = false;
+			chkMatieresErreur.innerHTML = "*";
+		}
+	}
+
+	//Soumettre le formulaire
+	if(estValide) {
+		frmModifierProf.submit(); 
+	}
 }
 
 
 /*****************************************************************************************/
-/***************VALIDATION DU FORMULAIRE DE SUPPRESION DES UTILISATEURS ******************/
+/***************VALIDATION DU FORMULAIRE DE SUPPRESSION DES UTILISATEURS ******************/
 /*****************************************************************************************/
 
-if(document.getElementById('frmSupprimerUtilisateur')) {
-	document.getElementById('frmSupprimerUtilisateur').addEventListner('submit', validerFrmSupprimerUtilisateur)
+/*if(document.getElementById('frmSupprimerUtilisateur')) {
+	document.getElementById('subSupprimer').addEventListner('submit', validerFrmSupprimerUtilisateur)
 }
 
 function validerFrmSupprimerUtilisateur() {
@@ -256,7 +536,7 @@ function validerFrmSupprimerUtilisateur() {
 	}
 
 	var estValide =  false;
-	var validerFrmSupprimerUtilisateur = document.getElementById('validerFrmSupprimerUtilisateur');
+	var frmSupprimerUtilisateur = document.getElementById('frmSupprimerUtilisateur');
 
 	//Définir les champs
 	var = document.getElementById('');
@@ -270,4 +550,4 @@ function validerFrmSupprimerUtilisateur() {
 	}
 
 	//...
-}
+}*/
