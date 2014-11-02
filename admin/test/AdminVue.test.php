@@ -251,13 +251,13 @@
             echo "<div class='panel panel-primary'>";
                 echo "<div class='panel-heading'>";
                     echo "<h4>";
-                        echo "Test afficheModifierCommission";
+                        echo "Test afficheModifierCommissions";
                     echo "</h4>";
                 echo "</div>";
                 echo "<div class='panel-body'>";
 
                     $oVue = new AdminVue();
-                    $oVue->afficheModifierCommission();
+                    $oVue->afficheModifierCommissions();
 
                 echo "</div>";
             echo "</div>";
@@ -267,13 +267,13 @@
             echo "<div class='panel panel-primary'>";
                 echo "<div class='panel-heading'>";
                     echo "<h4>";
-                        echo "Test afficheSupprimerCommission";
+                        echo "Test afficheSupprimerCommissions";
                     echo "</h4>";
                 echo "</div>";
                 echo "<div class='panel-body'>";
 
                     $oVue = new AdminVue();
-                    $oVue->afficheSupprimerCommission();
+                    $oVue->afficheSupprimerCommissions();
 
                 echo "</div>";
             echo "</div>";
@@ -290,6 +290,54 @@
 
                     $oVue = new AdminVue();
                     $oVue->afficheListeEcoles();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+        echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheAjouterEcoles";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheAjouterEcoles();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+        echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheModifierEcoles";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheModifierEcoles();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+        echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheSupprimerEcoles";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheSupprimerEcoles();
 
                 echo "</div>";
             echo "</div>";

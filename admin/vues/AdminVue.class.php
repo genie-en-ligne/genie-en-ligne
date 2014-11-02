@@ -7,10 +7,14 @@ class AdminVue extends Vue {
     <?php
     }
 
-    /*=====================================*/
-    /*======GESTION DES RESPONSABLES=======*/
-    /*==========DROITS SUPERADMIN==========*/
-    /*=====================================*/
+    /*========================================*/
+    /*======DÉBUT DES DROITS SUPERADMIN=======*/
+    /*========================================*/
+
+
+    /****************************************************/
+    /*************AFFICHER GÉRER RESPONSABLES************/
+    /****************************************************/
 
     public function afficheListeResponsables(){?>
 
@@ -119,6 +123,14 @@ class AdminVue extends Vue {
     <?php
     }
 
+    /****************************************************/
+    /**********FIN AFFICHER GÉRER RESPONSABLES***********/
+    /****************************************************/
+
+    /****************************************************/
+    /****************AJOUTER RESPONSABLES****************/
+    /****************************************************/
+
     public function afficheAjouterResponsable(){?>
           
         <div id="message">
@@ -197,6 +209,14 @@ class AdminVue extends Vue {
     <?php
     }
 
+    /****************************************************/
+    /**************FIN AJOUTER RESPONSABLES**************/
+    /****************************************************/
+
+    /****************************************************/
+    /**********AFFICHER MODIFER RESPONSABLES*************/
+    /****************************************************/
+
     public function afficheModifierResponsables(){?>
         
         <div id="message">
@@ -264,7 +284,7 @@ class AdminVue extends Vue {
                         <label for="sltCommissions" class="col-sm-4 control-label">Commissions scolaires :</label>
                         <div class="col-sm-6">
                             <select multiple  id="sltCommissions" name="commissions" class="form-control col-sm-6">
-                                <?php
+                            <!--    <?php
                                     $oCommissionUtilisateurAModifier = new Commission();
                                     $oCommissionUtilisateurAModifier->setResponsable($this->oUtilisateur->getId());
                                     $oCommissionUtilisateurAModifier->chargerCommissionParResponsable();
@@ -283,7 +303,7 @@ class AdminVue extends Vue {
                                         
                                         echo '<option value="'.$oCommission->getId().'" '.$selected.'>'.$oCommission->getNom().'</option>';
                                     }
-                                ?>
+                                ?> -->
                                 <div class="divErreur" id="sltCommissionsErreur"></div>
                             </select>
                         </div>
@@ -306,19 +326,14 @@ class AdminVue extends Vue {
     }
 
     /****************************************************/
-    /**********AFFICHER GESTION DES COMMISSIONS**********/
+    /*************FIN MODIFIER RESPONSABLES**************/
+    /****************************************************/
+
+    /****************************************************/
+    /*************AFFICHER GÉRER COMMISSIONS*************/
     /****************************************************/
 
     public function afficheListeCommissions(){?>
-    
-        <div id="message">
-            <?php 
-                if($this->getMessage()){
-                    $aMessage = $this->getMessage();
-                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
-                }
-            ?>
-        </div>
                     
         <div id="message">
             <?php 
@@ -418,8 +433,12 @@ class AdminVue extends Vue {
     <?php
     }
 
+    /****************************************************/
+    /**************FIN GÉRER COMMISSIONS*****************/
+    /****************************************************/
+
     /**************************************************/
-    /**********AFFICHER AJOUT DES COMMISSIONS**********/
+    /**********AFFICHER AJOUTER COMMISSIONS************/
     /**************************************************/
 
     public function afficheAjouterCommissions(){?>
@@ -452,11 +471,6 @@ class AdminVue extends Vue {
                         <label for="sltMrc" class="col-sm-4 control-label">MRC :</label>
                             <div class="col-sm-6">
                                 <select mutltiple id="sltMrc" class="form-control" name="sltMrc">
-                                 <?php         
-                                    foreach($this->aListeCommissions as $oCommission){                                        
-                                        echo '<option value="'.$oCommission->getId().'">'.$oCommission->getNom().'</option>';
-                                    }
-                                ?>
                                 </select>
                                 <div class="divErreur" id="sltMrcErreur"></div>
                             </div>
@@ -464,7 +478,7 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="txtNom" class="col-sm-4 control-label">Commission scolaire :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtNom" class="form-control" name="nom" placeholder="Nom">
+                            <input type="text" id="txtNom" class="form-control" name="nom" placeholder="Commission scolaire">
                             <div class="divErreur" id="txtNomErreur"></div>    
                         </div>
                     </div>
@@ -487,11 +501,15 @@ class AdminVue extends Vue {
     <?php
     }
 
+    /****************************************************/
+    /*************FIN AJOUTER COMMISSIONS****************/
+    /****************************************************/
+
     /***********************************************************/
-    /***********AFFICHER MODIFICATIONS DES COMMISSIONS**********/
+    /**************AFFICHER MODIFIER COMMISSIONS****************/
     /***********************************************************/
 
-    public function afficheModifierCommission(){?>
+    public function afficheModifierCommissions(){?>
 
          <div id="message">
             <?php 
@@ -533,26 +551,22 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="txtCommission" class="col-sm-4 control-label">Commissions scolaire :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtCommission" class="form-control" name="nom" placeholder="Nom de la commission">
+                            <input type="text" id="txtCommission" class="form-control" name="nom" placeholder="Commissions scolaire">
                             <div class="divErreur" id="txtCommissionErreur"></div>    
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtResposable" class="col-sm-4 control-label">Responsable :</label>
+                        <label for="txtResponsable" class="col-sm-4 control-label">Responsable :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtNom" class="form-control" name="nom" placeholder="Resposable">
+                            <input type="text" id="txtResponsable" class="form-control" name="nom" placeholder="Responsable">
                             <div class="divErreur" id="txtResponsableErreur"></div>    
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="sltEcoles" class="col-sm-4 control-label">MRC :</label>
+                        <label for="sltEcoles" class="col-sm-4 control-label">Écoles :</label>
                             <div class="col-sm-6">
                                 <select mutltiple id="sltEcoles" class="form-control" name="sltMrc">
-                                 <?php         
-                                    foreach($this->aListeEcoles as $oCommission){                                        
-                                        echo '<option value="'.$oCommission->getId().'">'.$oCommission->getNom().'</option>';
-                                    }
-                                ?>
+                                
                                 </select>
                                 <div class="divErreur" id="sltEcolesErreur"></div>
                             </div>
@@ -576,12 +590,16 @@ class AdminVue extends Vue {
     <?php
     }
 
+    /****************************************************/
+    /***************FIN MODIFIER COMMISSIONS*************/
+    /****************************************************/
+
     /***************************************************/
     /***********AFFICHER SUPPRIMER COMMISSIONS**********/
     /***************************************************/
 
 
-    public function afficheSupprimerCommission(){?>
+    public function afficheSupprimerCommissions(){?>
         <div id="message">
             <?php 
                 if($this->getMessage()){
@@ -629,9 +647,13 @@ class AdminVue extends Vue {
     <?php
     }
 
-    /***********************************************************/
-    /****************AFFICHER GÉRER LES ÉCOLES******************/
-    /***********************************************************/
+    /***************************************************/
+    /**************FIN SUPPRIMER COMMISSIONS************/
+    /***************************************************/
+
+    /*******************************************************/
+    /****************AFFICHER GÉRER ÉCOLES******************/
+    /*******************************************************/
 
     public function afficheListeEcoles(){?>
         
@@ -654,29 +676,24 @@ class AdminVue extends Vue {
         <div class="col-lg-12">
             <form id="frmChercherEcole" method="GET" action="" enctype="" class="form-horizontal" role="form">
                 <div class="row">
-                    <div class="form-group">
-                        <div class="col-md-4">
-                            <label for="txtRechercherCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
-                            <div class="col-sm-9 col-md-7">
-                                 <input type="email" id="txtRechercherCourriel" name="courriel" class="form-control" placeholder="Courriel">
-                                 <div class="divErreur" id="txtRechercherCourrielErreur"></div>
-                            </div>
+                    <div class="col-md-5">
+                        <label for="txtEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom de l'école:</label>
+                        <div class="col-sm-9 col-md-7">
+                             <input type="text" id="txtEcole" name="nom" class="form-control" placeholder="École">
+                             <div class="divErreur" id="txtEcoleErreur"></div>
                         </div>
-                        <div class="col-md-4">
-                            <label for="txtRechercherNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
-                            <div class="col-sm-9 col-md-7">
-                                 <input type="text" id="txtRechercherNom" name="nom" class="form-control" placeholder="Nom">
-                                 <div class="divErreur" id="txtRechercherNomErreur"></div>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <label for="sltRechercherEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
-                            <div class="col-sm-9 col-md-7">
-                                <select mutltiple id="sltRechercherEcole" class="form-control" name="ecole">
-                                    <option value="0">Sélection</option> 
-                                </select>
-                            <div class="divErreur" id="sltRechercherEcoleErreur"></div>
-                            </div>
+                    </div>
+                    <div class="col-md-5">
+                       <label for="sltCommissions" class="col-sm-4 control-label">Commission scolaire :</label>
+                        <div class="col-sm-9 col-md-7">
+                            <select mutltiple id="sltCommissions" class="form-control" name="sltCommissions">
+                                <?php         
+                                    foreach($this->aListeCommissions as $oCommission){                                        
+                                        echo '<option value="'.$oCommission->getId().'">'.$oCommission->getNom().'</option>';
+                                    }
+                                ?>
+                            </select>
+                            <div class="divErreur" id="sltCommissionsErreur"></div>
                         </div>
                     </div> <!-- .form-group -->
                 </div>  <!-- .row -->  
@@ -703,21 +720,13 @@ class AdminVue extends Vue {
                 <div class="col-lg-12">
                     <table id="tabRechercherEcoles" class="table table-striped text-center">
                         <tr>
-                            <th class="text-center">Prénom</th>
-                            <th class="text-center">Nom</th>
-                            <th class="text-center">Courriel</th>
-                            <th class="text-center">Commission scolaire</th>
-                            <th class="text-center">École</th>
-                            <th class="text-center">Matière</th>
-                            <th class="text-center">Action</th>
+                            <th class="text-center col-md-4">Commission scolaire</th>
+                            <th class="text-center col-md-4">École</th>
+                            <th class="text-center col-md-4">Action</th>
                         </tr>
                         <tr>
-                            <td id="txtPrenomTabProf"></td>
-                            <td id="txtNomTabProf"></td>
-                            <td id="txtCourrielTabProf"></td>
-                            <td id="txtCommissionTabProf"></td>
-                            <td id="txtEcoleTabProf"></td> <!-- Si plus d'une afficher valeurs multiples -->
-                            <td id="txtMatiereTabProf"></td> <!-- Si plus d'une afficher valeurs multiples -->
+                            <td id="txtCommissionTab "></td>
+                            <td id="txtEcoleTab "></td> <!-- Si plus d'une afficher valeurs multiples -->
                             <td>
                                 <!-- echo '<a href="'.WEB_ROOT.'/admin/modifierUtilisateur/'.$oUtilisateur->getId().'" class="btn btn-primary btn-xs">';
                                     echo '<span title="Modifier" class="glyphicon glyphicon-pencil"></span>';
@@ -744,16 +753,226 @@ class AdminVue extends Vue {
     <?php
     }
 
+    /**************************************************/
+    /****************FIN GÉRER ÉCOLES******************/
+    /**************************************************/
+
+    /************************************************/
+    /************AFFICHER AJOUTER ÉCOLES*************/
+    /************************************************/
+
+    public function afficheAjouterEcoles()   {?>
+
+        <div id="message">
+            <?php 
+                if($this->getMessage()){
+                    $aMessage = $this->getMessage();
+                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
+                }
+            ?>
+        </div>
+
+        <div class="col-sm-6 col-sm-offset-2">
+            
+            <div class="col-sm-offset-2 col-sm-9">
+                <div class="col-sm-offset-5  col-sm-7">
+                    <div class="navbar navbar-default text-center">
+                        <h3 class="navbar-text">Ajouter une école</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-offset-4 col-sm-8 page-header">
+                     
+            </div>
+
+            <div class="col-sm-12 col-sm-offset-1">
+                <form id="frmAjouterResponsable" action="" method="POST" enctype="" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="sltCommissions" class="col-sm-4 control-label">Commission scolaire :</label>
+                        <div class="col-sm-6">
+                            <select mutltiple id="sltCommissions" class="form-control" name="sltCommissions">
+                             <?php         
+                                foreach($this->aListeCommissions as $oCommission){                                        
+                                    echo '<option value="'.$oCommission->getId().'">'.$oCommission->getNom().'</option>';
+                                }
+                            ?>
+                            </select>
+                            <div class="divErreur" id="sltCommissionsErreur"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtNom" class="col-sm-4 control-label">Nom de l'école :</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="txtNom" class="form-control" name="nom" placeholder="Nom">
+                            <div class="divErreur" id="txtNomErreur"></div>    
+                        </div>
+                    </div>
+        
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-6 text-right">
+                             <a href="#" class="btn btn-danger" role="button">
+                                <span class="glyphicon glyphicon-remove"></span> Annuler
+                            </a>
+                            <button type="submit" id="subAjouterEcole" class="btn btn-success col-sm-offset-1 ">
+                                <span class="glyphicon glyphicon-plus"></span> Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <?php
+    }
+
+    /****************************************************/
+    /****************FIN AJOUTER ÉCOLES******************/
+    /****************************************************/
+
+    /*************************************************/
+    /************AFFICHER MODIFIER ÉCOLES*************/
+    /*************************************************/
+    
+    public function afficheModifierEcoles() {?>
+
+        <div id="message">
+            <?php 
+                if($this->getMessage()){
+                    $aMessage = $this->getMessage();
+                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
+                }
+            ?>
+        </div>
+
+        <div class="col-sm-6 col-sm-offset-2">
+            
+            <div class="col-sm-offset-2 col-sm-9">
+                <div class="col-sm-offset-5  col-sm-7">
+                    <div class="navbar navbar-default text-center">
+                        <h3 class="navbar-text">Modifier une école</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-offset-4 col-sm-8 page-header">
+                     
+            </div>
+
+            <div class="col-sm-12 col-sm-offset-1">
+                <form id="frmAjouterResponsable" action="" method="POST" enctype="" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="sltCommissions" class="col-sm-4 control-label">Commission scolaire :</label>
+                            <div class="col-sm-6">
+                                <select mutltiple id="sltCommissions" class="form-control" name="sltCommissions">
+                                 <?php         
+                                    foreach($this->aListeCommissions as $oCommission){                                        
+                                        echo '<option value="'.$oCommission->getId().'">'.$oCommission->getNom().'</option>';
+                                    }
+                                ?>
+                                </select>
+                                <div class="divErreur" id="sltCommissionsErreur"></div>
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="txtNom" class="col-sm-4 control-label">Nom de l'école :</label>
+                        <div class="col-sm-6">
+                            <input type="text" id="txtNom" class="form-control" name="nom" placeholder="Nom">
+                            <div class="divErreur" id="txtNomErreur"></div>    
+                        </div>
+                    </div>
+        
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-6 text-right">
+                             <a href="#" class="btn btn-danger" role="button">
+                                <span class="glyphicon glyphicon-remove"></span> Annuler
+                            </a>
+                            <button type="submit" id="subModifierEcole" class="btn btn-success col-sm-offset-1 ">
+                                <span class="glyphicon glyphicon-plus"></span> Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <?php
+    }
+
+    /********************************************/
+    /************FIN MODIFIER ÉCOLES*************/
+    /********************************************/
+
+    /***************************************************/
+    /*************AFFICHER SUPPRIMER ÉCOLES*************/
+    /***************************************************/
+
+
+    public function afficheSupprimerEcoles(){?>
+        <div id="message">
+            <?php 
+                if($this->getMessage()){
+                    $aMessage = $this->getMessage();
+                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
+                }
+            ?>
+        </div>
+
+        <div class="col-sm-6 col-sm-offset-2">
+            
+            <div class="col-sm-offset-3 col-sm-9">
+                <div class="col-sm-offset-3  col-sm-8">
+                    <div class="navbar navbar-default text-center">
+                        <h3 class="navbar-text">Supprimer une école</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-offset-4 col-sm-8 page-header">
+                     
+            </div>
+            <div class="col-sm-12 col-sm-offset-1">
+                <form id="frmSupprimerCommision" class="form-horizontal" action="" method="POST" enctype="" role="form">
+                    <div class="form-group">
+                        <label for="txtEcole" class="col-sm-4 control-label">École :</label>
+                        <div class="col-sm-6">
+                            <span id="txtEcole" name="mrc"></span>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-6 text-right">
+                             <a href="#" class="btn btn-danger" role="button">
+                                <span class="glyphicon glyphicon-remove"></span> Annuler
+                            </a>
+                            <button type="submit" name="subSupprimerEcole" id="subSupprimer" class="btn btn-success col-sm-offset-1">
+                                <span class="glyphicon glyphicon-ok"></span> Supprimer
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <?php
+    }
+
+    /**********************************************/
+    /*************FIN SUPPRIMER ÉCOLES*************/
+    /**********************************************/
+
     /*=====================================*/
     /*========FIN DE LA SECTION DES========*/
     /*==========DROITS SUPERADMIN==========*/
     /*=====================================*/
 
 
-    /*================================================*/
-    /*============GESTION DES PROFESSEURS=============*/
-    /*==DROITS RESPONSABLES DES COMMISSIONS SCOLAIRE==*/
-    /*================================================*/
+    /*======================================================*/
+    /*============DÉBUT DES DROITS RESPONSABLES=============*/
+    /*======================================================*/
+
+    /****************************************************/
+    /*************AFFICHER GÉRER PROFESSEURS*************/
+    /****************************************************/
     
     public function afficheListeProfesseurs(){?>
         
@@ -879,6 +1098,14 @@ class AdminVue extends Vue {
         </div>
     <?php
     }
+
+    /***********************************************/
+    /*************FIN GÉRER PROFESSEURS*************/
+    /***********************************************/
+
+    /******************************************************/
+    /*************AFFICHER AJOUTER PROFESSEURS*************/
+    /******************************************************/
     
     public function afficheAjouterProfesseur(){?>
           
@@ -970,6 +1197,14 @@ class AdminVue extends Vue {
         </div>
     <?php
     }
+
+    /*************************************************/
+    /*************FIN AJOUTER PROFESSEURS*************/
+    /*************************************************/
+
+    /*******************************************************/
+    /*************AFFICHER MODIFIER PROFESSEURS*************/
+    /*******************************************************/
 
     public function afficheModifierProfesseur(){?>
         
@@ -1074,16 +1309,23 @@ class AdminVue extends Vue {
     <?php
     }
 
-     /*================================================*/
-    /*=========FIN GESTION DES PROFESSEURS============*/
-    /*==DROITS RESPONSABLES DES COMMISSIONS SCOLAIRE==*/
-    /*================================================*/
+    /**************************************************/
+    /*************FIN MODIFIER PROFESSEURS*************/
+    /**************************************************/
+
+    /*====================================================*/
+    /*=========FIN GESTION DROITS RESPONSABLES============*/
+    /*====================================================*/
 
 
     /*================================================*/
     /*============GESTION DES TUTEURS=================*/
     /*==========DROITS DES PROFESSEURS================*/
     /*================================================*/
+
+    /************************************************/
+    /*************AFFICHER GÉRER TUTEURS*************/
+    /************************************************/
 
     public function afficheListeTuteurs(){?>
         <div id="message">
@@ -1206,6 +1448,14 @@ class AdminVue extends Vue {
         </div>
     <?php
     }
+
+    /*******************************************/
+    /*************FIN GÉRER TUTEURS*************/
+    /*******************************************/
+
+    /**************************************************/
+    /*************AFFICHER AJOUTER TUTEURS*************/
+    /**************************************************/
     
     public function afficheAjouterTuteur(){?>
         <div id="message">
@@ -1296,6 +1546,18 @@ class AdminVue extends Vue {
         
     <?php
     }
+
+    /*********************************************/
+    /*************FIN AJOUTER TUTEURS*************/
+    /*********************************************/
+
+    /*====================================================*/
+    /*=========FIN GESTION DROITS PROFESSEURS ============*/
+    /*====================================================*/
+
+    /***************************************************/
+    /*************AFFICHER MODIFIER TUTEURS*************/
+    /***************************************************/
 
     public function afficheModifierTuteur(){?>
 
@@ -1398,6 +1660,14 @@ class AdminVue extends Vue {
         
     <?php
     }
+
+    /**********************************************/
+    /*************FIN MODIFIER TUTEURS*************/
+    /**********************************************/
+
+    /*********************************************************/
+    /*************AFFICHER SUPPRIMER UTILISATEURS ************/
+    /*********************************************************/
 
     public function afficheSupprimerUtilisateurs(){?>
 
