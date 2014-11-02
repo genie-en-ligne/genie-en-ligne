@@ -46,7 +46,7 @@ class UtilisateurVue extends Vue {
 
             <!----------------------------->
             <!-- FORMULAIRE DE CONNEXION -->
-            <!----------------------------->
+            <!-- ------------------------- -->
 
 
             <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-0 login-form">
@@ -91,7 +91,7 @@ class UtilisateurVue extends Vue {
 
     <!----------------------------->
     <!---- CONTENU PRINCIPAL ------>
-    <!----------------------------->
+    <!-- ------------------------- -->
 
         <div class="row">
             <div class="col-sm-12">
@@ -380,6 +380,8 @@ class UtilisateurVue extends Vue {
     /*============================*/
     /*== afficherPreInscription ==*/
     /*============================*/
+
+    /** Donna***/
 
     public function affichePreInscription() {?>
 
