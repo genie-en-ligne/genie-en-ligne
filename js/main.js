@@ -13,3 +13,44 @@
 //Ici seront les fonctions de validation générales utilisées pour toutes nos validations personnelles.
 
 //Par exemple, estNumérique(), estBooleen(), estVide(), etc.
+
+
+
+
+function estVide(varATester){
+   if(varATester.length == 0){
+      return true;
+   }
+   return false;
+}
+
+function estNumerique(varATester){
+   //Approche négative
+   var regex = /[^0-9]/;
+   if(regex.test(varATester)){
+      return false;
+   }
+   return true;
+}
+
+
+function estTitre(varATester){
+    // regex pour que l'utilisateur ne rentre pas les caractères non désirés
+	var regex = /[^a-zA-Z0-9\s\-\*\xC0-\xFC'\!\?\.\,\t\n\r]/;
+
+	if(regex.test(varATester)) { //on teste le champ et si il y a  des caractères invalides 
+		return false;			 // on retourne false
+	}
+	return true;
+}
+	//<iframe width="560" height="315" src="//www.youtube.com/embed/FtmHWULpQfw?list=PL_1WVGjLTYqJfhjnqCrkgcELhHyps1Jrz" frameborder="0" allowfullscreen></iframe>
+
+function estUrl(varATester){
+    // regex pour que l'utilisateur ne rentre pas les caractères non désirés
+	var regex = /[^a-zA-Z0-9\s\/\<\>'="\?\._]/;
+
+	if(regex.test(varATester)) { //on teste le champ et si il y a  des caractères invalides 
+		return false;			 // on retourne false
+	}
+	return true;
+}
