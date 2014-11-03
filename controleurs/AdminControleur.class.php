@@ -8,16 +8,7 @@
         }
 
         public function gerer(){
-            switch ($this->getReqAction()) {                
-
-                case 'gererModulesCommissions':
-                    $this -> gererModulesCommissions();
-                    break;
-                case 'gererMatieres':
-                    $this -> gererMatieres();
-                    break;
-
-
+            switch ($this->getReqAction()) { 
                 case 'gerer-commissions':
                     $this -> gererCommissions();
                     break;
@@ -30,6 +21,7 @@
                 case 'supprimer-commission':
                     $this -> supprimerCommission();
                     break;
+
 
                 case 'gerer-ecoles':
                     $this->gererEcoles();
@@ -44,6 +36,7 @@
                     $this->supprimerEcole();
                     break;
 
+
                 case 'gerer-matieres':
                     $this->gererMatieres();
                     break;
@@ -56,8 +49,6 @@
                 case 'supprimer-matiere':
                     $this->supprimerMatiere();
                     break;
-
-                //TODO: Ajouter des cas au besoin
 
                 default:
                     $this->erreur404();
@@ -227,6 +218,80 @@
                 $oVue->setMessage(array($e->getMessage(), "danger"));
 
                 $oVue->afficheSupprimerEcole();
+            }
+        }
+
+        private function gererMatieres(){
+            $oVue = new AdminVue();
+
+            $oMatiere = new Matiere();
+            $oVue->aListeMatieres = $oMatiere->rechercherListeMatieres();
+
+            $oVue->afficheListeMatieres();
+        }
+
+        public function ajouterMatiere(){
+            $oVue = new AdminVue();
+
+            try{
+                if(isset($_POST['subAjouterMatiere'])){
+                    $oMatiere = new Matiere(0, $_POST['txtNom']);
+                    $oMatiere->ajouterMatiere();
+
+                    header("location:".WEB_ROOT."/admin/admin/gerer-matieres");
+                }
+
+                $oVue->afficheAjouterMatiere();
+            }
+            catch(Exception $e){
+                $oVue->setMessage(array($e->getMessage(), "danger"));
+
+                $oVue->afficheAjouterMatiere();
+            }
+        }
+
+        public function modifierMatiere(){
+            $oVue = new AdminVue();
+            $oMatiere = new Matiere($this->getReqId());
+            $oMatiere->chargerMatiere();
+
+            $oVue->oMatiere = $oMatiere;
+
+            try{
+                if(isset($_POST['subModifierMatiere'])){
+                    $oMatiere = new Matiere(0, $_POST['txtNom']);
+                    $oMatiere->ajouterMatiere();
+
+                    header("location:".WEB_ROOT."/admin/admin/gerer-matieres");
+                }
+
+                $oVue->afficheModifierMatiere();
+            }
+            catch(Exception $e){
+                $oVue->setMessage(array($e->getMessage(), "danger"));
+                $oVue->afficheModifierMatiere();
+            }
+        }
+
+        public function supprimerMatiere(){
+            $oVue = new AdminVue();
+            $oMatiere = new Matiere($this->getReqId());
+            $oMatiere->chargerMatiere();
+
+            $oVue->oMatiere = $oMatiere;
+
+            try{
+                if(isset($_POST['subSupprimerMatiere'])){
+                    $oMatiere->supprimerMatiere();
+
+                    header("location:".WEB_ROOT."/admin/admin/gerer-matieres");
+                }
+
+                $oVue->afficheSupprimerMatiere();
+            }
+            catch(Exception $e){
+                $oVue->setMessage(array($e->getMessage(), "danger"));
+                $oVue->afficheSupprimerMatiere();
             }
         }
        
