@@ -13,7 +13,7 @@ class AdminVue extends Vue {
 
 
     /****************************************************/
-    /*************AFFICHER GÉRER RESPONSABLES************/
+    /*************GÉRER RESPONSABLES************/
     /****************************************************/
 
     public function afficheListeResponsables(){?>
@@ -124,7 +124,7 @@ class AdminVue extends Vue {
     }
 
     /****************************************************/
-    /**********FIN AFFICHER GÉRER RESPONSABLES***********/
+    /**********FIN GÉRER RESPONSABLES***********/
     /****************************************************/
 
     /****************************************************/
@@ -214,7 +214,7 @@ class AdminVue extends Vue {
     /****************************************************/
 
     /****************************************************/
-    /**********AFFICHER MODIFER RESPONSABLES*************/
+    /**********MODIFER RESPONSABLES*************/
     /****************************************************/
 
     public function afficheModifierResponsables(){?>
@@ -330,7 +330,7 @@ class AdminVue extends Vue {
     /****************************************************/
 
     /****************************************************/
-    /*************AFFICHER GÉRER COMMISSIONS*************/
+    /******************GÉRER COMMISSIONS*****************/
     /****************************************************/
 
     public function afficheListeCommissions(){?>
@@ -438,7 +438,7 @@ class AdminVue extends Vue {
     /****************************************************/
 
     /**************************************************/
-    /**********AFFICHER AJOUTER COMMISSIONS************/
+    /****************AJOUTER COMMISSIONS***************/
     /**************************************************/
 
     public function afficheAjouterCommissions(){?>
@@ -506,7 +506,7 @@ class AdminVue extends Vue {
     /****************************************************/
 
     /***********************************************************/
-    /**************AFFICHER MODIFIER COMMISSIONS****************/
+    /*********************MODIFIER COMMISSIONS******************/
     /***********************************************************/
 
     public function afficheModifierCommissions(){?>
@@ -588,7 +588,7 @@ class AdminVue extends Vue {
     /****************************************************/
 
     /***************************************************/
-    /***********AFFICHER SUPPRIMER COMMISSIONS**********/
+    /***************SUPPRIMER COMMISSIONS***************/
     /***************************************************/
 
 
@@ -645,7 +645,7 @@ class AdminVue extends Vue {
     /***************************************************/
 
     /*******************************************************/
-    /****************AFFICHER GÉRER ÉCOLES******************/
+    /**********************GÉRER ÉCOLES*********************/
     /*******************************************************/
 
     public function afficheListeEcoles(){?>
@@ -751,7 +751,7 @@ class AdminVue extends Vue {
     /**************************************************/
 
     /************************************************/
-    /************AFFICHER AJOUTER ÉCOLES*************/
+    /*****************AJOUTER ÉCOLES*****************/
     /************************************************/
 
     public function afficheAjouterEcoles()   {?>
@@ -824,7 +824,7 @@ class AdminVue extends Vue {
     /****************************************************/
 
     /*************************************************/
-    /************AFFICHER MODIFIER ÉCOLES*************/
+    /*****************MODIFIER ÉCOLES*****************/
     /*************************************************/
     
     public function afficheModifierEcoles() {?>
@@ -897,7 +897,7 @@ class AdminVue extends Vue {
     /********************************************/
 
     /***************************************************/
-    /*************AFFICHER SUPPRIMER ÉCOLES*************/
+    /******************SUPPRIMER ÉCOLES*****************/
     /***************************************************/
 
 
@@ -953,6 +953,182 @@ class AdminVue extends Vue {
     /*************FIN SUPPRIMER ÉCOLES*************/
     /**********************************************/
 
+     /********************************************************/
+    /**********************GÉRER MATIERES*********************/
+    /*********************************************************/
+
+    public function afficheListeMatieres(){?>
+        
+        <div id="message">
+            <?php 
+                if($this->getMessage()){
+                    $aMessage = $this->getMessage();
+                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
+                }
+            ?>
+        </div>
+                    
+        <div class="col-lg-12">
+            <div class="page-header">
+                <div class="navbar navbar-default">
+                    <h2 class="navbar-text">Gérer les Matières</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <form id="frmChercherMatieres" method="GET" action="" enctype="" class="form-horizontal" role="form">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                       <label for="sltCommissions" class="col-sm-4 control-label">Commission scolaire :</label>
+                        <div class="col-sm-9 col-md-5">
+                            <select id="sltCommissions" class="form-control" name="sltCommissions">
+                                <?php         
+                                    foreach($this->aListeCommissions as $oCommission){                                        
+                                        echo '<option value="'.$oCommission->getId().'">'.$oCommission->getNom().'</option>';
+                                    }
+                                ?>
+                            </select>
+                            <div class="divErreur" id="sltCommissionsErreur"></div>
+                        </div>
+                    </div> <!-- .form-group -->
+                </div>  <!-- .row -->  
+                <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
+                    <button type="submit" id="subChercherEcole" class="btn btn-success pull-right">
+                    <span class="glyphicon glyphicon-search"></span> Rechercher</button>
+                </div> 
+                <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
+                </div>        
+            </form> 
+        </div>   
+            <div class="contenu">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-header">
+                        <div class="">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table id="tabRechercherEcoles" class="table table-striped text-center">
+                        <tr>
+                            <th class="text-center col-md-4">Matières</th>
+                            <th class="text-center col-md-2">Action</th>
+                        </tr>
+                        <tr>
+                            <td id="txtMatièreTab "></td> <!-- Si plus d'une afficher valeurs multiples -->
+                            <td>
+                                <!-- echo '<a href="'.WEB_ROOT.'/admin/modifierUtilisateur/'.$oUtilisateur->getId().'" class="btn btn-primary btn-xs">';
+                                    echo '<span title="Modifier" class="glyphicon glyphicon-pencil"></span>';
+                                echo '</a>';
+                                echo '<a href="'.WEB_ROOT.'/admin/supprimerUtilisateur/'.$oUtilisateur->getId().'" class="btn btn-danger btn-xs col-sm-offset-1">';
+                                    echo '<span title="Supprimer" class="glyphicon glyphicon-remove"></span>';
+                                echo '</a>'; -->
+                               <a href="#" class="btn btn-primary btn-xs" title="Modifier">
+                                    <span class="glyphicon glyphicon-pencil"></span>
+                                </a>
+                                <a href="#" class="btn btn-danger btn-xs col-sm-offset-1" title="Supprimer">
+                                    <span class="glyphicon glyphicon-remove"></span>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </div> <!-- .col-lg-12 -->
+            </div> <!-- .row -->
+            <div class="col-sm-10 col-sm-offset-10">
+                <button type="button" id="btnAjouterMatière" class="btn btn-success col-sm-offset-1">
+                <span class="glyphicon glyphicon-plus"></span> Ajouter</button>
+            </div>
+        </div> <!-- .contenu -->
+    <?php
+    }
+
+    /****************************************************/
+    /****************FIN GÉRER MATIERES******************/
+    /****************************************************/
+
+    /************************************************/
+    /*****************AJOUTER MATIERES************/
+    /************************************************/
+
+    public function afficheAjouterMatiere()   {?>
+
+        <div id="message">
+            <?php 
+                if($this->getMessage()){
+                    $aMessage = $this->getMessage();
+                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
+                }
+            ?>
+        </div>
+
+        <div class="col-sm-6 col-sm-offset-2">
+            
+            <div class="col-sm-offset-2 col-sm-9">
+                <div class="col-sm-offset-5  col-sm-7">
+                    <div class="navbar navbar-default text-center">
+                        <h3 class="navbar-text">Ajouter une matière</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-offset-4 col-sm-8 page-header">
+                     
+            </div>
+
+            <div class="col-sm-12 col-sm-offset-1">
+                <form id="frmAjouterEcoles" action="" method="POST" enctype="" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label for="sltCommissions" class="col-sm-4 control-label">Commission scolaire :</label>
+                        <div class="col-sm-6">
+                            <select mutltiple id="sltCommissions" class="form-control" name="sltCommissions">
+                             <?php         
+                                foreach($this->aListeCommissions as $oCommission){                                        
+                                    echo '<option value="'.$oCommission->getId().'">'.$oCommission->getNom().'</option>';
+                                }
+                            ?>
+                            </select>
+                            <div class="divErreur" id="sltCommissionsErreur"></div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sltCommissions" class="col-sm-4 control-label">Matières :</label>
+                        <div class="col-sm-6">
+                            <select mutltiple id="sltCommissions" class="form-control" name="sltCommissions">
+                             <?php         
+                                foreach($this->aListeCommissions as $oCommission){                                        
+                                    echo '<option value="'.$oCommission->getId().'">'.$oCommission->getNom().'</option>';
+                                }
+                            ?>
+                            </select>
+                            <div class="divErreur" id="sltCommissionsErreur"></div>
+                        </div>
+                    </div>
+        
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-6 text-right">
+                             <a href="#" class="btn btn-danger" role="button">
+                                <span class="glyphicon glyphicon-remove"></span> Annuler
+                            </a>
+                            <button type="submit" id="subAjouterEcoles" class="btn btn-success col-sm-offset-1 ">
+                                <span class="glyphicon glyphicon-plus"></span> Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <?php
+    }
+
+    /******************************************************/
+    /****************FIN AJOUTER MATIÈRES******************/
+    /******************************************************/
+
+
     /*=====================================*/
     /*========FIN DE LA SECTION DES========*/
     /*==========DROITS SUPERADMIN==========*/
@@ -964,7 +1140,7 @@ class AdminVue extends Vue {
     /*======================================================*/
 
     /****************************************************/
-    /*************AFFICHER GÉRER PROFESSEURS*************/
+    /*******************GÉRER PROFESSEURS****************/
     /****************************************************/
     
     public function afficheListeProfesseurs(){?>
@@ -1097,7 +1273,7 @@ class AdminVue extends Vue {
     /***********************************************/
 
     /******************************************************/
-    /*************AFFICHER AJOUTER PROFESSEURS*************/
+    /******************AJOUTER PROFESSEURS*****************/
     /******************************************************/
     
     public function afficheAjouterProfesseur(){?>
@@ -1196,7 +1372,7 @@ class AdminVue extends Vue {
     /*************************************************/
 
     /*******************************************************/
-    /*************AFFICHER MODIFIER PROFESSEURS*************/
+    /********************MODIFIER PROFESSEURS***************/
     /*******************************************************/
 
     public function afficheModifierProfesseur(){?>
@@ -1317,7 +1493,7 @@ class AdminVue extends Vue {
     /*================================================*/
 
     /************************************************/
-    /*************AFFICHER GÉRER TUTEURS*************/
+    /******************GÉRER TUTEURS*****************/
     /************************************************/
 
     public function afficheListeTuteurs(){?>
@@ -1447,7 +1623,7 @@ class AdminVue extends Vue {
     /*******************************************/
 
     /**************************************************/
-    /*************AFFICHER AJOUTER TUTEURS*************/
+    /******************AJOUTER TUTEURS*****************/
     /**************************************************/
     
     public function afficheAjouterTuteur(){?>
@@ -1549,7 +1725,7 @@ class AdminVue extends Vue {
     /*====================================================*/
 
     /***************************************************/
-    /*************AFFICHER MODIFIER TUTEURS*************/
+    /******************MODIFIER TUTEURS*****************/
     /***************************************************/
 
     public function afficheModifierTuteur(){?>
@@ -1659,7 +1835,7 @@ class AdminVue extends Vue {
     /**********************************************/
 
     /*********************************************************/
-    /*************AFFICHER SUPPRIMER UTILISATEURS ************/
+    /******************SUPPRIMER UTILISATEURS*****************/
     /*********************************************************/
 
     public function afficheSupprimerUtilisateurs(){?>
