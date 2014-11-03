@@ -11,30 +11,66 @@
             switch ($this->getReqAction()) {                
 
                 case 'consulter':
+					if($this->oUtilisateurSession->getRole() != 1){
+						$this->erreur404();
+						break;
+					}
                     $this -> consulter();
                     break;
                 case 'gerer':
+					if($this->oUtilisateurSession->getRole() < 2 || $this->oUtilisateurSession->getRole() > 4){
+						$this->erreur404();
+						break;
+					}
                     $this -> gestion();
                     break;
                 case 'modifier-texte':
+					if($this->oUtilisateurSession->getRole() < 2 || $this->oUtilisateurSession->getRole() > 4){
+						$this->erreur404();
+						break;
+					}
                     $this -> modifierTexte();
                     break;
                 case 'modifier-video':
+					if($this->oUtilisateurSession->getRole() < 2 || $this->oUtilisateurSession->getRole() > 4){
+						$this->erreur404();
+						break;
+					}
                     $this -> modifierVideo();
                     break;
                 case 'supprimer':
+					if($this->oUtilisateurSession->getRole() < 2 || $this->oUtilisateurSession->getRole() > 4){
+						$this->erreur404();
+						break;
+					}
                     $this -> supprimer();
                     break;
                 case 'ajouter-video':
+					if($this->oUtilisateurSession->getRole() < 2 || $this->oUtilisateurSession->getRole() > 4){
+						$this->erreur404();
+						break;
+					}
                     $this -> ajouterVideo();
                     break;
                 case 'ajouter-texte':
+					if($this->oUtilisateurSession->getRole() < 2 || $this->oUtilisateurSession->getRole() > 4){
+						$this->erreur404();
+						break;
+					}
                     $this -> ajouterTexte();
                     break;
                 case 'approuver':
+					if($this->oUtilisateurSession->getRole() < 3 || $this->oUtilisateurSession->getRole() > 4){
+						$this->erreur404();
+						break;
+					}
                     $this->approuver();
                     break;
                 case 'visionner':
+					if($this->oUtilisateurSession->getRole() > 4){
+						$this->erreur404();
+						break;
+					}
                     $this->visionner();
                     break;
 

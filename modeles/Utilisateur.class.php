@@ -70,7 +70,7 @@
             $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE `utilisateur_ID` = '".$this->getId()."'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
-            if(count($aResultat) == 0){
+            if(count($aResultats) == 0){
                 return false;
             }
             

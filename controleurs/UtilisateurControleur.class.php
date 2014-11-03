@@ -37,44 +37,80 @@
                 case 'modifier-mdp':
                     $this -> changerMDP();
                     break;
-                case 'gerer-tuteurs':
-                    $this -> gererTuteurs();
-                    break;
-                case 'ajouter-tuteur':
-                    $this->ajouterTuteur();
-                    break;
-                case 'modifier-tuteur':
-                    $this->modifierTuteur();
-                    break;
-                case 'gerer-profs':
-                    $this -> gererProfs();
-                    break;
                 case 'creer-login':
                     $this->creerLogin();
                     break;
+                case 'gerer-tuteurs':
+					if($this->oUtilisateurSession->getRole() != 3){
+						$this->erreur404();
+						break;
+					}
+                    $this -> gererTuteurs();
+                    break;
+                case 'ajouter-tuteur':
+					if($this->oUtilisateurSession->getRole() != 3){
+						$this->erreur404();
+						break;
+					}
+                    $this->ajouterTuteur();
+                    break;
+                case 'modifier-tuteur':
+					if($this->oUtilisateurSession->getRole() != 3){
+						$this->erreur404();
+						break;
+					}
+                    $this->modifierTuteur();
+                    break;
+                case 'gerer-profs':
+					if($this->oUtilisateurSession->getRole() != 4){
+						$this->erreur404();
+						break;
+					}
+                    $this -> gererProfs();
+                    break;
                 case 'ajouter-prof':
+					if($this->oUtilisateurSession->getRole() != 4){
+						$this->erreur404();
+						break;
+					}
                     $this->ajouterProf();
                     break;
                 case 'modifier-prof':
+					if($this->oUtilisateurSession->getRole() != 4){
+						$this->erreur404();
+						break;
+					}
                     $this->modifierProf();
                     break;
                 case 'gerer-responsables':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
                     $this -> gererResponsables();
                     break;
                 case 'ajouter-responsable':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
                     $this->ajouterResponsable();
                     break;
                 case 'modifier-responsable':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
                     $this->modifierResponsable();
                     break;
                 case 'supprimer':
+					if($this->oUtilisateurSession->getRole() < 3){
+						$this->erreur404();
+						break;
+					}
                     $this->supprimer();
                     break;
-
-                //TODO: Ajouter des cas au besoin
-
-                //L'inscription des utilisateurs normaux et invités par courriel se fera par AJAX
-                //La récupération de mot de passe sera aussi faite par AJAX
+					
                 default:
                     $this->erreur404();
                     break;

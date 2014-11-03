@@ -10,43 +10,91 @@
         public function gerer(){
             switch ($this->getReqAction()) { 
                 case 'gerer-commissions':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
                     $this -> gererCommissions();
                     break;
                 case 'ajouter-commission':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
                     $this -> ajouterCommission();
                     break;
                 case 'modifier-commission':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
                     $this -> modifierCommission();
                     break;
                 case 'supprimer-commission':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
                     $this -> supprimerCommission();
                     break;
 
 
                 case 'gerer-ecoles':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
                     $this->gererEcoles();
                     break;
                 case 'ajouter-ecole':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
                     $this->ajouterEcole();
                     break;
                 case 'modifier-ecole':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
                     $this->modifierEcole();
                     break;
                 case 'supprimer-ecole':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
                     $this->supprimerEcole();
                     break;
 
 
                 case 'gerer-matieres':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
                     $this->gererMatieres();
                     break;
                 case 'ajouter-matiere':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
                     $this->ajouterMatiere();
                     break;
                 case 'modifier-matiere':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
                     $this->modifierMatiere();
                     break;
                 case 'supprimer-matiere':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
                     $this->supprimerMatiere();
                     break;
 
