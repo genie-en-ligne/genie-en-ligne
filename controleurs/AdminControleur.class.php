@@ -1,7 +1,7 @@
 <?php
     class AdminControleur extends Controleur {
         
-        public function __construct($reqAction="erreur404", $reqId="", $oUtilisateurSession){            
+        public function __construct($reqAction="erreur404", $reqId="", $oUtilisateurSession = new Utilisateur(0)){            
             $this->setReqAction($reqAction);
             $this->setReqId($reqId);
             $this->oUtilisateurSession = $oUtilisateurSession;
