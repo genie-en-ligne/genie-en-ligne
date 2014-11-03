@@ -107,6 +107,7 @@ function modifierProfil() {
 	if(estValide ==  true) {
 		frmProfilUtilateur.submit();
 	}
+}
 
 
 //Formulaire pour signialiser un problème 
@@ -157,14 +158,14 @@ function SignaliserUnProbleme(){
 	}
 	else if(estCouriel(txtCourriel.value) == false) {
 		estValide = false;
-		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtPseudoErreur.innerHTML = "Ce champ doit contenir un couriel";
 	}
 
 	//Soumettre le formulaire
    if(estValide == true){
       frmMessage.submit();
    }
-
+}
 
 // Recuperer mots de passe
 //@author	Donna
@@ -194,24 +195,22 @@ function RecupereMotsDePasse(){
 	//Valider le champs couriel
 	if(estVide(txtRecupMdp.value)) {
 		estValide = false;
-		txtCourrielErreur.innerHTML = 'Veuillez remplir ce champ';
+		txtRecupPassErreur.innerHTML = 'Veuillez remplir ce champ';
 	} 
 	else if(estTexte(txtRecupMdp.value) == false) {
 		estValide = false;
-		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtRecupPassErreur.innerHTML = "Ce champ doit contenir du texte";
 	}
 	else if(estCouriel(txtRecupMdp.value) == false) {
 		estValide = false;
-		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtRecupPassErreur.innerHTML = "Ce champ doit contenir un couriel";
 	}
 
 	//Soumettre le formulaire
    if(estValide == true){
       frmRecuperer.submit();
    }
-
 }
-
 
 //Formulaire préinscription
 //@author	Donna
@@ -243,32 +242,32 @@ function FormPreinscription(){
 	//Valider le champs Code permanent
 	if(estVide(txtCodePerm.value)) {
 		estValide = false;
-		txtCourrielErreur.innerHTML = 'Veuillez remplir ce champ';
+		txtCodePermErreur.innerHTML = 'Veuillez remplir ce champ';
 	} 
 	else if(estTexte(txtCodePerm.value) == false) {
 		estValide = false;
-		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtCodePermErreur.innerHTML = "Ce champ doit contenir du texte";
 	}
 
-	//Valider le champs couriel
+	//Valider le Nom
 	if(estVide(txtNomErreur.value)) {
 		estValide = false;
-		txtCourrielErreur.innerHTML = 'Veuillez remplir ce champ';
+		txtNomErreur.innerHTML = 'Veuillez remplir ce champ';
 	} 
 	else if(estTexte(txtNomErreur.value) == false) {
 		estValide = false;
-		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtNomErreur.innerHTML = "Ce champ doit contenir du texte";
 	}
 
 	//Soumettre le formulaire
    if(estValide == true){
       frmPreInscrition.submit();
    }
-
+}
 
 //Formulaire inscription
 //@author	Donna
-function FormPreinscription(){
+function FormInscription(){
 	if(event.preventDefault) {
 		event.preventDefault;
 	} else {
@@ -276,15 +275,23 @@ function FormPreinscription(){
 	}
 
 	var estValide = true;
-	var frmPreInscrition 	= 	document.getElementById('frmPreInscrition');
+	var frmInscription 	= 	document.getElementById('frmInscription');
 
 	//Définir les champs
-	var txtCodePerm	=	document.getElementById('txtCodePerm');
-	var txtNom		= 	document.getElementById('txtNom');
+	var txtInscriptionPrenom	=	document.getElementById('txtInscriptionPrenom');
+	var txtInscriptionNom		= 	document.getElementById('txtInscriptionNom');
+	var txtInscriptionPseudo	=	document.getElementById('txtInscriptionPseudo');
+	var txtInscriptionCourriel	= 	document.getElementById('txtInscriptionCourriel');
+	var txtInscriptionMdp1		=	document.getElementById('txtInscriptionMdp1');
+	var txtInscriptionMdp2		= 	document.getElementById('txtInscriptionMdp2');
 
 	//Définir les champs d'erreur
-	var txtCodePermErreur	=	document.getElementById('txtCodePermErreur');
-	var txtNomErreur	=	document.getElementById('txtNomErreur');
+	var txtInscriptionPrenomErreur	=	document.getElementById('txtInscriptionPrenomErreur');
+	var txtInscriptionNomErreur	=	document.getElementById('txtInscriptionNomErreur');
+	var txtInscriptionPseudoErreur	=	document.getElementById('txtInscriptionPseudoErreur');
+	var txtInscriptionCourrielErreur	=	document.getElementById('txtInscriptionCourrielErreur');
+	var txtInscriptionMdp1Erreur	=	document.getElementById('txtInscriptionMdp1Erreur');
+	var txtInscriptionMdp2Erreur	=	document.getElementById('txtInscriptionMdp2Erreur');
 
 	var aDivErreur 		= 	document.getElementsByClassName('divErreur');
 
@@ -293,27 +300,73 @@ function FormPreinscription(){
       aDivErreur[i].innerHTML = ‘’;
    }
 
-	//Valider le champs Code permanent
-	if(estVide(txtCodePerm.value)) {
+	//Valider le champs Prenom
+	if(estVide(txtInscriptionPrenom.value)) {
 		estValide = false;
-		txtCourrielErreur.innerHTML = 'Veuillez remplir ce champ';
+		txtInscriptionPrenomErreur.innerHTML = 'Veuillez remplir ce champ';
 	} 
-	else if(estTexte(txtCodePerm.value) == false) {
+	else if(estTexte(txtInscriptionPrenom.value) == false) {
 		estValide = false;
-		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtInscriptionPrenomErreur.innerHTML = "Ce champ doit contenir du texte";
 	}
 
-	//Valider le champs couriel
-	if(estVide(txtNomErreur.value)) {
+	//Valider le champs Nom
+	if(estVide(txtInscriptionNom.value)) {
 		estValide = false;
-		txtCourrielErreur.innerHTML = 'Veuillez remplir ce champ';
+		txtInscriptionNomErreur.innerHTML = 'Veuillez remplir ce champ';
 	} 
-	else if(estTexte(txtNomErreur.value) == false) {
+	else if(estTexte(txtInscriptionNom.value) == false) {
 		estValide = false;
-		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtInscriptionNomErreur.innerHTML = "Ce champ doit contenir du texte";
+	}
+
+	//Valider le champs Pseudo
+	if(estVide(txtInscriptionPseudo.value)) {
+		estValide = false;
+		txtInscriptionPseudoErreur.innerHTML = 'Veuillez remplir ce champ';
+	} 
+	else if(estTexte(txtInscriptionPseudo.value) == false) {
+		estValide = false;
+		txtInscriptionPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
+	}
+
+	//Valider Mot de passe1
+	if(estVide(txtInscriptionMdp1.value)) {
+		estValide = false;
+		txtInscriptionMdp1Erreur.innerHTML = 'Veuillez remplir ce champ';
+	} 
+	else if(estMotDePasse(txtInscriptionMdp1.value) == false) {
+		estValide = false;
+		txtInscriptionMdp1Erreur.innerHTML = "Ce champ doit contenir huit caractères ou plus et au moins un chiffre";
+	}
+
+	//Valider Mot de passe2
+	if(estVide(txtInscriptionMdp2.value)) {
+		estValide = false;
+		txtInscriptionMdp2Erreur.innerHTML = 'Veuillez remplir ce champ';
+	} 
+	else if(txtInscriptionMdp2.value != txtInscriptionMdp1.value) {
+		estValide = false;
+		txtInscriptionMdp2Erreur.innerHTML = "Les mots de passe ne sont pas identiques";
+	}
+
+
+	//Valider le champs couriel
+	if(estVide(txtInscriptionCourriel.value)) {
+		estValide = false;
+		txtInscriptionCourrielErreur.innerHTML = 'Veuillez remplir ce champ';
+	} 
+	else if(estTexte(txtInscriptionCourriel.value) == false) {
+		estValide = false;
+		txtInscriptionCourrielErreur.innerHTML = "Ce champ doit contenir du texte";
+	}
+	else if(estCouriel(txtInscriptionCourriel.value) == false) {
+		estValide = false;
+		txtInscriptionCourrielErreur.innerHTML = "Ce champ doit être un couriel";
 	}
 
 	//Soumettre le formulaire
    if(estValide == true){
       frmPreInscrition.submit();
    }
+  }

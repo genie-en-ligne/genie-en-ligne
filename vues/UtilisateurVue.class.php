@@ -469,36 +469,42 @@ class UtilisateurVue extends Vue {
                         <label for="txtInscriptionPrenom" class="col-sm-4 control-label">Prénom :</label>
                         <div class="col-sm-6">
                             <input type="text" id="txtInscriptionPrenom" class="form-control" name="txtPrenom" placeholder="Prenom">
+                            <div class="divErreur" id="txtInscriptionPrenomErreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="txtInscriptionNom" class="col-sm-4 control-label">Nom de famille :</label>
                         <div class="col-sm-6">
                             <input type="text" id="txtInscriptionNom" class="form-control" name="txtNom" placeholder="Nom">
+                            <div class="divErreur" id="txtInscriptionNomErreur"></div>
                         </div>
                     </div>
                      <div class="form-group">
                         <label for="txtInscriptionPseudo" class="col-sm-4 control-label">Pseudo :</label>
                         <div class="col-sm-6">
                             <input type="text" id="txtInscriptionPseudo" class="form-control" name="txtPseudo" placeholder="Pseudo">
+                            <div class="divErreur" id="txtInscriptionPseudoErreur"></div>
                         </div>
                     </div>
                      <div class="form-group">
                         <label for="txtInscriptionCourriel" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
                             <input type="email" id="txtInscriptionCourriel" class="form-control" name="txtCourriel" placeholder="Courriel">
+                            <div class="divErreur" id="txtInscriptionCourrielErreur"></div>
                         </div>
                     </div>
                      <div class="form-group">
                         <label for="txtInscriptionMdp1" class="col-sm-4 control-label">Mot de passe :</label>
                         <div class="col-sm-6">
                             <input type="password" id="txtInscriptionMdp1" class="form-control" name="pwdMdp1" placeholder="Mot de passe :">
+                            <div class="divErreur" id="txtInscriptionMdp1Erreur"></div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="txtInscriptionMdp2" class="col-sm-4 control-label">Mot de passe :</label>
                         <div class="col-sm-6">
                             <input type="password" id="txtInscriptionMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe :">
+                            <div class="divErreur" id="txtInscriptionMdp2Erreur"></div>
                         </div>
                     </div>
                     <div class="form-group"></div>
