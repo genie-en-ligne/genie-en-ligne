@@ -619,6 +619,7 @@ class TutorielVue extends Vue {
                 </form>
             </div>
         </div>
+        <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/tinymce/tinymce.min.js"></script>
 		<script src="<?php echo WEB_ROOT;?>/js/Tutoriel.js"></script>
     <?php
         
@@ -798,6 +799,7 @@ class TutorielVue extends Vue {
                 </form>
             </div>
         </div>
+        <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/tinymce/tinymce.min.js"></script>
 		<script src="<?php echo WEB_ROOT;?>/js/Tutoriel.js"></script>
     <?php
     }
