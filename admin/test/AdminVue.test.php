@@ -215,7 +215,7 @@
     /*===========FIN GESTION DES TUTEURS==============*/
     /*================================================*/
 
-         echo "<div class='col-xs-12'>";
+        echo "<div class='col-xs-12'>";
             echo "<div class='panel panel-primary'>";
                 echo "<div class='panel-heading'>";
                     echo "<h4>";
@@ -235,6 +235,54 @@
             echo "<div class='panel panel-primary'>";
                 echo "<div class='panel-heading'>";
                     echo "<h4>";
+                        echo "Test afficheAjouterCommissions";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheAjouterCommissions();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+        echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheModifierCommissions";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheModifierCommissions();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+         echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheSupprimerCommissions";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheSupprimerCommissions();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+        
+        echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
                         echo "Test afficheListeEcoles";
                     echo "</h4>";
                 echo "</div>";
@@ -242,6 +290,102 @@
 
                     $oVue = new AdminVue();
                     $oVue->afficheListeEcoles();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+        echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheAjouterEcoles";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheAjouterEcoles();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+        echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheModifierEcoles";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheModifierEcoles();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+        echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheSupprimerEcoles";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheSupprimerEcoles();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+         echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheListeResponsables";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheListeResponsables();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+        echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheAjouterResponsable";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheAjouterResponsable();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+         echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheModifierResponsables";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheModifierResponsables();
 
                 echo "</div>";
             echo "</div>";

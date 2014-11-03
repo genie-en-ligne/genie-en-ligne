@@ -390,3 +390,7 @@ footer .navbar{
 .page-header{
     border: none;
 }
+
+.panel-default{
+    padding:0;
+}

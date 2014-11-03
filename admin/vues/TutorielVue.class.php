@@ -26,10 +26,13 @@ class TutorielVue extends Vue {
                     </tr>
                     <?php
                         foreach($this->aListeTutos as $oTutoriel){
+							$nom = "N/A";
                             $oUtilisateur = new Utilisateur($oTutoriel->getSoumisPar());
-                            $oUtilisateur->chargerCompteParId();
+                            if($oUtilisateur->chargerCompteParId()){
+								$nom = $oUtilisateur->getPrenom().' '.$oUtilisateur->getNom();
+							}
                             echo '<tr>';
-                                echo '<td id="txtTitre">'.$oUtilisateur->getPrenom().' '.$oUtilisateur->getNom().'</td>';
+                                echo '<td id="txtTitre">'.$nom.'</td>';
                                 echo '<td id="txtTitre">'.$oTutoriel->getTitre().'</td>';
                                 echo '<td id="txtType">'.$oTutoriel->getSorteTuto().'</td>';
                                 echo '<td id="txtDateCree">'.$oTutoriel->getDateSoumis().'</td>';
@@ -249,6 +252,7 @@ class TutorielVue extends Vue {
                 </form>
             </div>
         </div>
+        <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/tinymce/tinymce.min.js"></script>
 		<script src="<?php echo WEB_ROOT;?>/js/Tutoriel.js"></script>
     <?php
         
@@ -428,6 +432,7 @@ class TutorielVue extends Vue {
                 </form>
             </div>
         </div>
+        <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/tinymce/tinymce.min.js"></script>
 		<script src="<?php echo WEB_ROOT;?>/js/Tutoriel.js"></script>
     <?php
     }

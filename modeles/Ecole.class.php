@@ -13,10 +13,10 @@
         
         public function ajouterEcole(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("INSERT INTO ecole (`nom`, `commission_ID`) 
-                                                 VALUES ('{$this->sNom}','{$this->iCommissionId}");
+            $oResultat = $oConnexion->executer("INSERT INTO ecoles (`nom`, `commission_ID`) 
+                                                 VALUES ('{$this->sNom}','{$this->iCommissionId}')");
             $this->setId($oConnexion->getInsertId());            
-            return $this->iId();
+            return $this->iId;
         }
         
         public function modifierEcole(){
@@ -29,16 +29,25 @@
         
         public function supprimerEcole(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("DELETE FROM ecoles WHERE `ecole_ID` = '{$this->iId}'");
+            $oResultat = $oConnexion->executer("UPDATE ecoles 
+                                                SET `est_detruit` = '1'
+                                                WHERE `ecole_ID` = '{$this->iId}'");
             return $oConnexion->getConnect()->affected_rows;
         }
        
         public function rechercherListeEcoles(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM ecoles WHERE commission_ID = '{$this->iCommissionId}'");
+            $oResultat = $oConnexion->executer("SELECT * FROM ecoles WHERE est_detruit = '0' ORDER BY nom ASC");
             $aResultats = $oConnexion->recupererTableau($oResultat);
             
-            return $aResultats;
+            $aEcoles = array();
+
+            foreach ($aResultats as $rangee) {
+                $oEcole = new Ecole($rangee['ecole_ID']);
+                $oEcole->chargerEcole();
+                $aEcoles[] = $oEcole;
+            }
+            return $aEcoles;
         }
 
         public function modifierEcolesParUtilisateur($oUtilisateur, $aEcoles){
@@ -56,6 +65,10 @@
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("SELECT * FROM ecoles WHERE ecole_ID = '{$this->iId}'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            if(count($aResultats) == 0){
+                return false;
+            }
 
             $this->setNom($aResultats[0]['nom']);
             $this->setCommissionId($aResultats[0]['commission_ID']);

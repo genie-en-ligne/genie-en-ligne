@@ -505,8 +505,8 @@ function validerFormModificationTexte() {
 		}
    }
    else
-   if(estTitre(tarContenu.value) == false){
-	  tarContenuErreur.innerHTML = 'Ce champ comporte des caractères invalides.';
+   if(estHTML(tarContenu.value) == false){
+	  tarContenuErreur.innerHTML = 'Ce champ comporte des caractères ou des balises invalides.';
       
 	  if(premiereErreur == '')// gestion du curseur
         {

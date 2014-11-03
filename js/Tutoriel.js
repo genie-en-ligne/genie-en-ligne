@@ -505,13 +505,13 @@ function validerFormModificationTexte() {
 		}
    }
    else
-   if(estTitre(tarContenu.value) == false){
-	  tarContenuErreur.innerHTML = 'Ce champ comporte des caractères invalides.';
+   if(estHTML(tarContenu.value) == false){
+    tarContenuErreur.innerHTML = 'Ce champ comporte des caractères ou des balises invalides.';
       
-	  if(premiereErreur == '')// gestion du curseur
+    if(premiereErreur == '')// gestion du curseur
         {
             premiereErreur = tarContenu;
-		}
+    }
       estValide = false;
    }
 	
@@ -526,3 +526,15 @@ function validerFormModificationTexte() {
    }
 
 }
+
+tinymce.init({
+   selector: "textarea",
+   toolbar: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | blockquote | bullist numlist | styleselect",
+   style_formats: [
+     {title: 'Titre', block: 'h1'},
+     {title: 'Sous-titre', block: 'h2'}
+   ],
+   menubar : false,
+   browser_spellcheck : true,
+   language : 'fr_FR'
+});

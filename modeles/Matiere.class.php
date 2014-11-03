@@ -27,7 +27,9 @@
         
         public function supprimerMatiere(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("DELETE FROM matieres WHERE `matiere_ID` = '{$this->iId}'");
+            $oResultat = $oConnexion->executer("UPDATE matieres 
+                                                SET `est_detruit` = '1'
+                                                WHERE `matiere_ID` = '{$this->iId}'");
             return $oConnexion->getConnect()->affected_rows;
         }
 
@@ -36,6 +38,10 @@
             $oResultat = $oConnexion->executer("SELECT * FROM matieres WHERE matiere_ID = '{$this->iId}'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
+            if(count($aResultats) == 0){
+                return false;
+            }
+
             $this->setNom($aResultats[0]['nom']);
 
             return true;
@@ -43,7 +49,7 @@
         
         public function rechercherListeMatieres(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM matieres ORDER BY nom ASC");
+            $oResultat = $oConnexion->executer("SELECT * FROM matieres WHERE est_detruit = '0' ORDER BY nom ASC");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
             $aFinal = array();
