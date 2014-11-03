@@ -35,7 +35,7 @@ class AdminVue extends Vue {
             </div>
         </div>
         <div class="col-sm-11 col-sm-offset-1">
-            <form id="frmChercherResponsable" method="GET" action="" enctype="" class="form-horizontal" role="form">
+            <form id="frmChercherResp" method="GET" action="" enctype="" class="form-horizontal" role="form">
                 <div class="row">
                     <div class="form-group">
                         <div class="col-sm-5 col-sm-offset-2">
@@ -87,7 +87,7 @@ class AdminVue extends Vue {
                                 <th class="text-center">Commission scolaire</th>
                                 <th class="text-center">Action</th>
                             </tr>
-                           <!-- <?php
+                           <?php
                                 foreach($this->aListeUtilisateurs as $oUtilisateur){
                                   
                                     $oCommission = new Commission();
@@ -110,7 +110,7 @@ class AdminVue extends Vue {
                                         echo '</td>';
                                     echo '</tr>';   
                                 }
-                            ?> -->
+                            ?> 
                         </table>
                     </div> <!-- .col-lg-12 -->
                 </div> <!-- .row -->
@@ -156,7 +156,7 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmAjouterResponsable" action="" method="POST" enctype="" class="form-horizontal" role="form">
+                <form id="frmAjouterResp" action="" method="POST" enctype="" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="txtPrenom" class="col-sm-4 control-label">Prénom :</label>
                         <div class="col-sm-6">
@@ -284,7 +284,7 @@ class AdminVue extends Vue {
                         <label for="sltCommissions" class="col-sm-4 control-label">Commissions scolaires :</label>
                         <div class="col-sm-6">
                             <select multiple  id="sltCommissions" name="commissions" class="form-control col-sm-6">
-                            <!--    <?php
+                                <?php
                                     $oCommissionUtilisateurAModifier = new Commission();
                                     $oCommissionUtilisateurAModifier->setResponsable($this->oUtilisateur->getId());
                                     $oCommissionUtilisateurAModifier->chargerCommissionParResponsable();
@@ -303,7 +303,7 @@ class AdminVue extends Vue {
                                         
                                         echo '<option value="'.$oCommission->getId().'" '.$selected.'>'.$oCommission->getNom().'</option>';
                                     }
-                                ?> -->
+                                ?> 
                                 <div class="divErreur" id="sltCommissionsErreur"></div>
                             </select>
                         </div>
@@ -352,7 +352,7 @@ class AdminVue extends Vue {
             </div>
         </div>
         <div class="col-sm-11 col-sm-offset-1">
-            <form id="frmChercherResponsable" method="GET" action="" enctype="" class="form-horizontal" role="form">
+            <form id="frmChercherCommission" method="GET" action="" enctype="" class="form-horizontal" role="form">
                 <div class="row">
                     <div class="form-group">
                         <div class="col-sm-5 col-sm-offset-2">
@@ -466,7 +466,7 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmAjouterResponsable" action="" method="POST" enctype="" class="form-horizontal" role="form">
+                <form id="frmAjouterCommission" action="" method="POST" enctype="" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="sltMrc" class="col-sm-4 control-label">MRC :</label>
                             <div class="col-sm-6">
@@ -476,10 +476,10 @@ class AdminVue extends Vue {
                             </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtNom" class="col-sm-4 control-label">Commission scolaire :</label>
+                        <label for="txtCommission" class="col-sm-4 control-label">Commission scolaire :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtNom" class="form-control" name="nom" placeholder="Commission scolaire">
-                            <div class="divErreur" id="txtNomErreur"></div>    
+                            <input type="text" id="txtCommission" class="form-control" name="nom" placeholder="Commission scolaire">
+                            <div class="divErreur" id="txtCommissionErreur"></div>    
                         </div>
                     </div>
         
@@ -534,32 +534,25 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmAjouterResponsable" action="" method="POST" enctype="" class="form-horizontal" role="form">
+                <form id="frmModifierCommission" action="" method="POST" enctype="" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="sltMrc" class="col-sm-4 control-label">MRC :</label>
-                            <div class="col-sm-6">
-                                <select id="sltMrc" class="form-control" name="sltMrc">
-                                 <?php         
-                                    foreach($this->aListeCommissions as $oCommission){                                        
-                                        echo '<option value="'.$oCommission->getId().'">'.$oCommission->getNom().'</option>';
-                                    }
-                                ?>
-                                </select>
-                                <div class="divErreur" id="sltMrcErreur"></div>
-                            </div>
+                        <div class="col-sm-6">
+                            <select id="sltMrc" class="form-control" name="sltMrc">
+                             <?php         
+                                foreach($this->aListeCommissions as $oCommission){                                        
+                                    echo '<option value="'.$oCommission->getId().'">'.$oCommission->getNom().'</option>';
+                                }
+                            ?>
+                            </select>
+                            <div class="divErreur" id="sltMrcErreur"></div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="txtCommission" class="col-sm-4 control-label">Commissions scolaire :</label>
                         <div class="col-sm-6">
                             <input type="text" id="txtCommission" class="form-control" name="nom" placeholder="Commissions scolaire">
                             <div class="divErreur" id="txtCommissionErreur"></div>    
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtResponsable" class="col-sm-4 control-label">Responsable :</label>
-                        <div class="col-sm-6">
-                            <input type="text" id="txtResponsable" class="form-control" name="nom" placeholder="Responsable">
-                            <div class="divErreur" id="txtResponsableErreur"></div>    
                         </div>
                     </div>
                     <div class="form-group">
@@ -674,7 +667,7 @@ class AdminVue extends Vue {
             </div>
         </div>
         <div class="col-lg-12">
-            <form id="frmChercherEcole" method="GET" action="" enctype="" class="form-horizontal" role="form">
+            <form id="frmChercherEcoles" method="GET" action="" enctype="" class="form-horizontal" role="form">
                 <div class="row">
                     <div class="col-md-5">
                         <label for="txtEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom de l'école:</label>
@@ -686,7 +679,7 @@ class AdminVue extends Vue {
                     <div class="col-md-5">
                        <label for="sltCommissions" class="col-sm-4 control-label">Commission scolaire :</label>
                         <div class="col-sm-9 col-md-7">
-                            <select mutltiple id="sltCommissions" class="form-control" name="sltCommissions">
+                            <select id="sltCommissions" class="form-control" name="sltCommissions">
                                 <?php         
                                     foreach($this->aListeCommissions as $oCommission){                                        
                                         echo '<option value="'.$oCommission->getId().'">'.$oCommission->getNom().'</option>';
@@ -786,7 +779,7 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmAjouterResponsable" action="" method="POST" enctype="" class="form-horizontal" role="form">
+                <form id="frmAjouterEcoles" action="" method="POST" enctype="" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="sltCommissions" class="col-sm-4 control-label">Commission scolaire :</label>
                         <div class="col-sm-6">
@@ -803,7 +796,7 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="txtNom" class="col-sm-4 control-label">Nom de l'école :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtNom" class="form-control" name="nom" placeholder="Nom">
+                            <input type="text" id="txtNom" class="form-control" name="Dom de l'école" placeholder="Nom">
                             <div class="divErreur" id="txtNomErreur"></div>    
                         </div>
                     </div>
@@ -815,7 +808,7 @@ class AdminVue extends Vue {
                              <a href="#" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
-                            <button type="submit" id="subAjouterEcole" class="btn btn-success col-sm-offset-1 ">
+                            <button type="submit" id="subAjouterEcoles" class="btn btn-success col-sm-offset-1 ">
                                 <span class="glyphicon glyphicon-plus"></span> Ajouter
                             </button>
                         </div>
@@ -859,7 +852,7 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmAjouterResponsable" action="" method="POST" enctype="" class="form-horizontal" role="form">
+                <form id="frmModifierEcoles" action="" method="POST" enctype="" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="sltCommissions" class="col-sm-4 control-label">Commission scolaire :</label>
                             <div class="col-sm-6">

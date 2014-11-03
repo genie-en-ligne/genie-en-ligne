@@ -367,7 +367,7 @@ function validerFrmModifierCommission() {
 
 /*************FORMULAIRE CHERCHER ÉCOLES**********************/
 
-if(document.getElementById('frmChercherEcole')) {
+if(document.getElementById('frmChercherEcoles')) {
 	document.getElementById('subChercherCommissions').addEventListner('submit', validerFrmChercherEcole);
 }
 
@@ -381,7 +381,7 @@ function validerFrmChercherEcole() {
 	}
 
 	var estValide =  false;
-	var frmChercherEcole 		= 	document.getElementById('frmChercherEcole');
+	var frmChercherEcoles 		= 	document.getElementById('frmChercherEcoles');
 
 	//Définir les champs
 	var txtNom					= 	document.getElementById('txtNom');
@@ -416,7 +416,7 @@ function validerFrmChercherEcole() {
 
 	//Soummettre le formulaire
 	if(estValide) {
-		frmChercherEcole.submit(); 
+		frmChercherEcoles.submit(); 
 	}
 
 }
