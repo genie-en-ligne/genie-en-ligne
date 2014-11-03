@@ -143,11 +143,15 @@
                             Super admin
                         </li>
                         <li>
-                            <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-commissions">
+                            <a href="<?php echo WEB_ROOT;?>/admin/admin/gerer-commissions">
                                 <i class="fa fa-fw fa-edit"></i>Gérer les commissions</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-responsables">
+                                <i class="fa fa-fw fa-edit"></i>Gérer les responsables</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo WEB_ROOT;?>/admin/admin/gerer-ecoles">
                                 <i class="fa fa-fw fa-edit"></i>Gérer les écoles</a>
                         </li>
                         <li>

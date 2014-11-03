@@ -228,9 +228,9 @@
             return $aFinal;
         }
 
-        public function rechercherListeProfs($iCommissionId){
+        public function rechercherListeResponsables(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, ecoles_par_utilisateur epu WHERE u.utilisateur_ID = epu.utilisateur_ID AND u.role = '3' AND epu.ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$iCommissionId}') AND u.est_detruit = 0");
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u WHERE u.role = '4' AND u.est_detruit = 0");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
             $aFinal = array();
@@ -242,9 +242,9 @@
             return $aFinal;
         }
 
-        public function rechercherListeResponsables(){
+        public function rechercherListeProfs($iCommissionId){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, commissions c WHERE u.utilisateur_ID = c.responsable");
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, ecoles_par_utilisateur epu WHERE u.utilisateur_ID = epu.utilisateur_ID AND u.role = '3' AND epu.ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$iCommissionId}') AND u.est_detruit = 0");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
             $aFinal = array();

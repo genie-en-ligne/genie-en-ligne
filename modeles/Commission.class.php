@@ -13,23 +13,22 @@
             $this->setResponsable($iResponsable);
         }
 
-        public function admin_AjouterCommission() {
+        public function ajouterCommission() {
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("INSERT INTO commissions (`nom`, `region`, `responsable`) 
-                                                 VALUES ('{$this->sNom}','{$this->iRegion}','{$this->iResponsable}')");
+            $oResultat = $oConnexion->executer("INSERT INTO commissions (`nom`, `region`) 
+                                                 VALUES ('{$this->sNom}','{$this->iRegion}')");
             return $this->setId($oConnexion->getInsertId());
         }
         
-        public function admin_ModifierCommission() {
+        public function modifierCommission() {
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("UPDATE commissions 
-                                                SET `nom` = '{$this->sNom}', `region` = '{$this->iRegion}', 
-                                                    `responsable` = '{$this->iResponsable}' 
+                                                SET `nom` = '{$this->sNom}', `region` = '{$this->iRegion}', `responsable` = '{$this->iResponsable}'                                                    
                                                 WHERE `commission_ID` = '{$this->iId}'");
             return $oConnexion->getConnect()->affected_rows;
         }
         
-        public function admin_SupprimerCommission() {
+        public function supprimerCommission() {
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("DELETE FROM commissions WHERE `commission_ID` = '{$this->iId}'");      
             return $oConnexion->getConnect()->affected_rows;
@@ -49,10 +48,16 @@
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("SELECT * FROM commissions WHERE `responsable` = '{$this->iResponsable}'");
             $aResultat =  $oConnexion->recupererTableau($oResultat);
+
+            if(count($aResultat) == 0){
+                return false;
+            }
             
             $this->setNom($aResultat[0]['nom']);
             $this->setRegion($aResultat[0]['region']);
             $this->setId($aResultat[0]['commission_ID']);
+
+            return true;
         }
         
         public function ajouterModuleAutorise($iServiceId) {
@@ -79,7 +84,7 @@
         
         public function rechercherListeCommissions(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM commissions");
+            $oResultat = $oConnexion->executer("SELECT * FROM commissions WHERE est_detruit = '0' ORDER BY nom ASC");
             //insertion des résultats de la requête dans un array
             $aResultats = $oConnexion->recupererTableau($oResultat);
             
@@ -104,6 +109,29 @@
             }
             
             return $aFinal;
+        }
+
+        public function rechercherListeRegions(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT * FROM regions ORDER BY nom ASC");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            $aRegions = array();
+
+            foreach ($aResultats as $rangee) {
+                $aRegions[$rangee['region_ID']] = $rangee['nom'];
+            }
+
+            return $aRegions;
+        }
+
+        public function retirerResponsable(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("UPDATE commissions 
+                                                SET `responsable` = '0'                                                    
+                                                WHERE `commission_ID` = '{$this->iId}'");
+            $this->setResponsable(0);
+            return $oConnexion->getConnect()->affected_rows;
         }
 
         public function getNomRegion(){

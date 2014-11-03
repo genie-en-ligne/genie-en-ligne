@@ -65,7 +65,7 @@ function estLettre(varATester) {
 function estCourriel(varATester) {
 	//approche positive
 	var regex = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
-	if(regex.test(varATester) {
+	if(regex.test(varATester)) {
 		return true;
 	}
     return true;

@@ -40,29 +40,35 @@
                 case 'gerer-tuteurs':
                     $this -> gererTuteurs();
                     break;
-                case 'gerer-profs':
-                    $this -> gererProfs();
-                    break;
-                case 'gerer-commissions':
-                    $this -> gererCommissions();
-                    break;
                 case 'ajouter-tuteur':
                     $this->ajouterTuteur();
                     break;
                 case 'modifier-tuteur':
                     $this->modifierTuteur();
                     break;
+                case 'gerer-profs':
+                    $this -> gererProfs();
+                    break;
                 case 'creer-login':
                     $this->creerLogin();
-                    break;
-                case 'supprimer':
-                    $this->supprimer();
                     break;
                 case 'ajouter-prof':
                     $this->ajouterProf();
                     break;
                 case 'modifier-prof':
                     $this->modifierProf();
+                    break;
+                case 'gerer-responsables':
+                    $this -> gererResponsables();
+                    break;
+                case 'ajouter-responsable':
+                    $this->ajouterResponsable();
+                    break;
+                case 'modifier-responsable':
+                    $this->modifierResponsable();
+                    break;
+                case 'supprimer':
+                    $this->supprimer();
                     break;
 
                 //TODO: Ajouter des cas au besoin
@@ -295,14 +301,6 @@
             $oVue->afficheListeProfesseurs();
         } 
 
-        private function gererCommissions(){
-            $oVue = new AdminVue();
-            $oCommission = new Commission();
-
-            $oVue->aListeCommissions = $oCommission->rechercherListeCommissions();
-            $oVue->afficheListeCommissions();
-        }
-
         private function ajouterTuteur(){
             $oVue = new AdminVue();
             $oMatiere = new Matiere();
@@ -466,6 +464,73 @@
                 $oVue->aListeEcoles = $oCommission->rechercherListeEcoles();
 
                 $oVue->afficheModifierProfesseur();
+            }
+        }
+
+        private function gererResponsables(){
+            $oVue = new AdminVue();
+
+            $oVue->aListeResponsables = $this->oUtilisateurSession->rechercherListeResponsables();
+            $oVue->afficheListeResponsables();
+        } 
+
+        private function ajouterResponsable(){
+            $oVue = new AdminVue();
+            $oCommission = new Commission();
+            $oVue->aListeCommissions = $oCommission->rechercherListeCommissions();
+
+            try{
+                if(isset($_POST['subCreerResponsable'])){
+                    $oUtilisateur = new Utilisateur(0, ' ', ' ', $_POST['txtNom'], $_POST['txtPrenom'], $_POST['emlCourriel'], 4);
+                    $oUtilisateur->ajouterUtilisateur();
+
+                    $oCommission = new Commission($_POST['sltCommissions']);
+                    $oCommission->chargerCommission();
+                    $oCommission->retirerResponsable();
+                    $oCommission->setResponsable($oUtilisateur->getId());
+                    $oCommission->modifierCommission();
+
+                    header("location:".WEB_ROOT."/admin/utilisateur/gerer-responsables");
+                }   
+
+                $oVue->afficheAjouterResponsable();
+            }
+            catch(Exception $e){
+                $oVue->setMessage(array($e->getMessage(), "danger"));
+
+                $oVue->afficheAjouterResponsable();
+            }
+        }   
+
+        private function modifierResponsable(){
+            $oVue = new AdminVue();
+            $oCommission = new Commission();
+            $oVue->aListeCommissions = $oCommission->rechercherListeCommissions();
+
+            $oUtilisateur = new Utilisateur($this->getReqId());
+            $oUtilisateur->chargerCompteParId();
+            $oVue->oUtilisateur = $oUtilisateur;
+
+            try{
+                if(isset($_POST['subModifierResponsable'])){
+                    $oUtilisateur = new Utilisateur($this->getReqId(), ' ', ' ', $_POST['txtNom'], $_POST['txtPrenom'], $_POST['emlCourriel'], 4);
+                    $oUtilisateur->modifierUtilisateur();
+
+                    $oCommission = new Commission($_POST['sltCommissions']);
+                    $oCommission->chargerCommission();
+                    $oCommission->retirerResponsable();
+                    $oCommission->setResponsable($oUtilisateur->getId());
+                    $oCommission->modifierCommission();
+
+                    header("location:".WEB_ROOT."/admin/utilisateur/gerer-responsables");
+                }   
+
+                $oVue->afficheModifierResponsable();
+            }
+            catch(Exception $e){
+                $oVue->setMessage(array($e->getMessage(), "danger"));
+
+                $oVue->afficheModifierResponsable();
             }
         }
        
