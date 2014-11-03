@@ -572,7 +572,7 @@ class AdminVue extends Vue {
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
                             <button type="submit" id="subModifierCommission" class="btn btn-success col-sm-offset-1 ">
-                                <span class="glyphicon glyphicon-plus"></span> Ajouter
+                                <span class="glyphicon glyphicon-plus"></span> Modifier
                             </button>
                         </div>
                     </div>
@@ -670,15 +670,15 @@ class AdminVue extends Vue {
             <form id="frmChercherEcoles" method="GET" action="" enctype="" class="form-horizontal" role="form">
                 <div class="row">
                     <div class="col-md-5">
-                        <label for="txtEcole" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom de l'école:</label>
-                        <div class="col-sm-9 col-md-7">
+                        <label for="txtEcole" class="col-sm-5 control-label">Nom de l'école:</label>
+                        <div class="col-sm-9 col-md-6">
                              <input type="text" id="txtEcole" name="nom" class="form-control" placeholder="École">
                              <div class="divErreur" id="txtEcoleErreur"></div>
                         </div>
                     </div>
                     <div class="col-md-5">
-                       <label for="sltCommissions" class="col-sm-4 control-label">Commission scolaire :</label>
-                        <div class="col-sm-9 col-md-7">
+                       <label for="sltCommissions" class="col-sm-5 control-label">Commission scolaire :</label>
+                        <div class="col-sm-9 col-md-6">
                             <select id="sltCommissions" class="form-control" name="sltCommissions">
                                 <?php         
                                     foreach($this->aListeCommissions as $oCommission){                                        
@@ -730,7 +730,7 @@ class AdminVue extends Vue {
                                <a href="#" class="btn btn-primary btn-xs" title="Modifier">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </a>
-                                <a href="#" class="btn btn-danger btn-xs col-sm-offset-1" title="Supprimer">
+                                <a href="#" class="btn btn-danger btn-xs col-sm-offset-0" title="Supprimer">
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </a>
                             </td>
@@ -882,7 +882,7 @@ class AdminVue extends Vue {
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
                             <button type="submit" id="subModifierEcole" class="btn btn-success col-sm-offset-1 ">
-                                <span class="glyphicon glyphicon-plus"></span> Ajouter
+                                <span class="glyphicon glyphicon-plus"></span> Modifier
                             </button>
                         </div>
                     </div>
@@ -975,32 +975,7 @@ class AdminVue extends Vue {
                 </div>
             </div>
         </div>
-        <div class="col-lg-12">
-            <form id="frmChercherMatieres" method="GET" action="" enctype="" class="form-horizontal" role="form">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
-                       <label for="sltCommissions" class="col-sm-4 control-label">Commission scolaire :</label>
-                        <div class="col-sm-9 col-md-5">
-                            <select id="sltCommissions" class="form-control" name="sltCommissions">
-                                <?php         
-                                    foreach($this->aListeCommissions as $oCommission){                                        
-                                        echo '<option value="'.$oCommission->getId().'">'.$oCommission->getNom().'</option>';
-                                    }
-                                ?>
-                            </select>
-                            <div class="divErreur" id="sltCommissionsErreur"></div>
-                        </div>
-                    </div> <!-- .form-group -->
-                </div>  <!-- .row -->  
-                <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                    <button type="submit" id="subChercherEcole" class="btn btn-success pull-right">
-                    <span class="glyphicon glyphicon-search"></span> Rechercher</button>
-                </div> 
-                <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                </div>        
-            </form> 
-        </div>   
-            <div class="contenu">
+        <div class="contenu">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="page-header">
@@ -1029,7 +1004,7 @@ class AdminVue extends Vue {
                                <a href="#" class="btn btn-primary btn-xs" title="Modifier">
                                     <span class="glyphicon glyphicon-pencil"></span>
                                 </a>
-                                <a href="#" class="btn btn-danger btn-xs col-sm-offset-1" title="Supprimer">
+                                <a href="#" class="btn btn-danger btn-xs" title="Supprimer">
                                     <span class="glyphicon glyphicon-remove"></span>
                                 </a>
                             </td>
@@ -1077,43 +1052,25 @@ class AdminVue extends Vue {
                      
             </div>
 
-            <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmAjouterEcoles" action="" method="POST" enctype="" class="form-horizontal" role="form">
+            <div class="col-sm-12">
+                <form id="frmAjouterrMatiere" action="" method="POST" enctype="" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label for="sltCommissions" class="col-sm-4 control-label">Commission scolaire :</label>
-                        <div class="col-sm-6">
-                            <select mutltiple id="sltCommissions" class="form-control" name="sltCommissions">
-                             <?php         
-                                foreach($this->aListeCommissions as $oCommission){                                        
-                                    echo '<option value="'.$oCommission->getId().'">'.$oCommission->getNom().'</option>';
-                                }
-                            ?>
-                            </select>
-                            <div class="divErreur" id="sltCommissionsErreur"></div>
+                        <div class="col-md-10 col-sm-offset-1">
+                            <label for="txtMatiere" class="col-sm-5 control-label">Matière :</label>
+                            <div class="col-sm-9 col-md-7">
+                                <input type="email" id="txtMatiere" name="txtMatiere" class="form-control" placeholder="Matière">
+                                <div class="divErreur" id="txtMatiereErreur"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="sltCommissions" class="col-sm-4 control-label">Matières :</label>
-                        <div class="col-sm-6">
-                            <select mutltiple id="sltCommissions" class="form-control" name="sltCommissions">
-                             <?php         
-                                foreach($this->aListeCommissions as $oCommission){                                        
-                                    echo '<option value="'.$oCommission->getId().'">'.$oCommission->getNom().'</option>';
-                                }
-                            ?>
-                            </select>
-                            <div class="divErreur" id="sltCommissionsErreur"></div>
-                        </div>
-                    </div>
-        
                     <div class="form-group"></div>
                     <div class="form-group"></div>
                     <div class="form-group">
-                        <div class="col-sm-offset-4 col-sm-6 text-right">
+                        <div class="col-sm-offset-5 col-sm-6 text-right">
                              <a href="#" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
-                            <button type="submit" id="subAjouterEcoles" class="btn btn-success col-sm-offset-1 ">
+                            <button type="submit" id="subAjouterMatiere" class="btn btn-success col-sm-offset-1 ">
                                 <span class="glyphicon glyphicon-plus"></span> Ajouter
                             </button>
                         </div>
@@ -1128,6 +1085,125 @@ class AdminVue extends Vue {
     /****************FIN AJOUTER MATIÈRES******************/
     /******************************************************/
 
+    /************************************************/
+    /*****************MODIFIER MATIERES**************/
+    /************************************************/
+
+    public function afficheModifierMatiere()  {?>
+
+        <div id="message">
+            <?php 
+                if($this->getMessage()){
+                    $aMessage = $this->getMessage();
+                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
+                }
+            ?>
+        </div>
+        
+       
+            <div class="col-sm-12">
+            <div class="col-sm-offset-0 col-sm-8">
+                <div class="col-sm-offset-5  col-sm-7">
+                    <div class="navbar navbar-default ">
+                        <h3 class="navbar-text">Modifier une matière</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-offset-4 col-sm-8 page-header">
+                     
+            </div>
+            <div class="col-sm-6 col-sm-offset-2">
+                <form id="frmModifierMatiere" action="" method="POST" enctype="" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div class="col-md-10 col-sm-offset-2">
+                            <label for="txtMatiere" class="col-sm-3  control-label">Matière :</label>
+                            <div class="col-sm-9 col-md-8">
+                                <input type="email" id="txtMatiere" name="txtMatiere" class="form-control" placeholder="Matière">
+                                <div class="divErreur" id="txtMatiereErreur"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-5 col-sm-6 text-right">
+                             <a href="#" class="btn btn-danger" role="button">
+                                <span class="glyphicon glyphicon-remove"></span> Annuler
+                            </a>
+                            <button type="submit" id="subModifierMatiere" class="btn btn-success col-sm-offset-1 ">
+                                <span class="glyphicon glyphicon-plus"></span> Modifier
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <?php
+    }
+
+    /******************************************************/
+    /****************FIN MODIFIER MATIÈRES*****************/
+    /******************************************************/
+
+    /*************************************************/
+    /*****************SUPPRIMER MATIERES**************/
+    /************************************************/
+
+    public function afficheSupprimerMatiere()  {?>
+
+        <div id="message">
+            <?php 
+                if($this->getMessage()){
+                    $aMessage = $this->getMessage();
+                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
+                }
+            ?>
+        </div>
+        
+       
+            <div class="col-sm-12">
+            <div class="col-sm-offset-0 col-sm-8">
+                <div class="col-sm-offset-5  col-sm-7">
+                    <div class="navbar navbar-default ">
+                        <h3 class="navbar-text">Modifier une matière</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-offset-4 col-sm-8 page-header">
+                     
+            </div>
+            <div class="col-sm-6 col-sm-offset-2">
+                <form id="frmModifierMatiere" action="" method="POST" enctype="" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div class="col-md-10 col-sm-offset-2">
+                            <label for="txtMatiere" class="col-sm-3  control-label">Matière :</label>
+                            <div class="col-sm-9 col-md-8">
+                                <input type="email" id="txtMatiere" name="txtMatiere" class="form-control" placeholder="Matière">
+                                <div class="divErreur" id="txtMatiereErreur"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-5 col-sm-6 text-right">
+                             <a href="#" class="btn btn-danger" role="button">
+                                <span class="glyphicon glyphicon-remove"></span> Annuler
+                            </a>
+                            <button type="submit" id="subModifierMatiere" class="btn btn-success col-sm-offset-1 ">
+                                <span class="glyphicon glyphicon-plus"></span> Modifier
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <?php
+    }
+
+    /******************************************************/
+    /****************FIN MODIFIER MATIÈRES*****************/
+    /******************************************************/
 
     /*=====================================*/
     /*========FIN DE LA SECTION DES========*/
