@@ -506,6 +506,7 @@ class UtilisateurVue extends Vue {
                             <input type="password" id="txtInscriptionMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe :">
                             <div class="divErreur" id="txtInscriptionMdp2Erreur"></div>
                         </div>
+                        
                     </div>
                     <div class="form-group"></div>
                     <div class="form-group"></div>
