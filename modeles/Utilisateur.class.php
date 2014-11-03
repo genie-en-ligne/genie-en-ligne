@@ -49,12 +49,18 @@
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE `pseudo` = '".$this->getPseudo()."'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            if(count($aResultats) == 0){
+                return false;
+            }
             
             $this->setRole($aResultats[0]['role']);
             $this->setId($aResultats[0]['utilisateur_ID']);
             $this->setPrenom($aResultats[0]['prenom']);
             $this->setNom($aResultats[0]['nom']);
             $this->setCourriel($aResultats[0]['courriel']);
+
+            return true;
         }
         
         public function chargerCompteParId(){
@@ -63,12 +69,18 @@
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE `utilisateur_ID` = '".$this->getId()."'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            if(count($aResultat) == 0){
+                return false;
+            }
             
             $this->setRole($aResultats[0]['role']);
             $this->setPseudo($aResultats[0]['pseudo']);
             $this->setPrenom($aResultats[0]['prenom']);
             $this->setNom($aResultats[0]['nom']);
             $this->setCourriel($aResultats[0]['courriel']);
+
+            return true;
         }
         
         public function ajouterActiviteLogin($evenement){

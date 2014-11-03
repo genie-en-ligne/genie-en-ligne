@@ -66,6 +66,10 @@
             $oResultat = $oConnexion->executer("SELECT * FROM ecoles WHERE ecole_ID = '{$this->iId}'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
+            if(count($aResultats) == 0){
+                return false;
+            }
+
             $this->setNom($aResultats[0]['nom']);
             $this->setCommissionId($aResultats[0]['commission_ID']);
 

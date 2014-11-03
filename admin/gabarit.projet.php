@@ -22,10 +22,7 @@
         <?php
             $oUtilisateurSession = new Utilisateur($_SESSION['user_id']);
 
-            if($oUtilisateurSession->utilisateurEstConnecte()){
-                $oUtilisateurSession->chargerCompteParId();
-            }
-            else{
+            if($oUtilisateurSession->utilisateurEstConnecte() == false || $oUtilisateurSession->chargerCompteParId() == false){
                 //Rediriger au login
                 header("location:".WEB_ROOT);
             }

@@ -310,13 +310,12 @@ class AdminVue extends Vue {
                     </tr>
                     <?php
                         foreach ($this->aListeCommissions as $oCommission) {
+                            $nom = "Aucun";
                             if($oCommission->getResponsable() > 0){
                                 $oUtilisateur = new Utilisateur($oCommission->getResponsable());
-                                $oUtilisateur->chargerCompteParId();
-                                $nom = $oUtilisateur->getPrenom().' '.$oUtilisateur->getNom();
-                            }
-                            else{
-                                $nom = "Aucun";
+                                if($oUtilisateur->chargerCompteParId()){
+                                	$nom = $oUtilisateur->getPrenom().' '.$oUtilisateur->getNom();
+								}
                             }
 
                             echo '<tr>';
@@ -626,12 +625,15 @@ class AdminVue extends Vue {
                         </tr>
                         <?php
                             foreach ($this->aListeEcoles as $oEcole) {
+								$nom = "Aucune";
                                 $oCommission = new Commission($oEcole->getCommissionId());
-                                $oCommission->chargerCommission();
+                                if($oCommission->chargerCommission()){
+									$nom = $oCommission->getNom();
+								}
                                 ?>
                                 <tr>
                                     <td id="txtEcoleTab"><?php echo $oEcole->getNom();?></td> 
-                                    <td id="txtCommissionTab"><?php echo $oCommission->getNom();?></td><!-- Si plus d'une afficher valeurs multiples -->
+                                    <td id="txtCommissionTab"><?php echo $nom;?></td><!-- Si plus d'une afficher valeurs multiples -->
                                     <td>
                                        <a href="<?php echo WEB_ROOT;?>/admin/admin/modifier-ecole/<?php echo $oEcole->getId();?>" class="btn btn-primary btn-xs" title="Modifier">
                                             <span class="glyphicon glyphicon-pencil"></span>

@@ -440,6 +440,10 @@
             $oResultat = $oConnexion->executer("SELECT * FROM contenu WHERE contenu_ID = '{$this->iContenu_Id}'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
+            if(count($aResultats) == 0){
+                return false;
+            }
+
             $this->setTitre($aResultats[0]['titre']);
             $this->setDateSoumis($aResultats[0]['date_soumis']);
             $this->setDateApprouve($aResultats[0]['date_approuve']);
@@ -464,6 +468,8 @@
 
                 $this->setContenu($aResultats[0]['contenu_html']);
             }
+
+            return true;
         }
 
         public function getSorteTuto(){

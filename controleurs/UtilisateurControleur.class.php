@@ -275,7 +275,9 @@
                 }   
 
                 $oUtilisateur= new Utilisateur($this->getReqId());
-                $oUtilisateur->chargerCompteParId();
+                if($oUtilisateur->chargerCompteParId() == false){
+					$this->erreur404();
+				}
 
                 $oVue->oUtilisateur = $oUtilisateur;
 
@@ -335,7 +337,9 @@
         private function creerLogin(){
             $oVue = new UtilisateurVue();
             $oUtilisateur = new Utilisateur($this->getReqId());
-            $oUtilisateur->chargerCompteParId();
+            if($oUtilisateur->chargerCompteParId() == false){
+				$this->erreur404();	
+			}
             $oVue->oUtilisateur = $oUtilisateur;
 
             try{
@@ -373,7 +377,9 @@
             $oVue = new AdminVue();
             try{
             $oUtilisateur = new Utilisateur($this->getReqId());
-            $oUtilisateur->chargerCompteParId();
+            if($oUtilisateur->chargerCompteParId() == false){
+				$this->erreur404();
+			}
 
             if(isset($_POST['subSupprimer'])){
                 $oUtilisateur->supprimer();
@@ -448,7 +454,9 @@
                 }   
 
                 $oUtilisateur= new Utilisateur($this->getReqId());
-                $oUtilisateur->chargerCompteParId();
+                if($oUtilisateur->chargerCompteParId() == false){
+					$this->erreur404();
+				}
 
                 $oVue->oUtilisateur = $oUtilisateur;
 
@@ -485,7 +493,9 @@
                     $oUtilisateur->ajouterUtilisateur();
 
                     $oCommission = new Commission($_POST['sltCommissions']);
-                    $oCommission->chargerCommission();
+                    if($oCommission->chargerCommission() == false){
+						$this->erreur404();	
+					}
                     $oCommission->retirerResponsable();
                     $oCommission->setResponsable($oUtilisateur->getId());
                     $oCommission->modifierCommission();
@@ -508,7 +518,9 @@
             $oVue->aListeCommissions = $oCommission->rechercherListeCommissions();
 
             $oUtilisateur = new Utilisateur($this->getReqId());
-            $oUtilisateur->chargerCompteParId();
+            if($oUtilisateur->chargerCompteParId() == false){
+				$this->erreur404();
+			}
             $oVue->oUtilisateur = $oUtilisateur;
 
             try{
@@ -517,7 +529,9 @@
                     $oUtilisateur->modifierUtilisateur();
 
                     $oCommission = new Commission($_POST['sltCommissions']);
-                    $oCommission->chargerCommission();
+                    if($oCommission->chargerCommission() == false){
+						$this->erreur404();
+					}
                     $oCommission->retirerResponsable();
                     $oCommission->setResponsable($oUtilisateur->getId());
                     $oCommission->modifierCommission();

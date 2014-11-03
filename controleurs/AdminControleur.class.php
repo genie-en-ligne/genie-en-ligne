@@ -91,7 +91,9 @@
         private function modifierCommission(){
             $oVue = new AdminVue();
             $oCommission = new Commission($this->getReqId());
-            $oCommission->chargerCommission();
+            if($oCommission->chargerCommission() == false){
+				$this->erreur404();
+			}
 
             try{
                 if(isset($_POST['subModifierCommission'])){
@@ -118,7 +120,9 @@
         private function supprimerCommission(){
             $oVue = new AdminVue();
             $oCommission = new Commission($this->getReqId());
-            $oCommission->chargerCommission();
+            if($oCommission->chargerCommission() == false){
+				$this->erreur404();	
+			}
 
             try{
                 if(isset($_POST['subSupprimerCommission'])){
@@ -178,7 +182,9 @@
             $oVue->aListeCommissions = $oCommission->rechercherListeCommissions();
 
             $oEcole = new Ecole($this->getReqId());
-            $oEcole->chargerEcole();
+            if($oEcole->chargerEcole() == false){
+				$this->erreur404();	
+			}
             $oVue->oEcole = $oEcole;
 
             try{
@@ -202,7 +208,9 @@
             $oVue = new AdminVue();
 
             $oEcole = new Ecole($this->getReqId());
-            $oEcole->chargerEcole();
+            if($oEcole->chargerEcole() == false){
+				$this->erreur404();	
+			}
             $oVue->oEcole = $oEcole;
 
             try{
@@ -253,7 +261,9 @@
         public function modifierMatiere(){
             $oVue = new AdminVue();
             $oMatiere = new Matiere($this->getReqId());
-            $oMatiere->chargerMatiere();
+            if($oMatiere->chargerMatiere() == false){
+				$this->erreur404();	
+			}
 
             $oVue->oMatiere = $oMatiere;
 
@@ -276,7 +286,9 @@
         public function supprimerMatiere(){
             $oVue = new AdminVue();
             $oMatiere = new Matiere($this->getReqId());
-            $oMatiere->chargerMatiere();
+            if($oMatiere->chargerMatiere() == false){
+				$this->erreur404();
+			}
 
             $oVue->oMatiere = $oMatiere;
 

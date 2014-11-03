@@ -96,7 +96,9 @@
             try{
                 if(isset($_POST['subModifierVideo'])){
                     $oAncienTuto = new Tutoriel($this->getReqId());
-                    $oAncienTuto->chargerTutoriel();
+                    if($oAncienTuto->chargerTutoriel() == false){
+						$this->erreur404();
+					}
 
                     $oTutoriel = new Tutoriel($this->getReqId(), $_POST['txtTitre'], date("Y-m-d"), "0000-00-00", $this->oUtilisateurSession->getId(), $oAncienTuto->getApprouvePar(), $oAncienTuto->getStatut(), 1, $_POST['sltMatiere'], $_POST['sltNiveau'], 0, $_POST['sltEcole'], $_POST['txtUrl']);
                     $oTutoriel->modifierTuto();
@@ -109,7 +111,9 @@
                 }
                 else{
                     $oTutoriel = new Tutoriel($this->getReqId());
-                    $oTutoriel->chargerTutoriel();
+                    if($oTutoriel->chargerTutoriel() == false){
+						$this->erreur404();	
+					}
                     $oVue->oTutoriel = $oTutoriel;
                 }
                 
@@ -119,7 +123,10 @@
             }
             catch(Exception $e){
                 $oTutoriel = new Tutoriel($this->getReqId());
-                $oTutoriel->chargerTutoriel();
+                if($oTutoriel->chargerTutoriel() == false){
+					$this->erreur404();	
+				}
+				
                 $oVue->oTutoriel = $oTutoriel;
                 $oVue->setMessage(array($e->getMessage(), "danger"));
                 $oVue->aMatieres = $oMatiere->rechercherListeMatieres();
@@ -135,7 +142,9 @@
             try{
                 if(isset($_POST['subModifierTexte'])){
                     $oAncienTuto = new Tutoriel($this->getReqId());
-                    $oAncienTuto->chargerTutoriel();
+                    if($oAncienTuto->chargerTutoriel() == false){
+						$this->erreur404();
+					}
 
                     $oTutoriel = new Tutoriel($this->getReqId(), $_POST['txtTitre'], date("Y-m-d"), "0000-00-00", $this->oUtilisateurSession->getId(), $oAncienTuto->getApprouvePar(), $oAncienTuto->getStatut(), 2, $_POST['sltMatiere'], $_POST['sltNiveau'], 0, $_POST['sltEcole'], $_POST['txtContenu']);
                     $oTutoriel->modifierTuto();
@@ -148,7 +157,9 @@
                 }
                 else{
                     $oTutoriel = new Tutoriel($this->getReqId());
-                    $oTutoriel->chargerTutoriel();
+                    if($oTutoriel->chargerTutoriel() == false){
+						$this->erreur404();
+					}
                     $oVue->oTutoriel = $oTutoriel;
                 }
                 
@@ -158,7 +169,10 @@
             }
             catch(Exception $e){
                 $oTutoriel = new Tutoriel($this->getReqId());
-                $oTutoriel->chargerTutoriel();
+                if($oTutoriel->chargerTutoriel() == false){
+					$this->erreur404();
+				}
+				
                 $oVue->oTutoriel = $oTutoriel;
                 $oVue->setMessage(array($e->getMessage(), "danger"));
                 $oVue->aMatieres = $oMatiere->rechercherListeMatieres();
@@ -182,7 +196,9 @@
                 }
                 else{
                     $oTutoriel = new Tutoriel($this->getReqId());
-                    $oTutoriel->chargerTutoriel();
+                    if($oTutoriel->chargerTutoriel() == false){
+						$this->erreur404();
+					}
 
                     $oVue -> oTutoriel = $oTutoriel;
         			$oVue -> afficheSupprimerTuto();
@@ -280,7 +296,9 @@
                 }
                 else{
                     $oTutoriel = new Tutoriel($this->getReqId());
-                    $oTutoriel->chargerTutoriel();
+                    if($oTutoriel->chargerTutoriel() == false){
+						$this->erreur404();
+					}
 
                     $oVue -> oTutoriel = $oTutoriel;
                     $oVue -> afficheApprouverTuto();
@@ -295,7 +313,9 @@
             $oVue = new TutorielVue();
             try{
                 $oTutoriel = new Tutoriel($this->getReqId());
-                $oTutoriel->chargerTutoriel();
+                if($oTutoriel->chargerTutoriel() == false){
+					$this->erreur404();	
+				}
                 $oVue->oTutoriel = $oTutoriel;
 
                 if($oTutoriel->getType() == 1){

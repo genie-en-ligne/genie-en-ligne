@@ -38,10 +38,16 @@
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("SELECT * FROM commissions WHERE `commission_ID` = '{$this->iId}'");
             $aResultat =  $oConnexion->recupererTableau($oResultat);
+
+            if(count($aResultat) == 0){
+                return false;
+            }
             
             $this->setNom($aResultat[0]['nom']);
             $this->setRegion($aResultat[0]['region']);
             $this->setResponsable($aResultat[0]['responsable']);
+
+            return true;
         }
         
         public function chargerCommissionParResponsable() {
