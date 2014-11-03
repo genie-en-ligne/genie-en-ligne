@@ -21,9 +21,9 @@ class UtilisateurVue extends Vue {
         
         
         <div class="row">
-            <!-------------->
+            <!-- ---------- -->
             <!-- CAROUSEL -->
-            <!-------------->
+            <!-- ---------- -->
 
 
             <div class="hidden-xs col-sm-12 col-md-8">
@@ -547,6 +547,7 @@ class UtilisateurVue extends Vue {
                             <label for="nom" class="col-sm-4 control-label">Courriel :</label>
                             <div class="col-sm-6">
                                 <input type="email" name="emlCourriel" id="codePermanent" class="form-control" placeholder="Courriel">
+                                <div class="divErreur" id="txtRecupPassErreur"></div>
                             </div>
                         </div>
                         <div class="form-group"></div>
@@ -568,7 +569,7 @@ class UtilisateurVue extends Vue {
     /*==========================*/
     /*== afficheEnvoyerMessage ==*/
     /*===========================*/
-
+    /*Div erreur fait*/
     public function afficheEnvoyerMessage() {?>
 
          <div id="message">
@@ -593,17 +594,19 @@ class UtilisateurVue extends Vue {
             </div>
            
             <div class="col-sm-12 col-sm-offset-1">
-                <form class="form-horizontal" role="form" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/envoyer-message">
+                <form id="frmMessage" class="form-horizontal" role="form" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/envoyer-message">
                     <div class="form-group">
                         <label for="nom" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" name="emlCourriel" id="codePermanent" class="form-control" placeholder="Courriel">
+                            <input type="email" name="emlCourriel" id="txtCourriel" class="form-control" placeholder="Courriel">
+                            <div class="divErreur" id="txtCourrielErreur"></div>
                         </div>
                     </div>
                     <section class="form-group">
                         <label for="nom" class="col-md-4 control-label">Message :</label>
                         <div class="col-md-6">
-                            <textarea class="col-md-12" name="txtMessage" id="commentaire"></textarea>
+                            <textarea class="col-md-12" name="txtMessage" id="txtCommentaire"></textarea>
+                            <div class="divErreur" id="txtCommentaireErreur"></div>
                         </div>
                     </section>
                     <div class="form-group"></div>
