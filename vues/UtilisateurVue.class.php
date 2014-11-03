@@ -381,7 +381,7 @@ class UtilisateurVue extends Vue {
     /*== afficherPreInscription ==*/
     /*============================*/
 
-    /** Donna***/
+      /* Div erreur fait Donna*/
 
     public function affichePreInscription() {?>
 
@@ -409,12 +409,15 @@ class UtilisateurVue extends Vue {
                             <label for="txtPreInscCodePerm" class="col-sm-4 control-label">Code permanent :</label>
                             <div class="col-sm-6">
                                 <input type="text" id="txtCodePerm" class="form-control" name="txtCodePerm" placeholder="Code permanent">
+                                <div class="divErreur" id="txtCodePermErreur"></div>
                             </div>
+
                         </div>
                         <div class="form-group">
                             <label for="txtPreInscNom" class="col-sm-4 control-label">Nom de famille :</label>
                             <div class="col-sm-6">
-                                <input type="text" id="txtPNom" class="form-control" name="txtNom" placeholder="Nom de famille">
+                                <input type="text" id="txtNom" class="form-control" name="txtNom" placeholder="Nom de famille">
+                                <div class="divErreur" id="txtNomErreur"></div>
                             </div>
                         </div>
                         <div class="form-group"></div>
@@ -440,7 +443,7 @@ class UtilisateurVue extends Vue {
     /*=========================*/
     /*== afficherInscription ==*/
     /*=========================*/
-
+   /* Div erreur fait Donna*/
     public function afficheInscription() {?>
 
          <div id="message">
@@ -520,7 +523,7 @@ class UtilisateurVue extends Vue {
     /*=========================*/
     /*== afficheRecupererMDP ==*/
     /*=========================*/
-
+    /* Div erreur fait Donna*/
     public function afficheRecupererMDP() {?>
 
          <div id="message">
@@ -542,7 +545,7 @@ class UtilisateurVue extends Vue {
                     </ol>            
                 </div>
                 <div class="col-sm-12 col-sm-offset-1">
-                    <form id="frmRecuper" class="form-horizontal" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/recuperer-mdp" role="form">
+                    <form id="frmRecuperer" class="form-horizontal" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/recuperer-mdp" role="form">
                         <div class="form-group">
                             <label for="nom" class="col-sm-4 control-label">Courriel :</label>
                             <div class="col-sm-6">
@@ -569,7 +572,7 @@ class UtilisateurVue extends Vue {
     /*==========================*/
     /*== afficheEnvoyerMessage ==*/
     /*===========================*/
-    /*Div erreur fait*/
+    /*Div erreur fait Donna*/
     public function afficheEnvoyerMessage() {?>
 
          <div id="message">

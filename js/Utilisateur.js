@@ -136,7 +136,6 @@ function SignaliserUnProbleme(){
       aDivErreur[i].innerHTML = ‘’;
    }
 
-
 	//Valider le champs message
 	if(estVide(txtCommentaire.value)) {
 		estValide = false;
@@ -156,7 +155,7 @@ function SignaliserUnProbleme(){
 		estValide = false;
 		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
 	}
-	else if(estTexte(txtCourriel.value) == false) {
+	else if(estCouriel(txtCourriel.value) == false) {
 		estValide = false;
 		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
 	}
@@ -167,7 +166,8 @@ function SignaliserUnProbleme(){
    }
 
 
-//
+// Recuperer mots de passe
+//@author	Donna
 function RecupereMotsDePasse(){
 	if(event.preventDefault) {
 		event.preventDefault;
@@ -191,8 +191,6 @@ function RecupereMotsDePasse(){
       aDivErreur[i].innerHTML = ‘’;
    }
 
-
-
 	//Valider le champs couriel
 	if(estVide(txtRecupMdp.value)) {
 		estValide = false;
@@ -202,7 +200,7 @@ function RecupereMotsDePasse(){
 		estValide = false;
 		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
 	}
-	else if(estTexte(txtRecupMdp.value) == false) {
+	else if(estCouriel(txtRecupMdp.value) == false) {
 		estValide = false;
 		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
 	}
@@ -212,5 +210,110 @@ function RecupereMotsDePasse(){
       frmRecuperer.submit();
    }
 
-
 }
+
+
+//Formulaire préinscription
+//@author	Donna
+function FormPreinscription(){
+	if(event.preventDefault) {
+		event.preventDefault;
+	} else {
+		event.returnValue = false;
+	}
+
+	var estValide = true;
+	var frmPreInscrition 	= 	document.getElementById('frmPreInscrition');
+
+	//Définir les champs
+	var txtCodePerm	=	document.getElementById('txtCodePerm');
+	var txtNom		= 	document.getElementById('txtNom');
+
+	//Définir les champs d'erreur
+	var txtCodePermErreur	=	document.getElementById('txtCodePermErreur');
+	var txtNomErreur	=	document.getElementById('txtNomErreur');
+
+	var aDivErreur 		= 	document.getElementsByClassName('divErreur');
+
+   //Enlever toutes les erreurs
+   for(var i = 0; i < aDivErreur.length; i++){
+      aDivErreur[i].innerHTML = ‘’;
+   }
+
+	//Valider le champs Code permanent
+	if(estVide(txtCodePerm.value)) {
+		estValide = false;
+		txtCourrielErreur.innerHTML = 'Veuillez remplir ce champ';
+	} 
+	else if(estTexte(txtCodePerm.value) == false) {
+		estValide = false;
+		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
+	}
+
+	//Valider le champs couriel
+	if(estVide(txtNomErreur.value)) {
+		estValide = false;
+		txtCourrielErreur.innerHTML = 'Veuillez remplir ce champ';
+	} 
+	else if(estTexte(txtNomErreur.value) == false) {
+		estValide = false;
+		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
+	}
+
+	//Soumettre le formulaire
+   if(estValide == true){
+      frmPreInscrition.submit();
+   }
+
+
+//Formulaire inscription
+//@author	Donna
+function FormPreinscription(){
+	if(event.preventDefault) {
+		event.preventDefault;
+	} else {
+		event.returnValue = false;
+	}
+
+	var estValide = true;
+	var frmPreInscrition 	= 	document.getElementById('frmPreInscrition');
+
+	//Définir les champs
+	var txtCodePerm	=	document.getElementById('txtCodePerm');
+	var txtNom		= 	document.getElementById('txtNom');
+
+	//Définir les champs d'erreur
+	var txtCodePermErreur	=	document.getElementById('txtCodePermErreur');
+	var txtNomErreur	=	document.getElementById('txtNomErreur');
+
+	var aDivErreur 		= 	document.getElementsByClassName('divErreur');
+
+   //Enlever toutes les erreurs
+   for(var i = 0; i < aDivErreur.length; i++){
+      aDivErreur[i].innerHTML = ‘’;
+   }
+
+	//Valider le champs Code permanent
+	if(estVide(txtCodePerm.value)) {
+		estValide = false;
+		txtCourrielErreur.innerHTML = 'Veuillez remplir ce champ';
+	} 
+	else if(estTexte(txtCodePerm.value) == false) {
+		estValide = false;
+		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
+	}
+
+	//Valider le champs couriel
+	if(estVide(txtNomErreur.value)) {
+		estValide = false;
+		txtCourrielErreur.innerHTML = 'Veuillez remplir ce champ';
+	} 
+	else if(estTexte(txtNomErreur.value) == false) {
+		estValide = false;
+		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
+	}
+
+	//Soumettre le formulaire
+   if(estValide == true){
+      frmPreInscrition.submit();
+   }
