@@ -542,11 +542,11 @@ class UtilisateurVue extends Vue {
                     </ol>            
                 </div>
                 <div class="col-sm-12 col-sm-offset-1">
-                    <form class="form-horizontal" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/recuperer-mdp" role="form">
+                    <form id="frmRecuper" class="form-horizontal" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/recuperer-mdp" role="form">
                         <div class="form-group">
                             <label for="nom" class="col-sm-4 control-label">Courriel :</label>
                             <div class="col-sm-6">
-                                <input type="email" name="emlCourriel" id="codePermanent" class="form-control" placeholder="Courriel">
+                                <input type="email" name="emlCourriel" id="txtRecupMdp" class="form-control" placeholder="Courriel">
                                 <div class="divErreur" id="txtRecupPassErreur"></div>
                             </div>
                         </div>

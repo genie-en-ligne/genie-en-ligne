@@ -168,7 +168,7 @@ function SignaliserUnProbleme(){
 
 
 //
-function SignaliserUnProbleme(){
+function RecupereMotsDePasse(){
 	if(event.preventDefault) {
 		event.preventDefault;
 	} else {
@@ -176,15 +176,13 @@ function SignaliserUnProbleme(){
 	}
 
 	var estValide = true;
-	var frmMessage 	= 	document.getElementById('frmMessage');
+	var frmRecuperer = 	document.getElementById('frmRecuperer');
 
 	//Définir les champs
-	var txtCourriel			=	document.getElementById('txtCourriel');
-	var txtCommentaire		= 	document.getElementById('txtCommentaire');
+	var txtRecupMdp			=	document.getElementById('txtRecupMdp');
 
 	//Définir les champs d'erreur
-	var txtCourrielErreur		=	document.getElementById('txtCourrielErreur');
-	var txtCommentaireErreur	=	document.getElementById('txtCommentaireErreur');
+	var txtRecupPassErreur		=	document.getElementById('txtRecupPassErreur');
 
 	var aDivErreur 			= 	document.getElementsByClassName('divErreur');
 
@@ -194,33 +192,24 @@ function SignaliserUnProbleme(){
    }
 
 
-	//Valider le champs message
-	if(estVide(txtCommentaire.value)) {
-		estValide = false;
-		txtCourrielErreur.innerHTML = 'Veuillez remplir ce champ';
-	} 
-	else if(estTexte(txtCommentaire.value) == false) {
-		estValide = false;
-		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
-	}
 
 	//Valider le champs couriel
-	if(estVide(txtCourriel.value)) {
+	if(estVide(txtRecupMdp.value)) {
 		estValide = false;
 		txtCourrielErreur.innerHTML = 'Veuillez remplir ce champ';
 	} 
-	else if(estTexte(txtCourriel.value) == false) {
+	else if(estTexte(txtRecupMdp.value) == false) {
 		estValide = false;
 		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
 	}
-	else if(estTexte(txtCourriel.value) == false) {
+	else if(estTexte(txtRecupMdp.value) == false) {
 		estValide = false;
 		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
 	}
 
 	//Soumettre le formulaire
    if(estValide == true){
-      frmMessage.submit();
+      frmRecuperer.submit();
    }
 
 
