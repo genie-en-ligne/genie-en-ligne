@@ -22,7 +22,7 @@
 	spl_autoload_register('mon_autoloader');
 
     //define('WEB_ROOT', 'http://e1395671.webdev.cmaisonneuve.qc.ca/final');
-    define('WEB_ROOT', 'http://localhost/genie-en-ligne');
+    define('WEB_ROOT', 'http://127.0.0.2:81/GitHub/genie-en-ligne');
 
     /*define('SQL_HOST', 'localhost');
     define('SQL_USER', 'e1395671');
@@ -31,7 +31,7 @@
 
     define('SQL_HOST', 'localhost');
     define('SQL_USER', 'root');
-    define('SQL_PWD',  'rocketxl5');
-    define('SQL_BDD',  'e1395671');
+    define('SQL_PWD',  '');
+    define('SQL_BDD',  'genie_en_ligne');
 	
 ?>
