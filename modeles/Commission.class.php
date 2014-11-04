@@ -15,15 +15,19 @@
 
         public function ajouterCommission() {
             $oConnexion = new MySqliLib();
+            $sNom = $oConnexion->getConnect()->real_escape_string($this->sNom);
+
             $oResultat = $oConnexion->executer("INSERT INTO commissions (`nom`, `region`) 
-                                                 VALUES ('{$this->sNom}','{$this->iRegion}')");
+                                                 VALUES ('{$sNom}','{$this->iRegion}')");
             return $this->setId($oConnexion->getInsertId());
         }
         
         public function modifierCommission() {
             $oConnexion = new MySqliLib();
+            $sNom = $oConnexion->getConnect()->real_escape_string($this->sNom);
+
             $oResultat = $oConnexion->executer("UPDATE commissions 
-                                                SET `nom` = '{$this->sNom}', `region` = '{$this->iRegion}', `responsable` = '{$this->iResponsable}'                                                    
+                                                SET `nom` = '{$sNom}', `region` = '{$this->iRegion}', `responsable` = '{$this->iResponsable}'                                                    
                                                 WHERE `commission_ID` = '{$this->iId}'");
             return $oConnexion->getConnect()->affected_rows;
         }
@@ -36,7 +40,7 @@
         
         public function chargerCommission() {
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM commissions WHERE `commission_ID` = '{$this->iId}'");
+            $oResultat = $oConnexion->executer("SELECT * FROM commissions WHERE `commission_ID` = '{$this->iId}' AND est_detruit = '0'");
             $aResultat =  $oConnexion->recupererTableau($oResultat);
 
             if(count($aResultat) == 0){
@@ -52,7 +56,7 @@
         
         public function chargerCommissionParResponsable() {
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM commissions WHERE `responsable` = '{$this->iResponsable}'");
+            $oResultat = $oConnexion->executer("SELECT * FROM commissions WHERE `responsable` = '{$this->iResponsable}' AND est_detruit = '0'");
             $aResultat =  $oConnexion->recupererTableau($oResultat);
 
             if(count($aResultat) == 0){
@@ -64,28 +68,6 @@
             $this->setId($aResultat[0]['commission_ID']);
 
             return true;
-        }
-        
-        public function ajouterModuleAutorise($iServiceId) {
-            $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("INSERT INTO services_par_commission (`commission_ID`, `service_ID`) 
-                                                VALUES ('{$this->iId}', '{$iServiceId}')");
-            return $this->setId($oConnexion->getInsertId());
-        }
-
-        public function rechercherListeModulesAutorises() {
-            $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT service_ID
-                                                FROM services_par_commission 
-                                                WHERE commission_ID = '{$this->iId}'");
-            $aResultat = $oConnexion->recupererTableau($oResultat); 
-            return $aResultat;                                  
-        }
-        
-        public function retirerModuleAutorise() {
-            $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("DELETE FROM services_par_commission WHERE `commission_ID` = '{$this->iId}' AND `service_ID` = '{$iServiceId}'");            
-            return $oConnexion->getConnect()->affected_rows;
         }
         
         public function rechercherListeCommissions(){
@@ -105,7 +87,7 @@
 
         public function rechercherListeEcoles(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM ecoles WHERE commission_ID = '$this->iId'");
+            $oResultat = $oConnexion->executer("SELECT * FROM ecoles WHERE commission_ID = '$this->iId' AND est_detruit = '0'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
             
             $aFinal = array();
