@@ -21,9 +21,9 @@
 	<body>
         <div id="wrapper">
             
-        <!-------------------->
+        <!-- -------------- -->
         <!-- ENTETE DU SITE -->
-        <!-------------------->            
+        <!-- -------------- -->            
             
             <header class="container">
                 <?php 
@@ -36,9 +36,9 @@
                     //Utilisateur non connecté
                     if($oUtilisateurSession->getRole() == 0){?>
                 
-                        <!----------------------->
+                        <!-- ----------------- -->
                         <!-- MENU NON CONNECTÉ -->
-                        <!----------------------->
+                        <!-- ----------------- -->
                 
                         <!-- Entête visible sur tous les écrans sauf les mobiles -->
                         <div class="row">
@@ -137,7 +137,7 @@
                                             </a>
                                             <ul class="dropdown-menu" role="menu" aria-labelledby="nav-compte">
                                                 <li role="presentation">
-                                                    <a href="#">
+                                                    <a href="<?php echo WEB_ROOT;?>/statistique/personnel">
                                                         Statistiques
                                                     </a>
                                                 </li>
@@ -165,9 +165,9 @@
                     //Tuteur
                     elseif($oUtilisateurSession->getRole() == 2){?>
                 
-                        <!----------------->
+                        <!-- ----------- -->
                         <!-- MENU TUTEUR -->
-                        <!----------------->
+                        <!-- ----------- -->
                 
                         <div class="row">
                             <div class="col-sm-3 logo">
@@ -225,7 +225,7 @@
                                             </a>
                                             <ul class="dropdown-menu" role="menu" aria-labelledby="nav-compte">
                                                 <li role="presentation">
-                                                    <a href="#">
+                                                    <a href="<?php echo WEB_ROOT;?>/statistique/personnel">
                                                         Statistiques
                                                     </a>
                                                 </li>
@@ -253,9 +253,9 @@
                 ?>
             </header>
             
-        <!----------------------->
+        <!-- ----------------- -->
         <!-- CONTENU PRINCIPAL -->
-        <!----------------------->
+        <!-- ----------------- -->
             
             <main class="container">
             
@@ -264,9 +264,9 @@
                 $oControleur->gerer();
             ?>
 			
-            <!-------------------------->
+            <!-- -------------------- -->
             <!-- PIED DE PAGE DU SITE -->
-            <!-------------------------->
+            <!-- -------------------- -->
                 
                 <footer>
                     <div class="navbar navbar-default">

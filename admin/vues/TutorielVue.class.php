@@ -26,10 +26,13 @@ class TutorielVue extends Vue {
                     </tr>
                     <?php
                         foreach($this->aListeTutos as $oTutoriel){
+							$nom = "N/A";
                             $oUtilisateur = new Utilisateur($oTutoriel->getSoumisPar());
-                            $oUtilisateur->chargerCompteParId();
+                            if($oUtilisateur->chargerCompteParId()){
+								$nom = $oUtilisateur->getPrenom().' '.$oUtilisateur->getNom();
+							}
                             echo '<tr>';
-                                echo '<td id="txtTitre">'.$oUtilisateur->getPrenom().' '.$oUtilisateur->getNom().'</td>';
+                                echo '<td id="txtTitre">'.$nom.'</td>';
                                 echo '<td id="txtTitre">'.$oTutoriel->getTitre().'</td>';
                                 echo '<td id="txtType">'.$oTutoriel->getSorteTuto().'</td>';
                                 echo '<td id="txtDateCree">'.$oTutoriel->getDateSoumis().'</td>';
@@ -114,57 +117,66 @@ class TutorielVue extends Vue {
                 <h1 class="page-header">
                     Ajouter un vidéo
                 </h1>
-                <form action="<?php echo WEB_ROOT;?>/admin/tutoriel/ajouter-video/" method="post" role="form">
+                <form action="<?php echo WEB_ROOT;?>/admin/tutoriel/ajouter-video/" method="post" role="form" id="frmCreationVideo">
                     <div class="form-group">
                         <label>Titre</label>
-                        <input id="titre" name="txtTitre" class="form-control">
+                        <input id="txtTitre" name="txtTitre" class="form-control">
+							<div id="txtTitreErreur" class="divErreur"></div> <!-- div pour afficher les erreurs -->
                     </div>
                      <div class="row">
                         <div class="form-group">
                             <div class="col-lg-3">
                                 <label>Matière:</label>
                                 <select class="form-control" name="sltMatiere" id="sltMatiere">
+									<option value="0">Choisir</option> <!-- ???????????? -->
                                     <?php
                                         foreach ($this->aMatieres as $oMatiere) {
                                             echo '<option value="'.$oMatiere->getId().'">'.$oMatiere->getNom().'</option>';
                                         }
                                     ?>
                                 </select>
+								<div class="divErreur" id="sltMatiereErreur"></div> <!-- div pour afficher les erreurs -->
                            </div>
                             <div class="col-lg-3">
                                 <label>Niveau secondaire:</label>
-                                <select class="form-control" name="sltNiveau" id="sltAnnee">
+                                <select class="form-control" name="sltNiveau" id="sltNiveau">
+									<option value="0">Choisir</option> <!-- ???????????? -->
                                     <?php
                                         for($i = 1; $i <= 5; $i++) {
                                             echo '<option value="'.$i.'">Secondaire '.$i.'</option>';
                                         }
                                     ?>
                                 </select>
+								<div class="divErreur" id="sltNiveauErreur"></div> <!-- div pour afficher les erreurs -->
                             </div>
                             <div class="col-lg-3">
                                 <label>École:</label>
-                                <select class="form-control" name="sltEcole" id="sltAnnee">
+                                <select class="form-control" name="sltEcole" id="sltEcole">
+									<option value="0">Choisir</option> <!-- ???????????? -->
                                     <?php
                                         foreach ($this->aEcoles as $oEcole) {
                                             echo '<option value="'.$oEcole->getId().'">'.$oEcole->getNom().'</option>';
                                         }
                                     ?>
                                 </select>
+								<div class="divErreur" id="sltEcoleErreur"></div> <!-- div pour afficher les erreurs -->
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label><br/>Lien de video</label>
-                        <input type="text" name="txtUrl" class="form-control">
-                        <p class="form-control-static">Le lien du vidéo doit etre un lien "embed" YouTube complet.</p>
+                        <input type="text" id="txtUrl" name="txtUrl" class="form-control">
+							<div class="divErreur" id="txtUrlErreur"></div> <!-- div pour afficher les erreurs -->
+								<p class="form-control-static">Le lien du vidéo doit etre un lien "embed" YouTube complet.</p>
                     </div>
                     <div class="form-group text-right">
                         <a href="<?php echo WEB_ROOT;?>/admin/tutoriel/gerer" class="btn btn-danger">Annuler</a>
-                        <button type="submit" id="submit" name="subAjouterVideo" class="btn btn-success">Soumettre</button>
+                        <button type="submit" name="subAjouterVideo" class="btn btn-success">Soumettre</button>
                     </div>
                 </form>
             </div>
         </div>
+		<script src="<?php echo WEB_ROOT;?>/js/Tutoriel.js"></script>
     <?php
     }
     
@@ -182,56 +194,66 @@ class TutorielVue extends Vue {
                 <h1 class="page-header">
                     Ajouter un texte
                 </h1>
-                <form action="<?php echo WEB_ROOT;?>/admin/tutoriel/ajouter-texte/" method="post" role="form">
+                <form action="<?php echo WEB_ROOT;?>/admin/tutoriel/ajouter-texte/" method="post" role="form" id="frmCreationTexte">
                     <div class="form-group">
                         <label>Titre</label>
-                        <input id="titre" name="txtTitre" class="form-control">
+                        <input id="txtTitre" name="txtTitre" class="form-control">
+						<div id="txtTitreErreur" class="divErreur"></div> <!-- div pour afficher les erreurs -->
                     </div>
                      <div class="row">
                         <div class="form-group">
                             <div class="col-lg-3">
                                 <label>Matière:</label>
                                 <select class="form-control" name="sltMatiere" id="sltMatiere">
+									<option value="0">Choisir</option> <!-- ???????????? -->
                                     <?php
                                         foreach ($this->aMatieres as $oMatiere) {
                                             echo '<option value="'.$oMatiere->getId().'">'.$oMatiere->getNom().'</option>';
                                         }
                                     ?>
                                 </select>
+								<div class="divErreur" id="sltMatiereErreur"></div> <!-- div pour afficher les erreurs -->
                            </div>
                             <div class="col-lg-3">
                                 <label>Niveau secondaire:</label>
-                                <select class="form-control" name="sltNiveau" id="sltAnnee">
+                                <select class="form-control" name="sltNiveau" id="sltNiveau">
+									<option value="0">Choisir</option> <!-- ???????????? -->
                                     <?php
                                         for($i = 1; $i <= 5; $i++) {
                                             echo '<option value="'.$i.'">Secondaire '.$i.'</option>';
                                         }
                                     ?>
                                 </select>
+								<div class="divErreur" id="sltNiveauErreur"></div> <!-- div pour afficher les erreurs -->
                             </div>
                             <div class="col-lg-3">
                                 <label>École:</label>
-                                <select class="form-control" name="sltEcole" id="sltAnnee">
+                                <select class="form-control" name="sltEcole" id="sltEcole">
+									<option value="0">Choisir</option> <!-- ???????????? -->
                                     <?php
                                         foreach ($this->aEcoles as $oEcole) {
                                             echo '<option value="'.$oEcole->getId().'">'.$oEcole->getNom().'</option>';
                                         }
                                     ?>
                                 </select>
+								<div class="divErreur" id="sltEcoleErreur"></div> <!-- div pour afficher les erreurs -->
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label><br/>Rédigez votre texte</label>
-                        <textarea name="txtContenu" class="form-control"></textarea>
+                        <textarea id="tarContenu" name="txtContenu" class="form-control"></textarea>
+							<div class="divErreur" id="tarContenuErreur"></div> <!-- div pour afficher les erreurs -->
                     </div>
                     <div class="form-group text-right">
                         <a href="<?php echo WEB_ROOT;?>/admin/tutoriel/gerer" class="btn btn-danger">Annuler</a>
-                        <button type="submit" id="submit" name="subAjouterTexte" class="btn btn-success">Soumettre</button>
+                        <button type="submit" name="subAjouterTexte" class="btn btn-success">Soumettre</button>
                     </div>
                 </form>
             </div>
         </div>
+        <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/tinymce/tinymce.min.js"></script>
+		<script src="<?php echo WEB_ROOT;?>/js/Tutoriel.js"></script>
     <?php
         
     }
@@ -251,16 +273,18 @@ class TutorielVue extends Vue {
                 <h1 class="page-header">
                     Modifier un vidéo
                 </h1>
-                <form action="<?php echo WEB_ROOT;?>/admin/tutoriel/modifier-video/<?php echo $this->oTutoriel->getContenuId();?>" method="post" role="form">
+                <form action="<?php echo WEB_ROOT;?>/admin/tutoriel/modifier-video/<?php echo $this->oTutoriel->getContenuId();?>" method="post" role="form" id="frmModificationVideo">
                     <div class="form-group">
                         <label>Titre</label>
-                        <input id="titre" name="txtTitre" class="form-control" value="<?php echo $this->oTutoriel->getTitre();?>">
+                        <input id="txtTitre" name="txtTitre" class="form-control" value="<?php echo $this->oTutoriel->getTitre();?>">
+							<div id="txtTitreErreur" class="divErreur"></div> <!-- div pour afficher les erreurs -->
                     </div>
                      <div class="row">
                         <div class="form-group">
                             <div class="col-lg-3">
                                 <label>Matière:</label>
                                 <select class="form-control" name="sltMatiere" id="sltMatiere">
+									<option value="0">Choisir</option> <!-- ???????????? -->
                                     <?php
                                         foreach ($this->aMatieres as $oMatiere) {
                                             $selected = '';
@@ -271,10 +295,12 @@ class TutorielVue extends Vue {
                                         }
                                     ?>
                                 </select>
+								<div class="divErreur" id="sltMatiereErreur"></div> <!-- div pour afficher les erreurs -->
                            </div>
                             <div class="col-lg-3">
                                 <label>Niveau secondaire:</label>
-                                <select class="form-control" name="sltNiveau" id="sltAnnee">
+                                <select class="form-control" name="sltNiveau" id="sltNiveau">
+									<option value="0">Choisir</option> <!-- ???????????? -->
                                     <?php
                                         for($i = 1; $i <= 5; $i++) {
                                             $selected = '';
@@ -285,10 +311,12 @@ class TutorielVue extends Vue {
                                         }
                                     ?>
                                 </select>
+								<div class="divErreur" id="sltNiveauErreur"></div> <!-- div pour afficher les erreurs -->
                             </div>
                             <div class="col-lg-3">
                                 <label>École:</label>
-                                <select class="form-control" name="sltEcole" id="sltAnnee">
+                                <select class="form-control" name="sltEcole" id="sltEcole">
+									<option value="0">Choisir</option> <!-- ???????????? -->
                                     <?php
                                         foreach ($this->aEcoles as $oEcole) {
                                             $selected = '';
@@ -299,21 +327,24 @@ class TutorielVue extends Vue {
                                         }
                                     ?>
                                 </select>
+								<div class="divErreur" id="sltEcoleErreur"></div> <!-- div pour afficher les erreurs -->
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label><br/>Lien de video</label>
-                        <input type="text" name="txtUrl" class="form-control" value="<?php echo htmlentities($this->oTutoriel->getContenu());?>">
-                        <p class="form-control-static">Le lien du vidéo doit etre un lien "embed" YouTube complet.</p>
+                        <input type="text" id="txtUrl" name="txtUrl" class="form-control" value="<?php echo htmlentities($this->oTutoriel->getContenu());?>">
+							<div class="divErreur" id="txtUrlErreur"></div> <!-- div pour afficher les erreurs -->
+								<p class="form-control-static">Le lien du vidéo doit etre un lien "embed" YouTube complet.</p>
                     </div>
                     <div class="form-group text-right">
                         <a href="<?php echo WEB_ROOT;?>/admin/tutoriel/gerer" class="btn btn-danger">Annuler</a>
-                        <button type="submit" id="submit" name="subModifierVideo" class="btn btn-success">Soumettre</button>
+                        <button type="submit" name="subModifierVideo" class="btn btn-success">Soumettre</button>
                     </div>
                 </form>
             </div>
         </div>
+		<script src="<?php echo WEB_ROOT;?>/js/Tutoriel.js"></script>
     <?php
     }
     
@@ -331,16 +362,18 @@ class TutorielVue extends Vue {
                 <h1 class="page-header">
                     Modifier un texte
                 </h1>
-                <form action="<?php echo WEB_ROOT;?>/admin/tutoriel/modifier-texte/<?php echo $this->oTutoriel->getContenuId();?>" method="post" role="form">
+                <form action="<?php echo WEB_ROOT;?>/admin/tutoriel/modifier-texte/<?php echo $this->oTutoriel->getContenuId();?>" method="post" role="form" id="frmModificationTexte">
                     <div class="form-group">
                         <label>Titre</label>
-                        <input id="titre" name="txtTitre" class="form-control" value="<?php echo $this->oTutoriel->getTitre();?>">
+                        <input id="txtTitre" name="txtTitre" class="form-control" value="<?php echo $this->oTutoriel->getTitre();?>">
+							<div id="txtTitreErreur" class="divErreur"></div> <!-- div pour afficher les erreurs -->
                     </div>
                      <div class="row">
                         <div class="form-group">
                             <div class="col-lg-3">
                                 <label>Matière:</label>
                                 <select class="form-control" name="sltMatiere" id="sltMatiere">
+									<option value="0">Choisir</option> <!-- ???????????? -->
                                     <?php
                                         foreach ($this->aMatieres as $oMatiere) {
                                             $selected = '';
@@ -351,10 +384,12 @@ class TutorielVue extends Vue {
                                         }
                                     ?>
                                 </select>
+								<div class="divErreur" id="sltMatiereErreur"></div> <!-- div pour afficher les erreurs -->
                            </div>
                             <div class="col-lg-3">
                                 <label>Niveau secondaire:</label>
-                                <select class="form-control" name="sltNiveau" id="sltAnnee">
+                                <select class="form-control" name="sltNiveau" id="sltNiveau">
+									<option value="0">Choisir</option> <!-- ???????????? -->
                                     <?php
                                         for($i = 1; $i <= 5; $i++) {
                                             $selected = '';
@@ -365,10 +400,12 @@ class TutorielVue extends Vue {
                                         }
                                     ?>
                                 </select>
+								<div class="divErreur" id="sltNiveauErreur"></div> <!-- div pour afficher les erreurs -->
                             </div>
                             <div class="col-lg-3">
                                 <label>École:</label>
-                                <select class="form-control" name="sltEcole" id="sltAnnee">
+                                <select class="form-control" name="sltEcole" id="sltEcole">
+									<option value="0">Choisir</option> <!-- ???????????? -->
                                     <?php
                                         foreach ($this->aEcoles as $oEcole) {
                                             $selected = '';
@@ -379,20 +416,24 @@ class TutorielVue extends Vue {
                                         }
                                     ?>
                                 </select>
+								<div class="divErreur" id="sltEcoleErreur"></div> <!-- div pour afficher les erreurs -->
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label><br/>Rédigez votre texte</label>
-                        <textarea name="txtContenu" class="form-control"><?php echo $this->oTutoriel->getContenu();?></textarea>
+                        <textarea id="tarContenu" name="txtContenu" class="form-control"><?php echo $this->oTutoriel->getContenu();?></textarea>
+							<div class="divErreur" id="tarContenuErreur"></div> <!-- div pour afficher les erreurs -->
                     </div>
                     <div class="form-group text-right">
                         <a href="<?php echo WEB_ROOT;?>/admin/tutoriel/gerer" class="btn btn-danger">Annuler</a>
-                        <button type="submit" id="submit" name="subModifierTexte" class="btn btn-success">Soumettre</button>
+                        <button type="submit" name="subModifierTexte" class="btn btn-success">Soumettre</button>
                     </div>
                 </form>
             </div>
         </div>
+        <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/tinymce/tinymce.min.js"></script>
+		<script src="<?php echo WEB_ROOT;?>/js/Tutoriel.js"></script>
     <?php
     }
 

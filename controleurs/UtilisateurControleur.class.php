@@ -23,7 +23,6 @@
                     $this -> inscription();
                     break;
                 case 'creer-login':
-                    //TODO: Activer
                     $this -> creerLogin();
                     break;
                 case 'envoyer-message':
@@ -38,38 +37,80 @@
                 case 'modifier-mdp':
                     $this -> changerMDP();
                     break;
-                case 'gerer-tuteurs':
-                    $this -> gererTuteurs();
-                    break;
-                case 'gerer-profs':
-                    $this -> gererProfs();
-                    break;
-                case 'gerer-commissions':
-                    $this -> gererCommissions();
-                    break;
-                case 'ajouter-tuteur':
-                    $this->ajouterTuteur();
-                    break;
-                case 'modifier-tuteur':
-                    $this->modifierTuteur();
-                    break;
                 case 'creer-login':
                     $this->creerLogin();
                     break;
-                case 'supprimer':
-                    $this->supprimer();
+                case 'gerer-tuteurs':
+					if($this->oUtilisateurSession->getRole() != 3){
+						$this->erreur404();
+						break;
+					}
+                    $this -> gererTuteurs();
+                    break;
+                case 'ajouter-tuteur':
+					if($this->oUtilisateurSession->getRole() != 3){
+						$this->erreur404();
+						break;
+					}
+                    $this->ajouterTuteur();
+                    break;
+                case 'modifier-tuteur':
+					if($this->oUtilisateurSession->getRole() != 3){
+						$this->erreur404();
+						break;
+					}
+                    $this->modifierTuteur();
+                    break;
+                case 'gerer-profs':
+					if($this->oUtilisateurSession->getRole() != 4){
+						$this->erreur404();
+						break;
+					}
+                    $this -> gererProfs();
                     break;
                 case 'ajouter-prof':
+					if($this->oUtilisateurSession->getRole() != 4){
+						$this->erreur404();
+						break;
+					}
                     $this->ajouterProf();
                     break;
                 case 'modifier-prof':
+					if($this->oUtilisateurSession->getRole() != 4){
+						$this->erreur404();
+						break;
+					}
                     $this->modifierProf();
                     break;
-
-                //TODO: Ajouter des cas au besoin
-
-                //L'inscription des utilisateurs normaux et invités par courriel se fera par AJAX
-                //La récupération de mot de passe sera aussi faite par AJAX
+                case 'gerer-responsables':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
+                    $this -> gererResponsables();
+                    break;
+                case 'ajouter-responsable':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
+                    $this->ajouterResponsable();
+                    break;
+                case 'modifier-responsable':
+					if($this->oUtilisateurSession->getRole() != 5){
+						$this->erreur404();
+						break;
+					}
+                    $this->modifierResponsable();
+                    break;
+                case 'supprimer':
+					if($this->oUtilisateurSession->getRole() < 3){
+						$this->erreur404();
+						break;
+					}
+                    $this->supprimer();
+                    break;
+					
                 default:
                     $this->erreur404();
                     break;
@@ -78,7 +119,7 @@
         
     
         
-		private function accueil() {            
+		private function accueil() {
 			$oVue = new UtilisateurVue();
             
             try{
@@ -270,7 +311,9 @@
                 }   
 
                 $oUtilisateur= new Utilisateur($this->getReqId());
-                $oUtilisateur->chargerCompteParId();
+                if($oUtilisateur->chargerCompteParId() == false){
+					$this->erreur404();
+				}
 
                 $oVue->oUtilisateur = $oUtilisateur;
 
@@ -295,14 +338,6 @@
             $oVue->aListeProfs = $this->oUtilisateurSession->rechercherListeProfs($this->oUtilisateurSession->getCommission());
             $oVue->afficheListeProfesseurs();
         } 
-
-        private function gererCommissions(){
-            $oVue = new AdminVue();
-            $oCommission = new Commission();
-
-            $oVue->aListeCommissions = $oCommission->rechercherListeCommissions();
-            $oVue->afficheListeCommissions();
-        }
 
         private function ajouterTuteur(){
             $oVue = new AdminVue();
@@ -338,7 +373,9 @@
         private function creerLogin(){
             $oVue = new UtilisateurVue();
             $oUtilisateur = new Utilisateur($this->getReqId());
-            $oUtilisateur->chargerCompteParId();
+            if($oUtilisateur->chargerCompteParId() == false){
+				$this->erreur404();	
+			}
             $oVue->oUtilisateur = $oUtilisateur;
 
             try{
@@ -376,7 +413,9 @@
             $oVue = new AdminVue();
             try{
             $oUtilisateur = new Utilisateur($this->getReqId());
-            $oUtilisateur->chargerCompteParId();
+            if($oUtilisateur->chargerCompteParId() == false){
+				$this->erreur404();
+			}
 
             if(isset($_POST['subSupprimer'])){
                 $oUtilisateur->supprimer();
@@ -451,7 +490,9 @@
                 }   
 
                 $oUtilisateur= new Utilisateur($this->getReqId());
-                $oUtilisateur->chargerCompteParId();
+                if($oUtilisateur->chargerCompteParId() == false){
+					$this->erreur404();
+				}
 
                 $oVue->oUtilisateur = $oUtilisateur;
 
@@ -467,6 +508,79 @@
                 $oVue->aListeEcoles = $oCommission->rechercherListeEcoles();
 
                 $oVue->afficheModifierProfesseur();
+            }
+        }
+
+        private function gererResponsables(){
+            $oVue = new AdminVue();
+
+            $oVue->aListeResponsables = $this->oUtilisateurSession->rechercherListeResponsables();
+            $oVue->afficheListeResponsables();
+        } 
+
+        private function ajouterResponsable(){
+            $oVue = new AdminVue();
+            $oCommission = new Commission();
+            $oVue->aListeCommissions = $oCommission->rechercherListeCommissions();
+
+            try{
+                if(isset($_POST['subCreerResponsable'])){
+                    $oUtilisateur = new Utilisateur(0, ' ', ' ', $_POST['txtNom'], $_POST['txtPrenom'], $_POST['emlCourriel'], 4);
+                    $oUtilisateur->ajouterUtilisateur();
+
+                    $oCommission = new Commission($_POST['sltCommissions']);
+                    if($oCommission->chargerCommission() == false){
+						$this->erreur404();	
+					}
+                    $oCommission->retirerResponsable();
+                    $oCommission->setResponsable($oUtilisateur->getId());
+                    $oCommission->modifierCommission();
+
+                    header("location:".WEB_ROOT."/admin/utilisateur/gerer-responsables");
+                }   
+
+                $oVue->afficheAjouterResponsable();
+            }
+            catch(Exception $e){
+                $oVue->setMessage(array($e->getMessage(), "danger"));
+
+                $oVue->afficheAjouterResponsable();
+            }
+        }   
+
+        private function modifierResponsable(){
+            $oVue = new AdminVue();
+            $oCommission = new Commission();
+            $oVue->aListeCommissions = $oCommission->rechercherListeCommissions();
+
+            $oUtilisateur = new Utilisateur($this->getReqId());
+            if($oUtilisateur->chargerCompteParId() == false){
+				$this->erreur404();
+			}
+            $oVue->oUtilisateur = $oUtilisateur;
+
+            try{
+                if(isset($_POST['subModifierResponsable'])){
+                    $oUtilisateur = new Utilisateur($this->getReqId(), ' ', ' ', $_POST['txtNom'], $_POST['txtPrenom'], $_POST['emlCourriel'], 4);
+                    $oUtilisateur->modifierUtilisateur();
+
+                    $oCommission = new Commission($_POST['sltCommissions']);
+                    if($oCommission->chargerCommission() == false){
+						$this->erreur404();
+					}
+                    $oCommission->retirerResponsable();
+                    $oCommission->setResponsable($oUtilisateur->getId());
+                    $oCommission->modifierCommission();
+
+                    header("location:".WEB_ROOT."/admin/utilisateur/gerer-responsables");
+                }   
+
+                $oVue->afficheModifierResponsable();
+            }
+            catch(Exception $e){
+                $oVue->setMessage(array($e->getMessage(), "danger"));
+
+                $oVue->afficheModifierResponsable();
             }
         }
        

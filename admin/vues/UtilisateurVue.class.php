@@ -35,8 +35,8 @@ class UtilisateurVue extends Vue {
     }
     
     /*===================*/
-/*== afficheProfil ==*/
-/*===================*/
+    /*== afficheProfil ==*/
+    /*===================*/
     
     public function afficheProfil(){?>
         

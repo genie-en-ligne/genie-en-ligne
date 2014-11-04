@@ -14,46 +14,59 @@
 
 //Par exemple, estNumérique(), estBooleen(), estVide(), etc.
 
-//Test négatif
+function estVide(varATester){
+   if(varATester.length == 0){
+      return true;
+   }
+   return false;
+}
 
-//Tester pour un champ vide 
-function estVide(varATester) {
-	if(varATester.length == 0) {
-		return true;
-	} else {
-		return false;
+function estNumerique(varATester){
+   //Approche négative
+   var regex = /[^0-9]/;
+   if(regex.test(varATester)){
+      return false;
+   }
+   return true;
+}
+
+function estTitre(varATester){
+    // regex pour que l'utilisateur ne rentre pas les caractères non désirés
+	var regex = /[^a-zA-Z0-9\s\-\*\xC0-\xFC'\!\?\.\,\t\n\r]/;
+
+	if(regex.test(varATester)) { //on teste le champ et si il y a  des caractères invalides 
+		return false;			 // on retourne false
 	}
+	return true;
 }
 
-//Tester pour une valeur numérique
-function estNumerique(varATester) {
-	//approche négative
-	var regex = /^[0-9]$/;
-	if(regex.test(varATester) {
-		return false;
-	} else {
-		return true;
-	}	
-}
+function estUrl(varATester){
+    // regex pour que l'utilisateur ne rentre pas les caractères non désirés
+	var regex = /[^a-zA-Z0-9\s\/\<\>'="\?\._]/;
 
+	if(regex.test(varATester)) { //on teste le champ et si il y a  des caractères invalides 
+		return false;			 // on retourne false
+	}
+	return true;
+}
+    
 //Tester pour une valeur alpha
 function estLettre(varATester) {
-	//approche négative
-	var regex = /^[a-zA-Z](\s)?\xC0-\xFC$/;
-	if(regex.test(varATester) {
-		return false;
-	} else {
-		return true;
+	// regex pour que l'utilisateur ne rentre pas les caractères non désirés
+	var regex = /[^a-zA-Z0-9\s\xC0-\xFC]/;
+
+	if(regex.test(varATester)) { //on teste le champ et si il y a  des caractères invalides 
+		return false;			 // on retourne false
 	}
+	return true;
 }
 
 //Tester pour un courriel
-function estCourrie(varATester) {
+function estCourriel(varATester) {
 	//approche positive
 	var regex = /^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})$/;
-	if(regex.test(varATester) {
-		return false;
-	} else {
+	if(regex.test(varATester)) {
 		return true;
 	}
+    return true;
 }

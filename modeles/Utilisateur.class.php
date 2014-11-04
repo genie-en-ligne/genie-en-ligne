@@ -32,7 +32,7 @@
         
         public function validerInfosConnexion(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE `pseudo` = '".$this->getPseudo()."' AND `mot_de_passe` = '".$this->getMDP()."'");
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE `pseudo` = '".$this->getPseudo()."' AND `mot_de_passe` = '".$this->getMDP()."' AND est_detruit = '0'");
                         
             $compteExiste = $oConnexion->recupererNombreResultats($oResultat);
             if($compteExiste > 0){
@@ -49,12 +49,18 @@
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE `pseudo` = '".$this->getPseudo()."'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            if(count($aResultats) == 0){
+                return false;
+            }
             
             $this->setRole($aResultats[0]['role']);
             $this->setId($aResultats[0]['utilisateur_ID']);
             $this->setPrenom($aResultats[0]['prenom']);
             $this->setNom($aResultats[0]['nom']);
             $this->setCourriel($aResultats[0]['courriel']);
+
+            return true;
         }
         
         public function chargerCompteParId(){
@@ -63,12 +69,18 @@
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE `utilisateur_ID` = '".$this->getId()."'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            if(count($aResultats) == 0){
+                return false;
+            }
             
             $this->setRole($aResultats[0]['role']);
             $this->setPseudo($aResultats[0]['pseudo']);
             $this->setPrenom($aResultats[0]['prenom']);
             $this->setNom($aResultats[0]['nom']);
             $this->setCourriel($aResultats[0]['courriel']);
+
+            return true;
         }
         
         public function ajouterActiviteLogin($evenement){
@@ -128,7 +140,6 @@
             $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE `role` = '{$this->iRole}'");
             $aResultat = $oConnexion->recupererTableau($oResultat);
             return $aResultat;
-
         }
 
 
@@ -229,9 +240,9 @@
             return $aFinal;
         }
 
-        public function rechercherListeProfs($iCommissionId){
+        public function rechercherListeResponsables(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, ecoles_par_utilisateur epu WHERE u.utilisateur_ID = epu.utilisateur_ID AND u.role = '3' AND epu.ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$iCommissionId}') AND u.est_detruit = 0");
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u WHERE u.role = '4' AND u.est_detruit = 0");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
             $aFinal = array();
@@ -243,9 +254,9 @@
             return $aFinal;
         }
 
-        public function rechercherListeResponsables(){
+        public function rechercherListeProfs($iCommissionId){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, commissions c WHERE u.utilisateur_ID = c.responsable");
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, ecoles_par_utilisateur epu WHERE u.utilisateur_ID = epu.utilisateur_ID AND u.role = '3' AND epu.ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$iCommissionId}') AND u.est_detruit = 0");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
             $aFinal = array();
