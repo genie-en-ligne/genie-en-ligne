@@ -1,7 +1,7 @@
 <?php
     class AdminControleur extends Controleur {
         
-        public function __construct($reqAction="erreur404", $reqId="", $oUtilisateurSession = new Utilisateur(0)){            
+        public function __construct($reqAction="erreur404", $reqId="", $oUtilisateurSession){            
             $this->setReqAction($reqAction);
             $this->setReqId($reqId);
             $this->oUtilisateurSession = $oUtilisateurSession;
@@ -317,8 +317,8 @@
 
             try{
                 if(isset($_POST['subModifierMatiere'])){
-                    $oMatiere = new Matiere(0, $_POST['txtNom']);
-                    $oMatiere->ajouterMatiere();
+                    $oMatiere->setNom($_POST['txtNom']);
+                    $oMatiere->modifierMatiere();
 
                     header("location:".WEB_ROOT."/admin/admin/gerer-matieres");
                 }

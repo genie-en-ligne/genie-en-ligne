@@ -539,7 +539,7 @@ class AdminVue extends Vue {
                     <div class="form-group"></div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8 text-right">
-                             <a href="#" class="btn btn-danger" role="button">
+                             <a href="<?php echo WEB_ROOT;?>/admin/admin/gerer-commissions" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
                             <button type="submit" name="subSupprimerCommission" id="subSupprimer" class="btn btn-success col-sm-offset-1">
@@ -869,6 +869,234 @@ class AdminVue extends Vue {
     /**********************************************/
     /*************FIN SUPPRIMER ÉCOLES*************/
     /**********************************************/
+
+    /********************************************************/
+    /**********************GÉRER MATIERES*********************/
+    /*********************************************************/
+    public function afficheListeMatieres(){?>
+        
+        <div id="message">
+            <?php 
+                if($this->getMessage()){
+                    $aMessage = $this->getMessage();
+                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
+                }
+            ?>
+        </div>
+                    
+        <div class="col-lg-12">
+            <div class="page-header">
+                <div class="navbar navbar-default">
+                    <h2 class="navbar-text">Gérer les Matières</h2>
+                </div>
+            </div>
+        </div>
+        <div class="contenu">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="page-header">
+                        <div class="">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table id="tabRechercherEcoles" class="table table-striped text-center">
+                        <tr>
+                            <th class="text-center col-md-4">Matières</th>
+                            <th class="text-center col-md-2">Action</th>
+                        </tr>
+                        <?php 
+                        foreach($this->aListeMatieres as $oMatiere){?>
+                            <tr>
+                                <td id="txtMatièreTab"><?php echo $oMatiere->getNom();?></td>
+                                <td>                                
+                                   <a href="<?php echo WEB_ROOT;?>/admin/admin/modifier-matiere/<?php echo $oMatiere->getId();?>" class="btn btn-primary btn-xs" title="Modifier">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                    <a href="<?php echo WEB_ROOT;?>/admin/admin/supprimer-matiere/<?php echo $oMatiere->getId();?>" class="btn btn-danger btn-xs" title="Supprimer">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php
+                        }?>
+                    </table>
+                </div> <!-- .col-lg-12 -->
+            </div> <!-- .row -->
+            <div class="col-sm-10 col-sm-offset-10">
+                <a href="<?php echo WEB_ROOT;?>/admin/admin/ajouter-matiere/" id="btnAjouterMatière" class="btn btn-success col-sm-offset-1">
+                <span class="glyphicon glyphicon-plus"></span> Ajouter</a>
+            </div>
+        </div> <!-- .contenu -->
+    <?php
+    }
+    /****************************************************/
+    /****************FIN GÉRER MATIERES******************/
+    /****************************************************/
+
+    /*********************************************/
+    /*****************AJOUTER MATIERES************/
+    /*********************************************/
+    public function afficheAjouterMatiere()   {?>
+
+        <div id="message">
+            <?php 
+                if($this->getMessage()){
+                    $aMessage = $this->getMessage();
+                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
+                }
+            ?>
+        </div>
+
+        <div class="col-sm-6 col-sm-offset-2">
+            
+            <div class="col-sm-offset-2 col-sm-9">
+                <div class="col-sm-offset-5  col-sm-7">
+                    <div class="navbar navbar-default text-center">
+                        <h3 class="navbar-text">Ajouter une matière</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-offset-4 col-sm-8 page-header">
+                     
+            </div>
+
+            <div class="col-sm-12">
+                <form id="frmAjouterMatiere" action="" method="POST" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div class="col-md-10 col-sm-offset-1">
+                            <label for="txtMatiere" class="col-sm-5 control-label">Matière :</label>
+                            <div class="col-sm-9 col-md-7">
+                                <input type="text" id="txtMatiere" name="txtNom" class="form-control" placeholder="Matière">
+                                <div class="divErreur" id="txtMatiereErreur"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-5 col-sm-6 text-right">
+                             <a href="<?php echo WEB_ROOT;?>/admin/admin/gerer-matieres" class="btn btn-danger" role="button">
+                                <span class="glyphicon glyphicon-remove"></span> Annuler
+                            </a>
+                            <button type="submit" name="subAjouterMatiere" class="btn btn-success col-sm-offset-1 ">
+                                <span class="glyphicon glyphicon-plus"></span> Ajouter
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <?php
+    }
+    /******************************************************/
+    /****************FIN AJOUTER MATIÈRES******************/
+    /******************************************************/
+
+    /************************************************/
+    /*****************MODIFIER MATIERES**************/
+    /************************************************/
+    public function afficheModifierMatiere()  {?>
+
+        <div id="message">
+            <?php 
+                if($this->getMessage()){
+                    $aMessage = $this->getMessage();
+                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
+                }
+            ?>
+        </div>
+        
+       
+            <div class="col-sm-12">
+            <div class="col-sm-offset-0 col-sm-8">
+                <div class="col-sm-offset-5  col-sm-7">
+                    <div class="navbar navbar-default ">
+                        <h3 class="navbar-text">Modifier une matière</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-offset-4 col-sm-8 page-header">
+                     
+            </div>
+            <div class="col-sm-6 col-sm-offset-2">
+                <form id="frmModifierMatiere" action="" method="POST" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <div class="col-md-10 col-sm-offset-2">
+                            <label for="txtMatiere" class="col-sm-3  control-label">Matière :</label>
+                            <div class="col-sm-9 col-md-8">
+                                <input type="text" id="txtMatiere" name="txtNom" class="form-control" value="<?php echo $this->oMatiere->getNom();?>" placeholder="Matière">
+                                <div class="divErreur" id="txtMatiereErreur"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-5 col-sm-6 text-right">
+                             <a href="<?php echo WEB_ROOT;?>/admin/admin/gerer-matieres" class="btn btn-danger" role="button">
+                                <span class="glyphicon glyphicon-remove"></span> Annuler
+                            </a>
+                            <button type="submit" name="subModifierMatiere" class="btn btn-success col-sm-offset-1 ">
+                                <span class="glyphicon glyphicon-plus"></span> Modifier
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <?php
+    }
+    /******************************************************/
+    /****************FIN MODIFIER MATIÈRES*****************/
+    /******************************************************/
+
+    /*************************************************/
+    /*****************SUPPRIMER MATIERES**************/
+    /************************************************/
+    public function afficheSupprimerMatiere()  {?>
+        <div class="col-sm-6 col-sm-offset-2">            
+            <div class="col-sm-offset-3 col-sm-9">
+                <div class="col-sm-offset-3  col-sm-8">
+                    <div class="navbar navbar-default text-center">
+                        <h3 class="navbar-text">Supprimer une matière</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-offset-4 col-sm-8 page-header">
+                     
+            </div>
+            <div class="col-sm-12 col-sm-offset-1">
+                <form id="frmSupprimerMatiere" class="form-horizontal" action="" method="POST" role="form">
+                    <div class="form-group">
+                        <label for="txtMatiere" class="col-sm-4 control-label">Matière :</label>
+                        <div class="col-sm-6">
+                            <span id="txtMatiere"><?php echo $this->oMatiere->getNom();?></span>
+                        </div>
+                    </div>
+                   
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-8 text-right">
+                             <a href="<?php echo WEB_ROOT;?>/admin/admin/gerer-matieres" class="btn btn-danger" role="button">
+                                <span class="glyphicon glyphicon-remove"></span> Annuler
+                            </a>
+                            <button type="submit" name="subSupprimerMatiere" id="subSupprimer" class="btn btn-success col-sm-offset-1">
+                                <span class="glyphicon glyphicon-ok"></span> Supprimer
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <?php
+    }
+    /******************************************************/
+    /****************FIN MODIFIER MATIÈRES*****************/
+    /******************************************************/
 
     /*=====================================*/
     /*========FIN DE LA SECTION DES========*/
@@ -1647,19 +1875,6 @@ class AdminVue extends Vue {
             </div>
         </div>
     <?php
-    }
-
-      
-    
-    
-    
-    public function afficheFormulaireSelectionModulesCommission(){?>
-    
-    <?php
-    }
-
-
-    
-    //TODO: Ajouter des méthodes au besoin
+    }    
 }
 ?>
