@@ -88,7 +88,5 @@ class UtilisateurVue extends Vue {
         </div>
     </div>
     <?php }
-
-    //TODO: Ajouter des méthodes au besoin
 }
 ?>

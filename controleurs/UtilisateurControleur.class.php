@@ -583,7 +583,5 @@
                 $oVue->afficheModifierResponsable();
             }
         }
-       
-		//TODO:  Placer les autres méthodes du controleur ici.
     }
 ?>

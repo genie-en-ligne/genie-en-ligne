@@ -354,7 +354,5 @@
                 $oVue->afficheSupprimerMatiere();
             }
         }
-       
-		//TODO:  Placer les autres méthodes du controleur ici.
     }
 ?>

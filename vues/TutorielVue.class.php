@@ -91,26 +91,6 @@ class TutorielVue extends Vue {
                 echo "<div class='alert alert-info'>Aucun tutoriel ne correspond à vos critères de recherche</div>";
             }
         ?>
-        <script>
-            $('a[data-toggle="myModal"]').click(function(e) {
-                e.preventDefault();
-                console.log('click');
-                $('#myModal').remove();
-                var $this = $(this)
-                  , $remote = $this.attr('remote') ||  $this.attr('href')
-                  , $modal = $('<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>');
-                $('body').append($modal);
-                $modal.modal({backdrop: 'static', keyboard: false});
-                $modal.load($remote);
-
-                $('#myModal').on('hide.bs.modal', function (e) {
-                  $('#myModal').remove();
-                  $modal = $('<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>');
-                  $('body').append($modal);
-                })
-              }
-            );
-        </script>
 
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
@@ -127,6 +107,8 @@ class TutorielVue extends Vue {
             </div>
           </div>
         </div>
+
+        <script src="<?php echo WEB_ROOT;?>/js/Tutoriel.js"></script>
     <?php
     }
 
@@ -257,28 +239,6 @@ class TutorielVue extends Vue {
             </div>
         </div>
 
-
-        <script>
-            $('a[data-toggle="myModal"]').click(function(e) {
-                e.preventDefault();
-                console.log('click');
-                $('#myModal').remove();
-                var $this = $(this)
-                  , $remote = $this.attr('remote') ||  $this.attr('href')
-                  , $modal = $('<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>');
-                $('body').append($modal);
-                $modal.modal({backdrop: 'static', keyboard: false});
-                $modal.load($remote);
-
-                $('#myModal').on('hide.bs.modal', function (e) {
-                  $('#myModal').remove();
-                  $modal = $('<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>');
-                  $('body').append($modal);
-                })
-              }
-            );
-        </script>
-
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -294,191 +254,11 @@ class TutorielVue extends Vue {
             </div>
           </div>
         </div>
+
+        <script src="<?php echo WEB_ROOT;?>/js/Tutoriel.js"></script>
     <?php
     }
     
-    //////////////////////////////////
-    // Section pour les proffesseurs//
-    //////////////////////////////////
-
-    //gerer et voir tous les tuto de tour leur tuteur  
-    /*public function afficheListeTutoTuteursProfesseur(){?>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="page-header">
-                    <div class="">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <form >
-            <div class="row">
-                <div class="col-lg-12">
-                    <table id="tabRechercherTuto" class="table table-striped text-center">
-                        <tr>
-                            <tr>
-                                <th class="text-center">Nom</th>
-                                <th class="text-center">Titre</th>
-                                <th class="text-center">Type</th>
-                                <th class="text-center">Date crée</th>
-                                <th class="text-center">Matière</th>
-                                <th class="text-center">Niveau scolaire</th>
-                                 <th class="text-center">Statut</th>
-                                <th class="text-center">Action</th>
-                            </tr>
-                        </tr>
-                        <?php
-                            foreach($this->aListeTutos as $oTutoriel){
-                                echo '<tr>'; 
-                                    echo '<td id="txtNom">'.$oTutoriel->getNomTuteur().', '.$oTutoriel->getPrenomTuteur().'</td>';                           
-                                    echo '<td id="txtTitre">'.$oTutoriel->getTitre().'</td>';
-                                    echo '<td id="txtType">'.$oTutoriel->getSorteTuto().'</td>';
-                                    echo '<td id="txtDateCree">'.$oTutoriel->getDateSoumis().'</td>';
-                                    echo '<td id="txtMatiere">'.$oTutoriel->getSorteMatiere().'</td>';
-                                    echo '<td id="txtNiveau">'.$oTutoriel->getNiveauScolaire().'</td>';
-                                    echo '<td id="txtStatut">'.$oTutoriel->getTypeApprouver().'</td>';
-                                    echo '<td>';
-                                        echo '<a href="'.WEB_ROOT.'/tutoriel/visualiser/'.$oTutoriel->getContenuId().'" class="btn btn-primary btn-xs">';
-                                            echo '<span title="visualiser" class="glyphicon glyphicon-play"></span>';
-                                        echo '</a>';
-                                        echo '<a href="'.WEB_ROOT.'/tutoriel/modifier/'.$oTutoriel->getContenuId().'" class="btn btn-primary btn-xs">';
-                                            echo '<span title="Modifier" class="glyphicon glyphicon-pencil"></span>';
-                                        echo '</a>';
-                                        echo '<a href="'.WEB_ROOT.'/tutoriel/supprimer/'.$oTutoriel->getContenuId().'" class="btn btn-primary btn-xs">';
-                                            echo '<span title="Supprimer" class="glyphicon glyphicon-remove"></span>';
-                                        echo '</a>';
-                                        
-                                    echo '</td>';
-                                echo '</tr>';
-                            }
-                        ?>
-                    </table>
-                </div> <!-- .col-lg-12 -->
-            </div> <!-- .row -->
-        </form>
-        <div class="col-sm-10 col-sm-offset-10">
-            <button type="button" id="btnAjouterVideo" class="btn btn-success col-sm-offset-1">
-            <span class="glyphicon glyphicon-plus"></span>Ajouter</button>
-        </div>
-    <?php      //Avec bouton approuver
-    }*/
-
-    //TODO:
-    //gerer la liste des tuto fait par le proffesseur  
-    public function afficheListeGererProfesseur(){?>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="page-header">
-                    <div class="">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <form >
-            <div class="row">
-                <div class="col-lg-12">
-                    <table id="tabRechercherTuto" class="table table-striped text-center">
-                        <tr>
-                            <th class="text-center">Titre</th>
-                            <th class="text-center">Type</th>
-                            <th class="text-center">Date crée</th>
-                            <th class="text-center">Matière</th>
-                            <th class="text-center">Niveau scolaire</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                        <?php
-                            foreach($this->aListeTutos as $oTutoriel){
-                                echo '<tr>';                            
-                                    echo '<td id="txtTitre">'.$oTutoriel->getTitre().'</td>';
-                                    echo '<td id="txtType">'.$oTutoriel->getSorteTuto().'</td>';
-                                    echo '<td id="txtDateCree">'.$oTutoriel->getDateSoumis().'</td>';
-                                    echo '<td id="txtMatiere">'.$oTutoriel->getSorteMatiere().'</td>';
-                                    echo '<td id="txtNiveau">'.$oTutoriel->getNiveauScolaire().'</td>';
-                                    echo '<td>';
-                                        echo '<a href="'.WEB_ROOT.'/tutoriel/visualiser/'.$oTutoriel->getContenuId().'" class="btn btn-primary btn-xs">';
-                                            echo '<span title="visualiser" class="glyphicon glyphicon-play"></span>';
-                                        echo '</a>';
-                                        echo '<a href="'.WEB_ROOT.'/tutoriel/modifier/'.$oTutoriel->getContenuId().'" class="btn btn-primary btn-xs">';
-                                            echo '<span title="Modifier" class="glyphicon glyphicon-pencil"></span>';
-                                        echo '</a>';
-                                        echo '<a href="'.WEB_ROOT.'/tutoriel/supprimer/'.$oTutoriel->getContenuId().'" class="btn btn-primary btn-xs">';
-                                            echo '<span title="Supprimer" class="glyphicon glyphicon-remove"></span>';
-                                        echo '</a>';
-                                        
-                                    echo '</td>';
-                                echo '</tr>';
-                            }
-                        ?>
-                    </table>
-                </div> <!-- .col-lg-12 -->
-            </div> <!-- .row -->
-        </form>
-        <div class="col-sm-10 col-sm-offset-10">
-            <button type="button" id="btnAjouterVideo" class="btn btn-success col-sm-offset-1">
-            <span class="glyphicon glyphicon-plus"></span>Ajouter</button>
-        </div>
-    <?php      //Avec bouton approuver
-    }
-
-    //gerer la liste des tutos a prouver par proffesseur  
-    /*public function afficheListeGererApprouverProfesseur(){?>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="page-header">
-                    <div class="">
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <form >
-            <div class="row">
-                <div class="col-lg-12">
-                    <table id="tabRechercherTuto" class="table table-striped text-center">
-                        <tr>
-                            <th class="text-center">Nom</th>
-                            <th class="text-center">Titre</th>
-                            <th class="text-center">Type</th>
-                            <th class="text-center">Date crée</th>
-                            <th class="text-center">Matière</th>
-                            <th class="text-center">Niveau scolaire</th>
-                            <th class="text-center">Action</th>
-                        </tr>
-                        <?php
-                            foreach($this->aListeTutos as $oTutoriel){
-                                echo '<tr>';
-                                    echo '<td id="txtNom">'.$oTutoriel->getNomTuteur().', '.$oTutoriel->getPrenomTuteur().'</td>';
-                                    echo '<td id="txtTitre">'.$oTutoriel->getTitre().'</td>';
-                                    echo '<td id="txtType">'.$oTutoriel->getSorteTuto().'</td>';
-                                    echo '<td id="txtDateCree">'.$oTutoriel->getDateSoumis().'</td>';
-                                    echo '<td id="txtMatiere">'.$oTutoriel->getSorteMatiere().'</td>';
-                                    echo '<td id="txtNiveau">'.$oTutoriel->getNiveauScolaire().'</td>';
-                                    echo '<td>';
-                                        echo '<a href="'.WEB_ROOT.'/tutoriel/visualiser/'.$oTutoriel->getContenuId().'" class="btn btn-primary btn-xs">';
-                                            echo '<span title="visualiser" class="glyphicon glyphicon-play"></span>';
-                                        echo '</a>';
-                                        echo '<a href="'.WEB_ROOT.'/tutoriel/modifier/'.$oTutoriel->getContenuId().'" class="btn btn-primary btn-xs">';
-                                            echo '<span title="Modifier" class="glyphicon glyphicon-pencil"></span>';
-                                        echo '</a>';
-                                        echo '<a href="'.WEB_ROOT.'/tutoriel/supprimer/'.$oTutoriel->getContenuId().'" class="btn btn-primary btn-xs">';
-                                            echo '<span title="Supprimer" class="glyphicon glyphicon-remove"></span>';
-                                        echo '</a>';
-                                        echo '<a href="'.WEB_ROOT.'/tutoriel/approuver/'.$oTutoriel->getContenuId().'" class="btn btn-primary btn-xs">';
-                                            echo '<span title="approuver" class="glyphicon glyphicon-ok"></span>';
-                                        echo '</a>';
-                                    echo '</td>';
-                                echo '</tr>';
-                            }
-                        ?>
-                    </table>
-                </div> <!-- .col-lg-12 -->
-            </div> <!-- .row -->
-        </form>
-    <?php
-    }*/
-
     //////////////////////////////////////
     // Section pour tout les formulaires//
     /////////////////////////////////////
@@ -833,7 +613,5 @@ class TutorielVue extends Vue {
         </div>
     <?php
     }
-
-    //TODO: Ajouter des méthodes au besoin
 }
 ?>

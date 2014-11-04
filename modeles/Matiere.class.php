@@ -87,7 +87,6 @@
             }
             return $aFinal;
         }
-        //TODO: Ajouter méthodes au besoin
         
         public function setId($iId) {
             TypeException::estInteger($iId);

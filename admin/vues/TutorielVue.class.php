@@ -71,26 +71,6 @@ class TutorielVue extends Vue {
             </div>
         </div>
 
-        <script>
-            $('a[data-toggle="myModal"]').click(function(e) {
-                e.preventDefault();
-                $('#myModal').remove();
-                var $this = $(this)
-                  , $remote = $this.attr('remote') ||  $this.attr('href')
-                  , $modal = $('<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>');
-                $('body').append($modal);
-                $modal.modal({backdrop: 'static', keyboard: false});
-                $modal.load($remote);
-
-                $('#myModal').on('hide.bs.modal', function (e) {
-                  $('#myModal').remove();
-                  $modal = $('<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>');
-                  $('body').append($modal);
-                })
-              }
-            );
-        </script>
-
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
@@ -106,6 +86,8 @@ class TutorielVue extends Vue {
             </div>
           </div>
         </div>
+
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Tutoriel.js"></script>
     <?php
     }
     
@@ -534,7 +516,5 @@ class TutorielVue extends Vue {
         </div>                     
     <?php
     }
-
-    //TODO: Ajouter des méthodes au besoin
 }
 ?>

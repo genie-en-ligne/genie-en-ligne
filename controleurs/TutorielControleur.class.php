@@ -74,8 +74,6 @@
                     $this->visionner();
                     break;
 
-                //TODO: Ajouter des cas au besoin
-
                 default:
                     $this->erreur404();
                     break;
@@ -368,7 +366,5 @@
                 echo "Une erreur est survenue. Veuillez réessayer plus tard.";
             }
         }
-       
-		//TODO:  Placer les autres méthodes du controleur ici.
     }
 ?>
