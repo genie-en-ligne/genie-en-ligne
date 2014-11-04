@@ -93,7 +93,10 @@
                     $oTutoriel = new Tutoriel();
                     $oTutoriel->setMatiereId($_GET['matiere']);
                     $oTutoriel->setNiveauScolaire($_GET['niveau']);
-                    $oVue->aListeTutos = $oTutoriel->rechercherListeTutosParEleve();
+
+                    $aEcoles = $this->oUtilisateurSession->getListeEcoles();
+                    $ecole = $aEcoles[0]->getId();
+                    $oVue->aListeTutos = $oTutoriel->rechercherListeTutosParEleve($ecole);
                 }
                 else{
                     $oVue->setMessage(array("Veuillez spécifier vos critères de recherche", "warning"));
