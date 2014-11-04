@@ -81,6 +81,12 @@ class TutorielVue extends Vue {
                 $('body').append($modal);
                 $modal.modal({backdrop: 'static', keyboard: false});
                 $modal.load($remote);
+
+                $('#myModal').on('hide.bs.modal', function (e) {
+                  $('#myModal').remove();
+                  $modal = $('<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>');
+                  $('body').append($modal);
+                })
               }
             );
         </script>
