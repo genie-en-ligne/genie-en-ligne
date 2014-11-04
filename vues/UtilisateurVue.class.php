@@ -18,12 +18,12 @@ class UtilisateurVue extends Vue {
                 }
             ?>
         </div>
-        
-        
         <div class="row">
-            <!-------------->
+
+
+            <!-- -------- -->
             <!-- CAROUSEL -->
-            <!-------------->
+            <!-- -------- -->
 
 
             <div class="hidden-xs col-sm-12 col-md-8">
@@ -44,9 +44,9 @@ class UtilisateurVue extends Vue {
             </div><!-- .hidden-xs.col-sm-12.col-md-8 -->
 
 
-            <!----------------------------->
+            <!-- ----------------------- -->
             <!-- FORMULAIRE DE CONNEXION -->
-            <!-- ------------------------- -->
+            <!-- ----------------------- -->
 
 
             <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-0 login-form">
@@ -91,9 +91,10 @@ class UtilisateurVue extends Vue {
         </div><!-- .row -->
 
 
-    <!----------------------------->
-    <!---- CONTENU PRINCIPAL ------>
-    <!----------------------------->
+        <!-- ----------------------- -->
+        <!---- CONTENU PRINCIPAL ------>
+        <!-- ----------------------- -->
+
 
         <div class="row">
             <div class="col-sm-12">
@@ -188,7 +189,8 @@ class UtilisateurVue extends Vue {
                 </div> <!-- col-sm-12 --> 
             </div> <!-- col-sm-12 --> 
         </div><!-- .row -->
-     <?php }
+    <?php
+    }
      
 /*======================*/
 /*== afficheBienvenue ==*/
@@ -198,7 +200,6 @@ class UtilisateurVue extends Vue {
         <div class="page-header">
             <h1>Bienvenue <?php echo $this->oUtilisateurSession->getPrenom();?>!</h1>
         </div>
-
         <div class="row">
             <div class="col-md-12">
                 <div class="bienvenue text-center">
@@ -217,14 +218,14 @@ class UtilisateurVue extends Vue {
             </div><!-- .col-md-12 -->
 
         </div><!-- .row -->
-    <?php }
+    <?php
+    }
         
 /*===================*/
 /*== afficheProfil ==*/
 /*===================*/
     
     public function afficheProfil(){?>
-        
         <div id="message">
             <?php 
                 if($this->getMessage()){
@@ -240,7 +241,9 @@ class UtilisateurVue extends Vue {
                 </h1>
             </div>
             <div class="col-sm-offset-4 col-sm-4 page-header">
-                           
+                <ol>
+                    <li>Votre mot de passe doit contenir de huit à quinze caractères et au moins une minuscule, une majuscule et un chiffre.</li>
+                </ol>                
             </div>            
             <div class="col-sm-6 col-sm-offset-3">
                 <form id="frmProfilUtilateur" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/modifier-mdp" class="form-horizontal" role="form">
@@ -271,8 +274,8 @@ class UtilisateurVue extends Vue {
                 </form>
             </div>
         </div>
-    </div>
-    <?php }
+    <?php
+    }
 
     /*========================================*/
     /*== Création de pseudo et mot de passse==*/
@@ -281,8 +284,7 @@ class UtilisateurVue extends Vue {
     /*=========================================*/
 
     public function afficheCreerLogin() {?>
-
-         <div id="message">
+        <div id="message">
             <?php 
                 if($this->getMessage()){
                     $aMessage = $this->getMessage();
@@ -290,10 +292,8 @@ class UtilisateurVue extends Vue {
                 }
             ?>
         </div>
-
         <div class="row">
             <div class="col-sm-6 col-sm-offset-2">
-                <div class="">
                 <h1 class="col-sm-offset-2 col-sm-6">
                     <span class="label label-default">Paramètres d'accès Génie en ligne</span>
                 </h1>
@@ -301,7 +301,7 @@ class UtilisateurVue extends Vue {
                     <ol>
                         <li>Entrez un pseudo et un mot de passe.</li>
                         <li>Ces informations vous permettront de vous connecter au site.</li>
-                        <li>Votre pseudo doit contenir un minimum de huit caractères et contenir au moins un chiffre.</li>
+                        <li>Votre mot de passe doit contenir de huit à quinze caractères et au moins une minuscule, une majuscule et un chiffre.</li>
                     </ol>             
                 </div>
                 <div class="col-sm-12 col-sm-offset-1">
@@ -340,14 +340,12 @@ class UtilisateurVue extends Vue {
                 </div>
             </div>
         </div>
-    </div>
     <?php
     }
 
 
     public function afficheMessageConfirmation() {?>
-
-         <div id="message">
+        <div id="message">
             <?php 
                 if($this->getMessage()){
                     $aMessage = $this->getMessage();
@@ -356,30 +354,28 @@ class UtilisateurVue extends Vue {
             ?>
         </div>
         <div class="row">
-        <div class="col-sm-6 col-sm-offset-2">
-            <div class="">
-
+            <div class="col-sm-6 col-sm-offset-2">
                 <h1 class="col-sm-offset-6 col-sm-6">
                     <strong>Succès!</strong>
                 </h1>
-
-                <h3 class="col-sm-offset-3 col-sm-12 bold"><strong>Votre compte est maintenant actif.</strong></h3>
-            <div class="col-sm-offset-2 col-sm-12 page-header">       
-            </div>
-            <div class="col-sm-12 col-sm-offset-1">
-                <div class="form-group"></div>
-                <div class="form-group"></div>
-                <div class="form-group">
-                <div class="col-sm-offset-5 col-sm-12">
-                    <a href="<?php echo WEB_ROOT;?>" class="btn btn-default btn-lg" title="Genie en ligne">
-                       Génie en ligne
-                    </a>
+                <h3 class="col-sm-offset-3 col-sm-12 bold">
+                    <strong>Votre compte est maintenant actif.</strong>
+                </h3>
+                <div class="col-sm-offset-2 col-sm-12 page-header">       
                 </div>
+                <div class="col-sm-12 col-sm-offset-1">
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                    <div class="col-sm-offset-5 col-sm-12">
+                        <a href="<?php echo WEB_ROOT;?>" class="btn btn-default btn-lg" title="Genie en ligne">
+                           Génie en ligne
+                        </a>
+                    </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
     <?php
     }
 
@@ -389,8 +385,7 @@ class UtilisateurVue extends Vue {
     /*============================*/
 
     public function affichePreInscription() {?>
-
-         <div id="message">
+        <div id="message">
             <?php 
                 if($this->getMessage()){
                     $aMessage = $this->getMessage();
@@ -449,8 +444,7 @@ class UtilisateurVue extends Vue {
     /*=========================*/
 
     public function afficheInscription() {?>
-
-         <div id="message">
+        <div id="message">
             <?php 
                 if($this->getMessage()){
                     $aMessage = $this->getMessage();
@@ -458,75 +452,78 @@ class UtilisateurVue extends Vue {
                 }
             ?>
         </div>
-
         <div class="row">
-        <div class="col-sm-6 col-sm-offset-2">
-            <div class="col-sm-offset-6">
-                <h1 class=""><span class="label label-default">Inscription</span></h1>
-            </div>
-            <div class="col-sm-offset-4 col-sm-8 page-header">
-                     
-            </div>
-            <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmInscription" class="form-horizontal" action="<?php echo WEB_ROOT;?>/utilisateur/inscription" method="POST" enctype="" role="form">
-                    <div class="form-group">
-                        <label for="txtInscriptionPrenom" class="col-sm-4 control-label">Prénom :</label>
-                        <div class="col-sm-6">
-                            <input type="text" id="txtInscriptionPrenom" class="form-control" name="txtPrenom" placeholder="Prenom">
-                            <div class="divErreur" id="txtInscriptionPrenomErreur"></div>
+            <div class="col-sm-6 col-sm-offset-2">
+                <div class="col-sm-offset-6">
+                    <h1 class=""><span class="label label-default">Inscription</span></h1>
+                </div>
+                <div class="col-sm-offset-4 col-sm-8 page-header">
+                    <ol>
+                        <li>Entrez un pseudo et un mot de passe.</li>
+                        <li>Ces informations vous permettront de vous connecter au site.</li>
+                        <li>Votre mot de passe doit contenir de huit à quinze caractères et au moins une minuscule, une majuscule et un chiffre.</li>
+                    </ol>             
+                </div>
+                <div class="col-sm-12 col-sm-offset-1">
+                    <form id="frmInscription" class="form-horizontal" action="<?php echo WEB_ROOT;?>/utilisateur/inscription" method="POST" enctype="" role="form">
+                        <div class="form-group">
+                            <label for="txtInscriptionPrenom" class="col-sm-4 control-label">Prénom :</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="txtInscriptionPrenom" class="form-control" name="txtPrenom" placeholder="Prenom">
+                                <div class="divErreur" id="txtInscriptionPrenomErreur"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtInscriptionNom" class="col-sm-4 control-label">Nom de famille :</label>
-                        <div class="col-sm-6">
-                            <input type="text" id="txtInscriptionNom" class="form-control" name="txtNom" placeholder="Nom">
-                            <div class="divErreur" id="txtInscriptionNomErreur"></div>
+                        <div class="form-group">
+                            <label for="txtInscriptionNom" class="col-sm-4 control-label">Nom de famille :</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="txtInscriptionNom" class="form-control" name="txtNom" placeholder="Nom">
+                                <div class="divErreur" id="txtInscriptionNomErreur"></div>
+                            </div>
                         </div>
-                    </div>
-                     <div class="form-group">
-                        <label for="txtInscriptionPseudo" class="col-sm-4 control-label">Pseudo :</label>
-                        <div class="col-sm-6">
-                            <input type="text" id="txtInscriptionPseudo" class="form-control" name="txtPseudo" placeholder="Pseudo">
-                            <div class="divErreur" id="txtInscriptionPseudoErreur"></div>
+                         <div class="form-group">
+                            <label for="txtInscriptionPseudo" class="col-sm-4 control-label">Pseudo :</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="txtInscriptionPseudo" class="form-control" name="txtPseudo" placeholder="Pseudo">
+                                <div class="divErreur" id="txtInscriptionPseudoErreur"></div>
+                            </div>
                         </div>
-                    </div>
-                     <div class="form-group">
-                        <label for="txtInscriptionCourriel" class="col-sm-4 control-label">Courriel :</label>
-                        <div class="col-sm-6">
-                            <input type="email" id="txtInscriptionCourriel" class="form-control" name="txtCourriel" placeholder="Courriel">
-                            <div class="divErreur" id="txtInscriptionCourrielErreur"></div>
+                         <div class="form-group">
+                            <label for="txtInscriptionCourriel" class="col-sm-4 control-label">Courriel :</label>
+                            <div class="col-sm-6">
+                                <input type="email" id="txtInscriptionCourriel" class="form-control" name="txtCourriel" placeholder="Courriel">
+                                <div class="divErreur" id="txtInscriptionCourrielErreur"></div>
+                            </div>
                         </div>
-                    </div>
-                     <div class="form-group">
-                        <label for="txtInscriptionMdp1" class="col-sm-4 control-label">Mot de passe :</label>
-                        <div class="col-sm-6">
-                            <input type="password" id="txtInscriptionMdp1" class="form-control" name="pwdMdp1" placeholder="Mot de passe :">
-                            <div class="divErreur" id="txtInscriptionMdp1Erreur"></div>
+                         <div class="form-group">
+                            <label for="txtInscriptionMdp1" class="col-sm-4 control-label">Mot de passe :</label>
+                            <div class="col-sm-6">
+                                <input type="password" id="txtInscriptionMdp1" class="form-control" name="pwdMdp1" placeholder="Mot de passe :">
+                                <div class="divErreur" id="txtInscriptionMdp1Erreur"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtInscriptionMdp2" class="col-sm-4 control-label">Mot de passe :</label>
-                        <div class="col-sm-6">
-                            <input type="password" id="txtInscriptionMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe :">
-                             <div class="divErreur" id="txtInscriptionMdp2Erreur"></div>
+                        <div class="form-group">
+                            <label for="txtInscriptionMdp2" class="col-sm-4 control-label">Mot de passe :</label>
+                            <div class="col-sm-6">
+                                <input type="password" id="txtInscriptionMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe :">
+                                 <div class="divErreur" id="txtInscriptionMdp2Erreur"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group"></div>
-                    <div class="form-group"></div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                             <button type="refresh" class="btn btn-primary col-sm-offset-4">
-                                Rafraîchir
-                            </button>
-                            <button type="submit" id="btnInscription" name="subInscription" class="btn btn-success">
-                                Soumettre
-                            </button>
+                        <div class="form-group"></div>
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                 <button type="refresh" class="btn btn-primary col-sm-offset-4">
+                                    Rafraîchir
+                                </button>
+                                <button type="submit" id="btnInscription" name="subInscription" class="btn btn-success">
+                                    Soumettre
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
     <?php
     }
 
@@ -535,8 +532,7 @@ class UtilisateurVue extends Vue {
     /*=========================*/
 
     public function afficheRecupererMDP() {?>
-
-         <div id="message">
+        <div id="message">
             <?php 
                 if($this->getMessage()){
                     $aMessage = $this->getMessage();
@@ -584,8 +580,7 @@ class UtilisateurVue extends Vue {
     /*===========================*/
 
     public function afficheEnvoyerMessage() {?>
-
-         <div id="message">
+        <div id="message">
             <?php 
                 if($this->getMessage()){
                     $aMessage = $this->getMessage();
@@ -593,53 +588,51 @@ class UtilisateurVue extends Vue {
                 }
             ?>
         </div>
-
         <div class="row">
-        <div class="col-sm-6 col-sm-offset-2">
-            <div class="col-sm-6">
-                <h1 class="col-sm-offset-7 col-sm-6"><span class="label label-default">Question ou commentaire</span></h1>
-            </div>
-            <div class="col-sm-offset-4 col-sm-8 page-header">
-                <ol>
-                    <li>Entre ton courriel.</li>
-                    <li>Soummet ta question ou ton commentaire à notre webmestre.</li>  
-                </ol> 
-            </div>
-           
-            <div class="col-sm-12 col-sm-offset-1">
-                <form class="form-horizontal" role="form" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/envoyer-message">
-                    <div class="form-group">
-                        <label for="nom" class="col-sm-4 control-label">Courriel :</label>
-                        <div class="col-sm-6">
-                            <input type="email" name="emlCourriel" id="txtCourriel" class="form-control" placeholder="Courriel">
-                            <div class="divErreur" id="txtCourrielErreur"></div>
+            <div class="col-sm-6 col-sm-offset-2">
+                <div class="col-sm-6">
+                    <h1 class="col-sm-offset-7 col-sm-6"><span class="label label-default">Question ou commentaire</span></h1>
+                </div>
+                <div class="col-sm-offset-4 col-sm-8 page-header">
+                    <ol>
+                        <li>Entre ton courriel.</li>
+                        <li>Soummet ta question ou ton commentaire à notre webmestre.</li>  
+                    </ol> 
+                </div>
+               
+                <div class="col-sm-12 col-sm-offset-1">
+                    <form class="form-horizontal" role="form" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/envoyer-message">
+                        <div class="form-group">
+                            <label for="nom" class="col-sm-4 control-label">Courriel :</label>
+                            <div class="col-sm-6">
+                                <input type="email" name="emlCourriel" id="txtCourriel" class="form-control" placeholder="Courriel">
+                                <div class="divErreur" id="txtCourrielErreur"></div>
+                            </div>
                         </div>
-                    </div>
-                    <section class="form-group">
-                        <label for="nom" class="col-md-4 control-label">Message :</label>
-                        <div class="col-md-6">
-                            <textarea class="col-md-12" name="txtMessage" id="txtCommentaire"></textarea>
-                            <div class="divErreur" id="txtCommentaireErreur"></div>
+                        <section class="form-group">
+                            <label for="nom" class="col-md-4 control-label">Message :</label>
+                            <div class="col-md-6">
+                                <textarea class="col-md-12" name="txtMessage" id="txtCommentaire"></textarea>
+                                <div class="divErreur" id="txtCommentaireErreur"></div>
+                            </div>
+                        </section>
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                        <div class="form-group"></div>
+                            <div class="col-sm-offset-3  col-sm-12">
+                                 <button type="submit" class="btn btn-primary col-sm-offset-2">
+                                    Rafraichir
+                                </button>
+                                <button type="submit" name="subMessage" class="btn btn-success ">
+                                    Soumettre
+                                </button>
+                                
+                            </div>
                         </div>
-                    </section>
-                    <div class="form-group"></div>
-                    <div class="form-group">
-                    <div class="form-group"></div>
-                        <div class="col-sm-offset-3  col-sm-12">
-                             <button type="submit" class="btn btn-primary col-sm-offset-2">
-                                Rafraichir
-                            </button>
-                            <button type="submit" name="subMessage" class="btn btn-success ">
-                                Soumettre
-                            </button>
-                            
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-
     <?php
     }
     //TODO: Ajouter des méthodes au besoin

@@ -183,7 +183,6 @@ function validerFormModificationVideo(){
    var estValide = true;
    var premiereErreur = '';//pour l'utilisation de curseur
    var frmModificationVideo = document.getElementById('frmModificationVideo');
-   //var frmModificationVideo = document.querySelector('#frmModificationVideo');
    
    //Définir les champs
    var txtTitre = document.getElementById('txtTitre');
