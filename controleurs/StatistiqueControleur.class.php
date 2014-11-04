@@ -15,7 +15,7 @@
                     break;
 
                 case 'general':
-					if($this->oUtilisateurSession->getRole() <= 3){
+					if($this->oUtilisateurSession->getRole() < 3){
 						$this->erreur404();
 						break;
 					}
