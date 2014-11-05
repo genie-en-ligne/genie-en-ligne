@@ -26,16 +26,28 @@ window.addEventListener('load', function () {
 		document.getElementById('frmModifierCommission').addEventListener('submit', validerFrmModifierCommission);
 	}
 
+	if(document.getElementById('frmSupprimerCommision')) {
+		document.getElementById('frmSupprimerCommision').addEventListener('submit', validerFrmSupprimerCommission);
+	}
+
 	if(document.getElementById('frmChercherEcoles')) {
 		document.getElementById('frmChercherEcoles').addEventListener('submit', validerFrmChercherEcole);
 	}
 
-	if(document.getElementById('frmAjouterEcoles')) {
-		document.getElementById('frmAjouterEcoles').addEventListener('submit', validerFrmChercherEcole);
+	if(document.getElementById('frmAjouterEcole')) {
+		document.getElementById('frmAjouterEcole').addEventListener('submit', validerFrmAjouterEcole);
 	}
 
 	if(document.getElementById('frmModifierEcoles')) {
 		document.getElementById('frmModifierEcoles').addEventListener('submit', validerFrmModifierEcoles);
+	}
+
+	if(document.getElementById('frmAjouterMatiere')) {
+		document.getElementById('frmAjouterMatiere').addEventListener('submit', validerFrmAjouterMatiere);
+	}
+
+	if(document.getElementById('frmModifierMatiere')) {
+		document.getElementById('frmModifierMatiere').addEventListener('submit', validerFrmModifierMatiere);
 	}
 
 	if(document.getElementById('frmChercherProf')) {
@@ -78,7 +90,7 @@ function validerFrmAjouterResp() {
 	}
 
 	var estValide =  false;
-	var frmAjouterResp 		= 	document.getElementById('frmAjouterResp');
+	var frmAjouterResp 			= 	document.getElementById('frmAjouterResp');
 
 	//Définir les champs
 	var txtPrenom				=	document.getElementById('txtPrenom');
@@ -104,7 +116,7 @@ function validerFrmAjouterResp() {
 		estValide = false;
 		txtPrenomErreur.innerHTML = "Veuillez remplir ce champ";
 	}
-	else if(!estLettre(txtPrenom.value)) {
+	else if(!estNom(txtPrenom.value)) {
 		estValide = false;
 		txtPrenomErreur.innerHTML = "Le prénom est invalide";
 	}
@@ -114,7 +126,7 @@ function validerFrmAjouterResp() {
 		estValide = false;
 		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
 	}
-	else if(!estLettre(txtNom.value)) {
+	else if(!estNom(txtNom.value)) {
 		estValide = false;
 		txtNomErreur.innerHTML = "Le nom est invalide";
 	}
@@ -215,51 +227,13 @@ function validerFrmModifierResp() {
 
 	//Soummettre le formulaire
 	if(estValide) {
-		//frmModifierResp.submit(); 
+		frmModifierResp.submit(); 
 	}
 }
 
-/*************FORMULAIRE RECHERCHER COMMISSIONS**********************/
-
-function validerFrmChercherCommissions() {
-
-	//Empêcher le formulaire de soumettre automatiquement
-	if(event.preventDefault()) {
-		event.preventDefault();
-	} else {
-		event.returnValue = false;
-	}
-
-	var estValide =  false;
-	var frmChercherCommissions 	= 	document.getElementById('frmChercherCommissions');
-
-	//Définir les champs
-	var sltMrc					=	document.getElementById('sltMrc');
-
-	//Définir les champs d'erreurs
-	var sltMrcErreur 			= 	document.getElementById('sltMrcErreur');
-
-	var aDivErreur 				= 	document.getElementsByClassName('divErreur');
-
-	//Enlever toutes les erreurs
-	for(var i = 0; i < aDivErreur.length; i++) {
-		aDivErreur[i].innerHTML = '';
-	}
-
-	//Valider sltEcoles
-	if(sltMrc.value == "0") {
-		estValide = false;
-		sltMrcErreur.innerHTML = "Veuillez faire une sélection";
-	}
-
-	//Soummettre le formulaire
-	if(estValide) {
-		frmChercherCommissions.submit(); 
-	}
-
-}
 
 /*************FORMULAIRE AJOUTER COMMISSIONS**********************/
+
 
 function validerfrmAjouterCommission() {
 
@@ -297,11 +271,11 @@ function validerfrmAjouterCommission() {
 	//Valider txtCommission
 	if(estVide(txtCommission.value)) {
 		estValide = false;
-		txtCommissionErreur.innerHTML = "Veuillez remplir ce champ";
+		txtCommissionErreur.innerHTML = "Veuillez remplir ce champ";	
 	}
-	else if(estNom(txtCommission.value)) {
+	else if(!estCommission(txtCommission.value)) {
 		estValide = false;
-		txtCommissionErreur = "Ce champ doit contenir du texte";
+		txtCommissionErreur.innerHTML = "La commission est invalide";
 	}
 
 	//Soummettre le formulaire
@@ -353,9 +327,9 @@ function validerFrmModifierCommission() {
 		estValide = false;
 		txtCommissionErreur.innerHTML = "Veuillez remplir ce champ";
 	}
-	else if(estCommission(txtCommission.value)) {
+	else if(!estCommission(txtCommission.value)) {
 		estValide = false;
-		txtCommissionErreur = "Ce champ doit contenir du texte";
+		txtCommissionErreur.innerHTML = "La commission scolaire est invalide";
 	}
 
 	//Valider sltEcoles
@@ -371,7 +345,9 @@ function validerFrmModifierCommission() {
 
 }
 
+
 /*************FORMULAIRE CHERCHER ÉCOLES**********************/
+
 
 function validerFrmChercherEcole() {
 
@@ -386,11 +362,9 @@ function validerFrmChercherEcole() {
 	var frmChercherEcoles 		= 	document.getElementById('frmChercherEcoles');
 
 	//Définir les champs
-	var txtNom					= 	document.getElementById('txtNom');
 	var sltCommissions			= 	document.getElementById('sltCommissions');
 
 	//Définir les champs d'erreurs
-	var txtNomErreur 			= 	document.getElementById('txtNomErreur');
 	var sltCommissionsErreur 	= 	document.getElementById('sltCommissionsErreur');
 
 	var aDivErreur 				= 	document.getElementsByClassName('divErreur');
@@ -400,17 +374,8 @@ function validerFrmChercherEcole() {
 		aDivErreur[i].innerHTML = '';
 	}
 
-	//Valider txtCommission
-	if(estVide(txtNom.value)) {
-		estValide = false;
-		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
-	}
-	else if(estNom(txtNom.value)) {
-		estValide = false;
-		txtNomErreur = "Ce champ doit contenir du texte";
-	}
 
-	//Valider sltEcoles
+	//Valider sltCommissions
 	if(sltCommissions.value == "0") {
 		estValide = false;
 		sltCommissionsErreur.innerHTML = "Veuillez faire une sélection";
@@ -423,9 +388,9 @@ function validerFrmChercherEcole() {
 
 }
 
-/*************FORMULAIRE CHERCHER AJOUTER ÉCOLES**********************/
+/*************FORMULAIRE AJOUTER ÉCOLES**********************/
 
-function validerFrmChercherEcole() {
+function validerFrmAjouterEcole() {
 
 	//Empêcher le formulaire de soumettre automatiquement
 	if(event.preventDefault()) {
@@ -435,7 +400,7 @@ function validerFrmChercherEcole() {
 	}
 
 	var estValide =  false;
-	var frmAjouterEcoles 		= 	document.getElementById('frmAjouterEcoles');
+	var frmAjouterEcole 		= 	document.getElementById('frmAjouterEcole');
 
 	//Définir les champs
 	var txtNom					= 	document.getElementById('txtNom');
@@ -457,12 +422,12 @@ function validerFrmChercherEcole() {
 		estValide = false;
 		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
 	}
-	else if(estNom(txtNom.value)) {
+	else if(!estCommission(txtNom.value)) {
 		estValide = false;
-		txtNomErreur = "Ce champ doit contenir du texte";
+		txtNomErreur.innerHTML = "L'école est invalide";
 	}
 
-	//Valider sltEcoles
+	//Valider sltCommissions
 	if(sltCommissions.value == "0") {
 		estValide = false;
 		sltCommissionsErreur.innerHTML = "Veuillez faire une sélection";
@@ -509,9 +474,9 @@ function validerFrmModifierEcoles() {
 		estValide = false;
 		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
 	}
-	else if(estNom(txtNom.value)) {
+	else if(!estCommission(txtNom.value)) {
 		estValide = false;
-		txtNomErreur = "Ce champ doit contenir du texte";
+		txtNomErreur.innerHTML = "L'école est invalide";
 	}
 
 	//Valider sltEcoles
@@ -523,6 +488,94 @@ function validerFrmModifierEcoles() {
 	//Soummettre le formulaire
 	if(estValide) {
 		frmModifierEcoles.submit(); 
+	}
+
+}
+
+/*************FORMULAIRE AJOUTER MATIÈRES**********************/
+
+function validerFrmAjouterMatiere() {
+
+	//Empêcher le formulaire de soumettre automatiquement
+	if(event.preventDefault()) {
+		event.preventDefault();
+	} else {
+		event.returnValue = false;
+	}
+
+	var estValide =  false;
+	var frmAjouterMatiere 		= 	document.getElementById('frmAjouterMatiere');
+
+	//Définir les champs
+	var txtNom					= 	document.getElementById('txtNom');
+
+	//Définir les champs d'erreurs
+	var txtNomErreur 			= 	document.getElementById('txtNomErreur');
+
+	var aDivErreur 				= 	document.getElementsByClassName('divErreur');
+
+	//Enlever toutes les erreurs
+	for(var i = 0; i < aDivErreur.length; i++) {
+		aDivErreur[i].innerHTML = '';
+	}
+
+	//Valider txtCommission
+	if(estVide(txtNom.value)) {
+		estValide = false;
+		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
+	}
+	else if(!estNom(txtNom.value)) {
+		estValide = false;
+		txtNomErreur.innerHTML = "La matière est invalide";
+	}
+
+	//Soummettre le formulaire
+	if(estValide) {
+		frmAjouterMatiere.submit(); 
+	}
+
+}
+
+/*************FORMULAIRE MODIFIER MATIÈRES**********************/
+
+function validerFrmModifierMatiere() {
+
+	//Empêcher le formulaire de soumettre automatiquement
+	if(event.preventDefault()) {
+		event.preventDefault();
+	} else {
+		event.returnValue = false;
+	}
+
+	var estValide =  false;
+	var frmModifierMatiere 		= 	document.getElementById('frmModifierMatiere');
+
+	//Définir les champs
+	var txtNom					= 	document.getElementById('txtNom');
+
+	//Définir les champs d'erreurs
+	var txtNomErreur 			= 	document.getElementById('txtNomErreur');
+
+	var aDivErreur 				= 	document.getElementsByClassName('divErreur');
+
+	//Enlever toutes les erreurs
+	for(var i = 0; i < aDivErreur.length; i++) {
+		aDivErreur[i].innerHTML = '';
+	}
+
+	//Valider txtCommission
+	if(estVide(txtNom.value)) {
+		estValide = false;
+		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
+	}
+	else if(!estNom(txtNom.value)) {
+		estValide = false;
+		txtNomErreur.innerHTML = "La matière est invalide";
+	}
+
+	//Soummettre le formulaire
+	if(estValide) {
+		frmModifierMatiere.submit(); 
 	}
 
 }
@@ -569,7 +622,7 @@ function validerFrmChercherProf() {
 	} 
 	else if(!estCourriel(emlCourriel.value)) {
 		estValide = false;
-		emlCourrielErreur.innerHTML = "Ce champ doit contenir un mot de passe";
+		emlCourrielErreur.innerHTML = "Le courriel est invalide";
 	}
 
 	//Valider txtNom
@@ -577,9 +630,9 @@ function validerFrmChercherProf() {
 		estValide = false;
 		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
 	}
-	else if(!estTexte(txtNom.value)) {
+	else if(!estNom(txtNom.value)) {
 		estValide = false;
-		txtNomErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtNomErreur.innerHTML = "Le nom est invalide";
 	}
 
 	//Valider sltEcoles
@@ -634,9 +687,9 @@ function validerFrmAjouterProf() {
 		estValide = false;
 		txtPrenomErreur.innerHTML = "Veuillez remplir ce champ";
 	}
-	else if(!estTexte(txtPrenom.value)) {
+	else if(!estNom(txtPrenom.value)) {
 		estValide = false;
-		txtPrenomErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtPrenomErreur.innerHTML = "Le prénom est invalide";
 	}
 
 	//Valider txtNom
@@ -644,9 +697,9 @@ function validerFrmAjouterProf() {
 		estValide = false;
 		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
 	}
-	else if(!estTexte(txtNom.value)) {
+	else if(!estNom(txtNom.value)) {
 		estValide = false;
-		txtNomErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtNomErreur.innerHTML = "Le nom est invalide";
 	}
 
 	//Valider emlCourriel
@@ -656,7 +709,7 @@ function validerFrmAjouterProf() {
 	} 
 	else if(!estCourriel(emlCourriel.value)) {
 		estValide = false;
-		emlCourrielErreur.innerHTML = "Ce champ doit contenir un mot de passe";
+		emlCourrielErreur.innerHTML = "Le courriel est invalide";
 	}
 
 	//Valider sltEcoles
@@ -673,7 +726,7 @@ function validerFrmAjouterProf() {
 		} 
 		if(!auMoinsUn) {
 			estValide = false;
-			chkMatieresErreur.innerHTML = "*";
+			chkMatieresErreur.innerHTML = "Faites une sélection";
 		}
 	}
 
@@ -722,9 +775,9 @@ function validerFrmModifierProf() {
 		estValide = false;
 		txtPrenomErreur.innerHTML = "Veuillez remplir ce champ";
 	}
-	else if(!estTexte(txtPrenom.value)) {
+	else if(!estNom(txtPrenom.value)) {
 		estValide = false;
-		txtPrenomErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtPrenomErreur.innerHTML = "Le prénom est invalide";
 	}
 
 	//Valider txtNom
@@ -732,9 +785,9 @@ function validerFrmModifierProf() {
 		estValide = false;
 		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
 	}
-	else if(!estTexte(txtNom.value)) {
+	else if(!estNom(txtNom.value)) {
 		estValide = false;
-		txtNomErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtNomErreur.innerHTML = "Le nom invalide";
 	}
 
 	//Valider emlCourriel
@@ -744,7 +797,7 @@ function validerFrmModifierProf() {
 	} 
 	else if(!estCourriel(emlCourriel.value)) {
 		estValide = false;
-		emlCourrielErreur.innerHTML = "Ce champ doit contenir un mot de passe";
+		emlCourrielErreur.innerHTML = "Le courriel est invalide";
 	}
 
 	//Valider sltEcoles
@@ -811,9 +864,9 @@ function validerFrmChercherTuteur() {
 		estValide = false;
 		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
 	}
-	else if(!estTexte(txtNom.value)) {
+	else if(!estNom(txtNom.value)) {
 		estValide = false;
-		txtNomErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtNomErreur.innerHTML = "Le nom est invalide";
 	}
 
 	//Valider emlCourriel
@@ -823,7 +876,7 @@ function validerFrmChercherTuteur() {
 	} 
 	else if(!estCourriel(emlCourriel.value)) {
 		estValide = false;
-		emlCourrielErreur.innerHTML = "Ce champ doit contenir un mot de passe";
+		emlCourrielErreur.innerHTML = "Le courriel est invalide";
 	}
 
 	//Valider sltEcoles
@@ -878,9 +931,9 @@ function validerFrmAjouterTuteur() {
 		estValide = false;
 		txtPrenomErreur.innerHTML = "Veuillez remplir ce champ";
 	}
-	else if(!estTexte(txtPrenom.value)) {
+	else if(!estNom(txtPrenom.value)) {
 		estValide = false;
-		txtPrenomErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtPrenomErreur.innerHTML = "Le prénom est invalide";
 	}
 
 	//Valider txtNom
@@ -888,9 +941,9 @@ function validerFrmAjouterTuteur() {
 		estValide = false;
 		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
 	}
-	else if(!estTexte(txtNom.value)) {
+	else if(!estNom(txtNom.value)) {
 		estValide = false;
-		txtNomErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtNomErreur.innerHTML = "Le nom est invalide";
 	}
 
 	//Valider emlCourriel
@@ -900,7 +953,7 @@ function validerFrmAjouterTuteur() {
 	} 
 	else if(!estCourriel(emlCourriel.value)) {
 		estValide = false;
-		emlCourrielErreur.innerHTML = "Ce champ doit contenir un mot de passe";
+		emlCourrielErreur.innerHTML = "Le courriel est invalide";
 	}
 
 	//Valider sltEcoles
@@ -967,9 +1020,9 @@ function validerFrmModifierTuteur() {
 		estValide = false;
 		txtPrenomErreur.innerHTML = "Veuillez remplir ce champ";
 	}
-	else if(!estTexte(txtPrenom.value)) {
+	else if(!estNom(txtPrenom.value)) {
 		estValide = false;
-		txtPrenomErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtPrenomErreur.innerHTML = "Le prénom est invalide";
 	}
 
 	//Valider txtNom
@@ -977,9 +1030,9 @@ function validerFrmModifierTuteur() {
 		estValide = false;
 		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
 	}
-	else if(!estTexte(txtNom.value)) {
+	else if(!estNom(txtNom.value)) {
 		estValide = false;
-		txtNomErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtNomErreur.innerHTML = "Le nom est invalide";
 	}
 
 	//Valider emlCourriel
@@ -989,7 +1042,7 @@ function validerFrmModifierTuteur() {
 	} 
 	else if(!estCourriel(emlCourriel.value)) {
 		estValide = false;
-		emlCourrielErreur.innerHTML = "Ce champ doit contenir un mot de passe";
+		emlCourrielErreur.innerHTML = "Le courriel est invalide";
 	}
 
 	//Valider sltEcoles

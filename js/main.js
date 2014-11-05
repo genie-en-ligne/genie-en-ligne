@@ -14,13 +14,16 @@
 
 //Par exemple, estNumérique(), estBooleen(), estVide(), etc.
 
+//Tester pour un champ vide
 function estVide(varATester){
+
    if(varATester.length == 0){
       return true;
    }
    return false;
 }
 
+//Tester pour une valeur numérique
 function estNumerique(varATester){
    //Approche négative
    var regex = /[^0-9]/;
@@ -29,6 +32,7 @@ function estNumerique(varATester){
    }
    return true;
 }
+
 
 function estTitre(varATester){
     // regex pour que l'utilisateur ne rentre pas les caractères non désirés
@@ -63,13 +67,26 @@ function estLettre(varATester) {
 
 //Tester pour une valeur nom ou prénom
 function estNom(varAtester) {
-	
-	var regex = /[^a-zA-Z\s\-\'\xC0-\xFC]/;
+	//Validation pour un nom ou prénom composé (optionnel)
+	var regex = /^[a-zA-Z\xC0-\xFC]{2,}[\s\-\'][a-zA-Z\xC0-\xFC]*$/;
 
 	if(regex.test(varAtester)) {
+		return true;
+	} else {
 		return false;
 	}
-	return true;
+}
+
+//Tester pour une valeur commission scolaire
+function estCommission(varAtester) {
+
+	var regex = /^[a-zA-Z\xC0-\xFC]+([\s\-\']{1}[a-zA-Z\xC0-\xFC]+)*$/;
+
+	if(regex.test(varAtester)) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 //Tester pour un courriel

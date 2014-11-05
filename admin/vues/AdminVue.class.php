@@ -339,7 +339,6 @@ class AdminVue extends Vue {
             <a href="<?php echo WEB_ROOT.'/admin/admin/ajouter-commission/';?>" id="btnAjouterCommissions" class="btn btn-success col-sm-offset-1">
             <span class="glyphicon glyphicon-plus"></span> Ajouter</a>
         </div>
-        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -376,7 +375,7 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmAjouterResp" action="<?php echo WEB_ROOT?>/admin/admin/ajouter-commission" method="POST" class="form-horizontal" role="form">
+                <form id="frmAjouterCommission" action="<?php echo WEB_ROOT?>/admin/admin/ajouter-commission" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="sltRegion" class="col-sm-4 control-label">MRC :</label>
                             <div class="col-sm-6">
@@ -579,7 +578,7 @@ class AdminVue extends Vue {
             </div>
         </div>
         <div class="col-lg-12">
-            <form id="frmChercherEcole" method="GET" action="" class="form-horizontal" role="form">
+            <form id="frmChercherEcoles" method="GET" action="" class="form-horizontal" role="form">
                 <div class="row">
                     <div class="col-md-7">
                        <label for="sltCommissions" class="col-sm-4 control-label">Commission scolaire :</label>
@@ -637,7 +636,7 @@ class AdminVue extends Vue {
                                        <a href="<?php echo WEB_ROOT;?>/admin/admin/modifier-ecole/<?php echo $oEcole->getId();?>" class="btn btn-primary btn-xs" title="Modifier">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <a href="<?php echo WEB_ROOT;?>/admin/admin/supprimer-ecole/<?php echo $oEcole->getId();?>" class="btn btn-danger btn-xs col-sm-offset-1" title="Supprimer">
+                                        <a href="<?php echo WEB_ROOT;?>/admin/admin/supprimer-ecole/<?php echo $oEcole->getId();?>" class="btn btn-danger btn-xs" title="Supprimer">
                                             <span class="glyphicon glyphicon-remove"></span>
                                         </a>
                                     </td>
@@ -690,7 +689,7 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmAjouterResp" action="" method="POST" class="form-horizontal" role="form">
+                <form id="frmAjouterEcole" action="" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="sltCommissions" class="col-sm-4 control-label">Commission scolaire :</label>
                         <div class="col-sm-6">
@@ -843,7 +842,7 @@ class AdminVue extends Vue {
                      
             </div>
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmSupprimerCommision" class="form-horizontal" action="" method="POST" enctype="" role="form">
+                <form id="frmSupprimerEcole" class="form-horizontal" action="" method="POST" enctype="" role="form">
                     <div class="form-group">
                         <label for="txtEcole" class="col-sm-4 control-label">École :</label>
                         <div class="col-sm-6">
@@ -974,13 +973,13 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12">
-                <form id="frmAjouterrMatiere" action="" method="POST" enctype="" class="form-horizontal" role="form">
+                <form id="frmAjouterMatiere" action="" method="POST" enctype="" class="form-horizontal" role="form">
                     <div class="form-group">
                         <div class="col-md-10 col-sm-offset-1">
-                            <label for="txtMatiere" class="col-sm-5 control-label">Matière :</label>
+                            <label for="txtNom" class="col-sm-5 control-label">Matière :</label>
                             <div class="col-sm-9 col-md-7">
-                                <input type="email" id="txtMatiere" name="txtMatiere" class="form-control" placeholder="Matière">
-                                <div class="divErreur" id="txtMatiereErreur"></div>
+                                <input type="email" id="txtNom" name="txtMatiere" class="form-control" placeholder="Matière">
+                                <div class="divErreur" id="txtNomErreur"></div>
                             </div>
                         </div>
                     </div>
@@ -1041,7 +1040,7 @@ class AdminVue extends Vue {
                             <label for="txtMatiere" class="col-sm-3  control-label">Matière :</label>
                             <div class="col-sm-9 col-md-8">
                                 <input type="email" id="txtMatiere" name="txtMatiere" class="form-control" placeholder="Matière">
-                                <div class="divErreur" id="txtMatiereErreur"></div>
+                                <div class="divErreur" id="txtNomErreur"></div>
                             </div>
                         </div>
                     </div>
@@ -1099,10 +1098,10 @@ class AdminVue extends Vue {
                 <form id="frmModifierMatiere" action="" method="POST" enctype="" class="form-horizontal" role="form">
                     <div class="form-group">
                         <div class="col-md-10 col-sm-offset-2">
-                            <label for="txtMatiere" class="col-sm-3  control-label">Matière :</label>
+                            <label for="txtNom" class="col-sm-3  control-label">Matière :</label>
                             <div class="col-sm-9 col-md-8">
-                                <input type="email" id="txtMatiere" name="txtMatiere" class="form-control" placeholder="Matière">
-                                <div class="divErreur" id="txtMatiereErreur"></div>
+                                <input type="text" id="txtMatiere" name="txtNom" class="form-control" placeholder="Matière">
+                                <div class="divErreur" id="txtNomErreur"></div>
                             </div>
                         </div>
                     </div>
@@ -1290,8 +1289,8 @@ class AdminVue extends Vue {
 
         <div class="col-sm-6 col-sm-offset-2">
             
-            <div class="col-sm-offset-2 col-sm-9">
-                <div class="col-sm-offset-4 col-sm-7">
+            <div class="col-sm-offset-0 col-sm-11">
+                <div class="col-sm-offset-4 col-sm-9">
                     <div class="navbar navbar-default col-sm-offset-1">
                         <h3 class="navbar-text">Ajouter un professeur</h3>
                     </div>
@@ -1320,7 +1319,7 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="emlCourriel" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel">
+                            <input type="text" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel">
                             <div class="divErreur" id="emlCourrielErreur"></div>
                         </div>
                     </div>
@@ -1420,7 +1419,7 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="emlCourriel" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">                  
-                            <input type="email" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
+                            <input type="text" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
                             <div class="divErreur" id="emlCourrielErreur"></div>
                         </div>
                     </div>
@@ -1523,7 +1522,7 @@ class AdminVue extends Vue {
                             <div class="col-md-4">
                                 <label for="emlCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
                                 <div class="col-sm-9 col-md-7">
-                                    <input type="email" id="emlCourriel" name="emlCourriel" class="form-control" placeholder="Courriel">
+                                    <input type="text" id="emlCourriel" name="emlCourriel" class="form-control" placeholder="Courriel">
                                     <div class="divErreur" id="emlCourrielErreur"></div>
                                 </div>
                             </div>
@@ -1671,7 +1670,7 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="emlCourriel" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel">
+                            <input type="text" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel">
                             <div class="divErreur" id="emlCourrielErreur"></div>
                         </div>
                     </div>
@@ -1775,7 +1774,7 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="emlCourriel" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
+                            <input type="text" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
                             <div class="divErreur" id="emlCourrielErreur"></div>
                         </div>
                     </div>
