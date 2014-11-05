@@ -51,8 +51,13 @@
             }
         }
         
-    
-        
+
+        /**
+        * Fonction pour consulter les tutoriels
+        *@param  oVue 
+        *@param  oTutoriel
+        *@return affiche la liste a consulter
+        */        
 		private function consulter() {
 			$oVue = new TutorielVue();
             $oMatiere = new Matiere();
@@ -68,11 +73,12 @@
                     $oVue->setMessage(array("Veuillez spécifier vos critères de recherche", "warning"));
                 }
                 
+                //Afficher
                 $oVue->aMatieres = $oMatiere->rechercherListeMatieres();
     			$oVue -> afficheListeConsulter();
             }
             catch(Exception $e){
-                $oVue->setMessage(array($e->getMessage(), "danger"));
+                $oVue->setMessage(array($e->getMessage(), "danger")); // appeller l'erreur
 
                 $oVue->aMatieres = $oMatiere->rechercherListeMatieres();
                 $oVue -> afficheListeConsulter();
