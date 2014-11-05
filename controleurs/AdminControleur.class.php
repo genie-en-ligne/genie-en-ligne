@@ -196,8 +196,13 @@
             $oCommission = new Commission();
             $oVue->aListeCommissions = $oCommission->rechercherListeCommissions();
 
+            $commission = 0;
+            if(isset($_GET['sltCommissions'])){
+                $commission = $_GET['sltCommissions'];
+            }
+
             $oEcole = new Ecole();
-            $oVue->aListeEcoles = $oEcole->rechercherListeEcoles();
+            $oVue->aListeEcoles = $oEcole->rechercherListeEcoles($commission);
 
             $oVue->afficheListeEcoles();
         }
@@ -317,8 +322,8 @@
 
             try{
                 if(isset($_POST['subModifierMatiere'])){
-                    $oMatiere = new Matiere(0, $_POST['txtNom']);
-                    $oMatiere->ajouterMatiere();
+                    $oMatiere->setNom($_POST['txtNom']);
+                    $oMatiere->modifierMatiere();
 
                     header("location:".WEB_ROOT."/admin/admin/gerer-matieres");
                 }
@@ -354,7 +359,5 @@
                 $oVue->afficheSupprimerMatiere();
             }
         }
-       
-		//TODO:  Placer les autres méthodes du controleur ici.
     }
 ?>

@@ -536,7 +536,7 @@ class AdminVue extends Vue {
                     <div class="form-group"></div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-8 text-right">
-                             <a href="#" class="btn btn-danger" role="button">
+                             <a href="<?php echo WEB_ROOT;?>/admin/admin/gerer-commissions" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
                             <button type="submit" name="subSupprimerCommission" id="subSupprimer" class="btn btn-success col-sm-offset-1">
@@ -585,8 +585,12 @@ class AdminVue extends Vue {
                         <div class="col-sm-9 col-md-7">
                             <select mutltiple id="sltCommissions" class="form-control" name="sltCommissions">
                                 <?php         
-                                    foreach($this->aListeCommissions as $oCommission){                                        
-                                        echo '<option value="'.$oCommission->getId().'">'.$oCommission->getNom().'</option>';
+                                    foreach($this->aListeCommissions as $oCommission){    
+                                        $selected = '';
+                                        if($_GET['sltCommissions'] == $oCommission->getId()){
+                                            $selected = 'selected="selected"';
+                                        }                                    
+                                        echo '<option value="'.$oCommission->getId().'" '.$selected.'>'.$oCommission->getNom().'</option>';
                                     }
                                 ?>
                             </select>
@@ -911,32 +915,29 @@ class AdminVue extends Vue {
                             <th class="text-center col-md-4">Matières</th>
                             <th class="text-center col-md-2">Action</th>
                         </tr>
-                        <tr>
-                            <td id="txtMatièreTab "></td> <!-- Si plus d'une afficher valeurs multiples -->
-                            <td>
-                                <!-- echo '<a href="'.WEB_ROOT.'/admin/modifierUtilisateur/'.$oUtilisateur->getId().'" class="btn btn-primary btn-xs">';
-                                    echo '<span title="Modifier" class="glyphicon glyphicon-pencil"></span>';
-                                echo '</a>';
-                                echo '<a href="'.WEB_ROOT.'/admin/supprimerUtilisateur/'.$oUtilisateur->getId().'" class="btn btn-danger btn-xs col-sm-offset-1">';
-                                    echo '<span title="Supprimer" class="glyphicon glyphicon-remove"></span>';
-                                echo '</a>'; -->
-                               <a href="#" class="btn btn-primary btn-xs" title="Modifier">
-                                    <span class="glyphicon glyphicon-pencil"></span>
-                                </a>
-                                <a href="#" class="btn btn-danger btn-xs" title="Supprimer">
-                                    <span class="glyphicon glyphicon-remove"></span>
-                                </a>
-                            </td>
-                        </tr>
+                        <?php 
+                        foreach($this->aListeMatieres as $oMatiere){?>
+                            <tr>
+                                <td id="txtMatièreTab"><?php echo $oMatiere->getNom();?></td>
+                                <td>                                
+                                   <a href="<?php echo WEB_ROOT;?>/admin/admin/modifier-matiere/<?php echo $oMatiere->getId();?>" class="btn btn-primary btn-xs" title="Modifier">
+                                        <span class="glyphicon glyphicon-pencil"></span>
+                                    </a>
+                                    <a href="<?php echo WEB_ROOT;?>/admin/admin/supprimer-matiere/<?php echo $oMatiere->getId();?>" class="btn btn-danger btn-xs" title="Supprimer">
+                                        <span class="glyphicon glyphicon-remove"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php
+                        }?>
                     </table>
                 </div> <!-- .col-lg-12 -->
             </div> <!-- .row -->
             <div class="col-sm-10 col-sm-offset-10">
-                <button type="button" id="btnAjouterMatière" class="btn btn-success col-sm-offset-1">
-                <span class="glyphicon glyphicon-plus"></span> Ajouter</button>
+                <a href="<?php echo WEB_ROOT;?>/admin/admin/ajouter-matiere/" id="btnAjouterMatière" class="btn btn-success col-sm-offset-1">
+                <span class="glyphicon glyphicon-plus"></span> Ajouter</a>
             </div>
         </div> <!-- .contenu -->
-        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -944,9 +945,9 @@ class AdminVue extends Vue {
     /****************FIN GÉRER MATIERES******************/
     /****************************************************/
 
-    /************************************************/
+    /*********************************************/
     /*****************AJOUTER MATIERES************/
-    /************************************************/
+    /*********************************************/
 
     public function afficheAjouterMatiere()   {?>
 
@@ -973,13 +974,13 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12">
-                <form id="frmAjouterMatiere" action="" method="POST" enctype="" class="form-horizontal" role="form">
+                <form id="frmAjouterMatiere" action="" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
                         <div class="col-md-10 col-sm-offset-1">
-                            <label for="txtNom" class="col-sm-5 control-label">Matière :</label>
+                            <label for="txtMatiere" class="col-sm-5 control-label">Matière :</label>
                             <div class="col-sm-9 col-md-7">
-                                <input type="email" id="txtNom" name="txtMatiere" class="form-control" placeholder="Matière">
-                                <div class="divErreur" id="txtNomErreur"></div>
+                                <input type="text" id="txtMatiere" name="txtNom" class="form-control" placeholder="Matière">
+                                <div class="divErreur" id="txtMatiereErreur"></div>
                             </div>
                         </div>
                     </div>
@@ -987,10 +988,10 @@ class AdminVue extends Vue {
                     <div class="form-group"></div>
                     <div class="form-group">
                         <div class="col-sm-offset-5 col-sm-6 text-right">
-                             <a href="#" class="btn btn-danger" role="button">
+                             <a href="<?php echo WEB_ROOT;?>/admin/admin/gerer-matieres" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
-                            <button type="submit" id="subAjouterMatiere" class="btn btn-success col-sm-offset-1 ">
+                            <button type="submit" name="subAjouterMatiere" class="btn btn-success col-sm-offset-1 ">
                                 <span class="glyphicon glyphicon-plus"></span> Ajouter
                             </button>
                         </div>
@@ -998,6 +999,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+
         <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
@@ -1020,8 +1022,6 @@ class AdminVue extends Vue {
                 }
             ?>
         </div>
-        
-       
             <div class="col-sm-12">
             <div class="col-sm-offset-0 col-sm-8">
                 <div class="col-sm-offset-5  col-sm-7">
@@ -1034,12 +1034,12 @@ class AdminVue extends Vue {
                      
             </div>
             <div class="col-sm-6 col-sm-offset-2">
-                <form id="frmModifierMatiere" action="" method="POST" enctype="" class="form-horizontal" role="form">
+                <form id="frmModifierMatiere" action="" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
                         <div class="col-md-10 col-sm-offset-2">
                             <label for="txtNom" class="col-sm-3  control-label">Matière :</label>
                             <div class="col-sm-9 col-md-8">
-                                <input type="email" id="txtNom" name="txtNom" class="form-control" placeholder="Matière">
+                                <input type="text" id="txtNom" name="txtNom" class="form-control" value="<?php echo $this->oMatiere->getNom();?>" placeholder="Matière">
                                 <div class="divErreur" id="txtNomErreur"></div>
                             </div>
                         </div>
@@ -1048,10 +1048,10 @@ class AdminVue extends Vue {
                     <div class="form-group"></div>
                     <div class="form-group">
                         <div class="col-sm-offset-5 col-sm-6 text-right">
-                             <a href="#" class="btn btn-danger" role="button">
+                             <a href="<?php echo WEB_ROOT;?>/admin/admin/gerer-matieres" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
-                            <button type="submit" id="subModifierMatiere" class="btn btn-success col-sm-offset-1 ">
+                            <button type="submit" name="subModifierMatiere" class="btn btn-success col-sm-offset-1 ">
                                 <span class="glyphicon glyphicon-plus"></span> Modifier
                             </button>
                         </div>
@@ -1073,47 +1073,33 @@ class AdminVue extends Vue {
 
     public function afficheSupprimerMatiere()  {?>
 
-        <div id="message">
-            <?php 
-                if($this->getMessage()){
-                    $aMessage = $this->getMessage();
-                    echo '<div class="alert alert-'.$aMessage[1].'">'.$aMessage[0].'</div>';
-                }
-            ?>
-        </div>
-        
-       
-            <div class="col-sm-12">
-            <div class="col-sm-offset-0 col-sm-8">
-                <div class="col-sm-offset-5  col-sm-7">
-                    <div class="navbar navbar-default ">
+        <div class="col-sm-6 col-sm-offset-2">            
+            <div class="col-sm-offset-3 col-sm-9">
+                <div class="col-sm-offset-3  col-sm-8">
+                    <div class="navbar navbar-default text-center">
                         <h3 class="navbar-text">Supprimer une matière</h3>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-offset-4 col-sm-8 page-header">
-                     
+            <div class="col-sm-offset-4 col-sm-8 page-header">     
             </div>
-            <div class="col-sm-6 col-sm-offset-2">
-                <form id="frmModifierMatiere" action="" method="POST" enctype="" class="form-horizontal" role="form">
+            <div class="col-sm-12 col-sm-offset-1">
+                <form id="frmSupprimerMatiere" class="form-horizontal" action="" method="POST" role="form">
                     <div class="form-group">
-                        <div class="col-md-10 col-sm-offset-2">
-                            <label for="txtNom" class="col-sm-3  control-label">Matière :</label>
-                            <div class="col-sm-9 col-md-8">
-                                <input type="text" id="txtMatiere" name="txtNom" class="form-control" placeholder="Matière">
-                                <div class="divErreur" id="txtNomErreur"></div>
-                            </div>
+                        <label for="txtMatiere" class="col-sm-4 control-label">Matière :</label>
+                        <div class="col-sm-6">
+                            <span id="txtMatiere"><?php echo $this->oMatiere->getNom();?></span>
                         </div>
                     </div>
-                    <div class="form-group"></div>
+                   
                     <div class="form-group"></div>
                     <div class="form-group">
-                        <div class="col-sm-offset-5 col-sm-6 text-right">
-                             <a href="#" class="btn btn-danger" role="button">
+                        <div class="col-sm-offset-2 col-sm-8 text-right">
+                             <a href="<?php echo WEB_ROOT;?>/admin/admin/gerer-matieres" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
-                            <button type="submit" id="subModifierMatiere" class="btn btn-success col-sm-offset-1 ">
-                                <span class="glyphicon glyphicon-plus"></span> Modifier
+                            <button type="submit" name="subSupprimerMatiere" id="subSupprimer" class="btn btn-success col-sm-offset-1">
+                                <span class="glyphicon glyphicon-ok"></span> Supprimer
                             </button>
                         </div>
                     </div>
@@ -1161,28 +1147,23 @@ class AdminVue extends Vue {
                 </div>
             </div>
             <div class="col-lg-12">
-                <form id="frmChercherProf" method="GET" action="" enctype="" class="form-horizontal" role="form">
+                <form id="frmChercherProf" method="GET" action="" class="form-horizontal" role="form">
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-4">
-                                <label for="emlCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
-                                <div class="col-sm-9 col-md-7">
-                                    <input type="email" id="emlCourriel" name="emlCourriel" class="form-control" placeholder="Courriel">
-                                    <div class="divErreur" id="emlCourrielErreur"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="txtNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
-                                <div class="col-sm-9 col-md-7">
-                                    <input type="text" id="txtNom" name="nom" class="form-control" placeholder="Nom">
-                                    <div class="divErreur" id="txtNomErreur"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
                                 <label for="sltEcoles" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
                                 <div class="col-sm-9 col-md-7">
-                                    <select mutltiples id="sltEcoles" class="form-control" name="ecole">
-                                        <option value="0">Sélection</option> 
+                                    <select id="sltEcoles" class="form-control" name="sltEcole">
+                                        <option value="0">Sélection</option>
+                                        <?php
+                                            foreach ($this->aListeEcoles as $oEcole) {
+                                                $selected = '';
+                                                if($_GET['sltEcole'] == $oEcole->getId()){
+                                                    $selected = 'selected="selected"';
+                                                }
+                                                echo '<option value="'.$oEcole->getId().'" '.$selected.'>'.$oEcole->getNom().'</option>';
+                                            }
+                                        ?>
                                     </select>
                                     <div class="divErreur" id="sltEcolesErreur"></div>
                                 </div>
@@ -1520,25 +1501,20 @@ class AdminVue extends Vue {
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-4">
-                                <label for="emlCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
-                                <div class="col-sm-9 col-md-7">
-                                    <input type="text" id="emlCourriel" name="emlCourriel" class="form-control" placeholder="Courriel">
-                                    <div class="divErreur" id="emlCourrielErreur"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="txtNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
-                                <div class="col-sm-9 col-md-7">
-                                    <input type="text" id="txtNom" name="nom" class="form-control" placeholder="Nom">
-                                    <div class="divErreur" id="txtNomErreur"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
                                 <label for="sltEcoles" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
                                 <div class="divErreur" id="sltEcolesErreur"></div>
                                 <div class="col-sm-9 col-md-7">
-                                    <select id="sltEcoles" class="form-control" name="ecole">
-                                        <option value="">Sélection</option> 
+                                    <select id="sltEcoles" class="form-control" name="sltEcole">
+                                        <option value="">Sélection</option>
+                                        <?php
+                                            foreach ($this->aListeEcoles as $oEcole) {
+                                                $selected = '';
+                                                if($_GET['sltEcole'] == $oEcole->getId()){
+                                                    $selected = 'selected="selected"';
+                                                }
+                                                echo '<option value="'.$oEcole->getId().'" '.$selected.'>'.$oEcole->getNom().'</option>';
+                                            }
+                                        ?> 
                                     </select>
                                 </div>
                             </div>
@@ -1912,19 +1888,6 @@ class AdminVue extends Vue {
         </div>
         <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
-    }
-
-      
-    
-    
-    
-    public function afficheFormulaireSelectionModulesCommission(){?>
-    
-    <?php
-    }
-
-
-    
-    //TODO: Ajouter des méthodes au besoin
+    }    
 }
 ?>

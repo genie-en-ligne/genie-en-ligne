@@ -13,16 +13,20 @@
         
         public function ajouterEcole(){
             $oConnexion = new MySqliLib();
+            $sNom = $oConnexion->getConnect()->real_escape_string($this->sNom);
+
             $oResultat = $oConnexion->executer("INSERT INTO ecoles (`nom`, `commission_ID`) 
-                                                 VALUES ('{$this->sNom}','{$this->iCommissionId}')");
+                                                 VALUES ('{$sNom}','{$this->iCommissionId}')");
             $this->setId($oConnexion->getInsertId());            
             return $this->iId;
         }
         
         public function modifierEcole(){
             $oConnexion = new MySqliLib();
+            $sNom = $oConnexion->getConnect()->real_escape_string($this->sNom);
+
             $oResultat = $oConnexion->executer("UPDATE ecoles 
-                                                SET `nom` = '{$this->sNom}', `commission_ID` = '{$this->iCommissionId}'
+                                                SET `nom` = '{$sNom}', `commission_ID` = '{$this->iCommissionId}'
                                                 WHERE `ecole_ID` = '{$this->iId}'");
             return $oConnexion->getConnect()->affected_rows;
         }
@@ -35,9 +39,15 @@
             return $oConnexion->getConnect()->affected_rows;
         }
        
-        public function rechercherListeEcoles(){
+        public function rechercherListeEcoles($iCommissionId = 0){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM ecoles WHERE est_detruit = '0' ORDER BY nom ASC");
+
+            $commission = '';
+            if($iCommissionId != 0 && is_integer(intval($iCommissionId))){
+                $commission = " AND commission_ID = '".$iCommissionId."'";
+            }
+
+            $oResultat = $oConnexion->executer("SELECT * FROM ecoles WHERE est_detruit = '0' $commission ORDER BY nom ASC");
             $aResultats = $oConnexion->recupererTableau($oResultat);
             
             $aEcoles = array();
@@ -63,7 +73,7 @@
 
         public function chargerEcole(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM ecoles WHERE ecole_ID = '{$this->iId}'");
+            $oResultat = $oConnexion->executer("SELECT * FROM ecoles WHERE ecole_ID = '{$this->iId}' AND est_detruit = '0'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
             if(count($aResultats) == 0){

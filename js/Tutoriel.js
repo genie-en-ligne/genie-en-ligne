@@ -145,22 +145,8 @@ function validerFormCreationVideo(){
       estValide = false;
    }   
 
-  /* //Valider chkMatiere
-   var auMoinsUn = false;
-   for(var i = 0; i < aChkMatiere.length; i++){
-      if(chkMatiere[i].checked == true){
-         auMoinsUn = true;
-      }
-   }
-   if(auMoinsUn == false){
-      estValide = false;
-      chkMatiereErreur = "*";
-   }*/ 
-
    //Soumettre le formulaire
    if(estValide == true){
-      //idDeMonFormulaire.submit();
-	  console.log('Formulaire soumis');
 	  frmCreationVideo.submit();
    }
    else{
@@ -183,7 +169,6 @@ function validerFormModificationVideo(){
    var estValide = true;
    var premiereErreur = '';//pour l'utilisation de curseur
    var frmModificationVideo = document.getElementById('frmModificationVideo');
-   //var frmModificationVideo = document.querySelector('#frmModificationVideo');
    
    //Définir les champs
    var txtTitre = document.getElementById('txtTitre');
@@ -278,9 +263,6 @@ function validerFormModificationVideo(){
 	
 	//Soumettre le formulaire
    if(estValide == true){
-      //idDeMonFormulaire.submit();
-	  //console.log('Formulaire soumis');
-	  console.log(frmModificationVideo);
 	  frmModificationVideo.submit();
    }
    else{
@@ -397,9 +379,6 @@ function validerFormCreationTexte() {
 	
 	//Soumettre le formulaire
    if(estValide == true){
-      //idDeMonFormulaire.submit();
-	  //console.log('Formulaire soumis');
-	  console.log(frmCreationTexte);
 	  frmCreationTexte.submit();
    }
    else{
@@ -517,8 +496,6 @@ function validerFormModificationTexte() {
 	
 	//Soumettre le formulaire
    if(estValide == true){
-	  //console.log('Formulaire soumis');
-	  //console.log(frmModificationTexte);
 	  frmModificationTexte.submit();
    }
    else{
@@ -527,7 +504,26 @@ function validerFormModificationTexte() {
 
 }
 
-/*tinymce.init({
+
+$('a[data-toggle="myModal"]').click(function(e) {
+    e.preventDefault();
+    $('#myModal').remove();
+    var $this = $(this)
+      , $remote = $this.attr('remote') ||  $this.attr('href')
+      , $modal = $('<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>');
+    $('body').append($modal);
+    $modal.modal({backdrop: 'static', keyboard: false});
+    $modal.load($remote);
+
+    $('#myModal').on('hide.bs.modal', function (e) {
+      $('#myModal').remove();
+      $modal = $('<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>');
+      $('body').append($modal);
+    })
+  }
+);
+
+tinymce.init({
    selector: "textarea",
    toolbar: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | blockquote | bullist numlist | styleselect",
    style_formats: [
@@ -537,4 +533,4 @@ function validerFormModificationTexte() {
    menubar : false,
    browser_spellcheck : true,
    language : 'fr_FR'
-});*/
+});

@@ -18,12 +18,12 @@ class UtilisateurVue extends Vue {
                 }
             ?>
         </div>
-        
-        
         <div class="row">
-            <!-------------->
+
+
+            <!-- -------- -->
             <!-- CAROUSEL -->
-            <!-------------->
+            <!-- -------- -->
 
 
             <div class="hidden-xs col-sm-12 col-md-8">
@@ -44,9 +44,9 @@ class UtilisateurVue extends Vue {
             </div><!-- .hidden-xs.col-sm-12.col-md-8 -->
 
 
-            <!----------------------------->
+            <!-- ----------------------- -->
             <!-- FORMULAIRE DE CONNEXION -->
-            <!-- ------------------------- -->
+            <!-- ----------------------- -->
 
 
             <div class="col-xs-12 col-sm-6 col-sm-offset-3 col-md-4 col-md-offset-0 login-form">
@@ -90,9 +90,9 @@ class UtilisateurVue extends Vue {
             </div>
         </div><!-- .row -->
 
-    <!----------------------------->
-    <!---- CONTENU PRINCIPAL ------>
-    <!----------------------------->
+        <!-- ----------------------- -->
+        <!---- CONTENU PRINCIPAL ------>
+        <!-- ----------------------- -->
 
         <div class="row">
             <div class="col-sm-12">
@@ -188,7 +188,6 @@ class UtilisateurVue extends Vue {
             </div> <!-- col-sm-12 --> 
         </div><!-- .row -->
         <script type="text/javascript" src="../js/Utilisateur.js"> </script> 
-          
      <?php }
      
 /*======================*/
@@ -199,11 +198,14 @@ class UtilisateurVue extends Vue {
         <div class="page-header">
             <h1>Bienvenue <?php echo $this->oUtilisateurSession->getPrenom();?>!</h1>
         </div>
-
         <div class="row">
             <div class="col-md-12">
                 <div class="bienvenue text-center">
-                    <img src="<?php echo WEB_ROOT;?>/images/video.jpg"><br>
+                    <video width="400" controls>
+                    <source src="<?php echo WEB_ROOT;?>/videos/BienvenuePublic.mp4" type="video/mp4">
+                    <source src="<?php echo WEB_ROOT;?>/videos/BienvenuePublic.ogv" type="video/ogg">
+                        Votre fureteur ne supporte pas ce vidéo<br>
+                    </video>
 
                     <div class="col-md-12 espace-avant">
                         <div class="btn-group">
@@ -225,7 +227,6 @@ class UtilisateurVue extends Vue {
 /*===================*/
     
     public function afficheProfil(){?>
-        
         <div id="message">
             <?php 
                 if($this->getMessage()){
@@ -241,7 +242,9 @@ class UtilisateurVue extends Vue {
                 </h1>
             </div>
             <div class="col-sm-offset-4 col-sm-4 page-header">
-                           
+                <ol>
+                    <li>Votre mot de passe doit contenir de huit à quinze caractères et au moins une minuscule, une majuscule et un chiffre.</li>
+                </ol>                
             </div>            
             <div class="col-sm-6 col-sm-offset-3">
                 <form id="frmProfilUtilateur" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/modifier-mdp" class="form-horizontal" role="form">
@@ -282,8 +285,7 @@ class UtilisateurVue extends Vue {
     /*=========================================*/
 
     public function afficheCreerLogin() {?>
-
-         <div id="message">
+        <div id="message">
             <?php 
                 if($this->getMessage()){
                     $aMessage = $this->getMessage();
@@ -291,10 +293,8 @@ class UtilisateurVue extends Vue {
                 }
             ?>
         </div>
-
         <div class="row">
             <div class="col-sm-6 col-sm-offset-2">
-                <div class="">
                 <h1 class="col-sm-offset-2 col-sm-6">
                     <span class="label label-default">Paramètres d'accès Génie en ligne</span>
                 </h1>
@@ -302,7 +302,7 @@ class UtilisateurVue extends Vue {
                     <ol>
                         <li>Entrez un pseudo et un mot de passe.</li>
                         <li>Ces informations vous permettront de vous connecter au site.</li>
-                        <li>Votre pseudo doit contenir un minimum de huit caractères et contenir au moins un chiffre.</li>
+                        <li>Votre mot de passe doit contenir de huit à quinze caractères et au moins une minuscule, une majuscule et un chiffre.</li>
                     </ol>             
                 </div>
                 <div class="col-sm-12 col-sm-offset-1">
@@ -343,13 +343,10 @@ class UtilisateurVue extends Vue {
         </div>
     </div>
     <script type="text/javascript" src="../js/Utilisateur.js"></script>
-    <?php
-    }
-
+    <?php}
 
     public function afficheMessageConfirmation() {?>
-
-         <div id="message">
+        <div id="message">
             <?php 
                 if($this->getMessage()){
                     $aMessage = $this->getMessage();
@@ -358,40 +355,38 @@ class UtilisateurVue extends Vue {
             ?>
         </div>
         <div class="row">
-        <div class="col-sm-6 col-sm-offset-2">
-            <div class="">
+            <div class="col-sm-6 col-sm-offset-2">
                 <h1 class="col-sm-offset-6 col-sm-6">
                     <strong>Succès!</strong>
                 </h1>
-
-                <h3 class="col-sm-offset-3 col-sm-12 bold"><strong>Votre compte est maintenant actif.</strong></h3>
+                <h3 class="col-sm-offset-3 col-sm-12 bold">
+                    <strong>Votre compte est maintenant actif.</strong>
+                </h3>
                 <div class="col-sm-offset-2 col-sm-12 page-header">       
                 </div>
                 <div class="col-sm-12 col-sm-offset-1">
                     <div class="form-group"></div>
                     <div class="form-group"></div>
                     <div class="form-group">
-                        <div class="col-sm-offset-5 col-sm-12">
-                            <a href="<?php echo WEB_ROOT;?>" class="btn btn-default btn-lg" title="Genie en ligne">
-                               Génie en ligne
-                            </a>
-                        </div>
+                    <div class="col-sm-offset-5 col-sm-12">
+                        <a href="<?php echo WEB_ROOT;?>" class="btn btn-default btn-lg" title="Genie en ligne">
+                           Génie en ligne
+                        </a>
+                    </div>
                     </div>
                 </div>
             </div>
         </div>
         <script type="text/javascript" src="../js/Utilisateur.js"> </script> 
-    <?php
-    }
 
+    <?php}
 
     /*============================*/
     /*== afficherPreInscription ==*/
     /*============================*/
 
     public function affichePreInscription() {?>
-
-         <div id="message">
+        <div id="message">
             <?php 
                 if($this->getMessage()){
                     $aMessage = $this->getMessage();
@@ -417,6 +412,7 @@ class UtilisateurVue extends Vue {
                                 <input type="text" id="txtCodePerm" class="form-control" name="txtCodePerm" placeholder="Code permanent">
                                 <div class="divErreur" id="txtCodePermErreur"></div>
                             </div>
+
                         </div>
                         <div class="form-group">
                             <label for="txtPreInscNom" class="col-sm-4 control-label">Nom de famille :</label>
@@ -449,10 +445,9 @@ class UtilisateurVue extends Vue {
     /*=========================*/
     /*== afficherInscription ==*/
     /*=========================*/
-
+  
     public function afficheInscription() {?>
-
-         <div id="message">
+        <div id="message">
             <?php 
                 if($this->getMessage()){
                     $aMessage = $this->getMessage();
@@ -460,14 +455,17 @@ class UtilisateurVue extends Vue {
                 }
             ?>
         </div>
-
         <div class="row">
             <div class="col-sm-6 col-sm-offset-2">
                 <div class="col-sm-offset-6">
                     <h1 class=""><span class="label label-default">Inscription</span></h1>
                 </div>
                 <div class="col-sm-offset-4 col-sm-8 page-header">
-                         
+                    <ol>
+                        <li>Entrez un pseudo et un mot de passe.</li>
+                        <li>Ces informations vous permettront de vous connecter au site.</li>
+                        <li>Votre mot de passe doit contenir de huit à quinze caractères et au moins une minuscule, une majuscule et un chiffre.</li>
+                    </ol>             
                 </div>
                 <div class="col-sm-12 col-sm-offset-1">
                     <form id="frmInscription" class="form-horizontal" action="<?php echo WEB_ROOT;?>/utilisateur/inscription" method="POST" enctype="" role="form">
@@ -530,16 +528,14 @@ class UtilisateurVue extends Vue {
             </div>
         </div>
         <script type="text/javascript" src="../js/utilisateur.js"></script>
-    <?php
-    }
+    <?php}
 
     /*=========================*/
     /*== afficheRecupererMDP ==*/
     /*=========================*/
-
+    /* Div erreur fait Donna*/
     public function afficheRecupererMDP() {?>
-
-         <div id="message">
+        <div id="message">
             <?php 
                 if($this->getMessage()){
                     $aMessage = $this->getMessage();
@@ -586,10 +582,9 @@ class UtilisateurVue extends Vue {
     /*==========================*/
     /*== afficheEnvoyerMessage ==*/
     /*===========================*/
-
+    /*Div erreur fait Donna*/
     public function afficheEnvoyerMessage() {?>
-
-         <div id="message">
+        <div id="message">
             <?php 
                 if($this->getMessage()){
                     $aMessage = $this->getMessage();
@@ -597,7 +592,6 @@ class UtilisateurVue extends Vue {
                 }
             ?>
         </div>
-
         <div class="row">
             <div class="col-sm-6 col-sm-offset-2">
                 <div class="col-sm-6">
@@ -644,8 +638,6 @@ class UtilisateurVue extends Vue {
             </div>
         </div>
         <script type="text/javascript" src="../js/Utilisateur.js"> </script> 
-    <?php
-    }
-    //TODO: Ajouter des méthodes au besoin
+    <?php}
 }
 ?>

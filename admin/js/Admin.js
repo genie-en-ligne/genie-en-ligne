@@ -265,7 +265,7 @@ function validerFrmModifierResp() {
 		txtNomErreur.innerHTML = "Le nom est invalide";
 	}
 
-	//Valider courriel
+	//Valider emlCourriel
 	if(estVide(emlCourriel.value)) {
 		estValide = false;
 		emlCourrielErreur.innerHTML = "Veuillez remplir ce champ";

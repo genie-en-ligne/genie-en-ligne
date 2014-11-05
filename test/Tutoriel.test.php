@@ -459,7 +459,7 @@
     $oVue->aListeTutos = $aListeTutos;
     $oVue->afficheListeTutoTuteursProfesseur();
 
-
+    // vue etudiant
     echo "<h1><br/>La liste des vidéo vue par élèves</h1>";
     $aListeTutos = array(
                             new Tutoriel(12, "Les Sciences ", "2014-10-21", "2014-10-22", 1, 2, true, 2, 1, 1, true, 1, "Bonjour un text pour les sciences"),
@@ -471,4 +471,22 @@
     $oVue = new TutorielVue();
     $oVue->aListeTutos = $aListeTutos;
     $oVue->afficheListeConsulter();
+
+
+    //Vue visualiser un video
+    echo "<h1><br/>Visualiser un vidéo</h1>";
+    $oTutoriel = new Tutoriel(7);
+    $oTutoriel->chargerTutoriel();
+
+    $oVue = new TutorielVue();
+    $oVue->oTutoriel = $oTutoriel;
+    $oVue->afficheLeVideo();
+
+    echo "<h1><br/>Visualiser un texte</h1>";
+    $oTutoriel = new Tutoriel(11);
+    $oTutoriel->chargerTutoriel();
+
+    $oVue = new TutorielVue();
+    $oVue->oTutoriel = $oTutoriel;
+    $oVue->afficheLeTexte();
 ?>
