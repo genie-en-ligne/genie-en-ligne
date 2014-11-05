@@ -39,7 +39,9 @@ if(document.getElementById('frmModificationTexte')){
 
 
 
-
+/**
+ * Valide le formulaire d'ajout de vidéo
+ */
 function validerFormCreationVideo(){
    //Pour empêcher le formulaire de soumettre automatiquement
    if(event.preventDefault){
@@ -60,7 +62,7 @@ function validerFormCreationVideo(){
    var sltEcole = document.getElementById('sltEcole');
    var txtUrl = document.getElementById('txtUrl');
    
-   //Définir les champs d’erreur
+   //Définir les champs d’erreures
    var txtTitreErreur = document.getElementById('txtTitreErreur');
    var sltMatiereErreur = document.getElementById('sltMatiereErreur');
    var sltNiveauErreur = document.getElementById('sltNiveauErreur');
@@ -155,7 +157,9 @@ function validerFormCreationVideo(){
 }
 
 
-
+/**
+ * Valide le formulaire de modification d'un vidéo
+ */
 function validerFormModificationVideo(){
 
 	//Empêcher le formulaire de soumettre automatiquement
@@ -177,7 +181,7 @@ function validerFormModificationVideo(){
    var sltEcole = document.getElementById('sltEcole');
    var txtUrl = document.getElementById('txtUrl');
    
-   //Définir les champs d’erreur
+   //Définir les champs d’erreures
    var txtTitreErreur = document.getElementById('txtTitreErreur');
    var sltMatiereErreur = document.getElementById('sltMatiereErreur');
    var sltNiveauErreur = document.getElementById('sltNiveauErreur');
@@ -271,7 +275,9 @@ function validerFormModificationVideo(){
 
 }
 
-
+/**
+ * Valide le formulaire d'ajout de texte
+ */
 function validerFormCreationTexte() {
 
 	//Empêcher le formulaire de soumettre automatiquement
@@ -293,7 +299,7 @@ function validerFormCreationTexte() {
    var sltEcole = document.getElementById('sltEcole');
    var tarContenu = document.getElementById('tarContenu');
    
-   //Définir les champs d’erreur
+   //Définir les champs d’erreures
    var txtTitreErreur = document.getElementById('txtTitreErreur');
    var sltMatiereErreur = document.getElementById('sltMatiereErreur');
    var sltNiveauErreur = document.getElementById('sltNiveauErreur');
@@ -388,7 +394,9 @@ function validerFormCreationTexte() {
 }
 
 
-
+/**
+ * Valide le formulaire de modification d'un texte
+ */
 function validerFormModificationTexte() {
 
 	//Empêcher le formulaire de soumettre automatiquement
@@ -410,7 +418,7 @@ function validerFormModificationTexte() {
    var sltEcole = document.getElementById('sltEcole');
    var tarContenu = document.getElementById('tarContenu');
    
-   //Définir les champs d’erreur
+   //Définir les champs d’erreures
    var txtTitreErreur = document.getElementById('txtTitreErreur');
    var sltMatiereErreur = document.getElementById('sltMatiereErreur');
    var sltNiveauErreur = document.getElementById('sltNiveauErreur');
@@ -428,7 +436,7 @@ function validerFormModificationTexte() {
    if(estVide(txtTitre.value)){
       estValide = false;
       txtTitreErreur.innerHTML = 'Veuillez remplir ce champ';
-	  if(premiereErreur == '')
+	  if(premiereErreur == '') // gestion du curseur
         {
             premiereErreur = txtTitre;
 		}
@@ -478,7 +486,7 @@ function validerFormModificationTexte() {
    if(estVide(tarContenu.value)){
       estValide = false;
       tarContenuErreur.innerHTML = 'Veuillez remplir ce champ';
-	  if(premiereErreur == '')
+	  if(premiereErreur == '') // gestion du curseur
         {
             premiereErreur = tarContenu;
 		}
