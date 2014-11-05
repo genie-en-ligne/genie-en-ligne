@@ -230,7 +230,7 @@ class TutorielVue extends Vue {
                     </div>
                     <div class="form-group">
                         <label><br/>Rédigez votre texte</label>
-                        <textarea id="tarContenu" name="txtContenu" class="form-control"></textarea>
+                        <textarea id="tarContenu" name="txtContenu" class="form-control" rows="20"></textarea>
 							<div class="divErreur" id="tarContenuErreur"></div> <!-- div pour afficher les erreurs -->
                     </div>
                     <div class="form-group text-right">
@@ -410,7 +410,7 @@ class TutorielVue extends Vue {
                     </div>
                     <div class="form-group">
                         <label><br/>Rédigez votre texte</label>
-                        <textarea id="tarContenu" name="txtContenu" class="form-control"><?php echo $this->oTutoriel->getContenu();?></textarea>
+                        <textarea id="tarContenu" name="txtContenu" class="form-control" rows="20"><?php echo $this->oTutoriel->getContenu();?></textarea>
 							<div class="divErreur" id="tarContenuErreur"></div> <!-- div pour afficher les erreurs -->
                     </div>
                     <div class="form-group text-right">
