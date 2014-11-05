@@ -200,9 +200,9 @@ class UtilisateurVue extends Vue {
         <div class="row">
             <div class="col-md-12">
                 <div class="bienvenue text-center">
-                    <video width="400" controls>
-                    <source src="<?php echo WEB_ROOT;?>/videos/BienvenuePublic.mp4" type="video/mp4">
-                    <source src="<?php echo WEB_ROOT;?>/videos/BienvenuePublic.ogv" type="video/ogg">
+                    <video controls>
+                        <source src="<?php echo WEB_ROOT;?>/videos/BienvenuePublic.mp4" type="video/mp4">
+                        <source src="<?php echo WEB_ROOT;?>/videos/BienvenuePublic.ogv" type="video/ogg">
                         Votre fureteur ne supporte pas ce vidéo<br>
                     </video>
 
