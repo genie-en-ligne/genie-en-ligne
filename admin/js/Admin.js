@@ -135,11 +135,12 @@ function validerFrmAjouterResp() {
 	if(event.preventDefault()) {
 		event.preventDefault();
 	} else {
+		//Internet Explorer
 		event.returnValue = false;
 	}
 
 	//Valeur par défaut du formulaire
-	var estValide =  false;
+	var estValide 				=  true;
 
 	//Cible de la méthode submit 
 	var frmAjouterResp 			= 	document.getElementById('frmAjouterResp');
@@ -220,7 +221,7 @@ function validerFrmModifierResp() {
 	}
 
 	//Valeur par défaut du formulaire
-	var estValide =  false;
+	var estValide 				=  true;
 
 	//Cible de la méthode submit
 	var frmModifierResp 		= 	document.getElementById('frmModifierResp');
@@ -301,7 +302,7 @@ function validerfrmAjouterCommission() {
 	}
 
 	//Valeur par défaut du formulaire
-	var estValide =  false;
+	var estValide 				=  true;
 
 	//Cible de la méthode submit 
 	var frmAjouterCommission 	= 	document.getElementById('frmAjouterCommission');
@@ -357,7 +358,7 @@ function validerFrmModifierCommission() {
 	}
 
 	//Valeur par défaut du formulaire
-	var estValide =  false;
+	var estValide 				=  	true;
 
 	//Cible de la méthode submit 
 	var frmModifierCommission 	= 	document.getElementById('frmModifierCommission');
@@ -422,7 +423,7 @@ function validerFrmChercherEcole() {
 	}
 
 	//Valeur par défaut du formulaire
-	var estValide =  false;
+	var estValide 				=  true;
 
 	//Cible de la méthode submit 
 	var frmChercherEcoles 		= 	document.getElementById('frmChercherEcoles');
@@ -467,7 +468,7 @@ function validerFrmAjouterEcole() {
 	}
 
 	//Valeur par défaut du formulaire
-	var estValide =  false;
+	var estValide 				=  true;
 
 	//Cible de la méthode submit 
 	var frmAjouterEcole 		= 	document.getElementById('frmAjouterEcole');
@@ -523,7 +524,7 @@ function validerFrmModifierEcoles() {
 	}
 
 	//Valeur par défaut du formulaire
-	var estValide =  false;
+	var estValide 				=  true;
 
 	//Cible de la méthode submit 
 	var frmModifierEcoles 		= 	document.getElementById('frmModifierEcoles');
@@ -579,7 +580,7 @@ function validerFrmAjouterMatiere() {
 	}
 
 	//Valeur par défaut du formulaire
-	var estValide =  false;
+	var estValide 				=  true;
 
 	//Cible de la méthode submit
 	var frmAjouterMatiere 		= 	document.getElementById('frmAjouterMatiere');
@@ -627,7 +628,7 @@ function validerFrmModifierMatiere() {
 	}
 
 	//Valeur par défaut du formulaire
-	var estValide =  false;
+	var estValide 				=  true;
 
 	//Cible de la méthode submit
 	var frmModifierMatiere 		= 	document.getElementById('frmModifierMatiere');
@@ -679,7 +680,7 @@ function validerFrmChercherProf() {
 	}
 
 	//Valeur par défaut du formulaire
-	var estValide =  false;
+	var estValide 			=  true;
 
 	//Cible de la méthode submit
 	var frmChercherProf 	= 	document.getElementById('frmChercherProf');
@@ -723,7 +724,7 @@ function validerFrmAjouterProf() {
 	}
 
 	//Valeur par défaut du formulaire
-	var estValide =  false;
+	var estValide 			=  true;
 
 	//Cible de la méthode submit
 	var frmAjouterProf 		= 	document.getElementById('frmAjouterProf');
@@ -816,10 +817,10 @@ function validerFrmModifierProf() {
 	}
 
 	//Valeur par défaut du formulaire
-	var estValide =  false;
+	var estValide 			=  true;
 
 	//Cible de la méthode submit
-	var frmModifierProf = document.getElementById('frmModifierProf');
+	var frmModifierProf 	= 	document.getElementById('frmModifierProf');
 
 	//Définir les champs
 	var txtPrenom 			= 	document.getElementById('txtPrenom');
@@ -914,7 +915,7 @@ function validerFrmChercherTuteur() {
 	}
 
 	//Valeur par défaut du formulaire
-	var estValide =  false;
+	var estValide 			=  	true;
 
 	//Cible de la méthode submit
 	var frmChercherTuteur 	= 	document.getElementById('frmChercherTuteur');
@@ -982,7 +983,7 @@ function validerFrmAjouterTuteur() {
 	}
 
 	//Valeur par défaut du formulaire
-	var estValide =  false;
+	var estValide 			=  true;
 
 	//Cible de la méthode submit
 	var frmAjouterTuteur 	= document.getElementById('frmAjouterTuteur');
@@ -1076,10 +1077,10 @@ function validerFrmModifierTuteur() {
 	}
 
 	//Valeur par défaut du formulaire
-	var estValide =  false;
+	var estValide 			=  true;
 
 	//Cible de la méthode submit
-	var frmModifierTuteur = document.getElementById('frmModifierTuteur');
+	var frmModifierTuteur 	= 	document.getElementById('frmModifierTuteur');
 
 	//Définir les champs
 	var txtPrenom 			= 	document.getElementById('txtPrenom');

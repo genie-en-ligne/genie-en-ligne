@@ -73,6 +73,16 @@ function estNom(varAtester) {
 	}
 }
 
+function estPseudo(varAtester) {
+	//Approche positive
+	var regex = /^[a-zA-Z0-9\xC0-\xFC]{1,}$/;
+
+	if(regex.test(varAtester)) {
+		return true;
+	}
+		return false;
+}
+
 //Tester un nom de commission scolaire valide
 function estCommission(varAtester) {
 	//Approche positive
@@ -101,10 +111,12 @@ function estCourriel(varATester) {
 //doit contenir au moins une lettre
 //doit contenir minimum 8 caractère
 function estMotDePasse(varATester) {
+	//Approche positive
+	var regex = /^(?=.{8,15})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])$/;
 
-	var regex = /^(?=.{8,15})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])$/
 	if(regex.test(varATester)) {	
 		return true;
-	} 
-    	return true;
+	}  else {
+		return false;
+	}
 }
