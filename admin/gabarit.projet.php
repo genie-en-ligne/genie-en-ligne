@@ -26,9 +26,22 @@
                 //Rediriger au login
                 header("location:".WEB_ROOT);
             }
+
+            $class = '';
+            switch($oUtilisateurSession->getRole()){
+                case '3':
+                    $class = 'prof';
+                    break;
+                case '4':
+                    $class = 'responsable';
+                    break;
+                case '5':
+                    $class = 'superadmin';
+                    break;
+            }
         ?>
 
-        <div id="wrapper">
+        <div id="wrapper" class="<?php echo $class;?>">
     <!--------------------->
     <!-- MENU HORIZONTAL -->
     <!--------------------->
