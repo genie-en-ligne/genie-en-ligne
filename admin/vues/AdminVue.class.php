@@ -11,9 +11,8 @@ class AdminVue extends Vue {
     /*======DÉBUT DES DROITS SUPERADMIN=======*/
     /*========================================*/
 
-
     /****************************************************/
-    /*************GÉRER RESPONSABLES************/
+    /******************GÉRER RESPONSABLES****************/
     /****************************************************/
 
     public function afficheListeResponsables(){?>
@@ -132,7 +131,7 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="emlCourriel" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel">
+                            <input type="text" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel">
                             <div class="divErreur" id="emlCourrielErreur"></div>
                         </div>
                     </div>
@@ -156,7 +155,7 @@ class AdminVue extends Vue {
                              <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-responsables" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
-                            <button type="submit" name="subCreerResponsable" class="btn btn-success col-sm-offset-1 ">
+                            <button type="submit" name="subAjouterResponsable" class="btn btn-success col-sm-offset-1 ">
                                 <span class="glyphicon glyphicon-plus"></span> Ajouter
                             </button>
                         </div>
@@ -164,6 +163,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -175,7 +175,7 @@ class AdminVue extends Vue {
     /**********MODIFER RESPONSABLES*************/
     /****************************************************/
 
-    public function afficheModifierResponsable(){?>
+    public function afficheModifierResponsable(){ ?>
         
         <div id="message">
             <?php 
@@ -188,8 +188,6 @@ class AdminVue extends Vue {
 
 
         <div class="col-sm-6 col-sm-offset-2">
-
-
             <div class="col-sm-offset-3 col-sm-9">
                 <div class="col-sm-offset-2  col-sm-9">
                     <div class="navbar navbar-default text-center">
@@ -266,6 +264,8 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
+        
     <?php
     }
 
@@ -339,6 +339,7 @@ class AdminVue extends Vue {
             <a href="<?php echo WEB_ROOT.'/admin/admin/ajouter-commission/';?>" id="btnAjouterCommissions" class="btn btn-success col-sm-offset-1">
             <span class="glyphicon glyphicon-plus"></span> Ajouter</a>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -412,6 +413,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -488,7 +490,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
-
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -546,6 +548,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -650,6 +653,7 @@ class AdminVue extends Vue {
                 <span class="glyphicon glyphicon-plus"></span> Ajouter</a>
             </div>
         </div> <!-- .contenu -->
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -724,6 +728,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -802,6 +807,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -859,6 +865,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -866,7 +873,7 @@ class AdminVue extends Vue {
     /*************FIN SUPPRIMER ÉCOLES*************/
     /**********************************************/
 
-     /********************************************************/
+    /********************************************************/
     /**********************GÉRER MATIERES*********************/
     /*********************************************************/
 
@@ -930,6 +937,7 @@ class AdminVue extends Vue {
                 <span class="glyphicon glyphicon-plus"></span> Ajouter</button>
             </div>
         </div> <!-- .contenu -->
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -991,6 +999,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -1051,6 +1060,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -1078,7 +1088,7 @@ class AdminVue extends Vue {
             <div class="col-sm-offset-0 col-sm-8">
                 <div class="col-sm-offset-5  col-sm-7">
                     <div class="navbar navbar-default ">
-                        <h3 class="navbar-text">Modifier une matière</h3>
+                        <h3 class="navbar-text">Supprimer une matière</h3>
                     </div>
                 </div>
             </div>
@@ -1111,6 +1121,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -1254,6 +1265,7 @@ class AdminVue extends Vue {
             <a href="<?php echo WEB_ROOT.'/admin/utilisateur/ajouter-prof/';?>" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
             <span class="glyphicon glyphicon-plus"></span> Ajouter</a>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -1353,6 +1365,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -1464,6 +1477,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -1604,6 +1618,7 @@ class AdminVue extends Vue {
             <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/ajouter-tuteur" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
             <span class="glyphicon glyphicon-plus"></span> Ajouter</a>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -1701,6 +1716,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>  
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -1813,6 +1829,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -1894,6 +1911,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 

@@ -527,7 +527,7 @@ function validerFormModificationTexte() {
 
 }
 
-tinymce.init({
+/*tinymce.init({
    selector: "textarea",
    toolbar: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | blockquote | bullist numlist | styleselect",
    style_formats: [
@@ -537,4 +537,4 @@ tinymce.init({
    menubar : false,
    browser_spellcheck : true,
    language : 'fr_FR'
-});
+});*/

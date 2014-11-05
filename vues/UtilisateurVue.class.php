@@ -90,7 +90,6 @@ class UtilisateurVue extends Vue {
             </div>
         </div><!-- .row -->
 
-
     <!----------------------------->
     <!---- CONTENU PRINCIPAL ------>
     <!----------------------------->
@@ -188,6 +187,8 @@ class UtilisateurVue extends Vue {
                 </div> <!-- col-sm-12 --> 
             </div> <!-- col-sm-12 --> 
         </div><!-- .row -->
+        <script type="text/javascript" src="../js/Utilisateur.js"> </script> 
+          
      <?php }
      
 /*======================*/
@@ -215,8 +216,8 @@ class UtilisateurVue extends Vue {
                     <p>Regardez cette vidéo pour un départ rapide</p>
                 </div>
             </div><!-- .col-md-12 -->
-
         </div><!-- .row -->
+        <script type="text/javascript" src="../js/Utilisateur.js"> </script> 
     <?php }
         
 /*===================*/
@@ -271,7 +272,7 @@ class UtilisateurVue extends Vue {
                 </form>
             </div>
         </div>
-    </div>
+        <script type="text/javascript" src="../js/Utilisateur.js"> </script> 
     <?php }
 
     /*========================================*/
@@ -341,6 +342,7 @@ class UtilisateurVue extends Vue {
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="../js/Utilisateur.js"></script>
     <?php
     }
 
@@ -358,28 +360,27 @@ class UtilisateurVue extends Vue {
         <div class="row">
         <div class="col-sm-6 col-sm-offset-2">
             <div class="">
-
                 <h1 class="col-sm-offset-6 col-sm-6">
                     <strong>Succès!</strong>
                 </h1>
 
                 <h3 class="col-sm-offset-3 col-sm-12 bold"><strong>Votre compte est maintenant actif.</strong></h3>
-            <div class="col-sm-offset-2 col-sm-12 page-header">       
-            </div>
-            <div class="col-sm-12 col-sm-offset-1">
-                <div class="form-group"></div>
-                <div class="form-group"></div>
-                <div class="form-group">
-                <div class="col-sm-offset-5 col-sm-12">
-                    <a href="<?php echo WEB_ROOT;?>" class="btn btn-default btn-lg" title="Genie en ligne">
-                       Génie en ligne
-                    </a>
+                <div class="col-sm-offset-2 col-sm-12 page-header">       
                 </div>
+                <div class="col-sm-12 col-sm-offset-1">
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-5 col-sm-12">
+                            <a href="<?php echo WEB_ROOT;?>" class="btn btn-default btn-lg" title="Genie en ligne">
+                               Génie en ligne
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
+        <script type="text/javascript" src="../js/Utilisateur.js"> </script> 
     <?php
     }
 
@@ -441,6 +442,7 @@ class UtilisateurVue extends Vue {
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="../js/utilisateur.js"></script>
     <?php
     }
 
@@ -460,73 +462,74 @@ class UtilisateurVue extends Vue {
         </div>
 
         <div class="row">
-        <div class="col-sm-6 col-sm-offset-2">
-            <div class="col-sm-offset-6">
-                <h1 class=""><span class="label label-default">Inscription</span></h1>
-            </div>
-            <div class="col-sm-offset-4 col-sm-8 page-header">
-                     
-            </div>
-            <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmInscription" class="form-horizontal" action="<?php echo WEB_ROOT;?>/utilisateur/inscription" method="POST" enctype="" role="form">
-                    <div class="form-group">
-                        <label for="txtInscriptionPrenom" class="col-sm-4 control-label">Prénom :</label>
-                        <div class="col-sm-6">
-                            <input type="text" id="txtInscriptionPrenom" class="form-control" name="txtPrenom" placeholder="Prenom">
-                            <div class="divErreur" id="txtInscriptionPrenomErreur"></div>
+            <div class="col-sm-6 col-sm-offset-2">
+                <div class="col-sm-offset-6">
+                    <h1 class=""><span class="label label-default">Inscription</span></h1>
+                </div>
+                <div class="col-sm-offset-4 col-sm-8 page-header">
+                         
+                </div>
+                <div class="col-sm-12 col-sm-offset-1">
+                    <form id="frmInscription" class="form-horizontal" action="<?php echo WEB_ROOT;?>/utilisateur/inscription" method="POST" enctype="" role="form">
+                        <div class="form-group">
+                            <label for="txtInscriptionPrenom" class="col-sm-4 control-label">Prénom :</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="txtInscriptionPrenom" class="form-control" name="txtPrenom" placeholder="Prenom">
+                                <div class="divErreur" id="txtInscriptionPrenomErreur"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtInscriptionNom" class="col-sm-4 control-label">Nom de famille :</label>
-                        <div class="col-sm-6">
-                            <input type="text" id="txtInscriptionNom" class="form-control" name="txtNom" placeholder="Nom">
-                            <div class="divErreur" id="txtInscriptionNomErreur"></div>
+                        <div class="form-group">
+                            <label for="txtInscriptionNom" class="col-sm-4 control-label">Nom de famille :</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="txtInscriptionNom" class="form-control" name="txtNom" placeholder="Nom">
+                                <div class="divErreur" id="txtInscriptionNomErreur"></div>
+                            </div>
                         </div>
-                    </div>
-                     <div class="form-group">
-                        <label for="txtInscriptionPseudo" class="col-sm-4 control-label">Pseudo :</label>
-                        <div class="col-sm-6">
-                            <input type="text" id="txtInscriptionPseudo" class="form-control" name="txtPseudo" placeholder="Pseudo">
-                            <div class="divErreur" id="txtInscriptionPseudoErreur"></div>
+                         <div class="form-group">
+                            <label for="txtInscriptionPseudo" class="col-sm-4 control-label">Pseudo :</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="txtInscriptionPseudo" class="form-control" name="txtPseudo" placeholder="Pseudo">
+                                <div class="divErreur" id="txtInscriptionPseudoErreur"></div>
+                            </div>
                         </div>
-                    </div>
-                     <div class="form-group">
-                        <label for="txtInscriptionCourriel" class="col-sm-4 control-label">Courriel :</label>
-                        <div class="col-sm-6">
-                            <input type="email" id="txtInscriptionCourriel" class="form-control" name="txtCourriel" placeholder="Courriel">
-                            <div class="divErreur" id="txtInscriptionCourrielErreur"></div>
+                         <div class="form-group">
+                            <label for="txtInscriptionCourriel" class="col-sm-4 control-label">Courriel :</label>
+                            <div class="col-sm-6">
+                                <input type="email" id="txtInscriptionCourriel" class="form-control" name="txtCourriel" placeholder="Courriel">
+                                <div class="divErreur" id="txtInscriptionCourrielErreur"></div>
+                            </div>
                         </div>
-                    </div>
-                     <div class="form-group">
-                        <label for="txtInscriptionMdp1" class="col-sm-4 control-label">Mot de passe :</label>
-                        <div class="col-sm-6">
-                            <input type="password" id="txtInscriptionMdp1" class="form-control" name="pwdMdp1" placeholder="Mot de passe :">
-                            <div class="divErreur" id="txtInscriptionMdp1Erreur"></div>
+                         <div class="form-group">
+                            <label for="txtInscriptionMdp1" class="col-sm-4 control-label">Mot de passe :</label>
+                            <div class="col-sm-6">
+                                <input type="password" id="txtInscriptionMdp1" class="form-control" name="pwdMdp1" placeholder="Mot de passe :">
+                                <div class="divErreur" id="txtInscriptionMdp1Erreur"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtInscriptionMdp2" class="col-sm-4 control-label">Mot de passe :</label>
-                        <div class="col-sm-6">
-                            <input type="password" id="txtInscriptionMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe :">
-                             <div class="divErreur" id="txtInscriptionMdp2Erreur"></div>
+                        <div class="form-group">
+                            <label for="txtInscriptionMdp2" class="col-sm-4 control-label">Mot de passe :</label>
+                            <div class="col-sm-6">
+                                <input type="password" id="txtInscriptionMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe :">
+                                 <div class="divErreur" id="txtInscriptionMdp2Erreur"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group"></div>
-                    <div class="form-group"></div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                             <button type="refresh" class="btn btn-primary col-sm-offset-4">
-                                Rafraîchir
-                            </button>
-                            <button type="submit" id="btnInscription" name="subInscription" class="btn btn-success">
-                                Soumettre
-                            </button>
+                        <div class="form-group"></div>
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                 <button type="refresh" class="btn btn-primary col-sm-offset-4">
+                                    Rafraîchir
+                                </button>
+                                <button type="submit" id="btnInscription" name="subInscription" class="btn btn-success">
+                                    Soumettre
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+        <script type="text/javascript" src="../js/utilisateur.js"></script>
     <?php
     }
 
@@ -555,7 +558,7 @@ class UtilisateurVue extends Vue {
                     </ol>            
                 </div>
                 <div class="col-sm-12 col-sm-offset-1">
-                    <form class="form-horizontal" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/recuperer-mdp" role="form">
+                    <form id="frmRecuperMdp" class="form-horizontal" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/recuperer-mdp" role="form">
                         <div class="form-group">
                             <label for="nom" class="col-sm-4 control-label">Courriel :</label>
                             <div class="col-sm-6">
@@ -576,6 +579,7 @@ class UtilisateurVue extends Vue {
                 </div>
             </div>
         </div>
+        <script type="text/javascript" src="../js/Utilisateur.js"> </script> 
     <?php
     }
 
@@ -595,51 +599,51 @@ class UtilisateurVue extends Vue {
         </div>
 
         <div class="row">
-        <div class="col-sm-6 col-sm-offset-2">
-            <div class="col-sm-6">
-                <h1 class="col-sm-offset-7 col-sm-6"><span class="label label-default">Question ou commentaire</span></h1>
-            </div>
-            <div class="col-sm-offset-4 col-sm-8 page-header">
-                <ol>
-                    <li>Entre ton courriel.</li>
-                    <li>Soummet ta question ou ton commentaire à notre webmestre.</li>  
-                </ol> 
-            </div>
-           
-            <div class="col-sm-12 col-sm-offset-1">
-                <form class="form-horizontal" role="form" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/envoyer-message">
-                    <div class="form-group">
-                        <label for="nom" class="col-sm-4 control-label">Courriel :</label>
-                        <div class="col-sm-6">
-                            <input type="email" name="emlCourriel" id="txtCourriel" class="form-control" placeholder="Courriel">
-                            <div class="divErreur" id="txtCourrielErreur"></div>
+            <div class="col-sm-6 col-sm-offset-2">
+                <div class="col-sm-6">
+                    <h1 class="col-sm-offset-7 col-sm-6"><span class="label label-default">Question ou commentaire</span></h1>
+                </div>
+                <div class="col-sm-offset-4 col-sm-8 page-header">
+                    <ol>
+                        <li>Entre ton courriel.</li>
+                        <li>Soummet ta question ou ton commentaire à notre webmestre.</li>  
+                    </ol> 
+                </div>
+               
+                <div class="col-sm-12 col-sm-offset-1">
+                    <form id="frmMessage" class="form-horizontal" role="form" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/envoyer-message">
+                        <div class="form-group">
+                            <label for="nom" class="col-sm-4 control-label">Courriel :</label>
+                            <div class="col-sm-6">
+                                <input type="email" name="emlCourriel" id="txtCourriel" class="form-control" placeholder="Courriel">
+                                <div class="divErreur" id="txtCourrielErreur"></div>
+                            </div>
                         </div>
-                    </div>
-                    <section class="form-group">
-                        <label for="nom" class="col-md-4 control-label">Message :</label>
-                        <div class="col-md-6">
-                            <textarea class="col-md-12" name="txtMessage" id="txtCommentaire"></textarea>
-                            <div class="divErreur" id="txtCommentaireErreur"></div>
+                        <section class="form-group">
+                            <label for="nom" class="col-md-4 control-label">Message :</label>
+                            <div class="col-md-6">
+                                <textarea class="col-md-12" name="txtMessage" id="txtCommentaire"></textarea>
+                                <div class="divErreur" id="txtCommentaireErreur"></div>
+                            </div>
+                        </section>
+                        <div class="form-group"></div>
+                        <div class="form-group">
+                        <div class="form-group"></div>
+                            <div class="col-sm-offset-3  col-sm-12">
+                                 <button type="submit" class="btn btn-primary col-sm-offset-2">
+                                    Rafraichir
+                                </button>
+                                <button type="submit" name="subMessage" class="btn btn-success ">
+                                    Soumettre
+                                </button>
+                                
+                            </div>
                         </div>
-                    </section>
-                    <div class="form-group"></div>
-                    <div class="form-group">
-                    <div class="form-group"></div>
-                        <div class="col-sm-offset-3  col-sm-12">
-                             <button type="submit" class="btn btn-primary col-sm-offset-2">
-                                Rafraichir
-                            </button>
-                            <button type="submit" name="subMessage" class="btn btn-success ">
-                                Soumettre
-                            </button>
-                            
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
-
+        <script type="text/javascript" src="../js/Utilisateur.js"> </script> 
     <?php
     }
     //TODO: Ajouter des méthodes au besoin

@@ -1,6 +1,39 @@
-if(docment.getElementById('frmLogin')) {
-	docment.getElementById('frmLogin').addEventListener('submit', validerFrmLogin);
-}
+/**
+ * Validation du formulaires en JavaScript en utilisant les RegExp
+ * @author Maxime Gaillard
+ * @version Beta
+ * @date 29-10-2014
+ */
+
+window.addEventListener('load', function () {
+
+	if(document.getElementById('frmLogin')) {
+		document.getElementById('frmLogin').addEventListener('submit', validerFrmLogin);
+		var txtPseudo = document.getElementById('txtPseudo');
+   		txtPseudo.focus();
+	}
+
+	if(document.getElementById('frmProfilUtilateur')) {
+		document.getElementById('frmProfilUtilateur').addEventListener('submit', validerFrmModifierProfil);
+	}
+
+	if(document.getElementById('frmPreInscrition')) {
+		document.getElementById('frmPreInscrition').addEventListener('submit', validerFrmPreInscrition);
+	}
+
+	if(document.getElementById('frmInscription')) {
+		document.getElementById('frmInscription').addEventListener('submit', validerFrmInscrition);
+	}
+
+	if(document.getElementById('frmMessage')) {
+		document.getElementById('frmMessage').addEventListener('submit', validerFrmMessage);
+	}
+
+	if(document.getElementById('frmRecuperMdp')) {
+		document.getElementById('frmRecuperMdp').addEventListener('submit', validerFrmRecuperMdp);
+	}
+
+});
 
 function validerFrmLogin() {
 	
@@ -12,12 +45,13 @@ function validerFrmLogin() {
 	}
 
 	var estValide 			= 	true;
+	var premiereErreur = '';//pour l'utilisation de curseur
 	var frmLogin 			= 	document.getElementById('frmLogin');
 
 	//Définir les champs
 	var txtPseudo 			=	document.getElementById('txtPseudo');
 	var pwdPass 			= 	document.getElementById('pwdPass');
-
+	
 	//Définir les champs d'erreur
 	var txtPseudoErreur		=	document.getElementById('txtPseudoErreur');
 	var pwdPassErreur		=	document.getElementById('pwdPassErreur');
@@ -34,20 +68,20 @@ function validerFrmLogin() {
 		estValide = false;
 		txtPseudoErreur.innerHTML = 'Veuillez remplir ce champ';
 	} 
-	else if(estTexte(txtPseudo.value) == false) {
+	else if(estLettre(txtPseudo.value) == false) {
 		estValide = false;
-		txtPseudoErreur.innerHTML = "Ce champ doit contenir du texte";
+		txtPseudoErreur.innerHTML = "Ce champ doit uniquement contenir du texte";
 	}
 
 	//Valider Mot de passe
 	if(estVide(pwdPass.value)) {
 		estValide = false;
-		pwdPass.innerHTML = "Veuillez remplir ce champ";
+		pwdPassErreur.innerHTML = "Veuillez remplir ce champ";
 	}
-	else if(estMotDePasse(pwdPass.value) == false) {
+	/*else if(estMotDePasse(pwdPass.value) == false) {
 		estValide = false;
-		pwdPass.innerHTML = "Ce champ doit contenir huit caractères ou plus et au moins un chiffre";
-	}
+		pwdPassErreur.innerHTML = "Ce champ doit contenir huit caractères ou plus et au moins un chiffre";
+	}*/
 
 	//Soumettre le formulaire 
 	if(estValide == true) {
@@ -55,11 +89,7 @@ function validerFrmLogin() {
 	}
 }
 
-if(docment.getElementById('frmProfilUtilateur')) {
-	docment.getElementById('frmProfilUtilateur').addEventListener('submit', validerFormulaire);
-}
-
-function modifierProfil() {
+function validerFrmModifierProfil() {
 
 	if(event.preventDefault()) {
 		event.preventDefault();
@@ -71,12 +101,14 @@ function modifierProfil() {
 	var frmProfilUtilateur 	= 	document.getElementById('frmProfilUtilateur');
 
 	//Définir les champs
+	var txtPseudo 			=	document.getElementById('txtPseudo');
 	var pwdPass1 			=	document.getElementById('pwdPass1');
 	var pwdPass2 			= 	document.getElementById('pwdPass2');
 
 	//Définir les champs d'erreur
-	var txtPseudoErreur		=	document.getElementById('pwdPass1Erreur');
-	var pwdPassErreur		=	document.getElementById('pwdPass2Erreur');
+	var txtPseudoErreur		=	document.getElementById('txtPseudoErreur');
+	var pwdPass1Erreur		=	document.getElementById('pwdPass1Erreur');
+	var pwdPass2Erreur		=	document.getElementById('pwdPass2Erreur');
 
 	var aDivErreur 			= 	document.getElementsByClassName('divErreur');
 
@@ -111,7 +143,31 @@ function modifierProfil() {
 	}
 
 	if(estValide ==  true) {
-		frmProfilUtilateur.submit();
+		
 	}
+	if(estValide == true){
+      //idDeMonFormulaire.submit();
+	  console.log('Formulaire soumis');
+	  frmProfilUtilateur.submit();
+   }
+   else{
+		premiereErreur.focus();
+   }
+
+}
+
+function validerFrmPreInscrition() {
+
+}
+
+function validerFrmInscrition() {
+
+}
+
+function validerFrmMessage() {
+
+}
+
+function validerFrmRecuperMdp() {
 
 }
