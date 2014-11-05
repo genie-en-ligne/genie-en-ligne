@@ -43,7 +43,7 @@
                         <!-- Entête visible sur tous les écrans sauf les mobiles -->
                         <div class="row">
                             <div class="col-sm-3 logo">
-                                <a href="index.html">
+                                <a href="<?php echo WEB_ROOT;?>">
                                     <img src="<?php echo WEB_ROOT;?>/images/genieenligne.png">
                                 </a>
                             </div>
@@ -78,7 +78,9 @@
                 
                         <div class="row">
                             <div class="col-sm-3 logo">
-                                <img src="<?php echo WEB_ROOT;?>/images/genieenligne.png">
+                                <a href="<?php echo WEB_ROOT;?>/utilisateur/bienvenue">
+                                    <img src="<?php echo WEB_ROOT;?>/images/genieenligne.png">
+                                </a>
                             </div>
                             <div class="col-sm-9 text-right banniere">
                                 <span>
@@ -109,27 +111,6 @@
                                                 </li>
                                             </ul>
                                         </li><!-- .dropdown -->
-                                        <!--
-                                        <li class="dropdown">
-                                            <a id="nav-messagerie" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                                Messagerie
-                                                <span class="caret">
-                                                </span>
-                                            </a>
-                                            <ul class="dropdown-menu" role="menu" aria-labelledby="nav-messagerie">
-                                                <li role="presentation">
-                                                    <a href="#">
-                                                        Trouver un tuteur
-                                                    </a>
-                                                </li>
-                                                <li role="presentation">
-                                                    <a href="#">
-                                                        Historique
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li><!-- .dropdown -->
-
                                         <li class="dropdown">
                                             <a id="nav-compte" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
                                                 Mon compte
@@ -171,7 +152,9 @@
                 
                         <div class="row">
                             <div class="col-sm-3 logo">
-                                <img src="<?php echo WEB_ROOT;?>/images/genieenligne.png">
+                                <a href="<?php echo WEB_ROOT;?>/utilisateur/bienvenue">
+                                    <img src="<?php echo WEB_ROOT;?>/images/genieenligne.png">
+                                </a>
                             </div>
                             <div class="col-sm-9 text-right banniere">
                                 <span>
@@ -202,22 +185,6 @@
                                                 </li>
                                             </ul>
                                         </li><!-- .dropdown -->
-                                        <!--
-                                        <li class="dropdown">
-                                            <a id="nav-messagerie" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                                Messagerie
-                                                <span class="caret">
-                                                </span>
-                                            </a>
-                                            <ul class="dropdown-menu" role="menu" aria-labelledby="nav-messagerie">
-                                                <li role="presentation">
-                                                    <a href="#">
-                                                        Historique
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li><!-- .dropdown -->
-
                                         <li class="dropdown">
                                             <a id="nav-compte" href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
                                                 Mon compte

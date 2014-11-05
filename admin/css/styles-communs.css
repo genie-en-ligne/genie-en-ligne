@@ -274,15 +274,10 @@ header .banniere {
     padding-top: 50px;
 }
 
-.navbar-text {
-    /*padding-left: 15px;*/
-}
-
 
 
 .navbar.navbar-default{
     background: linear-gradient(to bottom, #3D82AB 0%,#484848 100%);
-    /*background-color: #3186ad;*/
     border-radius: 10px;
     border: none;
   /*   box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);*/

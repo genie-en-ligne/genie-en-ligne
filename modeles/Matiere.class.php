@@ -11,16 +11,20 @@
         
         public function ajouterMatiere(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("INSERT INTO matieres (`nom`) VALUES ('{$this->sNom}')");
+            $sNom = $oConnexion->getConnect()->real_escape_string($this->sNom);
+
+            $oResultat = $oConnexion->executer("INSERT INTO matieres (`nom`) VALUES ('{$sNom}')");
             
             $this->setId($oConnexion->getInsertId());            
-            return $this->iId();
+            return $this->iId;
         }
         
         public function modifierMatiere(){
             $oConnexion = new MySqliLib();
+            $sNom = $oConnexion->getConnect()->real_escape_string($this->sNom);
+
             $oResultat = $oConnexion->executer("UPDATE matieres 
-                                                SET `nom` = '{$this->sNom}'
+                                                SET `nom` = '{$sNom}'
                                                 WHERE `matiere_ID` = '{$this->iId}'");
             return $oConnexion->getConnect()->affected_rows;
         }
@@ -35,7 +39,7 @@
 
         public function chargerMatiere(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM matieres WHERE matiere_ID = '{$this->iId}'");
+            $oResultat = $oConnexion->executer("SELECT * FROM matieres WHERE matiere_ID = '{$this->iId}' AND est_detruit = '0'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
             if(count($aResultats) == 0){
@@ -83,7 +87,6 @@
             }
             return $aFinal;
         }
-        //TODO: Ajouter méthodes au besoin
         
         public function setId($iId) {
             TypeException::estInteger($iId);

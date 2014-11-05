@@ -2,7 +2,7 @@
 RewriteEngine On
 
 # Adresse de base de réécriture
-RewriteBase /genie-en-ligne
+RewriteBase /final
 
 RewriteRule ^(.*AJAX.*)$ $1 [L]
 

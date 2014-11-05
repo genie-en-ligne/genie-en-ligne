@@ -42,7 +42,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html"> <img src="<?php echo WEB_ROOT;?>/images/genieenligne.png"></a>
+                <a class="navbar-brand" href="<?php echo WEB_ROOT;?>/admin/utilisateur/bienvenue"> <img src="<?php echo WEB_ROOT;?>/images/genieenligne.png"></a>
             </div>
             <!-- Top Menu Items -->
             <ul class="nav navbar-right top-nav">
@@ -152,7 +152,7 @@
                                 <i class="fa fa-fw fa-edit"></i>Gérer les écoles</a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="<?php echo WEB_ROOT;?>/admin/admin/gerer-matieres">
                                 <i class="fa fa-fw fa-edit"></i>Gérer les matières</a>
                         </li>
                         <li>

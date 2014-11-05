@@ -33,7 +33,7 @@
 				//2ème cas : general
                 case 'general':
 					//Si l'utilisateur est un élève ou tuteur (role = 1, role = 2)
-					if($this->oUtilisateurSession->getRole() <= 3){
+					if($this->oUtilisateurSession->getRole() < 3){
 						$this->erreur404(); //On affiche erreure 404 (élève ou tuteur n'ont pas le droit aux statistiques générales)
 						break;
 					}

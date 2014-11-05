@@ -36,7 +36,7 @@ function validerFrmChercherProf() {
 	var txtNomErreur 		=	document.getElementById('txtNomErreur');
 	var sltNomErreur		=	document.getElementById('sltEcolesErreur');
 
-	var aDivErreur document.getElementsByClassName('divErreur');
+	var aDivErreur = document.getElementsByClassName('divErreur');
 
 	//Enlever toutes les erreurs
 	for(var i = 0; i = aDivErreur.length; i++) {
@@ -44,7 +44,7 @@ function validerFrmChercherProf() {
 	}
 
 	//Valider emlCourriel
-	if(estVide(emlCourriel.value) {
+	if(estVide(emlCourriel.value)) {
 		estValide = false;
 		emlCourrielErreur.innerHTML = "Veuillez remplir ce champ";
 	} 
@@ -107,7 +107,7 @@ function validerFrmAjouterProf() {
 	var sltEcolesErreur 	=	document.getElementById('sltEcolesErreur');
 	var chkMatieresErreur 	= 	document.getElementById('chkMatieresErreur');
 
-	var aDivErreur document.getElementsByClassName('divErreur');
+	var aDivErreur = document.getElementsByClassName('divErreur');
 
 	//Enlever toutes les erreurs
 	for(var i = 0; i = aDivErreur.length; i++) {
@@ -135,7 +135,7 @@ function validerFrmAjouterProf() {
 	}
 
 	//Valider emlCourriel
-	if(estVide(emlCourriel.value) {
+	if(estVide(emlCourriel.value)) {
 		estValide = false;
 		emlCourrielErreur.innerHTML = "Veuillez remplir ce champ";
 	} 
@@ -199,7 +199,7 @@ function validerFrmModifierProf() {
 	var sltEcolesErreur 	=	document.getElementById('sltEcolesErreur');
 	var chkMatieresErreur 	= 	document.getElementById('chkMatieresErreur');
 
-	var aDivErreur document.getElementsByClassName('divErreur');
+	var aDivErreur = document.getElementsByClassName('divErreur');
 
 	//Enlever toutes les erreurs
 	for(var i = 0; i = aDivErreur.length; i++) {
@@ -227,7 +227,7 @@ function validerFrmModifierProf() {
 	}
 
 	//Valider emlCourriel
-	if(estVide(emlCourriel.value) {
+	if(estVide(emlCourriel.value)) {
 		estValide = false;
 		emlCourrielErreur.innerHTML = "Veuillez remplir ce champ";
 	} 
@@ -258,7 +258,6 @@ function validerFrmModifierProf() {
 	if(estValide) {
 		frmModifierProf.submit(); 
 	}
-}
 }
 
 
@@ -294,7 +293,7 @@ function validerFrmChercherTuteur() {
 	var emlCourrielErreur 	=	document.getElementById('emlCourrielErreur');
 	var sltEcolesErreur 	= 	document.getElementById('sltEcolesErreur');
 
-	var aDivErreur document.getElementsByClassName('divErreur');
+	var aDivErreur = document.getElementsByClassName('divErreur');
 
 	//Enlever toutes les erreurs
 	for(var i = 0; i = aDivErreur.length; i++) {
@@ -312,7 +311,7 @@ function validerFrmChercherTuteur() {
 	}
 
 	//Valider emlCourriel
-	if(estVide(emlCourriel.value) {
+	if(estVide(emlCourriel.value)) {
 		estValide = false;
 		emlCourrielErreur.innerHTML = "Veuillez remplir ce champ";
 	} 
@@ -332,7 +331,6 @@ function validerFrmChercherTuteur() {
 		frmChercherTuteur.submit(); 
 	}
 
-}
 }
 /*******************FORMULAIRE D'AJOUT TUTEUR*************************/
 
@@ -365,7 +363,7 @@ function validerFrmAjouterTuteur() {
 	var sltEcolesErreur 	= 	document.getElementById('sltEcolesErreur');
 	var chkMatieresErreur 	= 	document.getElementById('chkMatieresErreur');
 
-	var aDivErreur document.getElementsByClassName('divErreur');
+	var aDivErreur = document.getElementsByClassName('divErreur');
 
 	//Enlever toutes les erreurs
 	for(var i = 0; i = aDivErreur.length; i++) {
@@ -393,7 +391,7 @@ function validerFrmAjouterTuteur() {
 	}
 
 	//Valider emlCourriel
-	if(estVide(emlCourriel.value) {
+	if(estVide(emlCourriel.value)) {
 		estValide = false;
 		emlCourrielErreur.innerHTML = "Veuillez remplir ce champ";
 	} 
@@ -457,7 +455,7 @@ function validerFrmModifierTuteur() {
 	var sltEcolesErreur 	= 	document.getElementById('sltEcolesErreur');
 	var chkMatieresErreur 	= 	document.getElementById('chkMatieresErreur');
 
-	var aDivErreur document.getElementsByClassName('divErreur');
+	var aDivErreur = document.getElementsByClassName('divErreur');
 
 	//Enlever toutes les erreurs
 	for(var i = 0; i = aDivErreur.length; i++) {
@@ -485,7 +483,7 @@ function validerFrmModifierTuteur() {
 	}
 
 	//Valider emlCourriel
-	if(estVide(emlCourriel.value) {
+	if(estVide(emlCourriel.value)) {
 		estValide = false;
 		emlCourrielErreur.innerHTML = "Veuillez remplir ce champ";
 	} 

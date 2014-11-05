@@ -29,7 +29,8 @@ class StatistiqueVue extends Vue {
         <!-- -------------------------------------- -->
 
         <div class="row">		
-			<div class="col-md-12">    
+			<div class="col-md-12">  
+
                 <!-- Permier graphique, affiché dans un panel -->
                 <div class="panel panel-default col-xs-12">
                     <div class="panel-heading">
@@ -39,6 +40,7 @@ class StatistiqueVue extends Vue {
                        <?php echo $this->hGraphiqueVisitesParMois;?>
                     </div>
                 </div>
+
                 <!-- Deuxième graphique, affiché dans un panel -->
                 <div class="panel panel-default col-xs-12">
                     <div class="panel-heading">
@@ -47,17 +49,8 @@ class StatistiqueVue extends Vue {
                     <div class="panel-body">
                         <?php echo $this->hGraphiqueTutorielsConsultes;?>
                     </div>
-                </div>
-                <!-- Troisième graphique, affiché dans un panel -->
-                <!--<div class="panel panel-default col-xs-12">
-                    <div class="panel-heading">
-                       
-                    </div>
-                    <div class="panel-body">
-                        <?php //echo $this->hGraphiqueTempsParMois;?>
-                    </div>
-                </div>-->
-                <!-- Mettre le reste des graphiques ici. -->                   
+                </div> 
+
             </div><!-- .col-md-12 -->                
         </div><!-- .row -->
     <?php
@@ -68,8 +61,8 @@ class StatistiqueVue extends Vue {
 	 * afficher les Statistiques Personnelles d'un Tuteur
 	 */
 	public function afficheStatsPersonnellesTuteur(){?>
-        <script language="javascript" type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/jquery.min.js"></script>
-        <script language="javascript" type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/jquery.jqplot.min.js"></script>
+        <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/jquery.min.js"></script>
+        <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/jquery.jqplot.min.js"></script>
         <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
         <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/plugins/jqplot.canvasAxisTickRenderer.min.js"></script>
         <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/plugins/jqplot.canvasTextRenderer.min.js"></script>
@@ -105,7 +98,7 @@ class StatistiqueVue extends Vue {
                         <?php echo $this->hGraphiqueTutosMatiere;?>
                     </div>
                 </div>
-                <!-- Mettre le reste des graphiques ici. -->                    
+                                  
             </div><!-- .col-md-12 -->
         </div><!-- .row -->    
     <?php
@@ -132,29 +125,29 @@ class StatistiqueVue extends Vue {
         }
         
         $graph = "<div id='{$sDivId}' style='height:{$iHauteur}px;width:{$iLongueur}px;'></div>
-        <script>
-            $.jqplot(
-                '{$sDivId}',  
-                [[
-                    {$pointsXYSurGraphique}
-                ]], 
-                { 
-                    axes:{
-                        xaxis:{
-                            renderer: $.jqplot.CategoryAxisRenderer,
-                        },
-                        yaxis:{
-                            min:0
+                <script>
+                    $.jqplot(
+                        '{$sDivId}',  
+                        [[
+                            {$pointsXYSurGraphique}
+                        ]], 
+                        { 
+                            axes:{
+                                xaxis:{
+                                    renderer: $.jqplot.CategoryAxisRenderer,
+                                },
+                                yaxis:{
+                                    min:0
+                                }
+                            },
+                            seriesDefaults: { 
+                                pointLabels: {
+                                    show:true
+                                }
+                            }
                         }
-                    },
-                    seriesDefaults: { 
-                        pointLabels: {
-                            show:true
-                        }
-                    }
-                }
-            );
-        </script>";
+                    );
+                </script>";
         
         return $graph;
     } //fin de la fonction genererGraphique($sDivId, $iHauteur, $iLongueur, $aDonnees)

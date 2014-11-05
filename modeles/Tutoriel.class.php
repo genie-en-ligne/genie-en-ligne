@@ -186,7 +186,7 @@
 
 
 
-        public function rechercherListeTutosParEleve(){            
+        public function rechercherListeTutosParEleve($ecole_ID){
             $oConnexion = new MySqliLib();
             $oResultat = $oConnexion->executer("SELECT 
                                                     * 
@@ -197,6 +197,7 @@
                                                     c.est_detruit = '0'
                                                     ".$this->getSqlMatiere().$this->getSqlAnnee()." 
                                                 ORDER BY 
+                                                    ecole_ID = '{$ecole_ID}' DESC,
                                                     c.date_approuve DESC
                                                 ");
             $aResultats = $oConnexion->recupererTableau($oResultat);
@@ -356,50 +357,7 @@
             }      
                         
             return true;            
-        }      
-        
-        /*public function modifierTutoVideo(){
-
-            //Connexion à la base de données
-             $oConnexion = new MySqliLib();
-            //Requête d'ajout d'un tutorat
-            $sRequete = "
-            UPDATE 
-                contenu
-            SET 
-                titre = '{$oConnexion->getConnect()->real_escape_string($this->sTitre)}',
-                matiere_ID = '{$this->iMatiereId}',
-                niveau_scolaire_ID = '{$this->iNiveauScolaireId}',
-                ecole_ID = '{$this->iEcoleId}'
-            WHERE
-                contenu_ID = '{$this->iContenu_Id}'
-            ";
-
-                echo $sRequete;
-
-            $oResult = $oConnexion->executer($sRequete);
-
-            if($this->iTypeContenu == '2'){//texte
-                $sRequete = "
-                UPDATE contenu_tutoriel_texte
-                SET contenu_html = '".$oConnexion->getConnect()->real_escape_string($this->sContenu)."'
-                WHERE contenu_ID= ".$this->iContenu_Id."
-                ";
-                echo $sRequete;
-                $oResult = $oConnexion->executer($sRequete);
-            }
-            else{//vidéo
-                 $sRequete = "
-                UPDATE contenu_tutoriel_video
-                SET url = '".$oConnexion->getConnect()->real_escape_string($this->sContenu)."'
-                WHERE  contenu_ID = ".$this->iContenu_Id."
-                ";
-                echo $sRequete;
-                $oResult = $oConnexion->executer($sRequete);
-            }      
-                        
-            return true;            
-        }*/        
+        }     
 
         public function approuverTuto(){
             //Connexion à la base de données
@@ -437,7 +395,7 @@
 
         public function chargerTutoriel(){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM contenu WHERE contenu_ID = '{$this->iContenu_Id}'");
+            $oResultat = $oConnexion->executer("SELECT * FROM contenu WHERE contenu_ID = '{$this->iContenu_Id}' AND est_detruit = '0'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
             if(count($aResultats) == 0){
@@ -512,6 +470,14 @@
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
             return $aResultats[0]['prenom'];
+        }
+
+         public function getlienVideo(){
+            $oConnexion = new MySqliLib();
+            $oResultat = $oConnexion->executer("SELECT url FROM contenu_tutoriel_video WHERE contenu_ID = '{$this->iContenu_Id}'");
+            $aResultats = $oConnexion->recupererTableau($oResultat);
+
+            return $aResultats[0]['url'];
         }
         
         private function getSqlMatiere(){
