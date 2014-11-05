@@ -389,3 +389,12 @@ footer .navbar{
 .panel-default{
     padding:0;
 }
+
+video {
+    width:700px;
+    height: auto;
+}
+
+.divErreur{
+    color: red;
+}

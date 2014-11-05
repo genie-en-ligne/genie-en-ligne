@@ -154,6 +154,15 @@ main .page-header {
     margin-top: 0;
 }
 
+video {
+    width:700px;
+    height: auto;
+}
+
+.divErreur{
+    color: red;
+}
+
 
 /*==============*/
 /* PIED DE PAGE */
