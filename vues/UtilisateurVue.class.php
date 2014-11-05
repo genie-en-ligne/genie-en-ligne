@@ -20,11 +20,9 @@ class UtilisateurVue extends Vue {
         </div>
         <div class="row">
 
-
             <!-- -------- -->
             <!-- CAROUSEL -->
             <!-- -------- -->
-
 
             <div class="hidden-xs col-sm-12 col-md-8">
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -388,7 +386,7 @@ class UtilisateurVue extends Vue {
     /*== afficherPreInscription ==*/
     /*============================*/
 
-      /* Div erreur fait Donna*/
+    /* Div erreur fait Donna*/
 
     public function affichePreInscription() {?>
         <div id="message">
