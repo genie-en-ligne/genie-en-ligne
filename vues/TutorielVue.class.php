@@ -115,8 +115,6 @@ class TutorielVue extends Vue {
     ///////////////////////////////////////////
     // Section pour visualiser texte ou video//
     //////////////////////////////////////////
-    //TODO: 
-
 
     public function afficheLeVideo(){?>
         <div class="modal-dialog">

@@ -13,7 +13,11 @@ class UtilisateurVue extends Vue {
         <div class="row">
             <div class="col-md-12">
                 <div class="bienvenue text-center">
-                    <img src="<?php echo WEB_ROOT;?>/images/video.jpg"><br>
+                   <video controls>
+                        <source src="<?php echo WEB_ROOT;?>/videos/AdminVideo.mp4" type="video/mp4">
+                        <source src="<?php echo WEB_ROOT;?>/videos/AdminVideo.ogv" type="video/ogg">
+                        Votre fureteur ne supporte pas ce vidéo<br>
+                    </video>
 
                     <div class="col-md-12 espace-avant">
                         <div class="btn-group">

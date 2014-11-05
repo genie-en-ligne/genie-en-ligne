@@ -203,7 +203,11 @@ class UtilisateurVue extends Vue {
         <div class="row">
             <div class="col-md-12">
                 <div class="bienvenue text-center">
-                    <img src="<?php echo WEB_ROOT;?>/images/video.jpg"><br>
+                    <video width="400" controls>
+                    <source src="<?php echo WEB_ROOT;?>/videos/BienvenuePublic.mp4" type="video/mp4">
+                    <source src="<?php echo WEB_ROOT;?>/videos/BienvenuePublic.ogv" type="video/ogg">
+                        Votre fureteur ne supporte pas ce vidéo<br>
+                    </video>
 
                     <div class="col-md-12 espace-avant">
                         <div class="btn-group">
@@ -384,6 +388,8 @@ class UtilisateurVue extends Vue {
     /*== afficherPreInscription ==*/
     /*============================*/
 
+      /* Div erreur fait Donna*/
+
     public function affichePreInscription() {?>
         <div id="message">
             <?php 
@@ -411,6 +417,7 @@ class UtilisateurVue extends Vue {
                                 <input type="text" id="txtCodePerm" class="form-control" name="txtCodePerm" placeholder="Code permanent">
                                 <div class="divErreur" id="txtCodePermErreur"></div>
                             </div>
+
                         </div>
                         <div class="form-group">
                             <label for="txtPreInscNom" class="col-sm-4 control-label">Nom de famille :</label>
@@ -442,7 +449,7 @@ class UtilisateurVue extends Vue {
     /*=========================*/
     /*== afficherInscription ==*/
     /*=========================*/
-
+   /* Div erreur fait Donna*/
     public function afficheInscription() {?>
         <div id="message">
             <?php 
@@ -530,7 +537,7 @@ class UtilisateurVue extends Vue {
     /*=========================*/
     /*== afficheRecupererMDP ==*/
     /*=========================*/
-
+    /* Div erreur fait Donna*/
     public function afficheRecupererMDP() {?>
         <div id="message">
             <?php 
@@ -551,7 +558,7 @@ class UtilisateurVue extends Vue {
                     </ol>            
                 </div>
                 <div class="col-sm-12 col-sm-offset-1">
-                    <form class="form-horizontal" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/recuperer-mdp" role="form">
+                    <form id="frmRecuperer" class="form-horizontal" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/recuperer-mdp" role="form">
                         <div class="form-group">
                             <label for="nom" class="col-sm-4 control-label">Courriel :</label>
                             <div class="col-sm-6">
@@ -578,7 +585,7 @@ class UtilisateurVue extends Vue {
     /*==========================*/
     /*== afficheEnvoyerMessage ==*/
     /*===========================*/
-
+    /*Div erreur fait Donna*/
     public function afficheEnvoyerMessage() {?>
         <div id="message">
             <?php 
@@ -635,6 +642,5 @@ class UtilisateurVue extends Vue {
         </div>
     <?php
     }
-    //TODO: Ajouter des méthodes au besoin
 }
 ?>
