@@ -7,6 +7,11 @@
             $this->oUtilisateurSession = $oUtilisateurSession;
         }
 
+        /**
+        * Un switch case pour chaque action du menu disponible
+        * @return un condition que est la fonction appeller plus bas
+        */
+
         public function gerer(){
             switch ($this->getReqAction()) {                
 
