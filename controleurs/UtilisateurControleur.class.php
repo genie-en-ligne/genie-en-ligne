@@ -288,7 +288,16 @@
         private function gererTuteurs(){
             $oVue = new AdminVue();
 
-            $oVue->aListeTuteurs = $this->oUtilisateurSession->rechercherListeTuteurs($this->oUtilisateurSession->getCommission());
+            $ecole = 0;
+            if(isset($_GET['sltEcole'])){
+                $ecole = $_GET['sltEcole'];
+            }
+
+            $oCommission = new Commission($this->oUtilisateurSession->getCommission());
+            $oCommission->chargerCommission();
+            $oVue->aListeEcoles = $oCommission->rechercherListeEcoles();
+
+            $oVue->aListeTuteurs = $this->oUtilisateurSession->rechercherListeTuteurs($this->oUtilisateurSession->getCommission(), $ecole);
             $oVue->afficheListeTuteurs();
         }    
 
@@ -335,7 +344,17 @@
         private function gererProfs(){
             $oVue = new AdminVue();
 
-            $oVue->aListeProfs = $this->oUtilisateurSession->rechercherListeProfs($this->oUtilisateurSession->getCommission());
+            $ecole = 0;
+            if(isset($_GET['sltEcole'])){
+                $ecole = $_GET['sltEcole'];
+            }
+
+            $oVue->aListeProfs = $this->oUtilisateurSession->rechercherListeProfs($this->oUtilisateurSession->getCommission(), $ecole);
+
+            $oCommission = new Commission($this->oUtilisateurSession->getCommission());
+            $oCommission->chargerCommission();
+            $oVue->aListeEcoles = $oCommission->rechercherListeEcoles();
+
             $oVue->afficheListeProfesseurs();
         } 
 

@@ -39,9 +39,15 @@
             return $oConnexion->getConnect()->affected_rows;
         }
        
-        public function rechercherListeEcoles(){
+        public function rechercherListeEcoles($iCommissionId = 0){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM ecoles WHERE est_detruit = '0' ORDER BY nom ASC");
+
+            $commission = '';
+            if($iCommissionId != 0 && is_integer(intval($iCommissionId))){
+                $commission = " AND commission_ID = '".$iCommissionId."'";
+            }
+
+            $oResultat = $oConnexion->executer("SELECT * FROM ecoles WHERE est_detruit = '0' $commission ORDER BY nom ASC");
             $aResultats = $oConnexion->recupererTableau($oResultat);
             
             $aEcoles = array();

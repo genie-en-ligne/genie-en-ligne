@@ -587,8 +587,12 @@ class AdminVue extends Vue {
                         <div class="col-sm-9 col-md-7">
                             <select mutltiple id="sltCommissions" class="form-control" name="sltCommissions">
                                 <?php         
-                                    foreach($this->aListeCommissions as $oCommission){                                        
-                                        echo '<option value="'.$oCommission->getId().'">'.$oCommission->getNom().'</option>';
+                                    foreach($this->aListeCommissions as $oCommission){    
+                                        $selected = '';
+                                        if($_GET['sltCommissions'] == $oCommission->getId()){
+                                            $selected = 'selected="selected"';
+                                        }                                    
+                                        echo '<option value="'.$oCommission->getId().'" '.$selected.'>'.$oCommission->getNom().'</option>';
                                     }
                                 ?>
                             </select>
@@ -1131,28 +1135,23 @@ class AdminVue extends Vue {
                 </div>
             </div>
             <div class="col-lg-12">
-                <form id="frmChercherProf" method="GET" action="" enctype="" class="form-horizontal" role="form">
+                <form id="frmChercherProf" method="GET" action="" class="form-horizontal" role="form">
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-4">
-                                <label for="emlCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
-                                <div class="col-sm-9 col-md-7">
-                                    <input type="email" id="emlCourriel" name="emlCourriel" class="form-control" placeholder="Courriel">
-                                    <div class="divErreur" id="emlCourrielErreur"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="txtNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
-                                <div class="col-sm-9 col-md-7">
-                                    <input type="text" id="txtNom" name="nom" class="form-control" placeholder="Nom">
-                                    <div class="divErreur" id="txtNomErreur"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
                                 <label for="sltEcoles" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
                                 <div class="col-sm-9 col-md-7">
-                                    <select mutltiples id="sltEcoles" class="form-control" name="ecole">
-                                        <option value="0">Sélection</option> 
+                                    <select id="sltEcoles" class="form-control" name="sltEcole">
+                                        <option value="0">Sélection</option>
+                                        <?php
+                                            foreach ($this->aListeEcoles as $oEcole) {
+                                                $selected = '';
+                                                if($_GET['sltEcole'] == $oEcole->getId()){
+                                                    $selected = 'selected="selected"';
+                                                }
+                                                echo '<option value="'.$oEcole->getId().'" '.$selected.'>'.$oEcole->getNom().'</option>';
+                                            }
+                                        ?>
                                     </select>
                                     <div class="divErreur" id="sltEcolesErreur"></div>
                                 </div>
@@ -1487,25 +1486,20 @@ class AdminVue extends Vue {
                     <div class="row">
                         <div class="form-group">
                             <div class="col-md-4">
-                                <label for="emlCourriel" class="col-xs-3 col-sm-3 col-md-5 control-label">Courriel :</label>
-                                <div class="col-sm-9 col-md-7">
-                                    <input type="email" id="emlCourriel" name="emlCourriel" class="form-control" placeholder="Courriel">
-                                    <div class="divErreur" id="emlCourrielErreur"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <label for="txtNom" class="col-xs-3 col-sm-3 col-md-5 control-label">Nom :</label>
-                                <div class="col-sm-9 col-md-7">
-                                    <input type="text" id="txtNom" name="nom" class="form-control" placeholder="Nom">
-                                    <div class="divErreur" id="txtNomErreur"></div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
                                 <label for="sltEcoles" class="col-xs-3 col-sm-3 col-md-5 control-label">École :</label>
                                 <div class="divErreur" id="sltEcolesErreur"></div>
                                 <div class="col-sm-9 col-md-7">
-                                    <select id="sltEcoles" class="form-control" name="ecole">
-                                        <option value="">Sélection</option> 
+                                    <select id="sltEcoles" class="form-control" name="sltEcole">
+                                        <option value="">Sélection</option>
+                                        <?php
+                                            foreach ($this->aListeEcoles as $oEcole) {
+                                                $selected = '';
+                                                if($_GET['sltEcole'] == $oEcole->getId()){
+                                                    $selected = 'selected="selected"';
+                                                }
+                                                echo '<option value="'.$oEcole->getId().'" '.$selected.'>'.$oEcole->getNom().'</option>';
+                                            }
+                                        ?> 
                                     </select>
                                 </div>
                             </div>

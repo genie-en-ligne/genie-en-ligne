@@ -234,9 +234,15 @@
             return $aResultats[0]['nom'];
         }
 
-        public function rechercherListeTuteurs($iCommissionId){
+        public function rechercherListeTuteurs($iCommissionId, $iEcoleId = 0){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, ecoles_par_utilisateur epu WHERE u.utilisateur_ID = epu.utilisateur_ID AND u.role = '2' AND epu.ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$iCommissionId}') AND u.est_detruit = 0");
+
+            $ecole = '';
+            if($iEcoleId != 0 && is_integer(intval($iEcoleId))){
+                $ecole = " AND epu.ecole_ID = '".$iEcoleId."'";
+            }
+
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, ecoles_par_utilisateur epu WHERE u.utilisateur_ID = epu.utilisateur_ID AND u.role = '2' AND epu.ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$iCommissionId}') $ecole AND u.est_detruit = 0");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
             $aFinal = array();
@@ -262,9 +268,15 @@
             return $aFinal;
         }
 
-        public function rechercherListeProfs($iCommissionId){
+        public function rechercherListeProfs($iCommissionId, $iEcoleId = 0){
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, ecoles_par_utilisateur epu WHERE u.utilisateur_ID = epu.utilisateur_ID AND u.role = '3' AND epu.ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$iCommissionId}') AND u.est_detruit = 0");
+
+            $ecole = '';
+            if($iEcoleId != 0 && is_integer(intval($iEcoleId))){
+                $ecole = " AND epu.ecole_ID = '".$iEcoleId."'";
+            }
+
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs u, ecoles_par_utilisateur epu WHERE u.utilisateur_ID = epu.utilisateur_ID AND u.role = '3' AND epu.ecole_ID IN (SELECT ecole_ID FROM ecoles WHERE commission_ID = '{$iCommissionId}') $ecole AND u.est_detruit = 0");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
             $aFinal = array();

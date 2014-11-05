@@ -196,8 +196,13 @@
             $oCommission = new Commission();
             $oVue->aListeCommissions = $oCommission->rechercherListeCommissions();
 
+            $commission = 0;
+            if(isset($_GET['sltCommissions'])){
+                $commission = $_GET['sltCommissions'];
+            }
+
             $oEcole = new Ecole();
-            $oVue->aListeEcoles = $oEcole->rechercherListeEcoles();
+            $oVue->aListeEcoles = $oEcole->rechercherListeEcoles($commission);
 
             $oVue->afficheListeEcoles();
         }
