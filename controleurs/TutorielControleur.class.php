@@ -65,41 +65,55 @@
             try{
                 if($_GET['matiere'] != 0 && $_GET['niveau'] != 0){
                     $oTutoriel = new Tutoriel();
-                    $oTutoriel->setMatiereId($_GET['matiere']);
-                    $oTutoriel->setNiveauScolaire($_GET['niveau']);
+                    $oTutoriel->setMatiereId($_GET['matiere']);//Choisir la matière
+                    $oTutoriel->setNiveauScolaire($_GET['niveau']);// choisir le niveau de scolarité
                     $oVue->aListeTutos = $oTutoriel->rechercherListeTutosParEleve();
                 }
                 else{
                     $oVue->setMessage(array("Veuillez spécifier vos critères de recherche", "warning"));
                 }
                 
-                //Afficher
+                //Afficher la vue de la liste des tutoriels
                 $oVue->aMatieres = $oMatiere->rechercherListeMatieres();
     			$oVue -> afficheListeConsulter();
             }
             catch(Exception $e){
                 $oVue->setMessage(array($e->getMessage(), "danger")); // appeller l'erreur
-
+                //afficher la vue
                 $oVue->aMatieres = $oMatiere->rechercherListeMatieres();
                 $oVue -> afficheListeConsulter();
             }
 		}
 
+        /**
+        * Fonction de vue permetant au tuteur de gerer leurs videos
+        *@param  oVue 
+        *@param  oTutoriel
+        *@return affiche la liste a consulter
+        */    
 		private function gestion() {
 			$oVue = new TutorielVue();
             $oTutoriel = new Tutoriel();
 
-            if($this->oUtilisateurSession->getRole() == 2){
+            if($this->oUtilisateurSession->getRole() == 2){// si c'est le id de role 2 (tuteur)
                 $oTutoriel->setSoumisPar($this->oUtilisateurSession->getId());
                 $oVue -> aListeTutos = $oTutoriel->rechercherListeTutosParTuteur();                
     			$oVue -> afficheListeGererTuteur();
             }
-            elseif($this->oUtilisateurSession->getRole() == 3 || $this->oUtilisateurSession->getRole() == 4){
+            elseif($this->oUtilisateurSession->getRole() == 3 || $this->oUtilisateurSession->getRole() == 4){// si c'est le id de role 3 (professeur) et id 4(responsable)
                 $oVue -> aListeTutos = $oTutoriel->rechercherListeTutosParCommission($this->oUtilisateurSession->getCommission());
                 $oVue -> afficheListeGerer();
             }
 		}
 
+        /**
+        * Fonction de vue permetant de modifier un video
+        *@param  oVue 
+        *@param  oTutoriel
+        *@param  oMatiere
+        *@param  oAncienTuto
+        *@return affiche la liste a consulter
+        */   
 		private function modifierVideo() {
 			$oVue = new TutorielVue();
             $oMatiere = new Matiere();
@@ -120,10 +134,11 @@
                 }
                 else{
                     $oTutoriel = new Tutoriel($this->getReqId());
-                    $oTutoriel->chargerTutoriel();
+                    $oTutoriel->chargerTutoriel(); //afficher la vue pour gere les tutoriels
                     $oVue->oTutoriel = $oTutoriel;
                 }
                 
+                //Si il ny a pas d'ection alors la vue affiche formulaire modification va afficher
                 $oVue->aMatieres = $oMatiere->rechercherListeMatieres();
                 $oVue->aEcoles = $this->oUtilisateurSession->getListeEcoles();
                 $oVue -> afficheFormulaireModificationVideo();
@@ -132,7 +147,7 @@
                 $oTutoriel = new Tutoriel($this->getReqId());
                 $oTutoriel->chargerTutoriel();
                 $oVue->oTutoriel = $oTutoriel;
-                $oVue->setMessage(array($e->getMessage(), "danger"));
+                $oVue->setMessage(array($e->getMessage(), "danger"));//les erreurs
                 $oVue->aMatieres = $oMatiere->rechercherListeMatieres();
                 $oVue->aEcoles = $this->oUtilisateurSession->getListeEcoles();
                 $oVue -> afficheFormulaireModificationVideo();
