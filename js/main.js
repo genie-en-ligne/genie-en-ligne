@@ -64,7 +64,7 @@ function estLettre(varATester) {
 //Tester pour un nom ou prénom (peuvent être composés) valide
 function estNom(varAtester) {
 	//Approche positive
-	var regex = /^[a-zA-Z\xC0-\xFC]{2,}[\s\-\'][a-zA-Z\xC0-\xFC]*$/;
+	var regex = /^[a-zA-Z\xC0-\xFC]{1,}([\s\-\']{1}[a-zA-Z\xC0-\xFC]+)*$/;
 
 	if(regex.test(varAtester)) {
 		return true;
