@@ -1037,9 +1037,9 @@ class AdminVue extends Vue {
                 <form id="frmModifierMatiere" action="" method="POST" enctype="" class="form-horizontal" role="form">
                     <div class="form-group">
                         <div class="col-md-10 col-sm-offset-2">
-                            <label for="txtMatiere" class="col-sm-3  control-label">Matière :</label>
+                            <label for="txtNom" class="col-sm-3  control-label">Matière :</label>
                             <div class="col-sm-9 col-md-8">
-                                <input type="email" id="txtMatiere" name="txtMatiere" class="form-control" placeholder="Matière">
+                                <input type="email" id="txtNom" name="txtNom" class="form-control" placeholder="Matière">
                                 <div class="divErreur" id="txtNomErreur"></div>
                             </div>
                         </div>

@@ -4,74 +4,123 @@
 
 /*************FORMULAIRE RECHERCHER RESPONSABLE**********************/
 
+//Créer des événements sur chacun des formualires après le chargement du document
 window.addEventListener('load', function () { 
 
+	//Formulaire d'ajout de responsables de commissions scolaires
 	if(document.getElementById('frmAjouterResp')) {
 		document.getElementById('frmAjouterResp').addEventListener('submit', validerFrmAjouterResp);
+		//Mettre le focus sur le premier élément du formulaire
+		var txtPrenom = document.getElementById('txtPrenom');
+   		txtPrenom.focus();
 	}
 
+	//Formulaire de modification de responsables de commissions scolaires
 	if(document.getElementById('frmModifierResp')) {
 		document.getElementById('frmModifierResp').addEventListener('submit', validerFrmModifierResp);
+		var txtPrenom = document.getElementById('txtPrenom');
+   		txtPrenom.focus();
 	}
 
-	if(document.getElementById('frmChercherCommissions')) {
-		document.getElementById('frmChercherCommissions').addEventListener('submit', validerFrmChercherCommissions);
-	}
-
+	//Formulaire d'ajout de commissions scolaires
 	if(document.getElementById('frmAjouterCommission')) {
 		document.getElementById('frmAjouterCommission').addEventListener('submit', validerfrmAjouterCommission);
+		//Mettre le focus sur le premier élément du formulaire
+		var sltMrc = document.getElementById('sltMrc');
+   		sltMrc.focus();
 	}
 
+	//Formulaire de modification de commissions scolaires
 	if(document.getElementById('frmModifierCommission')) {
 		document.getElementById('frmModifierCommission').addEventListener('submit', validerFrmModifierCommission);
 	}
 
-	if(document.getElementById('frmSupprimerCommision')) {
-		document.getElementById('frmSupprimerCommision').addEventListener('submit', validerFrmSupprimerCommission);
-	}
-
+	//Formulaire de recherhce d'écoles
 	if(document.getElementById('frmChercherEcoles')) {
 		document.getElementById('frmChercherEcoles').addEventListener('submit', validerFrmChercherEcole);
+		//Mettre le focus sur le premier élément du formulaire
+		var sltCommissions = document.getElementById('sltCommissions');
+   		sltCommissions.focus();
 	}
 
+	//Formulaire d'ajout d'écoles
 	if(document.getElementById('frmAjouterEcole')) {
 		document.getElementById('frmAjouterEcole').addEventListener('submit', validerFrmAjouterEcole);
+		//Mettre le focus sur le premier élément du formulaire
+		var sltCommissions = document.getElementById('sltCommissions');
+   		sltCommissions.focus();
 	}
 
+	//Formulaire de modification d'écoles
 	if(document.getElementById('frmModifierEcoles')) {
 		document.getElementById('frmModifierEcoles').addEventListener('submit', validerFrmModifierEcoles);
+		//Mettre le focus sur le premier élément du formulaire
+		var sltCommissions = document.getElementById('sltCommissions');
+   		sltCommissions.focus();
 	}
 
+	//Formulaire d'ajout de matières
 	if(document.getElementById('frmAjouterMatiere')) {
 		document.getElementById('frmAjouterMatiere').addEventListener('submit', validerFrmAjouterMatiere);
+		//Mettre le focus sur le premier élément du formulaire
+		var txtNom = document.getElementById('txtNom');
+   		txtNom.focus();
 	}
 
+	//Formulaire de madification de matières
 	if(document.getElementById('frmModifierMatiere')) {
 		document.getElementById('frmModifierMatiere').addEventListener('submit', validerFrmModifierMatiere);
+		//Mettre le focus sur le premier élément du formulaire
+		var txtNom = document.getElementById('txtNom');
+   		txtNom.focus();
 	}
 
+	//Formulaire de recherhce de professeurs
 	if(document.getElementById('frmChercherProf')) {
 		document.getElementById('frmChercherProf').addEventListener('submit', validerFrmChercherProf);
+		//Mettre le focus sur le premier élément du formulaire
+		var sltEcoles = document.getElementById('sltEcoles');
+   		sltEcoles.focus();
 	}
 
+	//Formulaire d'ajout de professeurs
 	if(document.getElementById('frmAjouterProf')) {
 		document.getElementById('frmAjouterProf').addEventListener('submit', validerFrmAjouterProf);
+		//Mettre le focus sur le premier élément du formulaire
+		var txtPrenom = document.getElementById('txtPrenom');
+   		txtPrenom.focus();
 	}
 
+	//Formulaire de modification de professeurs
 	if(document.getElementById('frmModifierProf')) {
 		document.getElementById('frmModifierProf').addEventListener('submit', validerFrmModifierProf);
+		//Mettre le focus sur le premier élément du formulaire
+		var txtPrenom = document.getElementById('txtPrenom');
+   		txtPrenom.focus();
 	}
 
+	//Formulaire de recherche de tuteurs
 	if(document.getElementById('frmChercherTuteur')) {
 		document.getElementById('frmChercherTuteur').addEventListener('submit', validerFrmChercherTuteur);
+		//Mettre le focus sur le premier élément du formulaire
+		var sltEcoles = document.getElementById('sltEcoles');
+   		sltEcoles.focus();
 	}
 
+	//Formulaire d'ajout de tuteurs
 	if(document.getElementById('frmAjouterTuteur')) {
 		document.getElementById('frmAjouterTuteur').addEventListener('submit', validerFrmAjouterTuteur);
+		//Mettre le focus sur le premier élément du formulaire
+		var txtPrenom = document.getElementById('txtPrenom');
+   		txtPrenom.focus();
 	}
 
+	//Formulaire de modification de tuteurs
 	if(document.getElementById('frmModifierTuteur')) {
 		document.getElementById('frmModifierTuteur').addEventListener('submit', validerFrmModifierTuteur);
+		//Mettre le focus sur le premier élément du formulaire
+		var txtPrenom = document.getElementById('txtPrenom');
+   		txtPrenom.focus();
 	}
 
 });
@@ -79,17 +128,20 @@ window.addEventListener('load', function () {
 
 /*************FORMULAIRE AJOUTER RESPONSABLE**********************/
 
-
+//Validation du formulaire d'ajout de responsables de commissions scolaires
 function validerFrmAjouterResp() {
 
-	//Empêcher le formulaire de soumettre automatiquement
+	//Prévenir l'envoie automatique du formulaire
 	if(event.preventDefault()) {
 		event.preventDefault();
 	} else {
 		event.returnValue = false;
 	}
 
+	//Valeur par défaut du formulaire
 	var estValide =  false;
+
+	//Cible de la méthode submit 
 	var frmAjouterResp 			= 	document.getElementById('frmAjouterResp');
 
 	//Définir les champs
@@ -157,16 +209,20 @@ function validerFrmAjouterResp() {
 
 /*************FORMULAIRE MODIFIER RESPONSABLE**********************/
 
+//Validation du formulaire de modification de responsables de commissions scolaires
 function validerFrmModifierResp() {
 
-	//Empêcher le formulaire de soumettre automatiquement
+	//Prévenir l'envoie automatique du formulaire
 	if(event.preventDefault()) {
 		event.preventDefault();
 	} else {
 		event.returnValue = false;
 	}
 
+	//Valeur par défaut du formulaire
 	var estValide =  false;
+
+	//Cible de la méthode submit
 	var frmModifierResp 		= 	document.getElementById('frmModifierResp');
 
 	//Définir les champs
@@ -234,17 +290,20 @@ function validerFrmModifierResp() {
 
 /*************FORMULAIRE AJOUTER COMMISSIONS**********************/
 
-
+//Validation du formulaire d'ajout de commissions scolaires
 function validerfrmAjouterCommission() {
 
-	//Empêcher le formulaire de soumettre automatiquement
+	//Prévenir l'envoie automatique du formulaire
 	if(event.preventDefault()) {
 		event.preventDefault();
 	} else {
 		event.returnValue = false;
 	}
 
+	//Valeur par défaut du formulaire
 	var estValide =  false;
+
+	//Cible de la méthode submit 
 	var frmAjouterCommission 	= 	document.getElementById('frmAjouterCommission');
 
 	//Définir les champs
@@ -287,16 +346,20 @@ function validerfrmAjouterCommission() {
 
 /*************FORMULAIRE MODIFIER COMMISSIONS**********************/
 
+//Validation du formulaire de modifications de commissions scolaires
 function validerFrmModifierCommission() {
 
-	//Empêcher le formulaire de soumettre automatiquement
+	//Prévenir l'envoie automatique du formulaire
 	if(event.preventDefault()) {
 		event.preventDefault();
 	} else {
 		event.returnValue = false;
 	}
 
+	//Valeur par défaut du formulaire
 	var estValide =  false;
+
+	//Cible de la méthode submit 
 	var frmModifierCommission 	= 	document.getElementById('frmModifierCommission');
 
 	//Définir les champs
@@ -348,17 +411,20 @@ function validerFrmModifierCommission() {
 
 /*************FORMULAIRE CHERCHER ÉCOLES**********************/
 
-
+//Validation du formulaire de recherche d'écoles
 function validerFrmChercherEcole() {
 
-	//Empêcher le formulaire de soumettre automatiquement
+	//Prévenir l'envoie automatique du formulaire
 	if(event.preventDefault()) {
 		event.preventDefault();
 	} else {
 		event.returnValue = false;
 	}
 
+	//Valeur par défaut du formulaire
 	var estValide =  false;
+
+	//Cible de la méthode submit 
 	var frmChercherEcoles 		= 	document.getElementById('frmChercherEcoles');
 
 	//Définir les champs
@@ -390,16 +456,20 @@ function validerFrmChercherEcole() {
 
 /*************FORMULAIRE AJOUTER ÉCOLES**********************/
 
+//Validation du formulaire d'ajout d'écoles
 function validerFrmAjouterEcole() {
 
-	//Empêcher le formulaire de soumettre automatiquement
+	//Prévenir l'envoie automatique du formulaire
 	if(event.preventDefault()) {
 		event.preventDefault();
 	} else {
 		event.returnValue = false;
 	}
 
+	//Valeur par défaut du formulaire
 	var estValide =  false;
+
+	//Cible de la méthode submit 
 	var frmAjouterEcole 		= 	document.getElementById('frmAjouterEcole');
 
 	//Définir les champs
@@ -442,16 +512,20 @@ function validerFrmAjouterEcole() {
 
 /*************FORMULAIRE MODIFIER ÉCOLES**********************/
 
+//Validation du formulaire de modifications d'écoles
 function validerFrmModifierEcoles() {
 
-	//Empêcher le formulaire de soumettre automatiquement
+	//Prévenir l'envoie automatique du formulaire
 	if(event.preventDefault()) {
 		event.preventDefault();
 	} else {
 		event.returnValue = false;
 	}
 
+	//Valeur par défaut du formulaire
 	var estValide =  false;
+
+	//Cible de la méthode submit 
 	var frmModifierEcoles 		= 	document.getElementById('frmModifierEcoles');
 
 	//Définir les champs
@@ -494,16 +568,20 @@ function validerFrmModifierEcoles() {
 
 /*************FORMULAIRE AJOUTER MATIÈRES**********************/
 
+//Validation du formulaire d'ajout de matières
 function validerFrmAjouterMatiere() {
 
-	//Empêcher le formulaire de soumettre automatiquement
+	//Prévenir l'envoie automatique du formulaire
 	if(event.preventDefault()) {
 		event.preventDefault();
 	} else {
 		event.returnValue = false;
 	}
 
+	//Valeur par défaut du formulaire
 	var estValide =  false;
+
+	//Cible de la méthode submit
 	var frmAjouterMatiere 		= 	document.getElementById('frmAjouterMatiere');
 
 	//Définir les champs
@@ -538,16 +616,20 @@ function validerFrmAjouterMatiere() {
 
 /*************FORMULAIRE MODIFIER MATIÈRES**********************/
 
+//Validation du formulaire de modifications de matières
 function validerFrmModifierMatiere() {
 
-	//Empêcher le formulaire de soumettre automatiquement
+	//Prévenir l'envoie automatique du formulaire
 	if(event.preventDefault()) {
 		event.preventDefault();
 	} else {
 		event.returnValue = false;
 	}
 
+	//Valeur par défaut du formulaire
 	var estValide =  false;
+
+	//Cible de la méthode submit
 	var frmModifierMatiere 		= 	document.getElementById('frmModifierMatiere');
 
 	//Définir les champs
@@ -586,53 +668,33 @@ function validerFrmModifierMatiere() {
 
 /*************FORMULAIRE DE RECHERCHE PROFESSEUR**********************/
 
+//Validation du formulaire de recherche de professeurs
 function validerFrmChercherProf() { 
 
-	//Empêcher le formulaire de soumettre automatiquement
+	//Prévenir l'envoie automatique du formulaire
 	if(event.preventDefault()) {
 		event.preventDefault();
 	} else {
 		event.returnValue = false;
 	}
 
+	//Valeur par défaut du formulaire
 	var estValide =  false;
+
+	//Cible de la méthode submit
 	var frmChercherProf 	= 	document.getElementById('frmChercherProf');
 
 	//Définir les champs
-	var emlCourriel 		= 	document.getElementById('emlCourriel');
-	var txtNom 				= 	document.getElementById('txtNom');
 	var sltEcoles			=	document.getElementById('sltEcoles');
 
-	//Définir les champs d'erreurs
-	var emlCourrielErreur 	= 	document.getElementById('emlCourrielErreur');
-	var txtNomErreur 		=	document.getElementById('txtNomErreur');
-	var sltNomErreur		=	document.getElementById('sltEcolesErreur');
+	//Définir les champs d'erreur
+	var sltEcolesErreur		=	document.getElementById('sltEcolesErreur');
 
 	var aDivErreur 			= 	document.getElementsByClassName('divErreur');
 
 	//Enlever toutes les erreurs
 	for(var i = 0; i < aDivErreur.length; i++) {
 		aDivErreur[i].innerHTML = '';
-	}
-
-	//Valider emlCourriel
-	if(estVide(emlCourriel.value)) {
-		estValide = false;
-		emlCourrielErreur.innerHTML = "Veuillez remplir ce champ";
-	} 
-	else if(!estCourriel(emlCourriel.value)) {
-		estValide = false;
-		emlCourrielErreur.innerHTML = "Le courriel est invalide";
-	}
-
-	//Valider txtNom
-	if(estVide(txtNom.value)) {
-		estValide = false;
-		txtNomErreur.innerHTML = "Veuillez remplir ce champ";
-	}
-	else if(!estNom(txtNom.value)) {
-		estValide = false;
-		txtNomErreur.innerHTML = "Le nom est invalide";
 	}
 
 	//Valider sltEcoles
@@ -650,15 +712,20 @@ function validerFrmChercherProf() {
 
 /****************FORMULAIRE D'AJOUT PROFESSEUR************************/
 
+//Validation du formulaire d'ajout de professeurs
 function validerFrmAjouterProf() {
 
+	//Prévenir l'envoie automatique du formulaire
 	if(event.preventDefault()) {
 		event.preventDefault();
 	} else {
 		event.returnValue = false;
 	}
 
+	//Valeur par défaut du formulaire
 	var estValide =  false;
+
+	//Cible de la méthode submit
 	var frmAjouterProf 		= 	document.getElementById('frmAjouterProf');
 
 	//Définir les champs
@@ -738,15 +805,20 @@ function validerFrmAjouterProf() {
 
 /***************FORMULAIRE DE MODIFICATION PROFESSEUR*****************/
 
+//Validation du formulaire de modifications de professeurs
 function validerFrmModifierProf() {
 
+	//Prévenir l'envoie automatique du formulaire
 	if(event.preventDefault()) {
 		event.preventDefault();
 	} else {
 		event.returnValue = false;
 	}
 
+	//Valeur par défaut du formulaire
 	var estValide =  false;
+
+	//Cible de la méthode submit
 	var frmModifierProf = document.getElementById('frmModifierProf');
 
 	//Définir les champs
@@ -831,15 +903,20 @@ function validerFrmModifierProf() {
 
 /****************FORMULAIRE DE RECHERCHE TUTEURS**********************/
 
+//Validation du formulaire de recherche de tuteurs
 function validerFrmChercherTuteur() {
 
+	//Prévenir l'envoie automatique du formulaire
 	if(event.preventDefault()) {
 		event.preventDefault();
 	} else {
 		event.returnValue = false;
 	}
 
+	//Valeur par défaut du formulaire
 	var estValide =  false;
+
+	//Cible de la méthode submit
 	var frmChercherTuteur 	= 	document.getElementById('frmChercherTuteur');
 
 	//Définir les champs
@@ -894,15 +971,20 @@ function validerFrmChercherTuteur() {
 
 /*******************FORMULAIRE D'AJOUT TUTEUR*************************/
 
+//Validation du formulaire d'ajout de tuteurs
 function validerFrmAjouterTuteur() {
 
+	//Prévenir l'envoie automatique du formulaire
 	if(event.preventDefault()) {
 		event.preventDefault();
 	} else {
 		event.returnValue = false;
 	}
 
+	//Valeur par défaut du formulaire
 	var estValide =  false;
+
+	//Cible de la méthode submit
 	var frmAjouterTuteur 	= document.getElementById('frmAjouterTuteur');
 
 	//Définir les champs
@@ -983,15 +1065,20 @@ function validerFrmAjouterTuteur() {
 
 /*************FORMULAIRE DE MODIFICATION TUTEURS**********************/
 
+//Validation du formulaire de modifications de tuteurs
 function validerFrmModifierTuteur() {
 	
+	//Prévenir l'envoie automatique du formulaire
 	if(event.preventDefault()) {
 		event.preventDefault();
 	} else {
 		event.returnValue = false;
 	}
 
+	//Valeur par défaut du formulaire
 	var estValide =  false;
+
+	//Cible de la méthode submit
 	var frmModifierTuteur = document.getElementById('frmModifierTuteur');
 
 	//Définir les champs
@@ -1071,35 +1158,3 @@ function validerFrmModifierTuteur() {
 }
 
 
-/*****************************************************************************************/
-/***************VALIDATION DU FORMULAIRE DE SUPPRESSION DES UTILISATEURS ******************/
-/*****************************************************************************************/
-
-/*if(document.getElementById('frmSupprimerUtilisateur')) {
-	document.getElementById('subSupprimer').addEventListner('submit', validerFrmSupprimerUtilisateur)
-}
-
-function validerFrmSupprimerUtilisateur() {
-	
-	if(event.preventDefault()) {
-		event.preventDefault();
-	} else {
-		event.returnValue = false;
-	}
-
-	var estValide =  false;
-	var frmSupprimerUtilisateur = document.getElementById('frmSupprimerUtilisateur');
-
-	//Définir les champs
-	var = document.getElementById('');
-
-	//Définir les champs d'erreurs
-	var aDivErreur document.getElementsByClassName('divErreur');
-
-	//Enlever toutes les erreurs
-	for(var i = 0; i = aDivErreur.length; i++) {
-		aDivErreur[i].innerHTML = '';
-	}
-
-	//...
-}*/

@@ -8,66 +8,62 @@
  *
  */
 
- // Placer votre JavaScript ici
-
-//Ici seront les fonctions de validation générales utilisées pour toutes nos validations personnelles.
-
-//Par exemple, estNumérique(), estBooleen(), estVide(), etc.
 
 //Tester pour un champ vide
 function estVide(varATester){
-
-   if(varATester.length == 0){
-      return true;
-   }
-   return false;
+	//Approche positive
+   	if(varATester.length == 0){
+      	return true;
+   	}
+   		return false;
 }
 
-//Tester pour une valeur numérique
+//Tester une valeur numérique invalide
 function estNumerique(varATester){
-   //Approche négative
-   var regex = /[^0-9]/;
-   if(regex.test(varATester)){
-      return false;
-   }
-   return true;
+   	//Approche négative
+   	var regex = /[^0-9]/;
+   	if(regex.test(varATester)){
+      	return false;
+   	}
+   		return true;
 }
 
-
+//Tester un titre invalide
 function estTitre(varATester){
-    // regex pour que l'utilisateur ne rentre pas les caractères non désirés
+	//Approche négative
 	var regex = /[^a-zA-Z0-9\s\-\*\xC0-\xFC'\!\?\.\,\t\n\r]/;
 
-	if(regex.test(varATester)) { //on teste le champ et si il y a  des caractères invalides 
-		return false;			 // on retourne false
+	if(regex.test(varATester)) { 
+		return false;			 
 	}
-	return true;
+		return true;
 }
 
+//Tester une URL invalide
 function estUrl(varATester){
-    // regex pour que l'utilisateur ne rentre pas les caractères non désirés
+	//Approche négative
 	var regex = /[^a-zA-Z0-9\s\/\<\>'="\?\._]/;
 
-	if(regex.test(varATester)) { //on teste le champ et si il y a  des caractères invalides 
-		return false;			 // on retourne false
+	if(regex.test(varATester)) { 
+		return false;			 
 	}
-	return true;
+		return true;
 }
     
-//Tester pour une valeur alpha
+//Tester une valeur alpha invalide
 function estLettre(varATester) {
-	// regex pour que l'utilisateur ne rentre pas les caractères non désirés
+	//Approche négative
 	var regex = /[^a-zA-Z\s\xC0-\xFC]/;
 
 	if(regex.test(varATester)) { //on teste le champ et si il y a  des caractères invalides 
 		return false;			 // on retourne false
 	}
-	return true;
+		return true;
 }
 
-//Tester pour une valeur nom ou prénom
+//Tester pour un nom ou prénom (peuvent être composés) valide
 function estNom(varAtester) {
-	//Validation pour un nom ou prénom composé (optionnel)
+	//Approche positive
 	var regex = /^[a-zA-Z\xC0-\xFC]{2,}[\s\-\'][a-zA-Z\xC0-\xFC]*$/;
 
 	if(regex.test(varAtester)) {
@@ -77,9 +73,9 @@ function estNom(varAtester) {
 	}
 }
 
-//Tester pour une valeur commission scolaire
+//Tester un nom de commission scolaire valide
 function estCommission(varAtester) {
-
+	//Approche positive
 	var regex = /^[a-zA-Z\xC0-\xFC]+([\s\-\']{1}[a-zA-Z\xC0-\xFC]+)*$/;
 
 	if(regex.test(varAtester)) {
@@ -89,7 +85,7 @@ function estCommission(varAtester) {
 	}
 }
 
-//Tester pour un courriel
+//Tester un courriel valide
 function estCourriel(varATester) {
 	//approche positive
 	var regex = /[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})/;
@@ -98,7 +94,6 @@ function estCourriel(varATester) {
 	} else {
 		return false;
 	}
-    //return true;
 }
 
 //Tester pour un mot de passe
@@ -106,10 +101,10 @@ function estCourriel(varATester) {
 //doit contenir au moins une lettre
 //doit contenir minimum 8 caractère
 function estMotDePasse(varATester) {
-	//approche négative [^\s](?=.*\d)(?=.*[a-z]).{8,20}
+
 	var regex = /^(?=.{8,15})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])$/
 	if(regex.test(varATester)) {	
 		return true;
 	} 
-    return true;
+    	return true;
 }
