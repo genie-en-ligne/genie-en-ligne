@@ -11,9 +11,8 @@ class AdminVue extends Vue {
     /*======DÉBUT DES DROITS SUPERADMIN=======*/
     /*========================================*/
 
-
     /****************************************************/
-    /*************AFFICHER GÉRER RESPONSABLES************/
+    /******************GÉRER RESPONSABLES****************/
     /****************************************************/
 
     public function afficheListeResponsables(){?>
@@ -34,7 +33,6 @@ class AdminVue extends Vue {
                 </div>
             </div>
         </div>  
-
         <div class="contenu">
             <div class="row">
                 <div class="col-lg-12">
@@ -85,7 +83,7 @@ class AdminVue extends Vue {
     }
 
     /****************************************************/
-    /**********FIN AFFICHER GÉRER RESPONSABLES***********/
+    /**********FIN GÉRER RESPONSABLES***********/
     /****************************************************/
 
     /****************************************************/
@@ -112,12 +110,10 @@ class AdminVue extends Vue {
                     </div>
                 </div>
             </div>
-            <div class="col-sm-offset-4 col-sm-8 page-header">
-                     
+            <div class="col-sm-offset-4 col-sm-8 page-header">     
             </div>
-
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmAjouterResponsable" action="" method="POST" class="form-horizontal" role="form">
+                <form id="frmAjouterResp" action="" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="txtPrenom" class="col-sm-4 control-label">Prénom :</label>
                         <div class="col-sm-6">
@@ -135,7 +131,7 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="emlCourriel" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel">
+                            <input type="text" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel">
                             <div class="divErreur" id="emlCourrielErreur"></div>
                         </div>
                     </div>
@@ -159,7 +155,7 @@ class AdminVue extends Vue {
                              <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-responsables" class="btn btn-danger" role="button">
                                 <span class="glyphicon glyphicon-remove"></span> Annuler
                             </a>
-                            <button type="submit" name="subCreerResponsable" class="btn btn-success col-sm-offset-1 ">
+                            <button type="submit" name="subAjouterResponsable" class="btn btn-success col-sm-offset-1 ">
                                 <span class="glyphicon glyphicon-plus"></span> Ajouter
                             </button>
                         </div>
@@ -167,6 +163,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -175,10 +172,10 @@ class AdminVue extends Vue {
     /****************************************************/
 
     /****************************************************/
-    /**********AFFICHER MODIFER RESPONSABLES*************/
+    /**********MODIFER RESPONSABLES*************/
     /****************************************************/
 
-    public function afficheModifierResponsable(){?>
+    public function afficheModifierResponsable(){ ?>
         
         <div id="message">
             <?php 
@@ -191,8 +188,6 @@ class AdminVue extends Vue {
 
 
         <div class="col-sm-6 col-sm-offset-2">
-
-
             <div class="col-sm-offset-3 col-sm-9">
                 <div class="col-sm-offset-2  col-sm-9">
                     <div class="navbar navbar-default text-center">
@@ -269,6 +264,8 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
+        
     <?php
     }
 
@@ -277,7 +274,7 @@ class AdminVue extends Vue {
     /****************************************************/
 
     /****************************************************/
-    /*************AFFICHER GÉRER COMMISSIONS*************/
+    /******************GÉRER COMMISSIONS*****************/
     /****************************************************/
 
     public function afficheListeCommissions(){?>
@@ -350,7 +347,7 @@ class AdminVue extends Vue {
     /****************************************************/
 
     /**************************************************/
-    /**********AFFICHER AJOUTER COMMISSIONS************/
+    /****************AJOUTER COMMISSIONS***************/
     /**************************************************/
 
     public function afficheAjouterCommission(){?>
@@ -378,7 +375,7 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmAjouterResponsable" action="<?php echo WEB_ROOT?>/admin/admin/ajouter-commission" method="POST" class="form-horizontal" role="form">
+                <form id="frmAjouterCommission" action="<?php echo WEB_ROOT?>/admin/admin/ajouter-commission" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="sltRegion" class="col-sm-4 control-label">MRC :</label>
                             <div class="col-sm-6">
@@ -394,13 +391,12 @@ class AdminVue extends Vue {
                             </div>
                     </div>
                     <div class="form-group">
-                        <label for="txtNom" class="col-sm-4 control-label">Commission scolaire :</label>
+                        <label for="txtCommission" class="col-sm-4 control-label">Commission scolaire :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtNom" class="form-control" name="txtNom" placeholder="Commission scolaire">
-                            <div class="divErreur" id="txtNomErreur"></div>    
+                            <input type="text" id="txtCommission" class="form-control" name="txtNom" placeholder="Commission scolaire">
+                            <div class="divErreur" id="txtCommissionErreur"></div>   
                         </div>
                     </div>
-        
                     <div class="form-group"></div>
                     <div class="form-group"></div>
                     <div class="form-group">
@@ -416,6 +412,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -424,7 +421,7 @@ class AdminVue extends Vue {
     /****************************************************/
 
     /***********************************************************/
-    /**************AFFICHER MODIFIER COMMISSIONS****************/
+    /*********************MODIFIER COMMISSIONS******************/
     /***********************************************************/
 
     public function afficheModifierCommission(){?>
@@ -452,24 +449,24 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmAjouterResponsable" action="" method="POST" enctype="" class="form-horizontal" role="form">
+                <form id="frmModifierCommission" action="" method="POST" enctype="" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="sltMrc" class="col-sm-4 control-label">MRC :</label>
-                            <div class="col-sm-6">
-                                <select id="sltMrc" class="form-control" name="sltRegion">
-                                    <option value="0">Choisir</option>
-                                    <?php
-                                        foreach ($this->aListeRegions as $key => $value) {
-                                            $selected = '';
-                                            if($key == $this->oCommission->getRegion()){
-                                                $selected = 'selected="selected"';
-                                            }
-                                            echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+                        <div class="col-sm-6">
+                            <select id="sltMrc" class="form-control" name="sltRegion">
+                                <option value="0">Choisir</option>
+                                <?php
+                                    foreach ($this->aListeRegions as $key => $value) {
+                                        $selected = '';
+                                        if($key == $this->oCommission->getRegion()){
+                                            $selected = 'selected="selected"';
                                         }
-                                    ?>
-                                </select>
-                                <div class="divErreur" id="sltMrcErreur"></div>
-                            </div>
+                                        echo '<option value="'.$key.'" '.$selected.'>'.$value.'</option>';
+                                    }
+                                ?>
+                            </select>
+                            <div class="divErreur" id="sltMrcErreur"></div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label for="txtCommission" class="col-sm-4 control-label">Commissions scolaire :</label>
@@ -492,7 +489,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
-
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -501,7 +498,7 @@ class AdminVue extends Vue {
     /****************************************************/
 
     /***************************************************/
-    /***********AFFICHER SUPPRIMER COMMISSIONS**********/
+    /***************SUPPRIMER COMMISSIONS***************/
     /***************************************************/
 
 
@@ -550,6 +547,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -558,7 +556,7 @@ class AdminVue extends Vue {
     /***************************************************/
 
     /*******************************************************/
-    /****************AFFICHER GÉRER ÉCOLES******************/
+    /**********************GÉRER ÉCOLES*********************/
     /*******************************************************/
 
     public function afficheListeEcoles(){?>
@@ -580,7 +578,7 @@ class AdminVue extends Vue {
             </div>
         </div>
         <div class="col-lg-12">
-            <form id="frmChercherEcole" method="GET" action="" class="form-horizontal" role="form">
+            <form id="frmChercherEcoles" method="GET" action="" class="form-horizontal" role="form">
                 <div class="row">
                     <div class="col-md-7">
                        <label for="sltCommissions" class="col-sm-4 control-label">Commission scolaire :</label>
@@ -642,7 +640,7 @@ class AdminVue extends Vue {
                                        <a href="<?php echo WEB_ROOT;?>/admin/admin/modifier-ecole/<?php echo $oEcole->getId();?>" class="btn btn-primary btn-xs" title="Modifier">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
-                                        <a href="<?php echo WEB_ROOT;?>/admin/admin/supprimer-ecole/<?php echo $oEcole->getId();?>" class="btn btn-danger btn-xs col-sm-offset-1" title="Supprimer">
+                                        <a href="<?php echo WEB_ROOT;?>/admin/admin/supprimer-ecole/<?php echo $oEcole->getId();?>" class="btn btn-danger btn-xs" title="Supprimer">
                                             <span class="glyphicon glyphicon-remove"></span>
                                         </a>
                                     </td>
@@ -658,6 +656,7 @@ class AdminVue extends Vue {
                 <span class="glyphicon glyphicon-plus"></span> Ajouter</a>
             </div>
         </div> <!-- .contenu -->
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -666,7 +665,7 @@ class AdminVue extends Vue {
     /**************************************************/
 
     /************************************************/
-    /************AFFICHER AJOUTER ÉCOLES*************/
+    /*****************AJOUTER ÉCOLES*****************/
     /************************************************/
 
     public function afficheAjouterEcole()   {?>
@@ -694,7 +693,7 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmAjouterResponsable" action="" method="POST" class="form-horizontal" role="form">
+                <form id="frmAjouterEcole" action="" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="sltCommissions" class="col-sm-4 control-label">Commission scolaire :</label>
                         <div class="col-sm-6">
@@ -732,6 +731,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -740,7 +740,7 @@ class AdminVue extends Vue {
     /****************************************************/
 
     /*************************************************/
-    /************AFFICHER MODIFIER ÉCOLES*************/
+    /*****************MODIFIER ÉCOLES*****************/
     /*************************************************/
     
     public function afficheModifierEcole() {?>
@@ -768,7 +768,7 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmAjouterResponsable" action="" method="POST" class="form-horizontal" role="form">
+                <form id="frmModifierEcoles" action="" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
                         <label for="sltCommissions" class="col-sm-4 control-label">Commission scolaire :</label>
                         <div class="col-sm-6">
@@ -810,6 +810,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -818,7 +819,7 @@ class AdminVue extends Vue {
     /********************************************/
 
     /***************************************************/
-    /*************AFFICHER SUPPRIMER ÉCOLES*************/
+    /******************SUPPRIMER ÉCOLES*****************/
     /***************************************************/
 
 
@@ -845,7 +846,7 @@ class AdminVue extends Vue {
                      
             </div>
             <div class="col-sm-12 col-sm-offset-1">
-                <form id="frmSupprimerCommision" class="form-horizontal" action="" method="POST" enctype="" role="form">
+                <form id="frmSupprimerEcole" class="form-horizontal" action="" method="POST" enctype="" role="form">
                     <div class="form-group">
                         <label for="txtEcole" class="col-sm-4 control-label">École :</label>
                         <div class="col-sm-6">
@@ -867,6 +868,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -877,6 +879,7 @@ class AdminVue extends Vue {
     /********************************************************/
     /**********************GÉRER MATIERES*********************/
     /*********************************************************/
+
     public function afficheListeMatieres(){?>
         
         <div id="message">
@@ -937,6 +940,7 @@ class AdminVue extends Vue {
         </div> <!-- .contenu -->
     <?php
     }
+
     /****************************************************/
     /****************FIN GÉRER MATIERES******************/
     /****************************************************/
@@ -944,6 +948,7 @@ class AdminVue extends Vue {
     /*********************************************/
     /*****************AJOUTER MATIERES************/
     /*********************************************/
+
     public function afficheAjouterMatiere()   {?>
 
         <div id="message">
@@ -994,8 +999,11 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
+
     /******************************************************/
     /****************FIN AJOUTER MATIÈRES******************/
     /******************************************************/
@@ -1003,6 +1011,7 @@ class AdminVue extends Vue {
     /************************************************/
     /*****************MODIFIER MATIERES**************/
     /************************************************/
+
     public function afficheModifierMatiere()  {?>
 
         <div id="message">
@@ -1013,8 +1022,6 @@ class AdminVue extends Vue {
                 }
             ?>
         </div>
-        
-       
             <div class="col-sm-12">
             <div class="col-sm-offset-0 col-sm-8">
                 <div class="col-sm-offset-5  col-sm-7">
@@ -1030,10 +1037,10 @@ class AdminVue extends Vue {
                 <form id="frmModifierMatiere" action="" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
                         <div class="col-md-10 col-sm-offset-2">
-                            <label for="txtMatiere" class="col-sm-3  control-label">Matière :</label>
+                            <label for="txtNom" class="col-sm-3  control-label">Matière :</label>
                             <div class="col-sm-9 col-md-8">
-                                <input type="text" id="txtMatiere" name="txtNom" class="form-control" value="<?php echo $this->oMatiere->getNom();?>" placeholder="Matière">
-                                <div class="divErreur" id="txtMatiereErreur"></div>
+                                <input type="text" id="txtNom" name="txtNom" class="form-control" value="<?php echo $this->oMatiere->getNom();?>" placeholder="Matière">
+                                <div class="divErreur" id="txtNomErreur"></div>
                             </div>
                         </div>
                     </div>
@@ -1052,8 +1059,10 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
+
     /******************************************************/
     /****************FIN MODIFIER MATIÈRES*****************/
     /******************************************************/
@@ -1061,7 +1070,9 @@ class AdminVue extends Vue {
     /*************************************************/
     /*****************SUPPRIMER MATIERES**************/
     /************************************************/
+
     public function afficheSupprimerMatiere()  {?>
+
         <div class="col-sm-6 col-sm-offset-2">            
             <div class="col-sm-offset-3 col-sm-9">
                 <div class="col-sm-offset-3  col-sm-8">
@@ -1070,8 +1081,7 @@ class AdminVue extends Vue {
                     </div>
                 </div>
             </div>
-            <div class="col-sm-offset-4 col-sm-8 page-header">
-                     
+            <div class="col-sm-offset-4 col-sm-8 page-header">     
             </div>
             <div class="col-sm-12 col-sm-offset-1">
                 <form id="frmSupprimerMatiere" class="form-horizontal" action="" method="POST" role="form">
@@ -1096,8 +1106,10 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
+
     /******************************************************/
     /****************FIN MODIFIER MATIÈRES*****************/
     /******************************************************/
@@ -1113,7 +1125,7 @@ class AdminVue extends Vue {
     /*======================================================*/
 
     /****************************************************/
-    /*************AFFICHER GÉRER PROFESSEURS*************/
+    /*******************GÉRER PROFESSEURS****************/
     /****************************************************/
     
     public function afficheListeProfesseurs(){?>
@@ -1233,6 +1245,7 @@ class AdminVue extends Vue {
             <a href="<?php echo WEB_ROOT.'/admin/utilisateur/ajouter-prof/';?>" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
             <span class="glyphicon glyphicon-plus"></span> Ajouter</a>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -1241,7 +1254,7 @@ class AdminVue extends Vue {
     /***********************************************/
 
     /******************************************************/
-    /*************AFFICHER AJOUTER PROFESSEURS*************/
+    /******************AJOUTER PROFESSEURS*****************/
     /******************************************************/
     
     public function afficheAjouterProfesseur(){?>
@@ -1257,8 +1270,8 @@ class AdminVue extends Vue {
 
         <div class="col-sm-6 col-sm-offset-2">
             
-            <div class="col-sm-offset-2 col-sm-9">
-                <div class="col-sm-offset-4 col-sm-7">
+            <div class="col-sm-offset-0 col-sm-11">
+                <div class="col-sm-offset-4 col-sm-9">
                     <div class="navbar navbar-default col-sm-offset-1">
                         <h3 class="navbar-text">Ajouter un professeur</h3>
                     </div>
@@ -1287,7 +1300,7 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="emlCourriel" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel">
+                            <input type="text" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel">
                             <div class="divErreur" id="emlCourrielErreur"></div>
                         </div>
                     </div>
@@ -1332,6 +1345,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -1340,7 +1354,7 @@ class AdminVue extends Vue {
     /*************************************************/
 
     /*******************************************************/
-    /*************AFFICHER MODIFIER PROFESSEURS*************/
+    /********************MODIFIER PROFESSEURS***************/
     /*******************************************************/
 
     public function afficheModifierProfesseur(){?>
@@ -1386,7 +1400,7 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="emlCourriel" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">                  
-                            <input type="email" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
+                            <input type="text" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
                             <div class="divErreur" id="emlCourrielErreur"></div>
                         </div>
                     </div>
@@ -1443,6 +1457,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -1461,7 +1476,7 @@ class AdminVue extends Vue {
     /*================================================*/
 
     /************************************************/
-    /*************AFFICHER GÉRER TUTEURS*************/
+    /******************GÉRER TUTEURS*****************/
     /************************************************/
 
     public function afficheListeTuteurs(){?>
@@ -1578,6 +1593,7 @@ class AdminVue extends Vue {
             <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/ajouter-tuteur" id="btnAjouterProf" class="btn btn-success col-sm-offset-1">
             <span class="glyphicon glyphicon-plus"></span> Ajouter</a>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -1586,7 +1602,7 @@ class AdminVue extends Vue {
     /*******************************************/
 
     /**************************************************/
-    /*************AFFICHER AJOUTER TUTEURS*************/
+    /******************AJOUTER TUTEURS*****************/
     /**************************************************/
     
     public function afficheAjouterTuteur(){?>
@@ -1630,7 +1646,7 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="emlCourriel" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel">
+                            <input type="text" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel">
                             <div class="divErreur" id="emlCourrielErreur"></div>
                         </div>
                     </div>
@@ -1675,6 +1691,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>  
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -1687,7 +1704,7 @@ class AdminVue extends Vue {
     /*====================================================*/
 
     /***************************************************/
-    /*************AFFICHER MODIFIER TUTEURS*************/
+    /******************MODIFIER TUTEURS*****************/
     /***************************************************/
 
     public function afficheModifierTuteur(){?>
@@ -1733,7 +1750,7 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="emlCourriel" class="col-sm-4 control-label">Courriel :</label>
                         <div class="col-sm-6">
-                            <input type="email" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
+                            <input type="text" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
                             <div class="divErreur" id="emlCourrielErreur"></div>
                         </div>
                     </div>
@@ -1787,6 +1804,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }
 
@@ -1795,7 +1813,7 @@ class AdminVue extends Vue {
     /**********************************************/
 
     /*********************************************************/
-    /*************AFFICHER SUPPRIMER UTILISATEURS ************/
+    /******************SUPPRIMER UTILISATEURS*****************/
     /*********************************************************/
 
     public function afficheSupprimerUtilisateurs(){?>
@@ -1868,6 +1886,7 @@ class AdminVue extends Vue {
                 </form>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/admin/js/Admin.js"></script>
     <?php
     }    
 }
