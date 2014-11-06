@@ -197,11 +197,24 @@ ul.alert-dropdown {
 }
 /****** CSS  fait par Donna Siverné***/
 
-.navbar-inverse {
-    background-color: #64B232;
-    /*background-color:#547EFF;*/
+.prof .navbar-inverse {
+    /*bleu*/
+    background-color: #4E81FF;
     border-color: white;
 }
+
+.responsable .navbar-inverse {
+    /*Orange*/
+    background-color: #E8780C;
+    border-color: white;
+}
+
+.superadmin .navbar-inverse {
+    /*Vert*/
+    background-color: #64B232;
+    border-color: white;
+}
+
 .navbar-inverse .navbar-brand {
     color: white;
 }
@@ -221,9 +234,22 @@ ul.alert-dropdown {
 }
 /* menu de coté*/
 
-.side-nav {
+.prof .side-nav {
+   /*bleu*/
+   background-color: #4E81FF;
+}
+
+.responsable .side-nav {
+/*Orange*/
+    background-color: #E8780C;
+    border-color: white;
+}
+
+.superadmin .side-nav {
+    /*Vert*/
     background-color: #64B232;
 }
+
 .navbar-inverse .navbar-nav>li>a {
     color: white;
 }
@@ -280,12 +306,12 @@ header .banniere {
     background: linear-gradient(to bottom, #3D82AB 0%,#484848 100%);
     border-radius: 10px;
     border: none;
-     box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
+  /*   box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);*/
 }
 
-.navbar.navbar-default:hover{
+ /*.navbar.navbar-default:hover{
     box-shadow: 0.4em 0.4em 5px rgba(122,122,122,1.5);
-}
+} */
 
 .navbar-default .navbar-nav > li > a {
     color: white;
@@ -388,4 +414,13 @@ footer .navbar{
 
 .panel-default{
     padding:0;
+}
+
+video {
+    width:700px;
+    height: auto;
+}
+
+.divErreur{
+    color: red;
 }

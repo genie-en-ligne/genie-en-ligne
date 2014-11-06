@@ -1,6 +1,16 @@
 <?php
+
+/**
+ * @date 2014-10-25
+ * @author Silvia Popa
+ * @brief Classe StatistiqueVue (classe fille de la classe Vue ) pour le site admin 
+ */
+
 class StatistiqueVue extends Vue {
-    
+
+    /**
+	 * afficher les Statistiques Personnelles d'un Prof
+	 */
     public function afficheStatsPersonnellesProfesseur(){?>
         <script language="javascript" type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/jquery.min.js"></script>
         <script language="javascript" type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/jquery.jqplot.min.js"></script>
@@ -56,7 +66,11 @@ class StatistiqueVue extends Vue {
     <?php
     } //fin de la fonction  afficheStatsPersonnellesProfesseur()
 
-    public function afficheStatsPersonnellesResponsable(){?>
+    
+	/**
+	 * afficher les Statistiques Personnelles d'un Responsable de commission
+	 */
+	public function afficheStatsPersonnellesResponsable(){?>
         <script language="javascript" type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/jquery.min.js"></script>
         <script language="javascript" type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/jquery.jqplot.min.js"></script>
         <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
@@ -91,7 +105,11 @@ class StatistiqueVue extends Vue {
     <?php
     } //fin de la fonction  afficheStatsPersonnellesResponsable()
 
-    public function afficheStatsPersonnellesSuperAdmin(){?>
+   
+	/**
+	 * afficher les Statistiques Personnelles pour SuperAdmin
+	 */
+   public function afficheStatsPersonnellesSuperAdmin(){?>
         <script language="javascript" type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/jquery.min.js"></script>
         <script language="javascript" type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/jquery.jqplot.min.js"></script>
         <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
@@ -126,7 +144,11 @@ class StatistiqueVue extends Vue {
     <?php
     } //fin de la fonction  afficheStatsPersonnellesSuperAdmin()
 
-    public function afficheStatsGeneralesProfesseur(){?>
+    
+	/**
+	 * afficher les Statistiques Générales pour le Prof
+	 */
+	public function afficheStatsGeneralesProfesseur(){?>
         <script language="javascript" type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/jquery.min.js"></script>
         <script language="javascript" type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/jquery.jqplot.min.js"></script>
         <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
@@ -188,7 +210,11 @@ class StatistiqueVue extends Vue {
     <?php
     } //fin de la fonction  afficheStatsGeneralesPourEcole()
 
-    public function afficheStatsGeneralesResponsable(){?>
+    
+	/**
+	 * afficher les Statistiques Générales pour le Responsable de commission
+	 */
+	public function afficheStatsGeneralesResponsable(){?>
         <script language="javascript" type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/jquery.min.js"></script>
         <script language="javascript" type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/jquery.jqplot.min.js"></script>
         <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
@@ -231,9 +257,13 @@ class StatistiqueVue extends Vue {
             </div><!-- .col-md-12 -->
         </div><!-- .row -->
     <?php
-    }
+    } //fin de la fonction afficheStatsGeneralesResponsable()
 
-    public function afficheStatsGeneralesSuperAdmin(){?>
+    
+	/**
+	 * afficher les Statistiques Générales pour le SuperAdmin
+	 */
+	public function afficheStatsGeneralesSuperAdmin(){?>
         <script language="javascript" type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/jquery.min.js"></script>
         <script language="javascript" type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/jquery.jqplot.min.js"></script>
         <script type="text/javascript" src="<?php echo WEB_ROOT;?>/lib/jqplot/plugins/jqplot.categoryAxisRenderer.min.js"></script>
@@ -275,16 +305,26 @@ class StatistiqueVue extends Vue {
             </div><!-- .col-md-12 -->
         </div><!-- .row -->  
     <?php
-    }
+    } //fin de la fonction afficheStatsGeneralesSuperAdmin()
 
-    public function genererGraphique($sDivId, $iHauteur, $iLongueur, $aDonnees){
-        $pointsXYSurGraphique = '';
+    
+	/**
+	* Fonction genere le div avec id = $sDivId qui a la hauteur = $iHauteur et la longueur = $iLongueur dans lequel
+	* crée le graphique selon les données dans le tableau $aDonnees
+	* @return $graph (le div avec le graphique)
+    */
+	public function genererGraphique($sDivId, $iHauteur, $iLongueur, $aDonnees){
         
+		//Déclaration d'une variable où on va stocker tous les les coordonnées des points du graphique final
+		$pointsXYSurGraphique = '';
+        
+		//pour chaque élément du tableau 
         foreach($aDonnees as $key => $paireXY){
-            if($key != 0){
-                $pointsXYSurGraphique .= ", ";
+            //Si ce n'ai pas le premier élément
+			if($key != 0){
+                $pointsXYSurGraphique .= ", "; //On sépare les élément par virgule
             }
-            $pointsXYSurGraphique .= "['{$paireXY[0]}', {$paireXY[1]}]";
+            $pointsXYSurGraphique .= "['{$paireXY[0]}', {$paireXY[1]}]"; // Création de la chaine pour jQuery
         }
         
         $graph = "<div id='{$sDivId}' style='height:{$iHauteur}px;width:{$iLongueur}px;'></div>
@@ -311,8 +351,10 @@ class StatistiqueVue extends Vue {
                 }
             );
         </script>";
-        
+        //returner $graph (le div avec le graphique)
         return $graph;
-    }
-}
+    
+	} //fin de la fonction genererGraphique($sDivId, $iHauteur, $iLongueur, $aDonnees)
+
+} //fin de la classe StatistiqueVue
 ?>
