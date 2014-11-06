@@ -361,7 +361,7 @@ class TutorielVue extends Vue {
                             <div class="col-lg-3">
                                 <label>Matière:</label>
                                 <select class="form-control" name="sltMatiere" id="sltMatiere">
-									<option value="0">Choisir</option> <!-- ???????????? -->
+									<option value="0">Choisir</option> 
                                     <?php
                                         foreach ($this->aMatieres as $oMatiere) {
                                             $selected = '';

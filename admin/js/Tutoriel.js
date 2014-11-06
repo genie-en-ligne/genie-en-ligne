@@ -522,14 +522,16 @@ $('a[data-toggle="myModal"]').click(function(e) {
   }
 );
 
-tinymce.init({
-   selector: "textarea",
-   toolbar: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | blockquote | bullist numlist | styleselect",
-   style_formats: [
-     {title: 'Titre', block: 'h1'},
-     {title: 'Sous-titre', block: 'h2'}
-   ],
-   menubar : false,
-   browser_spellcheck : true,
-   language : 'fr_FR'
-});
+if(document.getElementsByTagName('textarea')[0]){
+  tinymce.init({
+     selector: "textarea",
+     toolbar: "undo redo | bold italic underline | alignleft aligncenter alignright alignjustify | blockquote | bullist numlist | styleselect",
+     style_formats: [
+       {title: 'Titre', block: 'h1'},
+       {title: 'Sous-titre', block: 'h2'}
+     ],
+     menubar : false,
+     browser_spellcheck : true,
+     language : 'fr_FR'
+  });
+}

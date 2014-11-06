@@ -108,8 +108,9 @@ function estCourriel(varATester) {
 
 //Tester pour un mot de passe
 //doit contenir au moins un chiffre
-//doit contenir au moins une lettre
-//doit contenir minimum 8 caractère
+//doit contenir au moins une lettre majuscule
+//doit contenir au moins une lettre minuscule
+//doit contenir 8 à 15 caractères
 function estMotDePasse(varATester) {
 	//Approche positive
 	var regex = /^(?=.{8,15})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])$/;
@@ -119,4 +120,12 @@ function estMotDePasse(varATester) {
 	}  else {
 		return false;
 	}
+}
+
+function estHTML(varATester){
+	var regex = /.*(<script|&lt;script).*/;
+	if(regex.test(varATester)) { //on teste le champ et si il y a  des caractères invalides 
+		return false;			 // on retourne false
+	}
+	return true;
 }

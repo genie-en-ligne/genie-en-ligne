@@ -72,7 +72,7 @@
             //Cette méthode est appelée pour charger les informations de l'utilisateur déjà connecté et ce, à partir de son id, qui est stocké en session.
             
             $oConnexion = new MySqliLib();
-            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE `utilisateur_ID` = '".$this->getId()."' AND est_detruit = '0'");
+            $oResultat = $oConnexion->executer("SELECT * FROM utilisateurs WHERE `utilisateur_ID` = '".$this->getId()."' AND `est_detruit` = '0'");
             $aResultats = $oConnexion->recupererTableau($oResultat);
 
             if(count($aResultats) == 0){
