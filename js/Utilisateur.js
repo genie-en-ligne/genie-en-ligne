@@ -210,10 +210,6 @@ function validerFrmSignaliserUnProbleme(){
    }
 }
 
-if(document.getElementById('frmRecuperer')) {
-	document.getElementById('frmRecuperer').addEventListener('submit', RecupereMotsDePasse);
-}
-
 //Formulaire de récupération du mot de passe
 function validerFrmRecuperMotsDePasse(){
 	
