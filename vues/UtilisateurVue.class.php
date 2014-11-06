@@ -1,12 +1,11 @@
 <?php
-class UtilisateurVue extends Vue {
-    
+class UtilisateurVue extends Vue {    
 /*====================*/
 /*== afficheAccueil ==*/
 /*====================*/
 
   
-    public function afficheAccueil(){?>
+    public function afficheAccueil() {?>
         <div class="page-header">
             <h1>Bienvenue à Génie en ligne!</h1>
         </div>
@@ -88,11 +87,9 @@ class UtilisateurVue extends Vue {
             </div>
         </div><!-- .row -->
 
-
         <!-- ----------------------- -->
         <!---- CONTENU PRINCIPAL ------>
         <!-- ----------------------- -->
-
 
         <div class="row">
             <div class="col-sm-12">
@@ -187,7 +184,8 @@ class UtilisateurVue extends Vue {
                 </div> <!-- col-sm-12 --> 
             </div> <!-- col-sm-12 --> 
         </div><!-- .row -->
-    <?php
+       <script src="<?php echo WEB_ROOT;?>/js/Utilisateur.js"></script>
+    <?php 
     }
      
 /*======================*/
@@ -218,9 +216,9 @@ class UtilisateurVue extends Vue {
                     <p>Regardez cette vidéo pour un départ rapide</p>
                 </div>
             </div><!-- .col-md-12 -->
-
         </div><!-- .row -->
-    <?php
+        <script type="text/javascript" src="../js/Utilisateur.js"> </script> 
+    <?php 
     }
         
 /*===================*/
@@ -248,7 +246,7 @@ class UtilisateurVue extends Vue {
                 </ol>                
             </div>            
             <div class="col-sm-6 col-sm-offset-3">
-                <form id="frmProfilUtilateur" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/modifier-mdp" class="form-horizontal" role="form">
+                <form id="frmProfilUtilisateur" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/modifier-mdp" class="form-horizontal" role="form">
                      <div class="form-group">
                         <label for="pwdPass1" class="col-sm-4 control-label">Mot de passe :</label>
                         <div class="col-sm-6">
@@ -276,7 +274,8 @@ class UtilisateurVue extends Vue {
                 </form>
             </div>
         </div>
-    <?php
+        <script src="<?php echo WEB_ROOT;?>/js/Utilisateur.js"></script>
+    <?php 
     }
 
     /*========================================*/
@@ -342,9 +341,9 @@ class UtilisateurVue extends Vue {
                 </div>
             </div>
         </div>
-    <?php
+        <script src="<?php echo WEB_ROOT;?>/js/Utilisateur.js"></script>
+    <?php 
     }
-
 
     public function afficheMessageConfirmation() {?>
         <div id="message">
@@ -378,15 +377,13 @@ class UtilisateurVue extends Vue {
                 </div>
             </div>
         </div>
-    <?php
+        <script src="<?php echo WEB_ROOT;?>/js/Utilisateur.js"></script>
+    <?php 
     }
-
 
     /*============================*/
     /*== afficherPreInscription ==*/
     /*============================*/
-
-    /* Div erreur fait Donna*/
 
     public function affichePreInscription() {?>
         <div id="message">
@@ -408,9 +405,9 @@ class UtilisateurVue extends Vue {
                     </ol>             
                 </div>
                 <div class="col-sm-12 col-sm-offset-1">
-                    <form id="frmPreInscrition" class="form-horizontal" action="<?php echo WEB_ROOT;?>/utilisateur/pre-inscription" method="POST" enctype="" role="form">
+                    <form id="frmPreInscription" class="form-horizontal" action="<?php echo WEB_ROOT;?>/utilisateur/pre-inscription" method="POST" role="form">
                         <div class="form-group">
-                            <label for="txtPreInscCodePerm" class="col-sm-4 control-label">Code permanent :</label>
+                            <label for="txtCodePerm" class="col-sm-4 control-label">Code permanent :</label>
                             <div class="col-sm-6">
                                 <input type="text" id="txtCodePerm" class="form-control" name="txtCodePerm" placeholder="Code permanent">
                                 <div class="divErreur" id="txtCodePermErreur"></div>
@@ -418,7 +415,7 @@ class UtilisateurVue extends Vue {
 
                         </div>
                         <div class="form-group">
-                            <label for="txtPreInscNom" class="col-sm-4 control-label">Nom de famille :</label>
+                            <label for="txtNom" class="col-sm-4 control-label">Nom de famille :</label>
                             <div class="col-sm-6">
                                 <input type="text" id="txtNom" class="form-control" name="txtNom" placeholder="Nom de famille">
                                 <div class="divErreur" id="txtNomErreur"></div>
@@ -441,13 +438,14 @@ class UtilisateurVue extends Vue {
                 </div>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/js/Utilisateur.js"></script>
     <?php
     }
 
     /*=========================*/
     /*== afficherInscription ==*/
     /*=========================*/
-   /* Div erreur fait Donna*/
+  
     public function afficheInscription() {?>
         <div id="message">
             <?php 
@@ -472,45 +470,45 @@ class UtilisateurVue extends Vue {
                 <div class="col-sm-12 col-sm-offset-1">
                     <form id="frmInscription" class="form-horizontal" action="<?php echo WEB_ROOT;?>/utilisateur/inscription" method="POST" enctype="" role="form">
                         <div class="form-group">
-                            <label for="txtInscriptionPrenom" class="col-sm-4 control-label">Prénom :</label>
+                            <label for="txtPrenom" class="col-sm-4 control-label">Prénom :</label>
                             <div class="col-sm-6">
-                                <input type="text" id="txtInscriptionPrenom" class="form-control" name="txtPrenom" placeholder="Prenom">
-                                <div class="divErreur" id="txtInscriptionPrenomErreur"></div>
+                                <input type="text" id="txtPrenom" class="form-control" name="txtPrenom" placeholder="Prenom">
+                                <div class="divErreur" id="txtPrenomErreur"></div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="txtInscriptionNom" class="col-sm-4 control-label">Nom de famille :</label>
+                            <label for="txtNom" class="col-sm-4 control-label">Nom de famille :</label>
                             <div class="col-sm-6">
-                                <input type="text" id="txtInscriptionNom" class="form-control" name="txtNom" placeholder="Nom">
-                                <div class="divErreur" id="txtInscriptionNomErreur"></div>
+                                <input type="text" id="txtNom" class="form-control" name="txtNom" placeholder="Nom">
+                                <div class="divErreur" id="txtNomErreur"></div>
                             </div>
                         </div>
                          <div class="form-group">
-                            <label for="txtInscriptionPseudo" class="col-sm-4 control-label">Pseudo :</label>
+                            <label for="txtPseudo" class="col-sm-4 control-label">Pseudo :</label>
                             <div class="col-sm-6">
-                                <input type="text" id="txtInscriptionPseudo" class="form-control" name="txtPseudo" placeholder="Pseudo">
-                                <div class="divErreur" id="txtInscriptionPseudoErreur"></div>
+                                <input type="text" id="txtPseudo" class="form-control" name="txtPseudo" placeholder="Pseudo">
+                                <div class="divErreur" id="txtPseudoErreur"></div>
                             </div>
                         </div>
                          <div class="form-group">
-                            <label for="txtInscriptionCourriel" class="col-sm-4 control-label">Courriel :</label>
+                            <label for="emlCourriel" class="col-sm-4 control-label">Courriel :</label>
                             <div class="col-sm-6">
-                                <input type="email" id="txtInscriptionCourriel" class="form-control" name="txtCourriel" placeholder="Courriel">
-                                <div class="divErreur" id="txtInscriptionCourrielErreur"></div>
+                                <input type="text" id="emlCourriel" class="form-control" name="txtCourriel" placeholder="Courriel">
+                                <div class="divErreur" id="emlCourrielErreur"></div>
                             </div>
                         </div>
                          <div class="form-group">
-                            <label for="txtInscriptionMdp1" class="col-sm-4 control-label">Mot de passe :</label>
+                            <label for="pwdMdp1" class="col-sm-4 control-label">Mot de passe :</label>
                             <div class="col-sm-6">
-                                <input type="password" id="txtInscriptionMdp1" class="form-control" name="pwdMdp1" placeholder="Mot de passe :">
-                                <div class="divErreur" id="txtInscriptionMdp1Erreur"></div>
+                                <input type="password" id="pwdMdp1" class="form-control" name="pwdMdp1" placeholder="Mot de passe :">
+                                <div class="divErreur" id="pwdMdp1Erreur"></div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="txtInscriptionMdp2" class="col-sm-4 control-label">Mot de passe :</label>
+                            <label for="pwdMdp2" class="col-sm-4 control-label">Mot de passe :</label>
                             <div class="col-sm-6">
-                                <input type="password" id="txtInscriptionMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe :">
-                                 <div class="divErreur" id="txtInscriptionMdp2Erreur"></div>
+                                <input type="password" id="pwdMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe :">
+                                 <div class="divErreur" id="pwdMdp2Erreur"></div>
                             </div>
                         </div>
                         <div class="form-group"></div>
@@ -529,6 +527,7 @@ class UtilisateurVue extends Vue {
                 </div>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/js/Utilisateur.js"></script>
     <?php
     }
 
@@ -556,12 +555,12 @@ class UtilisateurVue extends Vue {
                     </ol>            
                 </div>
                 <div class="col-sm-12 col-sm-offset-1">
-                    <form id="frmRecuperer" class="form-horizontal" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/recuperer-mdp" role="form">
+                    <form id="frmRecuperMdp" class="form-horizontal" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/recuperer-mdp" role="form">
                         <div class="form-group">
-                            <label for="nom" class="col-sm-4 control-label">Courriel :</label>
+                            <label for="emlCourriel" class="col-sm-4 control-label">Courriel :</label>
                             <div class="col-sm-6">
-                                <input type="email" name="emlCourriel" id="txtRecupMdp" class="form-control" placeholder="Courriel">
-                                <div class="divErreur" id="txtRecupPassErreur"></div>
+                                <input type="text" name="emlCourriel" id="emlCourriel" class="form-control" placeholder="Courriel">
+                                <div class="divErreur" id="emlCourrielErreur"></div>
                             </div>
                         </div>
                         <div class="form-group"></div>
@@ -577,6 +576,7 @@ class UtilisateurVue extends Vue {
                 </div>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/js/Utilisateur.js"></script>
     <?php
     }
 
@@ -606,18 +606,18 @@ class UtilisateurVue extends Vue {
                 </div>
                
                 <div class="col-sm-12 col-sm-offset-1">
-                    <form class="form-horizontal" role="form" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/envoyer-message">
+                    <form id="frmMessage" class="form-horizontal" role="form" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/envoyer-message">
                         <div class="form-group">
-                            <label for="nom" class="col-sm-4 control-label">Courriel :</label>
+                            <label for="emlCourriel" class="col-sm-4 control-label">Courriel :</label>
                             <div class="col-sm-6">
-                                <input type="email" name="emlCourriel" id="txtCourriel" class="form-control" placeholder="Courriel">
-                                <div class="divErreur" id="txtCourrielErreur"></div>
+                                <input type="test" name="emlCourriel" id="emlCourriel" class="form-control" placeholder="Courriel">
+                                <div class="divErreur" id="emlCourrielErreur"></div>
                             </div>
                         </div>
                         <section class="form-group">
-                            <label for="nom" class="col-md-4 control-label">Message :</label>
+                            <label for="txtCommentaire" class="col-md-4 control-label">Message :</label>
                             <div class="col-md-6">
-                                <textarea class="col-md-12" name="txtMessage" id="txtCommentaire"></textarea>
+                                <textarea id="txtCommentaire" class="col-md-12" name="txtMessage" id="txtCommentaire"></textarea>
                                 <div class="divErreur" id="txtCommentaireErreur"></div>
                             </div>
                         </section>
@@ -638,6 +638,7 @@ class UtilisateurVue extends Vue {
                 </div>
             </div>
         </div>
+        <script src="<?php echo WEB_ROOT;?>/js/Utilisateur.js"></script>
     <?php
     }
 }

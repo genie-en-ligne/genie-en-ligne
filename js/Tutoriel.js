@@ -512,6 +512,7 @@ function validerFormModificationTexte() {
 
 }
 
+
 $('a[data-toggle="myModal"]').click(function(e) {
     e.preventDefault();
     $('#myModal').remove();

@@ -343,6 +343,70 @@
             echo "</div>";
         echo "</div>";
 
+          echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheListeMatieres";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheListeMatieres();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+          echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheAjouterMatiere";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheAjouterMatiere();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+        echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheModifierMatiere";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheModifierMatiere();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
+        echo "<div class='col-xs-12'>";
+            echo "<div class='panel panel-primary'>";
+                echo "<div class='panel-heading'>";
+                    echo "<h4>";
+                        echo "Test afficheSupprimerMatiere";
+                    echo "</h4>";
+                echo "</div>";
+                echo "<div class='panel-body'>";
+
+                    $oVue = new AdminVue();
+                    $oVue->afficheSupprimerMatiere();
+
+                echo "</div>";
+            echo "</div>";
+        echo "</div>";
+
          echo "<div class='col-xs-12'>";
             echo "<div class='panel panel-primary'>";
                 echo "<div class='panel-heading'>";
