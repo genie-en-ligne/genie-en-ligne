@@ -792,11 +792,11 @@ function validerFrmAjouterProf() {
 		if(aChkMatieres[i].checked) {
 			auMoinsUn = true;
 		} 
-		if(!auMoinsUn) {
+	}
+	if(!auMoinsUn) {
 			estValide = false;
 			chkMatieresErreur.innerHTML = "Faites une sélection";
 		}
-	}
 
 	//Soumettre le formulaire
 	if(estValide) {
@@ -885,11 +885,11 @@ function validerFrmModifierProf() {
 		if(aChkMatieres[i].checked) {
 			auMoinsUn = true;
 		} 
-		if(!auMoinsUn) {
+	}
+	if(!auMoinsUn) {
 			estValide = false;
 			chkMatieresErreur.innerHTML = "*";
 		}
-	}
 
 	//Soumettre le formulaire
 	if(estValide) {
@@ -1051,11 +1051,11 @@ function validerFrmAjouterTuteur() {
 		if(aChkMatieres[i].checked) {
 			auMoinsUn = true;
 		} 
-		if(!auMoinsUn) {
+	}
+	if(!auMoinsUn) {
 			estValide = false;
 			chkMatieresErreur.innerHTML = "*";
 		}
-	}
 
 	//Soumettre le formulaire
 	if(estValide) {
@@ -1145,11 +1145,11 @@ function validerFrmModifierTuteur() {
 		if(aChkMatieres[i].checked) {
 			auMoinsUn = true;
 		} 
-		if(!auMoinsUn) {
+	}
+	if(!auMoinsUn) {
 			estValide = false;
 			chkMatieresErreur.innerHTML = "*";
 		}
-	}
 
 	//Soumettre le formulaire
 	if(estValide) {
