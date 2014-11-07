@@ -789,9 +789,15 @@ function validerFrmAjouterProf() {
 		} 
 	}
 	if(!auMoinsUn) {
+<<<<<<< HEAD
 		estValide = false;
 		chkMatieresErreur.innerHTML = "Faites une sélection";
 	}
+=======
+			estValide = false;
+			chkMatieresErreur.innerHTML = "Faites une sélection";
+		}
+>>>>>>> 0ef4773b6cfc5de433a7fe4d79b0a9dce51ed5f8
 
 	//Soumettre le formulaire
 	if(estValide) {
@@ -882,9 +888,15 @@ function validerFrmModifierProf() {
 		} 
 	}
 	if(!auMoinsUn) {
+<<<<<<< HEAD
 		estValide = false;
 		chkMatieresErreur.innerHTML = "*";
 	}
+=======
+			estValide = false;
+			chkMatieresErreur.innerHTML = "*";
+		}
+>>>>>>> 0ef4773b6cfc5de433a7fe4d79b0a9dce51ed5f8
 
 	//Soumettre le formulaire
 	if(estValide) {
@@ -1048,9 +1060,15 @@ function validerFrmAjouterTuteur() {
 		} 
 	}
 	if(!auMoinsUn) {
+<<<<<<< HEAD
 		estValide = false;
 		chkMatieresErreur.innerHTML = "*";
 	}
+=======
+			estValide = false;
+			chkMatieresErreur.innerHTML = "*";
+		}
+>>>>>>> 0ef4773b6cfc5de433a7fe4d79b0a9dce51ed5f8
 
 	//Soumettre le formulaire
 	if(estValide) {
