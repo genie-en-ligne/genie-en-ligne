@@ -393,8 +393,8 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="txtCommission" class="col-sm-4 control-label">Commission scolaire :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtCommission" class="form-control" name="txtNom" placeholder="Commission scolaire">
-                            <div class="divErreur" id="txtCommissionErreur"></div>   
+                            <input type="text" id="txtNom" class="form-control" name="txtNom" placeholder="Commission scolaire">
+                            <div class="divErreur" id="txtNomErreur"></div>   
                         </div>
                     </div>
                     <div class="form-group"></div>
@@ -471,8 +471,8 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="txtCommission" class="col-sm-4 control-label">Commissions scolaire :</label>
                         <div class="col-sm-6">
-                            <input type="text" id="txtCommission" class="form-control" name="txtNom" value="<?php echo $this->oCommission->getNom();?>" placeholder="Commissions scolaire">
-                            <div class="divErreur" id="txtCommissionErreur"></div>    
+                            <input type="text" id="txtNom" class="form-control" name="txtNom" value="<?php echo $this->oCommission->getNom();?>" placeholder="Commissions scolaire">
+                            <div class="divErreur" id="txtNomErreur"></div>    
                         </div>
                     </div>
                     <div class="form-group"></div>
@@ -974,12 +974,12 @@ class AdminVue extends Vue {
             </div>
 
             <div class="col-sm-12">
-                <form id="frmAjouterMatiere" action="" method="POST" class="form-horizontal" role="form">
+                <form id="frmAjouterMatiere" action="<?php echo WEB_ROOT;?>/admin/admin/ajouter-matiere" method="POST" class="form-horizontal" role="form">
                     <div class="form-group">
                         <div class="col-md-10 col-sm-offset-1">
                             <label for="txtMatiere" class="col-sm-5 control-label">Matière :</label>
                             <div class="col-sm-9 col-md-7">
-                                <input type="text" id="txtMatiere" name="txtNom" class="form-control" placeholder="Matière">
+                                <input type="text" id="txtNom" name="txtNom" class="form-control" placeholder="Matière">
                                 <div class="divErreur" id="txtMatiereErreur"></div>
                             </div>
                         </div>

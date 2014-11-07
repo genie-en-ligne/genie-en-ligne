@@ -309,11 +309,11 @@ function validerfrmAjouterCommission() {
 
 	//Définir les champs
 	var sltMrc					=	document.getElementById('sltMrc');
-	var txtCommission 			= 	document.getElementById('txtCommission');
+	var txtCommission 			= 	document.getElementById('txtNom');
 
 	//Définir les champs d'erreurs
 	var sltMrcErreur 			= 	document.getElementById('sltMrcErreur');
-	var txtCommissionErreur 	= 	document.getElementById('txtCommissionErreur');
+	var txtCommissionErreur 	= 	document.getElementById('txtNomErreur');
 
 	var aDivErreur 				= 	document.getElementsByClassName('divErreur');
 
@@ -365,13 +365,11 @@ function validerFrmModifierCommission() {
 
 	//Définir les champs
 	var sltMrc					=	document.getElementById('sltMrc');
-	var txtCommission 			= 	document.getElementById('txtCommission');
-	var sltEcoles 				= 	document.getElementById('sltEcoles');
+	var txtCommission 			= 	document.getElementById('txtNom');
 
 	//Définir les champs d'erreurs
 	var sltMrcErreur 			= 	document.getElementById('sltMrcErreur');
-	var txtCommissionErreur 	= 	document.getElementById('txtCommissionErreur');
-	var sltEcolesErreur 		= 	document.getElementById('sltEcolesErreur');
+	var txtCommissionErreur 	= 	document.getElementById('txtNomErreur');
 
 	var aDivErreur 				= 	document.getElementsByClassName('divErreur');
 
@@ -394,12 +392,6 @@ function validerFrmModifierCommission() {
 	else if(!estCommission(txtCommission.value)) {
 		estValide = false;
 		txtCommissionErreur.innerHTML = "La commission scolaire est invalide";
-	}
-
-	//Valider sltEcoles
-	if(sltEcoles.value == "0") {
-		estValide = false;
-		sltEcolesErreur.innerHTML = "Veuillez faire une sélection";
 	}
 
 	//Soummettre le formulaire
@@ -506,7 +498,7 @@ function validerFrmAjouterEcole() {
 
 	//Soummettre le formulaire
 	if(estValide) {
-		frmAjouterEcoles.submit(); 
+		frmAjouterEcole.submit(); 
 	}
 
 }

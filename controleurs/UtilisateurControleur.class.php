@@ -543,7 +543,7 @@
             $oVue->aListeCommissions = $oCommission->rechercherListeCommissions();
 
             try{
-                if(isset($_POST['subCreerResponsable'])){
+                if(isset($_POST['subAjouterResponsable'])){
                     $oUtilisateur = new Utilisateur(0, ' ', ' ', $_POST['txtNom'], $_POST['txtPrenom'], $_POST['emlCourriel'], 4);
                     $oUtilisateur->ajouterUtilisateur();
 
