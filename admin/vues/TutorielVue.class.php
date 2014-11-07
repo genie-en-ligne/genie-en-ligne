@@ -503,10 +503,10 @@ class TutorielVue extends Vue {
                         <div class="col-lg-12 text-center">
                             <h2><?php echo $this->oTutoriel->getTitre();?></h2>
                             <p class="auteurDate"><?php echo $this->oTutoriel->getPrenomTuteur();?> <?php echo $this->oTutoriel->getNomTuteur();?>, <?php echo $this->oTutoriel->getDateSoumis();?></p>
-                            <div text-center>
-                                <p><?php echo $this->oTutoriel->getContenu();?></p>
-                            </div>                          
                         </div>
+                        <div class="col-lg-12">
+                            <p><?php echo $this->oTutoriel->getContenu();?></p>
+                        </div>                            
                     </div>
                 </div>
                 <div class="modal-footer">

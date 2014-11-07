@@ -206,11 +206,6 @@ class UtilisateurVue extends Vue {
                     </video>
 
                     <div class="col-md-12 espace-avant">
-                        <div class="btn-group">
-                          <button type="button" class="glyphicon glyphicon-play"></button>
-                          <button type="button" class="glyphicon glyphicon-pause"></button>
-                          <button type="button" class="glyphicon glyphicon-stop"></button>
-                        </div>
                     </div>
                     
                     <p>Regardez cette vidéo pour un départ rapide</p>

@@ -468,12 +468,12 @@ class AdminVue extends Vue {
                                 <div class="divErreur" id="sltMrcErreur"></div>
                             </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="txtCommission" class="col-sm-4 control-label">Commissions scolaire :</label>
-                        <div class="col-sm-6">
-                            <input type="text" id="txtNom" class="form-control" name="txtNom" value="<?php echo $this->oCommission->getNom();?>" placeholder="Commissions scolaire">
-                            <div class="divErreur" id="txtNomErreur"></div>    
+                        <div class="form-group">
+                            <label for="txtCommission" class="col-sm-4 control-label">Commissions scolaire :</label>
+                            <div class="col-sm-6">
+                                <input type="text" id="txtNom" class="form-control" name="txtNom" value="<?php echo $this->oCommission->getNom();?>" placeholder="Commissions scolaire">
+                                <div class="divErreur" id="txtNomErreur"></div>    
+                            </div>
                         </div>
                         <div class="form-group"></div>
                         <div class="form-group"></div>
