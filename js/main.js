@@ -113,7 +113,7 @@ function estCourriel(varATester) {
 //doit contenir 8 à 15 caractères
 function estMotDePasse(varATester) {
 	//Approche positive
-	var regex = /^(?=.{8,15})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])$/;
+	var regex = /^.*(?=.{8,15})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/;
 
 	if(regex.test(varATester)) {	
 		return true;

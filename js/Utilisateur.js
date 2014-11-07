@@ -416,7 +416,7 @@ function validerFrmInscription(){
 
 	//Soumettre le formulaire
    	if(estValide == true){
-      	frmPreInscrition.submit();
+      	frmInscription.submit();
    	}
 
  }

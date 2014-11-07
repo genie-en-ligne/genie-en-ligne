@@ -373,7 +373,7 @@ function validerFormCreationTexte() {
 		}
    }
    else
-   if(estTitre(tarContenu.value) == false){
+   if(estHTML(tarContenu.value) == false){
 	  tarContenuErreur.innerHTML = 'Ce champ comporte des caractères invalides.';
       
 	  if(premiereErreur == '')// gestion du curseur

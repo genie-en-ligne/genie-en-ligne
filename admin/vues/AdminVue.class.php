@@ -1653,7 +1653,7 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="sltEcoles" class="col-sm-4 control-label">École :</label>
                         <div class="col-sm-6">
-                            <select id="sltEcoles" class="form-control col-sm-6" name="sltEcoles">
+                            <select id="sltEcoles" class="form-control col-sm-6" name="sltEcole">
                                 <?php
                                     foreach ($this->aListeEcoles as $oEcole) {
                                         echo '<option value="'.$oEcole->getId().'">'.$oEcole->getNom().'</option>';
@@ -1757,7 +1757,7 @@ class AdminVue extends Vue {
                     <div class="form-group">
                         <label for="sltEcole" class="col-sm-4 control-label">École :</label>
                         <div class="col-sm-6">
-                            <select id="sltEcole" class="form-control col-sm-6" name="sltEcole">
+                            <select id="sltEcoles" class="form-control col-sm-6" name="sltEcole">
                                 <?php
                                     $ecole = $this->oUtilisateur->getListeEcoles();
                                     foreach ($this->aListeEcoles as $oEcole) {
