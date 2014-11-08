@@ -93,7 +93,7 @@ function validerFrmLogin() {
 	}
 }
 
-//Formulaire de modificatin de profil
+//Formulaire de modification de profil
 function validerFrmModifierProfil() {
 
 	//Prévenir l'envoie automatique du formulaire
@@ -110,12 +110,12 @@ function validerFrmModifierProfil() {
 	var frmProfilUtilateur 	= 	document.getElementById('frmProfilUtilisateur');
 
 	//Définir les champs
-	var txtPseudo 			=	document.getElementById('txtPseudo');
+	/*var txtPseudo 		=	document.getElementById('txtPseudo');*/
 	var pwdPass1 			=	document.getElementById('pwdPass1');
 	var pwdPass2 			= 	document.getElementById('pwdPass2');
 
 	//Définir les champs d'erreur
-	var txtPseudoErreur		=	document.getElementById('txtPseudoErreur');
+	/*var txtPseudoErreur		=	document.getElementById('txtPseudoErreur');*/
 	var pwdPass1Erreur		=	document.getElementById('pwdPass1Erreur');
 	var pwdPass2Erreur		=	document.getElementById('pwdPass2Erreur');
 
@@ -126,14 +126,14 @@ function validerFrmModifierProfil() {
 	}
 
 	//Valider pseudo
-	if(estVide(txtPseudo.value)) {
+	/*if(estVide(txtPseudo.value)) {
 		estValide = false;
 		txtPseudoErreur.innerHTML = "Veuillez remplir ce champ";
 	}
 	else if(estPseudo(txtPseudo.value)) {
 		estValide = false;
 		txtPseudoErreur.innerHTML = "Le pseudo est invalide";
-	}
+	}*/
 
 	//Valider Mot de passe1
 	if(estVide(pwdPass1.value)) {

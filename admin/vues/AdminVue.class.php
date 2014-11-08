@@ -1170,9 +1170,7 @@ class AdminVue extends Vue {
                     <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
                         <button type="submit" id="subChercherProf" class="btn btn-success pull-right">
                         <span class="glyphicon glyphicon-search"></span> Rechercher</button>
-                    </div> 
-                    <div></div> class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                    </div>        
+                    </div>      
                 </form> 
             </div>
         </div>   

@@ -36,12 +36,12 @@ window.addEventListener('load', function () {
 	}
 
 	//Formulaire de recherhce d'écoles
-	if(document.getElementById('frmChercherEcoles')) {
+	/*if(document.getElementById('frmChercherEcoles')) {
 		document.getElementById('frmChercherEcoles').addEventListener('submit', validerFrmChercherEcole);
 		//Mettre le focus sur le premier élément du formulaire
 		var sltCommissions = document.getElementById('sltCommissions');
    		sltCommissions.focus();
-	}
+	}*/
 
 	//Formulaire d'ajout d'écoles
 	if(document.getElementById('frmAjouterEcole')) {
@@ -76,12 +76,12 @@ window.addEventListener('load', function () {
 	}
 
 	//Formulaire de recherhce de professeurs
-	if(document.getElementById('frmChercherProf')) {
+	/*if(document.getElementById('frmChercherProf')) {
 		document.getElementById('frmChercherProf').addEventListener('submit', validerFrmChercherProf);
 		//Mettre le focus sur le premier élément du formulaire
 		var sltEcoles = document.getElementById('sltEcoles');
    		sltEcoles.focus();
-	}
+	}*/
 
 	//Formulaire d'ajout de professeurs
 	if(document.getElementById('frmAjouterProf')) {
@@ -100,12 +100,12 @@ window.addEventListener('load', function () {
 	}
 
 	//Formulaire de recherche de tuteurs
-	if(document.getElementById('frmChercherTuteur')) {
+	/*if(document.getElementById('frmChercherTuteur')) {
 		document.getElementById('frmChercherTuteur').addEventListener('submit', validerFrmChercherTuteur);
 		//Mettre le focus sur le premier élément du formulaire
 		var sltEcoles = document.getElementById('sltEcoles');
    		sltEcoles.focus();
-	}
+	}*/
 
 	//Formulaire d'ajout de tuteurs
 	if(document.getElementById('frmAjouterTuteur')) {
@@ -581,7 +581,7 @@ function validerFrmAjouterMatiere() {
 	var txtNom					= 	document.getElementById('txtNom');
 
 	//Définir les champs d'erreurs
-	var txtNomErreur 			= 	document.getElementById('txtNomErreur');
+	var txtNomErreur 			= 	document.getElementById('txtMatiereErreur');
 
 	var aDivErreur 				= 	document.getElementsByClassName('divErreur');
 
@@ -789,16 +789,9 @@ function validerFrmAjouterProf() {
 		} 
 	}
 	if(!auMoinsUn) {
-<<<<<<< HEAD
 		estValide = false;
 		chkMatieresErreur.innerHTML = "Faites une sélection";
 	}
-=======
-			estValide = false;
-			chkMatieresErreur.innerHTML = "Faites une sélection";
-		}
->>>>>>> 0ef4773b6cfc5de433a7fe4d79b0a9dce51ed5f8
-
 	//Soumettre le formulaire
 	if(estValide) {
 		frmAjouterProf.submit(); 
@@ -888,16 +881,9 @@ function validerFrmModifierProf() {
 		} 
 	}
 	if(!auMoinsUn) {
-<<<<<<< HEAD
 		estValide = false;
 		chkMatieresErreur.innerHTML = "*";
 	}
-=======
-			estValide = false;
-			chkMatieresErreur.innerHTML = "*";
-		}
->>>>>>> 0ef4773b6cfc5de433a7fe4d79b0a9dce51ed5f8
-
 	//Soumettre le formulaire
 	if(estValide) {
 		frmModifierProf.submit(); 
@@ -1060,16 +1046,9 @@ function validerFrmAjouterTuteur() {
 		} 
 	}
 	if(!auMoinsUn) {
-<<<<<<< HEAD
 		estValide = false;
 		chkMatieresErreur.innerHTML = "*";
 	}
-=======
-			estValide = false;
-			chkMatieresErreur.innerHTML = "*";
-		}
->>>>>>> 0ef4773b6cfc5de433a7fe4d79b0a9dce51ed5f8
-
 	//Soumettre le formulaire
 	if(estValide) {
 		frmAjouterTuteur.submit(); 

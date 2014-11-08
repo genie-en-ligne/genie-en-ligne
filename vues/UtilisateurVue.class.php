@@ -542,9 +542,9 @@ class UtilisateurVue extends Vue {
                         <div class="form-group"></div>
                         <div class="form-group text-center">
                             <div class="col-sm-8 col-sm-offset-4">
-                                <button type="refresh" class="btn btn-primary col-sm-5">
-                                    Rafraîchir
-                                </button>
+                                <a href="<?php echo WEB_ROOT;?>" class="btn btn-primary col-sm-5">
+                                    Retour
+                                </a>
                                 <button type="submit" id="btnInscription" name="subInscription" class="btn btn-success col-sm-5 col-sm-offset-2">
                                     Soumettre
                                 </button>
