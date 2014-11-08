@@ -230,7 +230,7 @@ class TutorielVue extends Vue {
                     </div>
                     <div class="form-group">
                         <label><br/>Rédigez votre texte</label>
-                        <textarea id="tarContenu" name="txtContenu" class="form-control"></textarea>
+                        <textarea id="tarContenu" name="txtContenu" class="form-control" rows="20"></textarea>
 							<div class="divErreur" id="tarContenuErreur"></div> <!-- div pour afficher les erreurs -->
                     </div>
                     <div class="form-group text-right">
@@ -361,7 +361,7 @@ class TutorielVue extends Vue {
                             <div class="col-lg-3">
                                 <label>Matière:</label>
                                 <select class="form-control" name="sltMatiere" id="sltMatiere">
-									<option value="0">Choisir</option> <!-- ???????????? -->
+									<option value="0">Choisir</option> 
                                     <?php
                                         foreach ($this->aMatieres as $oMatiere) {
                                             $selected = '';
@@ -410,7 +410,7 @@ class TutorielVue extends Vue {
                     </div>
                     <div class="form-group">
                         <label><br/>Rédigez votre texte</label>
-                        <textarea id="tarContenu" name="txtContenu" class="form-control"><?php echo $this->oTutoriel->getContenu();?></textarea>
+                        <textarea id="tarContenu" name="txtContenu" class="form-control" rows="20"><?php echo $this->oTutoriel->getContenu();?></textarea>
 							<div class="divErreur" id="tarContenuErreur"></div> <!-- div pour afficher les erreurs -->
                     </div>
                     <div class="form-group text-right">
@@ -503,10 +503,10 @@ class TutorielVue extends Vue {
                         <div class="col-lg-12 text-center">
                             <h2><?php echo $this->oTutoriel->getTitre();?></h2>
                             <p class="auteurDate"><?php echo $this->oTutoriel->getPrenomTuteur();?> <?php echo $this->oTutoriel->getNomTuteur();?>, <?php echo $this->oTutoriel->getDateSoumis();?></p>
-                            <div text-center>
-                                <p><?php echo $this->oTutoriel->getContenu();?></p>
-                            </div>                          
                         </div>
+                        <div class="col-lg-12">
+                            <p><?php echo $this->oTutoriel->getContenu();?></p>
+                        </div>                            
                     </div>
                 </div>
                 <div class="modal-footer">

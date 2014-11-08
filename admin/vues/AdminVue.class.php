@@ -395,8 +395,8 @@ class AdminVue extends Vue {
                         <div class="form-group">
                             <label for="txtCommission" class="col-sm-4 control-label">Commission scolaire :</label>
                             <div class="col-sm-6">
-                                <input type="text" id="txtCommission" class="form-control" name="txtNom" placeholder="Commission scolaire">
-                                <div class="divErreur" id="txtCommissionErreur"></div>   
+                                <input type="text" id="txtNom" class="form-control" name="txtNom" placeholder="Commission scolaire">
+                                <div class="divErreur" id="txtNomErreur"></div>
                             </div>
                         </div>
                         <div class="form-group"></div>
@@ -468,12 +468,11 @@ class AdminVue extends Vue {
                                 <div class="divErreur" id="sltMrcErreur"></div>
                             </div>
                         </div>
-                        <div class="form-group"></div>
                         <div class="form-group">
                             <label for="txtCommission" class="col-sm-4 control-label">Commissions scolaire :</label>
                             <div class="col-sm-6">
-                                <input type="text" id="txtCommission" class="form-control" name="txtNom" value="<?php echo $this->oCommission->getNom();?>" placeholder="Commissions scolaire">
-                                <div class="divErreur" id="txtCommissionErreur"></div>    
+                                <input type="text" id="txtNom" class="form-control" name="txtNom" value="<?php echo $this->oCommission->getNom();?>" placeholder="Commissions scolaire">
+                                <div class="divErreur" id="txtNomErreur"></div>    
                             </div>
                         </div>
                         <div class="form-group"></div>
@@ -971,14 +970,14 @@ class AdminVue extends Vue {
                 <div class="col-sm-12 page-header">         
                 </div>
                 <div class="col-sm-12 col-sm-offset-1">
-                    <form id="frmAjouterMatiere" action="" method="POST" class="form-horizontal" role="form">
+                    <form id="frmAjouterMatiere" action="<?php echo WEB_ROOT;?>/admin/admin/ajouter-matiere" method="POST" class="form-horizontal" role="form">
                         <div class="form-group"></div>
                         <div class="form-group"></div>
                         <div class="form-group"></div>
                         <div class="form-group">
                             <label for="txtMatiere" class="control-label col-sm-4">Matière :</label>
                             <div class="col-sm-6">
-                                <input type="text" id="txtMatiere" name="txtNom" class="form-control" placeholder="Matière">
+                                <input type="text" id="txtNom" name="txtNom" class="form-control" placeholder="Matière">
                                 <div class="divErreur" id="txtMatiereErreur"></div>
                             </div> 
                         </div>
@@ -1171,9 +1170,7 @@ class AdminVue extends Vue {
                     <div class="col-xs-3 col-sm-3 col-md-3 pull-right">
                         <button type="submit" id="subChercherProf" class="btn btn-success pull-right">
                         <span class="glyphicon glyphicon-search"></span> Rechercher</button>
-                    </div> 
-                    <div></div> class="col-xs-3 col-sm-3 col-md-3 pull-right">
-                    </div>        
+                    </div>      
                 </form> 
             </div>
         </div>   
@@ -1656,7 +1653,7 @@ class AdminVue extends Vue {
                         <div class="form-group">
                             <label for="sltEcoles" class="col-sm-4 control-label">École :</label>
                             <div class="col-sm-6">
-                                <select id="sltEcoles" class="form-control col-sm-6" name="sltEcoles">
+                                <select id="sltEcoles" class="form-control col-sm-6" name="sltEcole">
                                     <option value="0">Sélection</option>
                                     <?php
                                         foreach ($this->aListeEcoles as $oEcole) {

@@ -36,12 +36,12 @@ window.addEventListener('load', function () {
 	}
 
 	//Formulaire de recherhce d'écoles
-	if(document.getElementById('frmChercherEcoles')) {
+	/*if(document.getElementById('frmChercherEcoles')) {
 		document.getElementById('frmChercherEcoles').addEventListener('submit', validerFrmChercherEcole);
 		//Mettre le focus sur le premier élément du formulaire
 		var sltCommissions = document.getElementById('sltCommissions');
    		sltCommissions.focus();
-	}
+	}*/
 
 	//Formulaire d'ajout d'écoles
 	if(document.getElementById('frmAjouterEcole')) {
@@ -76,12 +76,12 @@ window.addEventListener('load', function () {
 	}
 
 	//Formulaire de recherhce de professeurs
-	if(document.getElementById('frmChercherProf')) {
+	/*if(document.getElementById('frmChercherProf')) {
 		document.getElementById('frmChercherProf').addEventListener('submit', validerFrmChercherProf);
 		//Mettre le focus sur le premier élément du formulaire
 		var sltEcoles = document.getElementById('sltEcoles');
    		sltEcoles.focus();
-	}
+	}*/
 
 	//Formulaire d'ajout de professeurs
 	if(document.getElementById('frmAjouterProf')) {
@@ -100,12 +100,12 @@ window.addEventListener('load', function () {
 	}
 
 	//Formulaire de recherche de tuteurs
-	if(document.getElementById('frmChercherTuteur')) {
+	/*if(document.getElementById('frmChercherTuteur')) {
 		document.getElementById('frmChercherTuteur').addEventListener('submit', validerFrmChercherTuteur);
 		//Mettre le focus sur le premier élément du formulaire
 		var sltEcoles = document.getElementById('sltEcoles');
    		sltEcoles.focus();
-	}
+	}*/
 
 	//Formulaire d'ajout de tuteurs
 	if(document.getElementById('frmAjouterTuteur')) {
@@ -309,11 +309,11 @@ function validerfrmAjouterCommission() {
 
 	//Définir les champs
 	var sltMrc					=	document.getElementById('sltMrc');
-	var txtCommission 			= 	document.getElementById('txtCommission');
+	var txtCommission 			= 	document.getElementById('txtNom');
 
 	//Définir les champs d'erreurs
 	var sltMrcErreur 			= 	document.getElementById('sltMrcErreur');
-	var txtCommissionErreur 	= 	document.getElementById('txtCommissionErreur');
+	var txtCommissionErreur 	= 	document.getElementById('txtNomErreur');
 
 	var aDivErreur 				= 	document.getElementsByClassName('divErreur');
 
@@ -365,13 +365,11 @@ function validerFrmModifierCommission() {
 
 	//Définir les champs
 	var sltMrc					=	document.getElementById('sltMrc');
-	var txtCommission 			= 	document.getElementById('txtCommission');
-	var sltEcoles 				= 	document.getElementById('sltEcoles');
+	var txtCommission 			= 	document.getElementById('txtNom');
 
 	//Définir les champs d'erreurs
 	var sltMrcErreur 			= 	document.getElementById('sltMrcErreur');
-	var txtCommissionErreur 	= 	document.getElementById('txtCommissionErreur');
-	var sltEcolesErreur 		= 	document.getElementById('sltEcolesErreur');
+	var txtCommissionErreur 	= 	document.getElementById('txtNomErreur');
 
 	var aDivErreur 				= 	document.getElementsByClassName('divErreur');
 
@@ -394,12 +392,6 @@ function validerFrmModifierCommission() {
 	else if(!estCommission(txtCommission.value)) {
 		estValide = false;
 		txtCommissionErreur.innerHTML = "La commission scolaire est invalide";
-	}
-
-	//Valider sltEcoles
-	if(sltEcoles.value == "0") {
-		estValide = false;
-		sltEcolesErreur.innerHTML = "Veuillez faire une sélection";
 	}
 
 	//Soummettre le formulaire
@@ -506,7 +498,7 @@ function validerFrmAjouterEcole() {
 
 	//Soummettre le formulaire
 	if(estValide) {
-		frmAjouterEcoles.submit(); 
+		frmAjouterEcole.submit(); 
 	}
 
 }
@@ -589,7 +581,7 @@ function validerFrmAjouterMatiere() {
 	var txtNom					= 	document.getElementById('txtNom');
 
 	//Définir les champs d'erreurs
-	var txtNomErreur 			= 	document.getElementById('txtNomErreur');
+	var txtNomErreur 			= 	document.getElementById('txtMatiereErreur');
 
 	var aDivErreur 				= 	document.getElementsByClassName('divErreur');
 
@@ -750,6 +742,8 @@ function validerFrmAjouterProf() {
 		aDivErreur[i].innerHTML = '';
 	}
 
+	console.log(aChkMatieres);
+
 	//Valider txtPrenom
 	if(estVide(txtPrenom.value)) {
 		estValide = false;
@@ -789,15 +783,15 @@ function validerFrmAjouterProf() {
 	//Valider chkMatiere
 	var auMoinsUn = false;
 	for(var i = 0; i < aChkMatieres.length; i++) {
+		console.log(aChkMatieres[i].checked);
 		if(aChkMatieres[i].checked) {
 			auMoinsUn = true;
 		} 
 	}
 	if(!auMoinsUn) {
-			estValide = false;
-			chkMatieresErreur.innerHTML = "Faites une sélection";
-		}
-
+		estValide = false;
+		chkMatieresErreur.innerHTML = "Faites une sélection";
+	}
 	//Soumettre le formulaire
 	if(estValide) {
 		frmAjouterProf.submit(); 
@@ -887,10 +881,9 @@ function validerFrmModifierProf() {
 		} 
 	}
 	if(!auMoinsUn) {
-			estValide = false;
-			chkMatieresErreur.innerHTML = "*";
-		}
-
+		estValide = false;
+		chkMatieresErreur.innerHTML = "*";
+	}
 	//Soumettre le formulaire
 	if(estValide) {
 		frmModifierProf.submit(); 
@@ -1053,13 +1046,12 @@ function validerFrmAjouterTuteur() {
 		} 
 	}
 	if(!auMoinsUn) {
-			estValide = false;
-			chkMatieresErreur.innerHTML = "*";
-		}
-
+		estValide = false;
+		chkMatieresErreur.innerHTML = "*";
+	}
 	//Soumettre le formulaire
 	if(estValide) {
-		frmModifierProf.submit(); 
+		frmAjouterTuteur.submit(); 
 	}
 
 }
@@ -1147,13 +1139,13 @@ function validerFrmModifierTuteur() {
 		} 
 	}
 	if(!auMoinsUn) {
-			estValide = false;
-			chkMatieresErreur.innerHTML = "*";
-		}
+		estValide = false;
+		chkMatieresErreur.innerHTML = "*";
+	}
 
 	//Soumettre le formulaire
 	if(estValide) {
-		frmModifierProf.submit(); 
+		frmModifierTuteur.submit(); 
 	}
 
 }

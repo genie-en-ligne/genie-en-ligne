@@ -19,11 +19,9 @@ class UtilisateurVue extends Vue {
         </div>
         <div class="row">
 
-
             <!-- -------- -->
             <!-- CAROUSEL -->
             <!-- -------- -->
-
 
             <div class="hidden-xs col-sm-12 col-md-8">
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -208,11 +206,6 @@ class UtilisateurVue extends Vue {
                     </video>
 
                     <div class="col-md-12 espace-avant">
-                        <div class="btn-group">
-                          <button type="button" class="glyphicon glyphicon-play"></button>
-                          <button type="button" class="glyphicon glyphicon-pause"></button>
-                          <button type="button" class="glyphicon glyphicon-stop"></button>
-                        </div>
                     </div>
                     
                     <p>Regardez cette vidéo pour un départ rapide</p>
@@ -549,9 +542,9 @@ class UtilisateurVue extends Vue {
                         <div class="form-group"></div>
                         <div class="form-group text-center">
                             <div class="col-sm-8 col-sm-offset-4">
-                                <button type="refresh" class="btn btn-primary col-sm-5">
-                                    Rafraîchir
-                                </button>
+                                <a href="<?php echo WEB_ROOT;?>" class="btn btn-primary col-sm-5">
+                                    Retour
+                                </a>
                                 <button type="submit" id="btnInscription" name="subInscription" class="btn btn-success col-sm-5 col-sm-offset-2">
                                     Soumettre
                                 </button>

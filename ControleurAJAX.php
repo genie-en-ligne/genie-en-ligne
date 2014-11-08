@@ -41,6 +41,20 @@
 	            }
 			}
 			break;
+
+		case 'utilisateur':
+			if($_GET['action'] == 'validerPseudo') {
+				$oUtilisateur = new Utilisateur();
+				$oUtilisateur->setPseudo($_GET['id']);
+
+				if($oUtilisateur->estDisponiblePseudo()){
+					echo '{"disponible":"oui"}';
+				}
+				else{
+					echo '{"disponible":"non"}';
+				}
+			}
+			break;
 	}
 
 ?>

@@ -21,6 +21,7 @@ window.addEventListener('load', function () {
 
 	if(document.getElementById('frmInscription')) {
 		document.getElementById('frmInscription').addEventListener('submit', validerFrmInscription);
+		document.getElementById('txtPseudo').addEventListener('keyup', validerDispoPseudo);
 	}
 
 	if(document.getElementById('frmRecuperMdp')) {
@@ -28,10 +29,8 @@ window.addEventListener('load', function () {
 	}
 
 	if(document.getElementById('frmMessage')) {
-	document.getElementById('frmMessage').addEventListener('submit', validerFrmSignaliserUnProbleme);
-}
-
-
+		document.getElementById('frmMessage').addEventListener('submit', validerFrmSignaliserUnProbleme);
+	}
 });
 
 //Formulaire de login
@@ -93,7 +92,7 @@ function validerFrmLogin() {
 	}
 }
 
-//Formulaire de modificatin de profil
+//Formulaire de modification de profil
 function validerFrmModifierProfil() {
 
 	//Prévenir l'envoie automatique du formulaire
@@ -110,12 +109,12 @@ function validerFrmModifierProfil() {
 	var frmProfilUtilateur 	= 	document.getElementById('frmProfilUtilisateur');
 
 	//Définir les champs
-	var txtPseudo 			=	document.getElementById('txtPseudo');
+	/*var txtPseudo 		=	document.getElementById('txtPseudo');*/
 	var pwdPass1 			=	document.getElementById('pwdPass1');
 	var pwdPass2 			= 	document.getElementById('pwdPass2');
 
 	//Définir les champs d'erreur
-	var txtPseudoErreur		=	document.getElementById('txtPseudoErreur');
+	/*var txtPseudoErreur		=	document.getElementById('txtPseudoErreur');*/
 	var pwdPass1Erreur		=	document.getElementById('pwdPass1Erreur');
 	var pwdPass2Erreur		=	document.getElementById('pwdPass2Erreur');
 
@@ -126,14 +125,14 @@ function validerFrmModifierProfil() {
 	}
 
 	//Valider pseudo
-	if(estVide(txtPseudo.value)) {
+	/*if(estVide(txtPseudo.value)) {
 		estValide = false;
 		txtPseudoErreur.innerHTML = "Veuillez remplir ce champ";
 	}
 	else if(estPseudo(txtPseudo.value)) {
 		estValide = false;
 		txtPseudoErreur.innerHTML = "Le pseudo est invalide";
-	}
+	}*/
 
 	//Valider Mot de passe1
 	if(estVide(pwdPass1.value)) {
@@ -412,7 +411,46 @@ function validerFrmInscription(){
 
 	//Soumettre le formulaire
    	if(estValide == true){
-      	frmPreInscrition.submit();
+      	frmInscription.submit();
    	}
+}
 
- }
+
+function validerDispoPseudo(){
+	var txtPseudo = document.getElementById('txtPseudo');
+
+	if(txtPseudo.value != ''){
+		var xmlhttp = new XMLHttpRequest();
+		var url = WEB_ROOT + "/ControleurAJAX.php?module=utilisateur&action=validerPseudo&id="+txtPseudo.value;
+
+		xmlhttp.onreadystatechange = function() {
+		    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+		        var sRes = JSON.parse(xmlhttp.responseText);
+		        gererRes(sRes);
+		    }
+		}
+		xmlhttp.open("GET", url, true);
+		xmlhttp.send();
+	}
+	else{
+		gererRes('');
+	}
+}
+
+function gererRes(sRes) {
+	var txtPseudo = document.getElementById('txtPseudo');
+	var txtPseudoErreur = document.getElementById('txtPseudoErreur');
+
+    if(sRes.disponible == "oui"){
+    	txtPseudo.classList.remove('non-dispo');
+    	txtPseudo.classList.add('dispo');
+
+    	txtPseudoErreur.innerHTML = '';
+    }	    
+    else{
+    	txtPseudo.classList.remove('dispo');
+    	txtPseudo.classList.add('non-dispo');
+
+    	txtPseudoErreur.innerHTML = "Ce pseudo n'est pas disponible";
+    }
+}

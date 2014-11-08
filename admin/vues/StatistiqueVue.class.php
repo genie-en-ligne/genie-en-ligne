@@ -43,7 +43,7 @@ class StatistiqueVue extends Vue {
                 <!-- Deuxième graphique, affiché dans un panel -->
                 <div class="panel panel-default col-xs-12">
                     <div class="panel-heading">
-                        Nombre de tutoriels approuvés par matière
+                        Nombre de tutoriels approuvés
                     </div>
                     <div class="panel-body">
                         <?php echo $this->hGraphiqueTutosApprouves;?>
