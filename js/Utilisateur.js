@@ -21,6 +21,7 @@ window.addEventListener('load', function () {
 
 	if(document.getElementById('frmInscription')) {
 		document.getElementById('frmInscription').addEventListener('submit', validerFrmInscription);
+		document.getElementById('txtPseudo').addEventListener('keyup', validerDispoPseudo);
 	}
 
 	if(document.getElementById('frmRecuperMdp')) {
@@ -28,10 +29,8 @@ window.addEventListener('load', function () {
 	}
 
 	if(document.getElementById('frmMessage')) {
-	document.getElementById('frmMessage').addEventListener('submit', validerFrmSignaliserUnProbleme);
-}
-
-
+		document.getElementById('frmMessage').addEventListener('submit', validerFrmSignaliserUnProbleme);
+	}
 });
 
 //Formulaire de login
@@ -414,5 +413,39 @@ function validerFrmInscription(){
    	if(estValide == true){
       	frmInscription.submit();
    	}
+}
 
- }
+
+function validerDispoPseudo(){
+	var txtPseudo = document.getElementById('txtPseudo');
+
+	if(txtPseudo.value != ''){
+		var xmlhttp = new XMLHttpRequest();
+		var url = WEB_ROOT + "/ControleurAJAX.php?module=utilisateur&action=validerPseudo&id="+txtPseudo.value;
+
+		xmlhttp.onreadystatechange = function() {
+		    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+		        var sRes = JSON.parse(xmlhttp.responseText);
+		        gererRes(sRes);
+		    }
+		}
+		xmlhttp.open("GET", url, true);
+		xmlhttp.send();
+	}
+	else{
+		gererRes('');
+	}
+}
+
+function gererRes(sRes) {
+	var txtPseudo = document.getElementById('txtPseudo');
+
+    if(sRes.disponible == "oui"){
+    	txtPseudo.classList.remove('non-dispo');
+    	txtPseudo.classList.add('dispo');
+    }	    
+    else{
+    	txtPseudo.classList.remove('dispo');
+    	txtPseudo.classList.add('non-dispo');
+    }
+}
