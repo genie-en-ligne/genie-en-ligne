@@ -439,13 +439,18 @@ function validerDispoPseudo(){
 
 function gererRes(sRes) {
 	var txtPseudo = document.getElementById('txtPseudo');
+	var txtPseudoErreur = document.getElementById('txtPseudoErreur');
 
     if(sRes.disponible == "oui"){
     	txtPseudo.classList.remove('non-dispo');
     	txtPseudo.classList.add('dispo');
+
+    	txtPseudoErreur.innerHTML = '';
     }	    
     else{
     	txtPseudo.classList.remove('dispo');
     	txtPseudo.classList.add('non-dispo');
+
+    	txtPseudoErreur.innerHTML = "Ce pseudo n'est pas disponible";
     }
 }
