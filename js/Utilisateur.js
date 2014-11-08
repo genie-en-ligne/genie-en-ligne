@@ -82,10 +82,10 @@ function validerFrmLogin() {
 		estValide = false;
 		pwdPassErreur.innerHTML = "Veuillez remplir ce champ";
 	}
-	/*else if(!estMotDePasse(pwdPass.value)) {
+	else if(!estMotDePasse(pwdPass.value)) {
 		estValide = false;
 		pwdPassErreur.innerHTML = "Le mot de passe est invalide";
-	}*/
+	}
 
 	//Soumettre le formulaire 
 	if(estValide == true) {
