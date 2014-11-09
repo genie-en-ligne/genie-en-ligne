@@ -7,6 +7,10 @@
 
 window.addEventListener('load', function () {
 
+	if(document.getElementById('frmCreerLogin')) {
+		document.getElementById('frmCreerLogin').addEventListener('submit', validerFrmCreerLogin);
+	}
+
 	if(document.getElementById('frmLogin')) {
 		document.getElementById('frmLogin').addEventListener('submit', validerFrmLogin);
 	}
@@ -31,7 +35,77 @@ window.addEventListener('load', function () {
 	if(document.getElementById('frmMessage')) {
 		document.getElementById('frmMessage').addEventListener('submit', validerFrmSignaliserUnProbleme);
 	}
+
 });
+
+//Formulaire de création du login
+function validerFrmCreerLogin() {
+	//empêcher le formulaire de soumettre automatiquemenet
+	if(event.preventDefault()) {
+		event.preventDefault();
+	} else {
+		event.returnValue = false;
+	}
+
+	//Valeur par défaut du formulaire
+	var estValide 			= 	true;
+
+	//Cible de la méthode submit 
+	var frmCreerLogin 			= 	document.getElementById('frmCreerLogin');
+
+	//Définir les champs
+	var txtPseudo 			=	document.getElementById('txtPseudo');
+	var pwdMdp1 			= 	document.getElementById('pwdMdp1');
+	var pwdMdp2 			= 	document.getElementById('pwdMdp2');
+
+	//Définir les champs d'erreur
+	var txtPseudoErreur		=	document.getElementById('txtPseudoErreur');
+	var pwdMdp1Erreur		=	document.getElementById('pwdMdp1Erreur');
+	var pwdMdp2Erreur		=	document.getElementById('pwdMdp2Erreur');
+
+	var aDivErreur 			= 	document.getElementsByClassName('divErreur');
+
+	//Enlever toutes les erreurs
+	for(var i = 0; i < aDivErreur.length; i++) {
+		aDivErreur[i].innerHTML = "";	
+	}
+
+	//Valider Pseudo 
+	if(estVide(txtPseudo.value)) {
+		estValide = false;
+		txtPseudoErreur.innerHTML = 'Veuillez remplir ce champ';
+	} 
+	else if(!estPseudo(txtPseudo.value)) {
+		estValide = false;
+		txtPseudoErreur.innerHTML = "Le pseudo est invalide";
+	}
+
+	//Valider mot de passe
+	else if(estVide(pwdMdp1.value)) {
+		estValide = false;
+		pwdMdp1Erreur.innerHTML = 'Veuillez remplir ce champ';
+		pwdMdp1.focus();
+	} 
+	else if(!estMotDePasse(pwdMdp1.value)) {
+		estValide = false;
+		pwdMdp1Erreur.innerHTML = "Le mot de passe est invalide";
+		pwdMdp1.value = '';
+		pwdMdp1Erreur.focus();
+	}
+	//Valider Mot de passe2
+	else if(pwdMdp2.value != pwdMdp1.value ) {
+		estValide = false;
+		pwdMdp2Erreur.innerHTML = "Les mots de passe ne sont pas identiques";
+		pwdMdp2.value = '';
+		pwdMdp2.focus();
+	}
+
+	//Soumettre le formulaire 
+	if(estValide == true) {
+		frmCreerLogin.submit();
+	}
+
+}
 
 //Formulaire de login
 function validerFrmLogin() {
@@ -137,6 +211,28 @@ function validerFrmModifierProfil() {
 	//Valider Mot de passe1
 	if(estVide(pwdPass1.value)) {
 		estValide = false;
+		pwdPass1Erreur.innerHTML = 'Veuillez remplir ce champ';
+		pwdPass1.focus();
+	} 
+	else if(!estMotDePasse(pwdPass1.value)) {
+		estValide = false;
+		pwdPass1Erreur.innerHTML = "Le mot de passe est invalide";
+		pwdPass1.value = '';
+		pwdPass1Erreur.focus();
+	}
+
+	//Valider Mot de passe2
+	else if(pwdPass2.value != pwdPass1.value ) {
+		estValide = false;
+		pwdPass2Erreur.innerHTML = "Les mots de passe ne sont pas identiques";
+		pwdPass2.value = '';
+		pwdPass2.focus();
+	}
+
+
+	//Valider Mot de passe1
+	/*if(estVide(pwdPass1.value)) {
+		estValide = false;
 		pwdPass1Erreur.innerHTML = "Veuillez remplir ce champ";
 	} 
 	else if(estMotDePasse(pwdPass1.value) == false) {
@@ -148,7 +244,7 @@ function validerFrmModifierProfil() {
 	if(pwdPass1.value != pwdPass2.value) {
 		estValide = false;
 		pwdPass2Erreur.innerHTML = "Les mots de passe ne sont pas identiques";
-	}
+	}*/
 
 	if(estValide == true){
 

@@ -279,7 +279,7 @@ function validerFrmModifierResp() {
 	}
 	else if(!estCourriel(emlCourriel.value)) {
 		estValide = false;
-		emlCourriel.innerHTML = "Le courriel est invalide";
+		emlCourrielErreur.innerHTML = "Le courriel est invalide";
 	}
 
 	//Valider sltCommissions
@@ -1193,14 +1193,16 @@ function validerFrmProfilUtil() {
 	else if(!estMotDePasse(pwdMdp1.value)) {
 		estValide = false;
 		pwdMdp1Erreur.innerHTML = "Le mot de passe est invalide";
-		traiterErreur(pwdMdp1);
+		pwdMdp1.value = '';
+		pwdMdp1.focus();
 	}
 
 	//Valider Mot de passe2
 	else if(pwdMdp2.value != pwdMdp1.value ) {
 		estValide = false;
 		pwdMdp2Erreur.innerHTML = "Les mots de passe ne sont pas identiques";
-		traiterErreur(pwdMdp2);
+		pwdMdp2.value = '';
+		pwdMdp2.focus();
 	}
 
 	//Soumettre le formulaire
@@ -1208,11 +1210,7 @@ function validerFrmProfilUtil() {
       	frmProfilUtil.submit();
    	}
 
-}
+}	
 
-function traiterErreur(champATraiter) {
-	champATraiter.value = '';
-	champATraiter.focus();
-}
 
 

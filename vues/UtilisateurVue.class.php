@@ -231,54 +231,49 @@ class UtilisateurVue extends Vue {
         </div>
 
         <div class="row">
-            <div class="col-sm-12 text-center">
-                <h1>
-                    <span class="label label-default">Modifier le mot de passe</span>
-                </h1>
+            <div class="col-sm-12">
+                <div class="text-center page-header">
+                    <h1>
+                        <span class="label label-default">Modifier le mot de passe</span>
+                    </h1>
+                </div>
+                <div class="col-sm-6 col-sm-offset-3">
+                    <p class="col-sm-offset-1">
+                        <strong>
+                            Votre mot de passe doit contenir de huit à quinze caractères et au moins 
+                            une minuscule, une majuscule et un chiffre.
+                        </strong>
+                    </p>
+                </div> 
             </div>        
-            <div class="col-sm-12 col-sm-offset-0">   
+            <div class="col-sm-6 col-sm-offset-2">   
                 <form id="frmProfilUtilisateur" method="POST" action="<?php echo WEB_ROOT;?>/utilisateur/modifier-mdp" class="form-horizontal" role="form">
-                    <div class="col-sm-6 col-sm-offset-3">
-                        <div class="col-sm-12 page-header">
-                            <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group">
+                        <label for="pwdPass1" class="col-sm-4 control-label">Mot de passe :</label>
+                        <div class="col-sm-8">
+                            <input type="password" id="pwdPass1" class="form-control" name="pwdMdp1" placeholder="Mot de passe">
+                            <div class="divErreur" id="pwdPass1Erreur"></div>
                         </div>
-                        <div>  
-                            <p class="text-center">
-                                <strong>Votre mot de passe doit contenir de huit à quinze caractères et au moins 
-                                une minuscule, une majuscule et un chiffre.</strong>
-                            </p>
-                        </div> 
                     </div>
-                    <div class="col-sm-5 col-sm-offset-3">
-                        <div class="form-group"></div>
-                        <div class="form-group"></div>
-                        <div class="form-group"></div> 
-                    
-                        <div class="form-group">
-                            <label for="pwdPass1" class="col-sm-4 control-label">Mot de passe :</label>
-                            <div class="col-sm-7">
-                                <input type="password" id="pwdPass1" class="form-control" name="pwdMdp1" placeholder="Mot de passe">
-                                <div class="divErreur" id="pwdPass1Erreur"></div>
-                            </div>
+                    <div class="form-group">
+                        <label for="pwdPass2" class="col-sm-4 control-label">Mot de passe :</label>
+                        <div class="col-sm-8">
+                            <input type="password" id="pwdPass2" class="form-control" name="pwdMdp2" placeholder="Mot de passe">
+                            <div class="divErreur" id="pwdPass2Erreur"></div>
                         </div>
-                        <div class="form-group">
-                            <label for="pwdPass2" class="col-sm-4 control-label">Mot de passe :</label>
-                            <div class="col-sm-7">
-                                <input type="password" id="pwdPass2" class="form-control" name="pwdMdp2" placeholder="Mot de passe">
-                                <div class="divErreur" id="pwdPass2Erreur"></div>
-                            </div>
-                        </div>
-                        <div class="form-group"></div>
-                        <div class="form-group"></div>
-                        <div class="form-group text-center">
-                            <div class="col-sm-7 col-sm-offset-4">
-                                <button type="refresh" class="btn btn-primary col-sm-5">
-                                    Effacer
-                                </button>
-                                <button type="submit" name="subProfil" id="btnProfilUtil" class="btn btn-success col-sm-5 col-sm-offset-2">
-                                    Soumettre
-                                </button>
-                            </div>
+                    </div>
+                    <div class="form-group"></div>
+                    <div class="form-group"></div>
+                    <div class="form-group text-center">
+                        <div class="col-sm-8 col-sm-offset-4">
+                            <a href="<?php echo WEB_ROOT;?>" class="btn btn-primary col-sm-5" role="button">
+                                Retour
+                            </a>
+                            <button type="submit" name="subProfil" id="btnProfilUtil" class="btn btn-success col-sm-5 col-sm-offset-2">
+                                Soumettre
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -304,46 +299,58 @@ class UtilisateurVue extends Vue {
                 }
             ?>
         </div>
+
+
         <div class="row">
-            <div class="col-sm-6 col-sm-offset-2">
-                <h1 class="col-sm-offset-2 col-sm-6">
-                    <span class="label label-default">Paramètres d'accès Génie en ligne</span>
-                </h1>
-                <div class="col-sm-offset-4 col-sm-8 page-header">
-                    <ol>
-                        <li>Entrez un pseudo et un mot de passe.</li>
-                        <li>Ces informations vous permettront de vous connecter au site.</li>
-                        <li>Votre mot de passe doit contenir de huit à quinze caractères et au moins une minuscule, une majuscule et un chiffre.</li>
-                    </ol>             
+            <div class="col-sm-12">
+                <div class="text-center page-header">
+                    <h1>
+                        <span class="label label-default">Paramètres d'accès Génie en ligne</span>
+                    </h1>
                 </div>
-                <div class="col-sm-12 col-sm-offset-1">
+                <div class="col-sm-6 col-sm-offset-3">
+                    <ol class="col-sm-offset-1">
+                        <strong>
+                            <li>Entrez un pseudo et un mot de passe.</li>
+                            <li>Ces informations vous permettront de vous connecter au site.</li>
+                            <li>Votre mot de passe doit contenir de huit à quinze caractères et au moins une minuscule, une majuscule et un chiffre.</li>
+                        </strong>
+                    </ol> 
+                </div>  
+                <div class="col-sm-6 col-sm-offset-2">           
                     <form id="frmCreerLogin" class="form-horizontal" action="<?php echo WEB_ROOT;?>/utilisateur/creer-login/<?php echo $this->oUtilisateur->getId();?>" method="POST" enctype= "" role="form">
+                        <div class="form-group"></div>
+                        <div class="form-group"></div>
                         <div class="form-group">
-                            <label for="txtLoginPseudo" class="col-sm-4 control-label">Pseudo :</label>
-                            <div class="col-sm-6">
-                                <input type="text" id="txtLoginPseudo" name="txtPseudo" class="form-control" placeholder="Pseudo">
-                                <div class="divErreur" id="txtLoginPseudoErreur"></div>
+                            <label for="txtPseudo" class="col-sm-4 control-label">Pseudo :</label>
+                            <div class="col-sm-8">
+                                <input type="text" id="txtPseudo" name="txtPseudo" class="form-control" placeholder="Pseudo">
+                                <div class="divErreur" id="txtPseudoErreur"></div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="txtLoginMdp1" class="col-sm-4 control-label">Mot de passe :</label>
-                            <div class="col-sm-6">
-                                <input type="password" id="txtLoginMdp1" class="form-control" name="pwdMdp1" placeholder="Mot de passe">
-                                 <div class="divErreur" id="txtLoginMdp1Erreur"></div>
+                            <label for="pwdMdp1" class="col-sm-4 control-label">Mot de passe :</label>
+                            <div class="col-sm-8">
+                                <input type="password" id="pwdMdp1" class="form-control" name="pwdMdp1" placeholder="Mot de passe">
+                                 <div class="divErreur" id="pwdMdp1Erreur"></div>
                             </div>
                         </div>
                          <div class="form-group">
-                            <label for="txtLoginMdp2" class="col-sm-4 control-label">Mot de passe :</label>
-                            <div class="col-sm-6">
-                                <input type="password" id="txtLoginMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe">
-                                <div class="divErreur" id="txtLoginMdp2Erreur"></div>
+                            <label for="pwdMdp2" class="col-sm-4 control-label">Mot de passe :</label>
+                            <div class="col-sm-8">
+                                <input type="password" id="pwdMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe">
+                                <div class="divErreur" id="pwdMdp2Erreur"></div>
                             </div>
                         </div>
                         <div class="form-group"></div>
                         <div class="form-group"></div>
                         <div class="form-group">
-                            <div class="col-sm-offset-6 col-sm-8">
-                                <button type="submit" name="subCreerCompte" id="btnCreerLogin" class="btn btn-success col-sm-offset-2">
+
+                            <div class="col-sm-8 col-sm-offset-4">
+                                <a href="<?php echo WEB_ROOT;?>" class="btn btn-primary col-sm-5">
+                                    Retour
+                                </a>
+                                <button type="submit" name="subCreerCompte" id="btnCreerLogin" class="btn btn-success col-sm-5 col-sm-offset-2">
                                     Soumettre
                                 </button>
                             </div>
@@ -475,17 +482,17 @@ class UtilisateurVue extends Vue {
             ?>
         </div>
 
-         <div class="row">
+        <div class="row">
             <div class="col-sm-12">
                 <div class="text-center page-header">
                     <h1>
-                        <span class="label label-default">Formulaire de d'inscription</span>
+                        <span class="label label-default">Formulaire d'inscription</span>
                     </h1>
                 </div>
                 <div class="col-sm-6 col-sm-offset-3">
                     <ol class="col-sm-offset-1">
                         <strong>
-                           <li>Entrez un pseudo et un mot de passe.</li>
+                            <li>Entrez un pseudo et un mot de passe.</li>
                             <li>Ces informations vous permettront de vous connecter au site.</li>
                             <li>Votre mot de passe doit contenir de huit à quinze caractères et au moins une minuscule, une majuscule et un chiffre.</li>
                         </strong>
@@ -502,7 +509,6 @@ class UtilisateurVue extends Vue {
                                 <div class="divErreur" id="txtPrenomErreur"></div>
                             </div>
                         </div>
-                        <div class="form-group"></div>
                         <div class="form-group">
                             <label for="txtNom" class="col-sm-4 control-label">Nom de famille :</label>
                             <div class="col-sm-8">
