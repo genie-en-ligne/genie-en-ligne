@@ -415,7 +415,6 @@ function validerFrmInscription(){
    	}
 }
 
-
 function validerDispoPseudo(){
 	var txtPseudo = document.getElementById('txtPseudo');
 
