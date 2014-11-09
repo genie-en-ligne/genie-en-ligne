@@ -123,8 +123,14 @@ window.addEventListener('load', function () {
    		txtPrenom.focus();
 	}
 
-});
+	if(document.getElementById('frmProfilUtil')) {
+		document.getElementById('frmProfilUtil').addEventListener('submit', validerFrmProfilUtil);
+		//Mettre le focus sur le premier élément du formulaire
+		var pwdMdp1 = document.getElementById('pwdMdp1');
+   		pwdMdp1.focus();
+	}
 
+});
 
 /*************FORMULAIRE AJOUTER RESPONSABLE**********************/
 
@@ -273,7 +279,7 @@ function validerFrmModifierResp() {
 	}
 	else if(!estCourriel(emlCourriel.value)) {
 		estValide = false;
-		emlCourriel.innerHTML = "Le courriel est invalide";
+		emlCourrielErreur.innerHTML = "Le courriel est invalide";
 	}
 
 	//Valider sltCommissions
@@ -1149,5 +1155,62 @@ function validerFrmModifierTuteur() {
 	}
 
 }
+
+/*************FORMULAIRE DE CHANGEMENT DE MOT DE PASSE**********************/
+
+//Validation du formulaire de modifications de tuteurs
+function validerFrmProfilUtil() {
+
+	//Prévenir l'envoie automatique du formulaire
+	if(event.preventDefault()) {
+		event.preventDefault();
+	} else {
+		event.returnValue = false;
+	}
+
+	var estValide 			=  	true;
+	var frmProfilUtil 		= 	document.getElementById('frmProfilUtil');
+
+	var pwdMdp1				=	document.getElementById('pwdMdp1');
+	var pwdMdp2				= 	document.getElementById('pwdMdp2');
+
+	var pwdMdp1Erreur		=	document.getElementById('pwdMdp1Erreur');
+	var txtMdp2Erreur		=	document.getElementById('pwdMdp2Erreur');
+
+	var aDivErreur 			= 	document.getElementsByClassName('divErreur');
+
+   	//Enlever toutes les erreurs
+   	for(var i = 0; i < aDivErreur.length; i++) {
+      	aDivErreur[i].innerHTML = '';
+   	}
+
+	//Valider Mot de passe1
+	if(estVide(pwdMdp1.value)) {
+		estValide = false;
+		pwdMdp1Erreur.innerHTML = 'Veuillez remplir ce champ';
+		pwdMdp1.focus();
+	} 
+	else if(!estMotDePasse(pwdMdp1.value)) {
+		estValide = false;
+		pwdMdp1Erreur.innerHTML = "Le mot de passe est invalide";
+		pwdMdp1.value = '';
+		pwdMdp1.focus();
+	}
+
+	//Valider Mot de passe2
+	else if(pwdMdp2.value != pwdMdp1.value ) {
+		estValide = false;
+		pwdMdp2Erreur.innerHTML = "Les mots de passe ne sont pas identiques";
+		pwdMdp2.value = '';
+		pwdMdp2.focus();
+	}
+
+	//Soumettre le formulaire
+   	if(estValide == true) {
+      	frmProfilUtil.submit();
+   	}
+
+}	
+
 
 

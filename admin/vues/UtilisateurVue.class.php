@@ -57,27 +57,27 @@ class UtilisateurVue extends Vue {
                     <form id="frmProfilUtil" method="POST" action="<?php echo WEB_ROOT;?>/admin/utilisateur/modifier-mdp" class="form-horizontal" role="form">
                         <div class="form-group"></div>
                         <div class="form-group">
-                            <label for="txtProfilMdp1" class="col-sm-4 control-label">Mot de passe :</label>
+                            <label for="pwdMdp1" class="col-sm-4 control-label">Mot de passe :</label>
                             <div class="col-sm-6">
-                                <input type="password" id="txtProfilMdp" class="form-control" name="pwdMdp1" placeholder="Mot de passe">
-                                <div class="divErreur" id="txtProfilMdpErreur"></div>
+                                <input type="password" id="pwdMdp1" class="form-control" name="pwdMdp1" placeholder="Mot de passe">
+                                <div class="divErreur" id="pwdMdp1Erreur"></div>
                             </div>
                         </div>
                         <div class="form-group"></div>
                         <div class="form-group">
-                            <label for="txtProfilMdp2" class="col-sm-4 control-label">Mot de passe :</label>
+                            <label for="pwdMdp2" class="col-sm-4 control-label">Mot de passe :</label>
                             <div class="col-sm-6">
-                                <input type="password" id="txtProfilMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe">
-                                 <div class="divErreur" id="txtProfilMdp2Erreur"></div>
+                                <input type="password" id="pwdMdp2" class="form-control" name="pwdMdp2" placeholder="Mot de passe">
+                                 <div class="divErreur" id="pwdMdp2Erreur"></div>
                             </div>
                         </div>
                         <div class="form-group"></div>
                         <div class="form-group"></div>
                         <div class="form-group text-center">
                             <div class="col-sm-6 col-sm-offset-4">
-                                <button type="refresh" class="btn btn-primary col-sm-5">
-                                    Recommencer
-                                </button>
+                                <a href="<?php echo WEB_ROOT;?>/admin" class="btn btn-primary col-sm-5">
+                                    Retour   
+                                </a>
                                 <button type="submit" name="subProfil" id="btnProfilUtil" class="btn btn-success col-sm-5 col-sm-offset-2">
                                     Soumettre
                                 </button>

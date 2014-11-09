@@ -219,7 +219,7 @@ class AdminVue extends Vue {
                         <div class="form-group">
                             <label for="emlCourriel" class="col-sm-4 control-label">Courriel :</label>
                             <div class="col-sm-6">
-                                <input type="email" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
+                                <input type="text" id="emlCourriel" class="form-control" name="emlCourriel" placeholder="Courriel" value="<?php echo $this->oUtilisateur->getCourriel();?>">
                                 <div class="divErreur" id="emlCourrielErreur"></div>
                             </div>
                         </div>
@@ -1684,7 +1684,7 @@ class AdminVue extends Vue {
                         <div class="form-group"></div>
                         <div class="form-group">
                             <div class="col-sm-6 col-sm-offset-4">
-                                 <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-tuteurs" class="btn btn-danger col-sm-5" role="button">
+                                <a href="<?php echo WEB_ROOT;?>/admin/utilisateur/gerer-tuteurs" class="btn btn-danger col-sm-5" role="button">
                                     <span class="glyphicon glyphicon-remove"></span> Annuler
                                 </a>
                                 <button type="submit" id="subAjouterTuteur" name="subCreerTuteur" class="btn btn-success col-sm-5 col-sm-offset-2">
@@ -1759,7 +1759,7 @@ class AdminVue extends Vue {
                         </div>
                         <div class="form-group"></div>
                         <div class="form-group">
-                            <label for="sltEcole" class="col-sm-4 control-label">École :</label>
+                            <label for="sltEcoles" class="col-sm-4 control-label">École :</label>
                             <div class="col-sm-6">
                                 <select id="sltEcoles" class="form-control col-sm-6" name="sltEcole">
                                     <?php
@@ -1773,7 +1773,7 @@ class AdminVue extends Vue {
                                         }
                                     ?>
                                 </select>
-                                <div class="divErreur" id="sltEcoleErreur"></div>
+                                <div class="divErreur" id="sltEcolesErreur"></div>
                             </div>
                         </div>
                         <div class="form-group"></div>
