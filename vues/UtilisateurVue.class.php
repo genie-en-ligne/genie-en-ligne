@@ -28,13 +28,13 @@ class UtilisateurVue extends Vue {
                     <!-- Conteneur des diapositives -->
                     <div class="carousel-inner">
                         <div class="item active">
-                            <img src="<?php echo WEB_ROOT;?>/images/bad_student_01.png" alt="bad_student">
+                            <img src="<?php echo WEB_ROOT;?>/images/bad_student_01.png" alt="bad_student Repéré à  https://bibliobulimica.files.wordpress.com/2012/04/bad-student_0.jpg">
                         </div>
                         <div class="item">
-                            <img src="<?php echo WEB_ROOT;?>/images/scheme.png" alt="Schéma">
+                            <img src="<?php echo WEB_ROOT;?>/images/scheme.png" alt="Schéma Repéré à  https://bibliobulimica.files.wordpress.com/2012/04/bad-student_0.jpg">
                         </div>
                         <div class="item">
-                            <img src="<?php echo WEB_ROOT;?>/images/finissants.png" alt="Finissants">
+                            <img src="<?php echo WEB_ROOT;?>/images/finissants.png" alt="Finissants Repéré à  http://blogueaqv.files.wordpress.com/2013/01/11031108-bal-des-finissants.jpg ">
                         </div>
                     </div><!-- .carousel-inner -->
                 </div><!-- .carousel.slide -->
@@ -104,7 +104,7 @@ class UtilisateurVue extends Vue {
                         <div class="panel-body descriptions-accueil">
                             <div class="cadre page-header text-center">
                                 <a class="lire_plus">
-                                    <img src="<?php echo WEB_ROOT;?>/images/chat.png" class="img-circle" alt="chat" />
+                                    <img src="<?php echo WEB_ROOT;?>/images/chat.png" class="img-circle" alt="chat Repéré à  http://streeling.wordpress.com/2012/04/26/chat-en-ligne-et-e-commerce/" />
                                 </a>
                             </div>
                             <p>
@@ -136,7 +136,7 @@ class UtilisateurVue extends Vue {
                         <div class="panel-body descriptions-accueil">
                             <div class="cadre page-header text-center">
                                 <a class="lire_plus">
-                                    <img src="<?php echo WEB_ROOT;?>/images/contenu.png" class="img-circle" alt="tutoriels" />
+                                    <img src="<?php echo WEB_ROOT;?>/images/contenu.png" class="img-circle" alt="tutoriels Repéré à  http://icons.mysitemyway.com/legacy-icon/024815-blue-jelly-icon-culture-books3-stacked/" />
                                 </a>
                             </div>
 
@@ -165,7 +165,7 @@ class UtilisateurVue extends Vue {
                         <div class="panel-body descriptions-accueil">
                             <div class="cadre page-header text-center">
                                 <a class="lire_plus">
-                                    <img src="<?php echo WEB_ROOT;?>/images/forum.png" class="img-circle" alt="communauté" />
+                                    <img src="<?php echo WEB_ROOT;?>/images/forum.png" class="img-circle" alt="communauté Repéré à  http://support.myvisionexpress.com/index.php?/News/NewsItem/View/260" />
                                 </a>
                             </div>
                             <p>
